@@ -1,8 +1,8 @@
 package com.example.controller;
 
 import com.example.model.Account;
-import com.example.repository1.CartRepository;
-import com.example.repository1.UserRepository;
+import com.example.repository.CartRepository;
+import com.example.repository.UserRepository;
 import com.example.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
