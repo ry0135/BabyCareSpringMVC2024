@@ -81,7 +81,7 @@ public class LoginController {
             if (account.getRole() == 1) {
                 return "redirect:/admin"; // Trang dành cho admin
             } else {
-                return "redirect:/index"; // Trang chủ người dùng
+                return "redirect:/home"; // Trang chủ người dùng
             }
         } catch (Exception e) {
             e.printStackTrace();
