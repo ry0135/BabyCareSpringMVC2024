@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table (name = "tblAccount") // Tên bảng trong cơ sở dữ liệu
 public class Account {
@@ -167,6 +168,7 @@ public class Account {
     public void setCode(String code) {
         this.code = code;
     }
+
 
     @Override
     public String toString() {

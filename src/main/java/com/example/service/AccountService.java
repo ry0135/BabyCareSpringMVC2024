@@ -7,6 +7,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class AccountService {
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -61,9 +63,12 @@ public class AccountService {
 
     @Transactional
     public void deleteById(String userID) {
-         accountRepository.deleteById(userID);
+        accountRepository.deleteById(userID);
     }
 
+    public List<Account> getListCusAccount() {
+        return accountRepository.findAllByRole(3); // Assuming role 3 is for customers
+    }
 
 
 
