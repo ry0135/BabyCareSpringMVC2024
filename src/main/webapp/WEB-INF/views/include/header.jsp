@@ -88,7 +88,7 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-light navbar-expand-xl py-3" style="width: 100%;">
+  <nav class="navbar navbar-light navbar-expand-xl py-3" style="width: 100%;background-color: #f8d9e1">
       <a href="index.jsp" class="navbar-brand" style="margin-left: 90px;"><h1 style="color: #ff4880;">Baby<span style="color: #4d65f9;">Care</span></h1></a>
       <div class="collapse navbar-collapse" id="navbarCollapse">
       <div class="navbar-nav mx-auto" style="font-family: Arial; ">
@@ -96,7 +96,7 @@
           <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">Dịch Vụ</a></li>
-            <li><a href="#">Sản Phẩm</a></li>
+            <li><a href="products">Sản Phẩm</a></li>
             <li><a href="#">Mã Giảm Giá</a></li>
             <li><a href="#">Đăng kí CTV</a></li>
             <li><a href="#">Giỏ Hàng</a></li>
