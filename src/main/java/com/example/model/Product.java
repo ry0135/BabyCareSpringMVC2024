@@ -1,14 +1,11 @@
 package com.example.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "tblAccount") // Tên bảng trong cơ sở dữ liệu
+@Table(name = "tblProduct") // Tên bảng trong cơ sở dữ liệu
 public class Product {
     @Id
     @Column(name = "ProductID") // Tên cột trong cơ sở dữ liệu
@@ -39,8 +36,33 @@ public class Product {
     private int dimensions;
     @Column(name = "ShippingCost") // Tên cột trong cơ sở dữ liệu
     private double shippingCost;
+    @OneToMany
+    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", insertable = false, updatable = false)
+    private List<ProductImage> images = new ArrayList<>();
 
-    private List<String> imagePaths;
+    public void addImagePath(String imagePath) {
+        if (this.images == null) {
+            this.images = new ArrayList<>();
+        }
+        ProductImage image = new ProductImage();
+        image.setImagePath(imagePath);
+        image.setProductID(this.productId); // Đảm bảo liên kết đúng với sản phẩm hiện tại
+        this.images.add(image);
+    }
+
+    // Phương thức trả về danh sách đường dẫn hình ảnh
+    public List<String> getImagePaths() {
+        List<String> imagePaths = new ArrayList<>();
+        for (ProductImage image : images) {
+            imagePaths.add(image.getImagePath());
+        }
+        return imagePaths;
+    }
+
+    // Phương thức để lấy giá sản phẩm dưới dạng chuỗi
+    public String getPriceString() {
+        return String.format("%.0f", productPrice); // Giả sử productPrice là kiểu double
+    }
     public Product() {
     }
 
@@ -59,17 +81,18 @@ public class Product {
         this.weight = weight;
         this.dimensions = dimensions;
         this.shippingCost = shippingCost;
-        this.imagePaths = new ArrayList<>();
+
     }
 
-    public void addImagePath(String imagePath) {
-        this.imagePaths.add(imagePath);
+    // Thêm hình ảnh vào danh sách
+    public List<ProductImage> getImages() {
+        return images;
     }
 
-    // Getter và Setter cho imagePaths
-    public List<String> getImagePaths() {
-        return imagePaths;
+    public void setImages(List<ProductImage> images) {
+        this.images = images;
     }
+
     public String getProductId() {
         return productId;
     }

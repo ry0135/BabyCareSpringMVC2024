@@ -139,7 +139,7 @@
     text-align: center;
   }
 </style>
-<jsp:include page="${pageContext.request.contextPath}/include/header.jsp" />
+<jsp:include page="/WEB-INF/views/include/header.jsp" />
 
 <div class="container-fluid d-none d-lg-block pt-5">
 <%--  <div class="category-container">--%>
@@ -166,7 +166,7 @@
           <a href="getProductDetail?id=${product.productId}" class="product-item-link">
             <div class="product-item position-relative bg-white d-flex flex-column text-center ${product.productAmount == 0 ? 'out-of-stock' : ''}">
               <div class="product-image">
-                <img class="img-fluid" src="img/${product.getImagePaths().get(0)}" alt="">
+                <img class="img-fluid" src="${pageContext.request.contextPath}/assets/img/${product.getImagePaths().get(0)}" alt="">
                 <div class="out-of-stock" style="display: ${product.productAmount == 0 ? 'flex' : 'none'}; /* Ẩn khi không phải hết hàng */">Hết hàng</div>
               </div>
               <div class="product-details">
