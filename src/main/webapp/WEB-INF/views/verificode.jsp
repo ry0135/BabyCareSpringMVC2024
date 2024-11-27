@@ -74,14 +74,14 @@
 <div class="verificode-form" id="verificodeForm">
   <span>Hệ thống đã gửi mã kích hoạt đến Email của bạn.</span>
   <span>Xin vui lòng kiểm tra Email để lấy mã kích hoạt tài khoản của bạn.</span>
-  <form action="VerificodeServlet" method="post" class="Log-reg-block sky-form">
+  <form action="verificode" method="post" class="Log-reg-block sky-form">
     <div class="input-group">
       <input type="text" name="authcode" class="form-control" placeholder="Nhập mã kích hoạt" required>
     </div>
     <input type="submit" value="Kích hoạt" class="btn-u btn-u-sea-shop">
   </form>
 
-  <form action="ResendCodeServlet" method="post" class="Log-reg-block sky-form">
+  <form action="resendCode" method="post" class="Log-reg-block sky-form">
     <input type="hidden" name="userID" value="<%= request.getSession().getAttribute("userID") %>">
     <input type="submit" value="Gửi lại mã" class="btn-u btn-u-sea-shop">
   </form>
