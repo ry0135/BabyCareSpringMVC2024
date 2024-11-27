@@ -64,7 +64,22 @@ public class AccountService {
          accountRepository.deleteById(userID);
     }
 
+    public boolean sendVerifyCodeAndUpdatePassword(String email) {
+        // Lấy thông tin người dùng dựa trên email
+        Account account = accountRepository.findByEmail(email);  // Assuming `email` is the username
+        if (account == null) {
+            return false;
+        }
 
+        String verificationCode = randomService.generateRandomCode();
+        emailService.sendCodeToEmail(email, verificationCode);
+
+//         Cập nhật password với mã xác minh
+        String encodedPassword = passwordEncoder.encode(verificationCode);
+        account.setPassword(encodedPassword ); // Giả sử bạn lưu mã xác minh tạm thời làm password
+        accountRepository.save(account);
+        return true;
+    }
 
 
 }

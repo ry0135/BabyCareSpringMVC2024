@@ -110,7 +110,7 @@
                             <label for="formCheck" class="form-check-label text-secondary"><small>Hiện thị mật khẩu</small></label>
                         </div>
                         <div class="forgot">
-                            <small><a href="forgotpassword.jsp">Quên mật khẩu?</a></small>
+                            <small><a href="forgotPassword">Quên mật khẩu?</a></small>
                         </div>
                     </div>
                     <div class="input-group mb-3">
