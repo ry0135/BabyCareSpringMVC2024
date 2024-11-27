@@ -2,6 +2,7 @@
 package com.example.controller;
 
 import com.example.model.Account;
+import com.example.repository.AccountRepository;
 import com.example.service.AccountService;
 import com.example.service.RandomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,8 @@ import java.io.UnsupportedEncodingException;
 
 @Controller
 public class RegisterController {
-
+    @Autowired
+    private AccountRepository accountRepository;
     @Autowired
     private AccountService accountService;
 
@@ -44,7 +46,6 @@ public class RegisterController {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-
         // Kiểm tra địa chỉ
         if (address == null || address.trim().isEmpty()) {
             System.out.println("Không có địa chỉ nào được nhận.");

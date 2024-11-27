@@ -142,16 +142,16 @@
 <jsp:include page="${pageContext.request.contextPath}/include/header.jsp" />
 
 <div class="container-fluid d-none d-lg-block pt-5">
-  <div class="category-container">
-    <c:forEach var="c" items="${listC}">
-      <div class="category-item">
-        <a href="category?id=${c.categoryID}">
-          <img src="${c.img}" alt="${c.categoryName}">
-          <p>${c.categoryName}</p>
-        </a>
-      </div>
-    </c:forEach>
-  </div>
+<%--  <div class="category-container">--%>
+<%--    <c:forEach var="c" items="${listC}">--%>
+<%--      <div class="category-item">--%>
+<%--        <a href="category?id=${c.categoryID}">--%>
+<%--          <img src="${c.img}" alt="${c.categoryName}">--%>
+<%--          <p>${c.categoryName}</p>--%>
+<%--        </a>--%>
+<%--      </div>--%>
+<%--    </c:forEach>--%>
+<%--  </div>--%>
   <div class="container">
     <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
       <h6 class="text-primary text-uppercase">Sản Phẩm</h6>

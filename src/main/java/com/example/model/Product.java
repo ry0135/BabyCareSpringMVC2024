@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tblAccount") // Tên bảng trong cơ sở dữ liệu
@@ -38,6 +40,7 @@ public class Product {
     @Column(name = "ShippingCost") // Tên cột trong cơ sở dữ liệu
     private double shippingCost;
 
+    private List<String> imagePaths;
     public Product() {
     }
 
@@ -56,8 +59,17 @@ public class Product {
         this.weight = weight;
         this.dimensions = dimensions;
         this.shippingCost = shippingCost;
+        this.imagePaths = new ArrayList<>();
     }
 
+    public void addImagePath(String imagePath) {
+        this.imagePaths.add(imagePath);
+    }
+
+    // Getter và Setter cho imagePaths
+    public List<String> getImagePaths() {
+        return imagePaths;
+    }
     public String getProductId() {
         return productId;
     }
