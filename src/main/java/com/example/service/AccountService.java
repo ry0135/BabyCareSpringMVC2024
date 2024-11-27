@@ -17,10 +17,11 @@ public class AccountService {
     @Autowired
     private RandomService randomService;
 
+
+    @Transactional(readOnly = true)
     public Account verify(String username, String password) {
         // Tìm tài khoản theo tên người dùng
         Account account = accountRepository.findByUsername(username);
-
         // Nếu tài khoản được tìm thấy, kiểm tra mật khẩu
         if (account != null && passwordEncoder.matches(password, account.getPassword())) {
             return account; // Trả về tài khoản nếu xác thực thành công
@@ -53,7 +54,7 @@ public class AccountService {
         if (account != null) {
             // Cập nhật trạng thái tài khoản
             account.setStatus(1);
-            save(account); // Lưu lại thay đổi
+            accountRepository.save(account);
             return true;
         }
         return false;
@@ -65,6 +66,18 @@ public class AccountService {
     }
 
 
+    public boolean resendVerificationCode(String userID) {
+        Account account = accountRepository.findByUserID(userID);
+        if (account != null) {
+            String newCode = randomService.generateRandomCode();
+            int rowsUpdated = accountRepository.updateCode(newCode, userID);
+            if (rowsUpdated > 0) {
+                emailService.sendCodeToEmailResendCode(account.getEmail(), newCode);
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }
