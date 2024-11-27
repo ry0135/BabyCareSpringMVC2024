@@ -19,14 +19,6 @@
       background-color: white; /* Màu nền nhẹ nhàng */
     }
 
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px;
-      background-color: #f8d9e1; /* Màu nền cho header */
-
-    }
 
     .logo {
       font-size: 2em;
@@ -93,24 +85,23 @@
 
   <!-- Customized Bootstrap Stylesheet -->
   <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Template Stylesheet -->
-  <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
 </head>
-
 <body>
-<header>
-  <a href="index.jsp" class="navbar-brand" style="margin-left: 90px;"><h1 style="color: #ff4880;">Baby<span style="color: #4d65f9;">Care</span></h1></a>
-  <nav>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Dịch Vụ</a></li>
-      <li><a href="#">Sản Phẩm</a></li>
-      <li><a href="#">Mã Giảm Giá</a></li>
-      <li><a href="#">Đăng kí CTV</a></li>
-      <li><a href="#">Giỏ Hàng</a></li>
-    </ul>
-  </nav>
+
+  <nav class="navbar navbar-light navbar-expand-xl py-3" style="width: 100%;">
+      <a href="index.jsp" class="navbar-brand" style="margin-left: 90px;"><h1 style="color: #ff4880;">Baby<span style="color: #4d65f9;">Care</span></h1></a>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav mx-auto" style="font-family: Arial; ">
+      <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Dịch Vụ</a></li>
+            <li><a href="#">Sản Phẩm</a></li>
+            <li><a href="#">Mã Giảm Giá</a></li>
+            <li><a href="#">Đăng kí CTV</a></li>
+            <li><a href="#">Giỏ Hàng</a></li>
+          </ul>
+      </nav>
 
   <div class="d-flex me-4">
     <c:if test="${sessionScope.account==null}">
@@ -139,15 +130,13 @@
 
       </c:if>
       <div class="nav-item dropdown" >
-
         <div class=" d-flex align-items-center" data-bs-toggle="dropdown">
-
-          <img class="img-avatar text-white ms-lg-5" style="width: 50px; height: 83%; border-radius: 50%; margin-top: 5px;" src="${pageContext.request.contextPath}/assets/img/${sessionScope.user.avatar}" alt="">
+          <img class="img-avatar text-white ms-lg-5" style="width: 50px; height: 83%; border-radius: 50%; margin-top: 5px;" src="${pageContext.request.contextPath}/assets/img/${sessionScope.account.avatar}" alt="">
           <a href="#" class="nav-link bg-primary text-white px-5 ms-lg-3">
               ${sessionScope.account.firstname} ${sessionScope.account.lastname}
           </a>
         </div>
-        <div class="dropdown-menu m-0" style="left: 131px;">
+          <div class="dropdown-menu m-0" style="left: 131px;">
           <a href="profile" class="dropdown-item">Quản lí thông tin cá nhân</a>
 
 
@@ -187,7 +176,11 @@
       </div>
     </c:if>
   </div>
-</header>
+    </div>
+  </div>
+  </nav>
+
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -197,7 +190,10 @@
 <script src="${pageContext.request.contextPath}/assets/lib/waypoints/waypoints.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/lib/lightbox/js/lightbox.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/lib/owlcarousel/owl.carousel.min.js"></script>
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
 <!-- Template Javascript -->
 <script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 </html>
