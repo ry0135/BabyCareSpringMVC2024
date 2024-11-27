@@ -19,4 +19,13 @@ public class EmailService {
         mailSender.send(message);
         System.out.println("Đã gửi mã thành công.");
     }
+
+    public void sendCodeToEmailResendCode(String email, String code) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("Mã Xác Minh");
+        message.setText("Mã xác minh của bạn đã được gửi lại là: " + code);
+        mailSender.send(message);
+        System.out.println("Đã gửi mã thành công.");
+    }
 }
