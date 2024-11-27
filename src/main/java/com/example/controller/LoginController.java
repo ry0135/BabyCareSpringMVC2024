@@ -5,6 +5,7 @@ import com.example.repository.CartRepository;
 import com.example.repository.UserRepository;
 import com.example.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
-
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     @Autowired
     private AccountService accountService;
 
@@ -46,13 +47,17 @@ public class LoginController {
             RedirectAttributes redirectAttributes) {
         try {
 
-
+            System.out.println(username);
+            System.out.println(password);
+            //String passwordhash = passwordEncoder.encode(password);
             // Xác thực tài khoản
             Account account = accountService.verify(username, password);
 
             if (account == null) {
                 // Tài khoản không tồn tại
                 redirectAttributes.addFlashAttribute("thongbao", "Thông tin đăng nhập không chính xác");
+//                redirectAttributes.addFlashAttribute("thongbao", passwordhash);
+
                 return "redirect:/login";
             }
 
@@ -64,7 +69,7 @@ public class LoginController {
 
             // Lưu thông tin người dùng vào session
             session.setAttribute("account", account);
-
+            session.setAttribute("userID", account.getUserID());
             // Lấy giỏ hàng của người dùng
 //            Cart cart = cartService.loadCartByUserId(user.getUserId());
 //            session.setAttribute("cart", cart);
