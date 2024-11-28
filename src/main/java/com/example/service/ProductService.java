@@ -1,7 +1,11 @@
 package com.example.service;
 
+import com.example.model.Account;
+import com.example.model.CommentProduct;
 import com.example.model.Product;
 import com.example.model.ProductImage;
+import com.example.repository.AccountRepository;
+import com.example.repository.CommentProductRepository;
 import com.example.repository.ProductImageRepository;
 import com.example.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,10 @@ import java.util.List;
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private AccountRepository accountRepository;
+    @Autowired
+    private CommentProductRepository commentProductRepository;
 
     @Autowired
     private ProductImageRepository productImageRepository;
@@ -43,6 +51,49 @@ public class ProductService {
         });
 
         return products;
+        }
+    @Transactional
+    public Product getProductById(String productId) {
+        // Tìm sản phẩm theo ID
+        Product product = productRepository.findById(productId).orElse(null);
+        if (product != null) {
+            // Lấy danh sách hình ảnh liên quan đến sản phẩm
+            List<ProductImage> images = productImageRepository.findByProductID(productId);
+            // Gán hình ảnh vào sản phẩm
+            images.forEach(image -> product.addImagePath(image.getImagePath()));
+        }
+        return product; // Trả về sản phẩm, kèm theo các hình ảnh
+    }
+    @Transactional
+    public List<CommentProduct> listCommentsByProductId(String productId) {
+        return commentProductRepository.findByProductID(productId);
+    }
+    @Transactional
+    public double getAverageRatingForProduct(String productId) {
+        return productRepository.getTotalNumberOfRatingsForProduct(productId);
+    }
+    @Transactional
+    public int getTotalCommentsForProduct(String productId) {
+        return productRepository.getTotalCommentsForProduct(productId);
+    }
+    @Transactional
+    public int getCountProductByCTV(String ctvID) {
+        return productRepository.countProductsByCTV(ctvID);
+    }
+
+    @Transactional
+    public Account getUserDetailsByCommentId(String commentId) {
+        return accountRepository.findUserDetailsByCommentId(commentId);
+    }
+
+    public List<CommentProduct> setUserDetailsForComments(List<CommentProduct> comments) {
+        for (CommentProduct comment : comments) {
+            Account user = getUserDetailsByCommentId(comment.getCommentID()); // Thay đổi dòng này gọi đến UserRepository
+            if (user != null) {
+                comment.setUser(user); // Giả sử CommentProduct có phương thức setUser để gán User
+            }
+        }
+        return comments; // Trả về danh sách bình luận đã cập nhật với thông tin người dùng
     }
 
 }
