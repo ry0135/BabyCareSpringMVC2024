@@ -95,7 +95,7 @@
       <nav>
           <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Dịch Vụ</a></li>
+            <li><a href="service">Dịch Vụ</a></li>
             <li><a href="products">Sản Phẩm</a></li>
             <li><a href="#">Mã Giảm Giá</a></li>
             <li><a href="#">Đăng kí CTV</a></li>
@@ -104,11 +104,14 @@
       </nav>
 
   <div class="d-flex me-4">
-    <c:if test="${sessionScope.account==null}">
+    <c:if test="${sessionScope.account == null}">
       <a href="login" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng nhập<i
               class="bi bi-arrow-right"></i></a>
     </c:if>
     <c:if test="${sessionScope.account!=null}">
+
+
+
       <c:if test="${sessionScope.account.role == 4 }">
         <div class="wallet-section ms-4" style="margin-top: 15px">
           <i class="bi bi-wallet wallet-icon"></i>
