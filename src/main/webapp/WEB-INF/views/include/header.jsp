@@ -98,7 +98,8 @@
             <li><a href="#">Dịch Vụ</a></li>
             <li><a href="products">Sản Phẩm</a></li>
             <li><a href="#">Mã Giảm Giá</a></li>
-            <li><a href="#">Đăng kí CTV</a></li>
+            <li><a href="register-shop-service">Đăng kí CTV dịch vụ</a></li>
+            <li><a href="#">Đăng kí CTV bán hàng </a></li>
             <li><a href="#">Giỏ Hàng</a></li>
           </ul>
       </nav>
