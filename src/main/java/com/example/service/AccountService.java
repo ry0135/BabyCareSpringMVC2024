@@ -7,6 +7,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class AccountService {
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -17,6 +19,9 @@ public class AccountService {
     @Autowired
     private RandomService randomService;
 
+    public Account getAccountByUsername(String username) {
+        return accountRepository.findByUsername(username);
+    }
 
     @Transactional(readOnly = true)
     public Account verify(String username, String password) {
@@ -59,6 +64,9 @@ public class AccountService {
         }
         return false;
     }
+    public Account updateUser(Account account) {
+        return accountRepository.save(account);
+    }
 
     @Transactional
     public void deleteById(String userID) {
@@ -96,5 +104,16 @@ public class AccountService {
         return true;
     }
 
+    public Optional<Account> findUserById(String userId) {
+        return accountRepository.findById(userId);
+    }
+
+    public void updateAvatar(String userId, String avatar) {
+        Account user = accountRepository.findByUserID(userId);
+        if (user != null) {
+            user.setAvatar(avatar);
+            accountRepository.save(user);
+        }
+    }
 
 }
