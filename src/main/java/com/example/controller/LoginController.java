@@ -69,6 +69,7 @@ public class LoginController {
 
             // Lưu thông tin người dùng vào session
             session.setAttribute("account", account);
+
             session.setAttribute("userID", account.getUserID());
             // Lấy giỏ hàng của người dùng
 //            Cart cart = cartService.loadCartByUserId(user.getUserId());

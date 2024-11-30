@@ -190,7 +190,8 @@
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 <!-- Services Start -->
 <div class="header-carousel-item">
-    <img src="images/h/h3.jpg" class="img-fluid w-100" style="height: 600px" alt="Image">
+    <img src="assets/images/h/h3.jpg" class="img-fluid w-100" style="height: 600px" alt="Image">
+
     <div class="carousel-caption">
         <div class="carousel-caption-content p-3">
             <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Trung Tâm Dịch Vụ</h5>
@@ -209,8 +210,8 @@
         <div class="category-container">
             <c:forEach var="t" items="${listC}">
                 <div class="category-item">
-                    <a href="ServiceTypeServlet?tid=${t.typeID}">  <!-- Thay từ type thành typeID -->
-<%--                        <img src="${t.typeImg}" alt="${t.typeName}">  <!-- Bỏ phần comment để sử dụng hình ảnh -->--%>
+                    <a href="serviceType?tid=${t.typeID}">  <!-- Thay từ type thành typeID -->
+                        <img src="${t.typeImg}" alt="${t.typeName}">  <!-- Bỏ phần comment để sử dụng hình ảnh -->
                         <p>${t.typeName}</p>
                     </a>
                 </div>
@@ -221,17 +222,18 @@
 
 
         <div class="search">
-        <form class="search-form" action="searchService" method="post">
-            <input type="search" name="txt" placeholder="Tìm kiếm...">
-            <button type="submit">Tìm Kiếm</button>
-        </form>
-    </div>
+            <form class="search-form" onsubmit="return false;">
+                <input type="search" id="searchInput" placeholder="Tìm kiếm...">
+                <button type="button" onclick="searchServices()">Tìm Kiếm</button> <!-- Sử dụng type="button" để ngăn form gửi -->
+            </form>
+        </div>
 
 
+
     </div>
-    <div class="row g-5"style="margin: 10px" >
+    <div class="row g-5" style="margin: 10px" id="serviceList">
         <c:forEach items="${ListS}" var="S">
-            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-top :12px">
+            <div class="col-lg-3 col-md-4 col-sm-6 service-item" data-name="${S.serviceName.toLowerCase()}" style="margin-top: 12px">
                 <a href="getservicedetail?serviceID=${S.serviceID}" class="product-item-link">
                     <div class="product-item position-relative bg-white d-flex flex-column text-center">
                         <div class="product-image">
@@ -240,9 +242,8 @@
                         <div class="product-details">
                             <h4 class="product-name" style="font-size: 14px; text-align: left;">${S.serviceName}</h4>
                             <h5 class="text-primary mb-0 product-price">${S.getServicePrice()}₫ </h5>
-
                         </div>
-                        <h6 class="text-primary text-uppercase" style=" font-size: 14px" >xem thêm >></h6>
+                        <h6 class="text-primary text-uppercase" style="font-size: 14px">xem thêm >></h6>
                     </div>
                 </a>
             </div>
@@ -293,3 +294,27 @@
         </div>
     </div>
 </div>
+<script>
+    function searchServices() {
+        // Lấy giá trị từ input tìm kiếm
+        let input = document.getElementById('searchInput');
+        let filter = input.value.toLowerCase().trim(); // Chuyển giá trị thành chữ thường và loại bỏ khoảng trắng
+        let serviceList = document.getElementById('serviceList'); // Danh sách dịch vụ
+        let services = serviceList.getElementsByClassName('service-item'); // Lấy tất cả dịch vụ
+
+        // Lặp qua từng dịch vụ và kiểm tra tên có khớp không
+        for (let i = 0; i < services.length; i++) {
+            let serviceName = services[i].getAttribute('data-name'); // Lấy tên dịch vụ
+
+            if (serviceName) {
+                // Kiểm tra xem tên dịch vụ có chứa giá trị nhập vào không
+                if (serviceName.indexOf(filter) > -1) {
+                    services[i].style.display = ""; // Hiện dịch vụ nếu có khớp
+                } else {
+                    services[i].style.display = "none"; // Ẩn dịch vụ nếu không khớp
+                }
+            }
+        }
+    }
+</script>
+

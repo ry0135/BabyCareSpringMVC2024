@@ -27,6 +27,7 @@ public class ProductController {
         List<Product> products = productService.getAllProduct();
         model.addAttribute("listProducts", products);
         return "product/product"; // Tên của tệp Thymeleaf hoặc JSP
+
     }
 
     @GetMapping("/getProductDetail")

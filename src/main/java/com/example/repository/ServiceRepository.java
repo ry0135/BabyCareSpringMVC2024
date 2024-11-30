@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface ServiceRepository extends JpaRepository<ServiceEntity,Integer> {
 
+        List<ServiceEntity> findByTypeId(int typeId); // Tìm kiểm dựa trên TypeID
+
 }
