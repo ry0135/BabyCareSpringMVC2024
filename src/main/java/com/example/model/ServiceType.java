@@ -13,9 +13,11 @@ public class ServiceType {
 
     @Column(name = "TypeName")
     private String typeName;
-
+    @Column(name = "TypeImage")
+    private String typeImg;
     public ServiceType() {
     }
+
 
     public int getTypeID() {
         return typeID;
@@ -31,5 +33,13 @@ public class ServiceType {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
+    }
+
+    public String getTypeImg() {
+        return typeImg;
+    }
+
+    public void setTypeImg(String typeImg) {
+        this.typeImg = typeImg;
     }
 }

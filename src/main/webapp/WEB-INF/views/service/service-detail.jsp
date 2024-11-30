@@ -117,8 +117,8 @@
 
         </div>
 
-        <form action="bookingservlet" method="get">
-          <c:if test="${sessionScope.user != null && sessionScope.user.role  == 3 || sessionScope.user.role  == 4}">
+        <form action="bookingservice" method="get">
+          <c:if test="${sessionScope.account != null && sessionScope.account.role  == 3 || sessionScope.account.role  == 4}">
             <div class="buttons">
               <div>
                 <input type="hidden" name="serviceIMG" value="${service.listImg}${cd.listImg}">
@@ -131,7 +131,7 @@
             </div>
           </c:if>
 
-          <c:if test="${sessionScope.user == null}">
+          <c:if test="${sessionScope.account == null}">
             <a href="login.jsp" class="btn btn-primary">Đặt lịch ngay</a>
           </c:if>
         </form>
