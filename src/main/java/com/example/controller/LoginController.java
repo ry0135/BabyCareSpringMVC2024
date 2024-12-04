@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.model.Account;
-import com.example.repository.CartRepository;
+import com.example.repository.CartItemRepository;
 import com.example.repository.UserRepository;
 import com.example.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +27,13 @@ public class LoginController {
     private UserRepository userRepository;
 
     @Autowired
-    private CartRepository cartRepository;
+    private CartItemRepository cartRepository;
 
     @GetMapping("/login")
     public String showLoginPage(HttpSession session, Model model) {
         Account account = (Account) session.getAttribute("account");
         if (account != null) {
-            return "redirect:/index"; // Redirect to homepage if user is logged in
+            return "redirect:/login"; // Redirect to homepage if user is logged in
         }
         return "login"; // Show login form
     }

@@ -33,8 +33,8 @@
                     <li class="sidebar-item">
                         <span>Quản Lý Sản Phẩm</span>
                         <ul class="submenu">
-                            <li><a href="FetchCategories">Tất Cả Sản Phẩm</a></li>
-                            <li><a href="${pageContext.request.contextPath}/FetchCategories">Thêm Sản Phẩm</a></li>
+                            <li><a href="manager_product">Tất Cả Sản Phẩm</a></li>
+                            <li><a href="addproduct">Thêm Sản Phẩm</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-item">

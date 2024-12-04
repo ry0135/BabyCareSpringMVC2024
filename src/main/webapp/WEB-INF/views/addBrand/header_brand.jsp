@@ -18,7 +18,7 @@
 <div class="container-header" >
     <div class="info-shop d-flex" style="display: flex; align-items: center">
         <div class="logo">
-            <a href="${pageContext.request.contextPath}/index.jsp" class="navbar-brand" style="text-decoration: none;">
+            <a href="home" class="navbar-brand" style="text-decoration: none;">
                 <h1 class=" display-6" style="    font-family: 'Fredoka', sans-serif; color: #ff4880; text-decoration: none;">
                     Baby<span class="" style="color: #42a5f5;">Care</span>
                 </h1>
@@ -29,9 +29,9 @@
         </div>
     </div>
     <div class="user-info " style="display: flex; align-items: center">
-        <img class="img-avatar text-white ms-lg-5" style="width: 70px; height: 83%; border-radius: 50%; margin-top: 5px;" src="${pageContext.request.contextPath}/img/${sessionScope.user.avatar}" alt="">
+        <img class="img-avatar text-white ms-lg-5" style="width: 70px; height: 83%; border-radius: 50%; margin-top: 5px;" src="${pageContext.request.contextPath}/assets/img/${sessionScope.account.avatar}" alt="">
         <a class="nav-link text-white px-5 ms-lg-3" style="background-color: #ff4880">
-            ${sessionScope.user.firstname} ${sessionScope.user.lastname}
+            ${sessionScope.account.firstname} ${sessionScope.account.lastname}
         </a>
     </div>
 </div>

@@ -1,14 +1,16 @@
 package com.example.service;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+@Service
 public class FilleUtils {
 
-	public static String PATH_FILE = "G:/Image";
+	public static String PATH_FILE = "D:/Image";
 
 	public static String saveFile(MultipartFile file) throws IllegalStateException, IOException {
 		String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();

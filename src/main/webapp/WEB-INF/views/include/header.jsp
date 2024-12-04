@@ -4,9 +4,6 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BabyCare</title>
   <style>
     a {
       text-decoration: none;  /* Không gạch chân */
@@ -86,8 +83,8 @@
   <!-- Customized Bootstrap Stylesheet -->
   <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
 
+<%--<body>--%>
   <nav class="navbar navbar-light navbar-expand-xl py-3" style="width: 100%;background-color: #f8d9e1">
       <a href="index.jsp" class="navbar-brand" style="margin-left: 90px;"><h1 style="color: #ff4880;">Baby<span style="color: #4d65f9;">Care</span></h1></a>
       <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -98,8 +95,11 @@
             <li><a href="service">Dịch Vụ</a></li>
             <li><a href="products">Sản Phẩm</a></li>
             <li><a href="#">Mã Giảm Giá</a></li>
-            <li><a href="#">Đăng kí CTV</a></li>
-            <li><a href="#">Giỏ Hàng</a></li>
+            <c:if test="${sessionScope.account.role == 4 }">
+              <li><a href="sellChanel">Kênh Người Bán</a></li>
+            </c:if>
+            <li><a href="registerctv">Đăng kí CTV</a></li>
+            <li><a href="cart">Giỏ Hàng</a></li>
           </ul>
       </nav>
 
@@ -126,7 +126,6 @@
             <ul class="dropdown-menu " style="background-color: #ffecf2" aria-labelledby="walletDropdown">
               <li><a class="dropdown-item" href="transaction">Lịch sử giao dịch</a></li>
               <li><a class="dropdown-item" href="withdraw">Yêu Cầu Rút Tiền</a></li>
-
             </ul>
           </div>
         </div>
@@ -134,7 +133,7 @@
       </c:if>
       <div class="nav-item dropdown" >
         <div class=" d-flex align-items-center" data-bs-toggle="dropdown">
-          <img class="img-avatar text-white ms-lg-5" style="width: 50px; height: 83%; border-radius: 50%; margin-top: 5px;" src="${pageContext.request.contextPath}/assets/img/${sessionScope.account.avatar}" alt="">
+          <img class="img-avatar text-white ms-lg-5" style="width: 50px; height: 83%; border-radius: 50%; margin-top: 5px;" src="${pageContext.request.contextPath}/image/${sessionScope.account.avatar}" alt="">
           <a href="#" class="nav-link bg-primary text-white px-5 ms-lg-3">
               ${sessionScope.account.firstname} ${sessionScope.account.lastname}
           </a>
@@ -184,7 +183,7 @@
   </nav>
 
 
-</body>
+<%--</body>--%>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

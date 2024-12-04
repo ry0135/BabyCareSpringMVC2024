@@ -167,7 +167,7 @@
                 height: 100%;
                 border: 1px solid #ddd;
                 border-radius: 5px;
-                object-fit: cover; 
+                object-fit: cover;
             }
         </style>
     </head>
@@ -188,7 +188,7 @@
 
                         <div style=";height: 400px; " >
                             <div class="row">
-                                <label for="" class="col-lg-2"><span class="text-danger">*</span>Tên sản phẩm</label>
+                                <label class="col-lg-2"><span class="text-danger">*</span>Tên sản phẩm</label>
                                 <div class="input-field col-lg-10">
                                     <div class="input-group">
                                         <input pattern="^.{1,150}$" type="text" class="form-control" id="foodName" placeholder="Tên sản phẩm" name="productName" required>
@@ -198,18 +198,18 @@
                             </div>
 
                             <div class="row">
-                                <label for="" class="col-lg-2"><span class="text-danger">*</span>Ngành Hàng</label>
+                                <label class="col-lg-2"><span class="text-danger">*</span>Ngành Hàng</label>
                                 <div class="input-field col-lg-10">
                                     <div class="input-group">
-                                        <input type="button" name="productType" id="productType" value="Chọn ngành hàng..." onclick="showModal()" style="width: 100%;"/>
+                                        <input type="button" id="productType" value="Chọn ngành hàng..." onclick="showModal()" style="width: 100%;"/>
                                     </div>
-                                    <input type="hidden" name="productType" id="productType" />
+                                    <input type="hidden" name="productType" id="hiddenProductType" value="" />
                                 </div>
                             </div>
 
                             <div class="row">
 
-                                <label for="" class="col-lg-2"><span class="text-danger">*</span>Xuất xứ sản phẩm</label>
+                                <label class="col-lg-2"><span class="text-danger">*</span>Xuất xứ sản phẩm</label>
                                 <div class="input-field col-lg-10">
                                     <div class="input-group">
                                         <input type="text" pattern="^.{1,30}$" class="form-control" id="productOrigin" placeholder="Xuất xứ sản phẩm" name="productOrigin" required>
@@ -219,7 +219,7 @@
 
                             </div>
                             <div class="row">
-                                <label for="" class="col-lg-2"><span class="text-danger">*</span>Mô tả sản phẩm</label>
+                                <label class="col-lg-2"><span class="text-danger">*</span>Mô tả sản phẩm</label>
 
                                 <div class="input-field col-lg-10">
                                     <div class="input-group">
@@ -230,13 +230,13 @@
 
                             <div class="upload-container row">
                                 <label for="fileUpload" class="upload-label col-lg-2"> <span class="text-danger">*</span> Hình ảnh sản phẩm</label>
-                                <div class="upload-area col-lg-1" onclick="triggerFileUpload()">             
+                                <div class="upload-area col-lg-1" onclick="triggerFileUpload()">
                                     <input type="file" id="fileUpload" name="productImages" class="file-input" accept="image/*" multiple onchange="previewMultipleImages(this)">
                                     <div id="upload-preview-container" class="upload-preview"></div>
                                 </div>
                             </div>
 
-                        </div> 
+                        </div>
                     </div>
 
 
@@ -308,7 +308,7 @@
                             color: white;
                         }
 
-                    </style>                   
+                    </style>
 
                     <div class="modal" id="categoryModal" style="display: none;">
                         <div class="modal-content">
@@ -348,7 +348,7 @@
                                     Xác nhận
                                 </div>
                             </div>
-                        </div>           
+                        </div>
                     </div>
 
 
@@ -498,7 +498,7 @@
                                 reader.readAsDataURL(file);
                             });
 
-                            //          
+                            //
                         }
 
 
@@ -516,6 +516,7 @@
             function selectCategory(categoryID, categoryName) {
                 // Cập nhật giá trị cho productType
                 document.getElementById('productType').value = categoryName; // Cập nhật tên danh mục
+                document.getElementById('hiddenProductType').value = categoryName; // Cập nhật tên danh mục
                 document.getElementById('selectedCategoryID').value = categoryID; // Cập nhật ID nếu cần
                 closeModal(); // Đóng modal
             }
@@ -526,17 +527,19 @@
                 alert('Đã chọn: ' + document.getElementById('productType').value);
                 closeModal();
             }
-            
+
             function showModal() {
-    // Mở modal hoặc logic hiển thị ngành hàng (không được cung cấp ở đây)
-   document.getElementById('categoryModal').style.display = 'flex';
-    // Sau khi người dùng chọn ngành hàng:
-    const selectedType = "Ngành hàng đã chọn"; // Thay thế với ngành hàng thực tế, có thể lấy từ modal
-    document.getElementById('productType').value = selectedType; // Cập nhật giá trị vào input ẩn
-}
-            
-            
-            
+
+                // Mở modal hoặc logic hiển thị ngành hàng (không được cung cấp ở đây)
+               document.getElementById('categoryModal').style.display = 'flex';
+                // Sau khi người dùng chọn ngành hàng:
+                const selectedType = "Ngành hàng đã chọn"; // Thay thế với ngành hàng thực tế, có thể lấy từ modal
+                document.getElementById('hiddenProductType').value = selectedType;
+                document.getElementById('productType').value = selectedType; // Cập nhật giá trị vào input ẩn
+            }
+
+
+
         </script>
 
 
@@ -561,9 +564,9 @@
                 subcategories.forEach(function (sub) {
                     var li = document.createElement("li");
                     li.onclick = function () {
-                        selectCategory(sub.CategoryID, sub.CategoryName); // Gọi hàm và truyền cả ID và tên
+                        selectCategory(sub.categoryID, sub.categoryName); // Gọi hàm và truyền cả ID và tên
                     };
-                    li.innerText = sub.CategoryName; // Hiển thị tên danh mục
+                    li.innerText = sub.categoryName; // Hiển thị tên danh mục
                     subcategoryList.appendChild(li);
                 });
             }
