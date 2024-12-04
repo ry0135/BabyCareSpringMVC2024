@@ -1,15 +1,13 @@
 package com.example.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "tblProductImage") // Tên bảng trong cơ sở dữ liệu
 public class ProductImage {
     @Id
     @Column(name = "ImageID") // Tên cột trong cơ sở dữ liệu
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int imageID;
     @Column(name = "ProductID") // Tên cột trong cơ sở dữ liệu
     private String productID;
@@ -17,6 +15,11 @@ public class ProductImage {
     private String imagePath;
 
     public ProductImage() {
+    }
+
+    public ProductImage(String productID, String imagePath) {
+        this.productID = productID;
+        this.imagePath = imagePath;
     }
 
     public ProductImage(int imageID, String productID, String imagePath) {

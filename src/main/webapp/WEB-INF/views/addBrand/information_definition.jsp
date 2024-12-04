@@ -326,7 +326,7 @@
                 <!-- Số CCCD -->
                 <div class="form-group row">
                     <label class="col-lg-3" for="CCCDNumber">* Số CCCD/CMND <span class="text-danger">*</span></label>
-                    <input class="col-lg-3" type="text" id="CCCDNumber" name="CCCDNumber" placeholder="Nhập vào" maxlength="12" pattern="\d{12}" value="${brand.identifiNumber}" required style="width: 320px;">
+                    <input class="form-control col-lg-3" type="text" id="CCCDNumber" name="CCCDNumber" placeholder="Nhập vào" maxlength="12" pattern="\d{12}" value="${brand.identifiNumber}" required style="width: 320px;">
                     <div class="invalid-feedback">
                         Vui lòng nhập đúng 12 số cho Số CCCD/CMND.
                     </div>
@@ -355,7 +355,7 @@
                     </div>
 
                     <div class="col-lg-2">
-                        <img id="imgPreview1" class="img-avatar text-white" style="width: 100px; height: auto;" src="cancuoc/mattruoc.png" alt="">
+                        <img id="imgPreview1" class="img-avatar text-white" style="width: 100px; height: auto;" src="${pageContext.request.contextPath}/WEB-INF/views/addBrand/cancuoc/mattruoc.png" alt="">
                     </div>
                     <div class="invalid-feedback">
                         Vui lòng tải lên hình chụp của thẻ CMND/CCCD.
@@ -375,7 +375,7 @@
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <img id="imgPreview2" class="text-white" style="width: 100px; height: auto;" src="cancuoc/voimat.png" alt="">
+                        <img id="imgPreview2" class="text-white" style="width: 100px; height: auto;" src="${pageContext.request.contextPath}/WEB-INF/views/addBrand/cancuoc/voimat.png" alt="">
                     </div>
                     <div class="invalid-feedback">
                         Vui lòng tải lên ảnh đang cầm CMND/CCCD của bạn.

@@ -181,8 +181,12 @@
 
     }
 </style>
+<%@include file="header_brand.jsp" %>
+
 <c:if test="${hasPending}">
-    <h3 class="text-danger">Chúng tôi đã tiếp nhận thông tin của bạn. Chúng tôi sẽ thông báo qua email của bạn trong vòng 7 ngày.</h3>
+    <div class="info-definition">
+        <h3 class="text-danger">Chúng tôi đã tiếp nhận thông tin của bạn. Chúng tôi sẽ thông báo qua email của bạn trong vòng 7 ngày.</h3>
+    </div>
 </c:if>
 <c:if test="${!hasPending}">
     <div class="info-definition">
@@ -206,10 +210,10 @@
             </li>
 
         </ul>
-        <form class="shop-form needs-validation"  novalidate action="addBrand" method="post" enctype="multipart/form-data">
+        <form class="shop-form needs-validation" action="${pageContext.request.contextPath}/addBrand" method="post">
 
             <div class="form-group">
-                <label for="shop-name">Tên Shop <span class="required">*</span></label>
+                <%--@declare id="shop-name"--%><label for="shop-name">Tên Shop <span class="required">*</span></label>
                 <input type="text" class="form-control" id="brandName" placeholder="Tên cửa hàng"
                        name="brandName" aria-describedby="inputGroupPrepend" pattern="^.{1,100}$" value="${brand.brandName}"  required>
                 <div class="invalid-feedback">
@@ -218,21 +222,32 @@
                 <p class="text-danger">${thongbao1}</p>
             </div>
 
+
+            <div class="form-group">
+                    <%--@declare id="brandDescription"--%><label for="brandDescription">Mô tả cửa hàng <span class="required">*</span></label>
+                <input type="text" class="form-control" id="brandName" placeholder="Mô tả cửa hàng"
+                       name="brandDescription" aria-describedby="inputGroupPrepend" pattern="^.{1,200}$" value="${brand.brandDescription}"  required>
+                <div class="invalid-feedback">
+                    Mô tả cửa hàng không quá 200 kí tự
+                </div>
+                <p class="text-danger">${thongbao1}</p>
+            </div>
+
+
             <div class="form-group">
                 <label>Địa chỉ lấy hàng <span class="required">*</span></label>
-                <p id="address-display " name="brandAddress">
-                    <br>
+                <p id="address-display">
                     <c:choose>
-                        <c:when test="${not empty brand.brandAddess}">
-                            ${brand.brandAddess}
+                        <c:when test="${not empty brand.brandAddress}">
+                            ${brand.brandAddress}
+                            <input type="hidden" name="brandAddress" value="${brand.brandAddress}" />
                         </c:when>
                         <c:otherwise>
-                            ${sessionScope.user.address}
+                            ${sessionScope.account.address}
+                            <input type="hidden" name="brandAddress" value="${sessionScope.account.address}" />
                         </c:otherwise>
                     </c:choose>
                 </p>
-                ${sessionScope.thongbao}
-
                 <div class="Address">
                     <label for="addressType">Chọn địa chỉ:</label>
                     <select name="addressType" id="addressType" onchange="toggleNewAddressInput()">
@@ -268,41 +283,46 @@
             </div>
 
             <div class="form-group">
-                <label for="email">Email <span class="required">*</span></label>  
-                <input type="email" id="email" value="${sessionScope.user.email}" disabled>
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" value="${sessionScope.account.email}" disabled>
             </div>
 
             <div class="form-group">
                 <label for="phone">Số điện thoại <span class="required">*</span></label>
-                <input type="text" id="phone" value="${sessionScope.user.phone}" disabled>
+                <input type="text" id="phone" value="${sessionScope.account.phone}" disabled>
             </div>
+
+
             <div class="form-group">
-                <div class="form-group">
-                    <label for="bankName" >Tên Ngân Hàng <span class="text-danger">*</span></label>
-                    <div class="input-group">
+                <%--@declare id="bankname"--%><label for="bankName">Tên Ngân Hàng <span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <select class="form-control" name="bankName" required>
+                        <option value="">Chọn ngân hàng</option>
+                        <c:choose>
+                            <c:when test="${not empty brand}">
+                                <option value="Vietcombank" ${brand.bankName == 'Vietcombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Ngoại thương Việt Nam (Vietcombank)</option>
+                                <option value="Vietinbank" ${brand.bankName == 'Vietinbank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Công Thương Việt Nam (Vietinbank)</option>
+                                <option value="BIDV" ${brand.bankName == 'BIDV' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Đầu tư và Phát triển Việt Nam (BIDV)</option>
+                                <option value="ACB" ${brand.bankName == 'ACB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Á Châu (ACB)</option>
+                                <option value="Techcombank" ${brand.bankName == 'Techcombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Kỹ Thương Việt Nam (Techcombank)</option>
+                                <option value="MB" ${brand.bankName == 'MB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Quân đội (MB)</option>
+                                <option value="SHB" ${brand.bankName == 'SHB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn - Hà Nội (SHB)</option>
+                                <option value="DongABank" ${brand.bankName == 'DongABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Đông Á (DongABank)</option>
+                                <option value="TPBank" ${brand.bankName == 'TPBank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Tiên Phong (TPBank)</option>
+                                <option value="VietABank" ${brand.bankName == 'VietABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Bản Việt (VietABank)</option>
+                                <option value="SCB" ${brand.bankName == 'SCB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn (SCB)</option>
+                                <option value="HDBank" ${brand.bankName == 'HDBank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Phát triển Thành phố Hồ Chí Minh (HDBank)</option>
+                                <option value="BacABank" ${brand.bankName == 'BacABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Bắc Á (BacABank)</option>
+                                <option value="OCB" ${brand.bankName == 'OCB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Phương Đông (OCB)</option>
+                                <option value="Sacombank" ${brand.bankName == 'Sacombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn Thương Tín (Sacombank)</option>
+                            </c:when>
+                            <c:otherwise>
 
-                        <select class="form-control" name="bankName" required>
-                            <option value="">Chọn ngân hàng</option>
-                            <option value="Vietcombank" ${brand.bankName == 'Vietcombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Ngoại thương Việt Nam (Vietcombank)</option>
-                            <option value="Vietinbank" ${brand.bankName == 'Vietinbank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Công Thương Việt Nam (Vietinbank)</option>
-                            <option value="BIDV" ${brand.bankName == 'BIDV' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Đầu tư và Phát triển Việt Nam (BIDV)</option>
-                            <option value="ACB" ${brand.bankName == 'ACB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Á Châu (ACB)</option>
-                            <option value="Techcombank" ${brand.bankName == 'Techcombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Kỹ Thương Việt Nam (Techcombank)</option>
-                            <option value="MB" ${brand.bankName == 'MB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Quân đội (MB)</option>
-                            <option value="SHB" ${brand.bankName == 'SHB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn - Hà Nội (SHB)</option>
-                            <option value="DongABank" ${brand.bankName == 'DongABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Đông Á (DongABank)</option>
-                            <option value="TPBank" ${brand.bankName == 'TPBank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Tiên Phong (TPBank)</option>
-                            <option value="VietABank" ${brand.bankName == 'VietABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Bản Việt (VietABank)</option>
-                            <option value="SCB" ${brand.bankName == 'SCB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn (SCB)</option>
-                            <option value="HDBank" ${brand.bankName == 'HDBank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Phát triển Thành phố Hồ Chí Minh (HDBank)</option>
-                            <option value="BacABank" ${brand.bankName == 'BacABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Bắc Á (BacABank)</option>
-                            <option value="OCB" ${brand.bankName == 'OCB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Phương Đông (OCB)</option>
-                            <option value="Sacombank" ${brand.bankName == 'Sacombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn Thương Tín (Sacombank)</option>
-                        </select>
-
-                        <div class="invalid-feedback">
-                            Vui lòng chọn ngân hàng
-                        </div>
+                            </c:otherwise>
+                        </c:choose>
+                    </select>
+                    <div class="invalid-feedback">
+                        Vui lòng chọn ngân hàng
                     </div>
                 </div>
             </div>
@@ -310,15 +330,17 @@
 
             <!-- Account Number -->
             <div class="form-group">
-                <label for="accountNumber">Số tài khoản<span class="text-danger">*</span></label>
+                <label for="accountNumber">Số tài khoản <span class="text-danger">*</span></label>
                 <div class="input-group">
                     <input type="text" class="form-control" id="accountNumber" placeholder="Số tài khoản"
-                           name="accountNumber" aria-describedby="inputGroupPrepend" pattern="^.{1,20}$" value="${brand.accountNumber}"  required>
+                           name="accountNumber" aria-describedby="inputGroupPrepend" pattern="^.{1,20}$"
+                           value="${not empty brand ? brand.acountNumber : ''}" required>
                     <div class="invalid-feedback">
-                        Số tài khoản có độ dài tối đa 20 kí tự
+                        Số tài khoản có độ dài tối đa 20 ký tự
                     </div>
                 </div>
             </div>
+
             <div class="form-group">
 
                 <div class="form-group">
@@ -348,7 +370,7 @@
 
                 <div class="form-actions">
                     <button type="submit" class="btn save-btn">Lưu</button>
-                    <a href="addBrandIndentifi" class="btn next-btn">Tiếp theo</a>
+                    <a href="${pageContext.request.contextPath}/getBrandIndentifi" class="btn next-btn">Tiếp theo</a>
                 </div>
             </div>
         </form>     
@@ -440,7 +462,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/adreess.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/adreess.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!--
