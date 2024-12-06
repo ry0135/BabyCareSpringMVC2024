@@ -8,7 +8,7 @@ import java.nio.file.Files;
 
 public class FilleUtils {
 
-	public static String PATH_FILE = "G:/Image";
+	public static String PATH_FILE = "D:/Image";
 
 	public static String saveFile(MultipartFile file) throws IllegalStateException, IOException {
 		String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
