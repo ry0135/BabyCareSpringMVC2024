@@ -12,6 +12,11 @@
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   <servlet>
+    <multipart-config>
+      <max-file-size>268435456</max-file-size> <!-- 256MB -->
+      <max-request-size>536870912</max-request-size> <!-- 512MB -->
+      <file-size-threshold>0</file-size-threshold>
+    </multipart-config>
     <servlet-name>dispatcher</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
@@ -22,6 +27,7 @@
     </multipart-config>
   </servlet>
   <servlet-mapping>
+
     <servlet-name>dispatcher</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
