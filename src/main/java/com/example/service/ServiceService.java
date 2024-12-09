@@ -58,4 +58,9 @@ public class ServiceService {
     public List<Feedback> getFeedbackByServiceId(int serviceID) {
         return feedbackRepository.findByServiceID(serviceID);
     }
+    @Transactional(readOnly = true)
+    public List<ServiceEntity> getServiceType(String type) {
+        int typeId = Integer.parseInt(type); // Hoặc thực hiện xử lý chuyển đổi theo cách khác nếu cần
+        return serviceRepository.findByTypeId(typeId); // Gọi phương thức repository
+    }
 }

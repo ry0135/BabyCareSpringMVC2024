@@ -21,7 +21,8 @@ public class ServiceEntity {
     @Column(name = "Description")
     private String description;
 
-
+    @Column(name = "TypeID")
+    private int typeId;
     // Constructor, getter, setter và phương thức toString...
     public ServiceEntity() {}
 
@@ -63,5 +64,13 @@ public class ServiceEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getTypeID() {
+        return typeId;
+    }
+
+    public void setTypeID(int typeID) {
+        this.typeId = typeID;
     }
 }
