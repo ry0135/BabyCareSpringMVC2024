@@ -44,6 +44,7 @@ public class ProfileController {
     public String updateProfile(@RequestParam("lastname") String lastname,
                                 @RequestParam("firstname") String firstname,
                                 @RequestParam("address") String address,
+                                @RequestParam(value = "address1", required = false) String address1,
                                 @RequestParam("phone") String phone,
                                 @RequestParam(value = "avatarName", required = false) String avatarName,
                                 @RequestParam(value = "avatar", required = false) MultipartFile avatar,
@@ -56,8 +57,17 @@ public class ProfileController {
             // Cập nhật thông tin người dùng
             oldUser.setLastname(lastname);
             oldUser.setFirstname(firstname);
-            oldUser.setAddress(address);
+
             oldUser.setPhone(phone);
+            // Kiểm tra giá trị của address1
+            if (address1 == null || address1.isEmpty()) {
+                // Nếu address1 không truyền về, set địa chỉ
+                oldUser.setAddress(address);
+            } else {
+                // Nếu có truyền address1 thì set địa chỉ1
+                oldUser.setAddress(address1);
+            }
+
 
             if(!StringUtils.isEmpty(avatar.getOriginalFilename()) ) {
                 String fileName = "";

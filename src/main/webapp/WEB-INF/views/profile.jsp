@@ -3,201 +3,171 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
-<div class="container mt-3">
+<div class="container mt-5">
   <form class="needs-validation" novalidate action="${pageContext.request.contextPath}/updateprofile" method="post" enctype="multipart/form-data">
     <c:if test="${not empty error}">
       <div class="alert alert-danger">${error}</div>
     </c:if>
 
-  <div class="row">
-      <div class="col-md-3" style="background-color: hwb(48 90% 2%); border-radius: 10px; width: 200px; height: 250px; margin-right: 20px;">
-        <div>
-          <div class="col-12">
-
-            <div style=" margin: 15px;">
-              <img style="width: 50px; height: 83%; border-radius: 50%; margin-top: 5px;"src="${pageContext.request.contextPath}/image/${avatar}" class="img-fluid" alt="Ảnh cá nhân">
-            </div>
-            <h2 style=" font-size:15px; font-weight: 550px;">${firstname} ${lastname}</h2>
+    <div class="row">
+      <div class="col-md-4 profile-card">
+        <div class="card">
+          <div class="card-body text-center">
+            <img src="${pageContext.request.contextPath}/image/${avatar}" class="avatar" alt="Ảnh cá nhân">
+            <h5 class="card-title">${firstname} ${lastname}</h5>
+            <a href="changepass" class="btn btn-outline-secondary">Thay Đổi Mật Khẩu</a>
           </div>
         </div>
-
-        <section>
-
-          <a href="changepass" class="icon-link">
-            <i class="glyphicon glyphicon-cloud icon"></i>
-            <span class="text">Change password</span>
-          </a>
-        </section>
       </div>
-      <div class="col-md-9" style="background-color: hwb(319 83% 3%);
-                 border-radius: 10px;
-                 padding: 1rem;
-                 margin-bottom: 2rem;">
-        <div class="row">
-          <div class="col-12" style="border-radius: 10px; text-align: center;">
-            <h2  style="font-weight: 600;color: white;font-size: 22px ;font-family: 'Roboto', sans-serif;" >Thông Tin Cá Nhân</h2>
+
+      <div class="col-md-8">
+        <div class="card personal-info-card">
+          <div class="card-header text-center">
+            <h3>Thông Tin Cá Nhân</h3>
           </div>
-
-          <%--input fistname--%>
-          <div class="col-md-8 mb-3" >
-            <div >
-
+          <div class="card-body">
+            <div class="mb-3">
               <label for="firstname">Họ:</label>
-                          <div class="input-group">
-                <input  type="text" class="form-control" id="firstname" name="firstname" placeholder="Họ"
-                       value="${firstname}"
-                       aria-describedby="inputGroupPrepend"
-                       pattern="^[\p{Lu}\p{Ll}\sA-Za-záàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]{1,50}$"
-                       required>
-                <div class="invalid-feedback">
-                  Họ chứa từ 1 đến 50 kí tự, không chứa ký tự đặc biệt và chữ số
-                </div>
-              </div>
-            </div>
-            <%-- input lastname--%>
-            <div >
-              <label for="lastname">Last Name</label>
-              <div class="input-group">
-                <input type="text" class="form-control" id="lastname" placeholder="Tên" name="lastname"
-                       value="${lastname}"
-                       aria-describedby="inputGroupPrepend"
-                       pattern="^[\p{Lu}\p{Ll}\sA-Za-záàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]{1,50}$"
-                       required>
-                <div class="invalid-feedback">
-                  Tên chứa từ 1 đến 50 kí tự, không chứa ký tự đặc biệt và chữ số
-                </div>
-              </div>
+              <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Họ"
+                     value="${firstname}" pattern="^[\p{Lu}\p{Ll}\sA-Za-záàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]{1,50}$"
+                     required>
+              <div class="invalid-feedback">Họ chứa từ 1 đến 50 kí tự, không chứa ký tự đặc biệt và chữ số</div>
             </div>
 
-            <%--        input address--%>
+            <div class="mb-3">
+              <label for="lastname">Tên:</label>
+              <input type="text" class="form-control" id="lastname" placeholder="Tên" name="lastname"
+                     value="${lastname}" pattern="^[\p{Lu}\p{Ll}\sA-Za-záàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]{1,50}$"
+                     required>
+              <div class="invalid-feedback">Tên chứa từ 1 đến 50 kí tự, không chứa ký tự đặc biệt và chữ số</div>
+            </div>
 
-            <div id="address-section">
-              <!-- Trường chỉ đọc ban đầu -->
-              <label for="address">Địa chỉ</label>
+            <div class="mb-3">
+              <label for="address">Địa chỉ:</label>
               <div class="input-group">
                 <input type="text" class="form-control" id="address" placeholder="Address" name="address"
                        value="${address}" readonly required>
+                <button id="editButton" type="button" class="btn btn-edit">
+                  <i class="glyphicon glyphicon-pencil"></i> Chỉnh sửa
+                </button>
               </div>
 
-              <!-- Nút Chỉnh sửa -->
-              <button type="button" id="edit-address-btn" class="btn btn-primary" style="margin-top: 10px;">Chỉnh sửa</button>
 
-              <!-- Phần mã chỉnh sửa địa chỉ -->
-              <div id="edit-address-section" style="display:none; margin-top: 20px;">
+              <div id="editAddressSection" style="display: none;">
                 <label for="address">Địa chỉ<span class="text-danger">*</span></label>
-                <div class="Address" style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
-                  <select name="province" id="province">
+                <div class="Address d-flex justify-content-between align-items-center mb-3">
+                  <select name="" id="province" class="form-control">
                     <option value="">Chọn tỉnh</option>
-                    <!-- Thêm các tỉnh ở đây -->
+                    <!-- Add province options here -->
                   </select>
-                  <select name="district" id="district">
+                  <select name="" id="district" class="form-control">
                     <option value="">Chọn quận</option>
-                    <!-- Thêm các quận ở đây -->
+                    <!-- Add district options here -->
                   </select>
-                  <select name="ward" id="ward">
+                  <select name="" id="ward" class="form-control">
                     <option value="">Chọn phường</option>
-                    <!-- Thêm các phường ở đây -->
+                    <!-- Add ward options here -->
                   </select>
                 </div>
-
-                <div style="margin-top: 10px">
-                  <input type="text" style="width: 400px; height: 40px; border: 1px solid #ced4da; border-radius: 4px;"
-                         id="addressDetail" placeholder="Nhập số nhà hoặc địa chỉ chi tiết">
-                </div>
-
-                <div style="margin-top: 10px">
-                  <input type="hidden" id="result" name="address" style="width: 400px; height: 40px; border: 1px solid #ced4da; border-radius: 4px;">
-                </div>
-
-                <button type="button" id="save-address-btn" class="btn btn-success" style="margin-top: 10px;">Lưu địa chỉ</button>
+                <input type="text" class="form-control mb-3" id="addressDetail" placeholder="Nhập số nhà hoặc địa chỉ chi tiết">
+                <input type="hidden" id="result" name="address1">
               </div>
-            </div>
-          <%--        input phone--%>
-            <div >
-              <label for="phone">Phone</label>
-              <div class="input-group">
-                <input type="text" class="form-control" id="phone" placeholder="Phone" name="phone" value="${phone}"
-                       aria-describedby="inputGroupPrepend" pattern="^[0-9]{10}$" required>
-                <div class="invalid-feedback">
-                  Số điện thoại có dộ dài 10 kí tự
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div>
-              <div style=" margin: 50px;">
-                <img style="width: 180px; height: 83%; border-radius: 50%; margin-top: 5px;"src="image/${avatar}" class="img-fluid" alt="Ảnh cá nhân">
-                <input  hidden name="avatarName" value="${avatar}">
-              </div>
+
             </div>
 
-            <div >
+            <div class="mb-3">
+              <label for="phone">Số Điện Thoại:</label>
+              <input type="text" class="form-control" id="phone" placeholder="Phone" name="phone" value="${phone}"
+                     pattern="^[0-9]{10}$" required>
+              <div class="invalid-feedback">Số điện thoại có độ dài 10 kí tự</div>
+            </div>
+
+            <div class="mb-4">
               <label for="avatar"></label>
               <div class="input-group">
-                <br>
-                <input id="avatar" type="file"  class="form-control" name="avatar" value="${avatar}">
-                <br>
+                <input id="avatar" type="file" class="form-control" name="avatar">
               </div>
             </div>
 
+            <button class="btn btn-primary" type="submit">Cập nhật</button>
           </div>
-
-
-          <div class="row">
-            <div class="col-3 offset-3">
-              <button class="btn btn-primary" type="submit">Edit</button>
-
-            </div>
-
-          </div>
-
         </div>
       </div>
     </div>
   </form>
-
 </div>
+
+<style>
+  .btn-edit {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    border: none; /* No border */
+    padding: 10px 15px; /* Padding for better size */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Larger font size */
+    transition: background-color 0.3s, transform 0.2s; /* Animation effects */
+  }
+
+  .btn-edit:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+  }
+
+  .profile-card {
+    background-color: #f3f4f6;
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-top: 15px;
+    border: 3px solid #007bff;
+  }
+
+  .personal-info-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-header {
+    background-color: rgba(255, 2, 129, 0.48);
+    color: white;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .input-group {
+    margin-bottom: 15px;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+
+  .form-control {
+    border-radius: 5px;
+  }
+
+  .text-danger {
+    margin-left: 5px;
+  }
+</style>
+
+
 <script>
-  // Lấy các phần tử cần thiết
-  const editBtn = document.getElementById('edit-address-btn');
-  const addressInput = document.getElementById('address');
-  const addressSection = document.getElementById('address-section');
-  const editAddressSection = document.getElementById('edit-address-section');
-
-  const provinceSelect = document.getElementById('province');
-  const districtSelect = document.getElementById('district');
-  const wardSelect = document.getElementById('ward');
-  const addressDetailInput = document.getElementById('addressDetail');
-
-  // Thêm sự kiện khi nhấn nút "Chỉnh sửa"
-  editBtn.addEventListener('click', () => {
-    // Chuyển trạng thái của các phần tử khi chỉnh sửa
-    addressInput.disabled = true; // Vô hiệu hóa trường địa chỉ ban đầu
-    addressSection.style.display = 'none'; // Ẩn phần địa chỉ chỉ đọc
-    editAddressSection.style.display = 'block'; // Hiển thị phần chỉnh sửa
-
-    // Kích hoạt các trường select và input trong phần chỉnh sửa
-    provinceSelect.disabled = false;
-    districtSelect.disabled = false;
-    wardSelect.disabled = false;
-    addressDetailInput.disabled = false;
-  });
-
-  // Nếu không nhấn chỉnh sửa, dữ liệu dưới phần chỉnh sửa không được gửi
-  // Đảm bảo khi trang được submit, dữ liệu chỉnh sửa chỉ được gửi khi phần chỉnh sửa được hiển thị.
-  const form = document.querySelector('form');
-  form.addEventListener('submit', function (event) {
-    if (editAddressSection.style.display === 'none') {
-      // Nếu không có chỉnh sửa, không gửi giá trị mới
-      document.querySelector('input[name="addressDetail"]').disabled = true;
-      document.querySelector('select[name="province"]').disabled = true;
-      document.querySelector('select[name="district"]').disabled = true;
-      document.querySelector('select[name="ward"]').disabled = true;
-    }
-  });
+  document.getElementById('editButton').onclick = function() {
+    var editSection = document.getElementById('editAddressSection');
+    editSection.style.display = editSection.style.display === 'none' ? 'block' : 'none';
+  };
 </script>
-
 <script>
   function updateFullAddress() {
     // Lấy giá trị từ các dropdown và trường nhập

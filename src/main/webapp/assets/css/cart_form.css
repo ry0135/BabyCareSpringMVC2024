@@ -1,0 +1,275 @@
+.cart-page {
+    position: relative;
+    margin-top: 30px;
+}
+
+.cart-page .cart-page-inner {
+    padding: 30px;
+    margin-bottom: 30px;
+    background: #ffffff;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cart-page .table {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.table-responsive > .table-bordered {
+    border: 0;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.cart-page .table td {
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+
+.table td, .table th {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.cart a {
+    color: #7AB730;
+}
+
+.cart-page .table .img {
+    display: flex;
+    align-items: center;
+}
+
+.cart-page .table .img img {
+    max-width: 60px;
+    max-height: 60px;
+    margin-right: 15px;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.cart-page .table .qty {
+    display: inline-block;
+    width: 100px;
+    font-size: 0;
+}
+
+.cart-page .table button.btn-minus {
+    border-radius: 4px 0 0 4px;
+}
+
+.cart-page .table button.btn-plus {
+    border-radius: 0 4px 4px 0;
+}
+
+.cart-page .table button {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    text-align: center;
+    color: #ffffff;
+    background: #7AB730;
+    border: none;
+    border-radius: 4px;
+}
+
+.cart-page .table input {
+    width: 40px;
+    height: 29px;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+    background: #333333;
+    border: none;
+}
+
+.cart-page .cart-page-inner {
+    padding: 30px;
+    margin-bottom: 30px;
+    background: #ffffff;
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.cart-page .coupon {
+    display: flex;
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 0;
+}
+
+.cart-page .coupon input {
+    width: calc(100% - 135px);
+    height: 40px;
+    padding: 0 15px;
+    font-size: 16px;
+    color: #999999;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    margin-right: 15px;
+    transition: all .3s;
+}
+
+.cart-page .coupon .button {
+    width: 120px;
+    height: 40px;
+    padding: 2px 0;
+    font-size: 16px;
+    text-align: center;
+    color: #7AB730;
+    background: #ffffff;
+    border: 1px solid #7AB730;
+    border-radius: 4px;
+}
+
+.cart-page .coupon .button:hover {
+    background-color: #7AB730;
+    color: white;
+}
+
+.cart-page .cart-summary {
+    position: relative;
+    width: 100%;
+}
+
+.cart-page .cart-summary .cart-content {
+    padding: 30px;
+    background: #f3f6ff;
+}
+
+.cart-page .cart-summary .cart-content h1 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.cart-page .cart-summary .cart-content h2 {
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 12px;
+    border-top: 1px solid #dddddd;
+    margin: 0;
+}
+
+.cart-page .cart-summary .cart-btn button:first-child {
+    margin-right: 25px;
+    color: #7AB730;
+    background: #ffffff;
+    border: 1px solid #7AB730;
+    transition: 200ms;
+}
+
+.cart-page .cart-summary .cart-btn button:first-child:hover {
+    background-color: #7AB730;
+    color: white;
+}
+
+.cart-page .cart-summary .cart-btn button {
+    margin-top: 15px;
+    width: calc(50% - 15px);
+    height: 50px;
+    padding: 2px 10px;
+    text-align: center;
+    color: #ffffff;
+    background: #7AB730;
+    border: none;
+    border-radius: 4px;
+    transition: 200ms;
+}
+
+.cart-page .cart-summary .cart-btn button:hover {
+    color: #7AB730;
+    background-color: white;
+    border: 1px solid #7AB730;
+}
+.cart-page .table td .checkbox {
+    margin: 0 auto;
+    display: block;
+}
+.text-right {
+    text-align: right;
+    display: inline-block;
+    width: 100%;
+}
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.flex-container .text-right {
+    text-align: right;
+}
+.flex-container p {
+    width: 500px;
+    margin-top: 0;
+}
+.flex-container h2 {
+    width: 500px;
+    margin-top: 0;
+    padding-top: 0;
+}
+.Address {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+select, input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+#newAddressInput {
+    display: none;
+}
+
+h1, h2, h3 {
+    font-family: sans-serif ; /* Đặt font-family là sans-serif với độ ưu tiên cao */
+    color: black ; /* Đặt màu chữ là đen với độ ưu tiên cao */
+}
+
+p{
+    font-family: serif !important; /* Đặt font-family là sans-serif với độ ưu tiên cao */
+    color: black !important; /* Đặt màu chữ là đen với độ ưu tiên cao */
+}

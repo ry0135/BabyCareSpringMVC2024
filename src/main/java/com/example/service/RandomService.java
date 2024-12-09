@@ -1,7 +1,6 @@
 package com.example.service;
 
 import com.example.repository.AccountRepository;
-import com.example.repository.ShopServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +22,6 @@ public class RandomService {
         } while (accountRepository.existsByUserID(sb.toString()));
         return sb.toString();
     }
-
     @Transactional(readOnly = true)
     public String generateRandomCode() {
         Random random = new Random();

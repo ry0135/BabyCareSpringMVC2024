@@ -12,301 +12,9 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      line-height: 1.6;
-      padding: 20px;
-    }
-
-    .product-container, .store-info, .product-details {
-      border: 1px solid #ddd;
-      background-color: #fff;
-      padding: 20px;
-      margin-top: 20px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-
-    .product-image img, .product-details img {
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-    }
-
-    .store-info img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-    }
-
-    .button {
-      padding: 10px 20px;
-      border: none;
-      background-color: #FF4880;
-      color: white;
-      cursor: pointer;
-      font-size: 16px;
-      border-radius: 4px;
-      margin: 5px 0;
-      transition: background-color 0.3s;
-    }
-
-    .button:hover {
-      background-color: #45a049;
-    }
-
-    .stats, h2, h3 {
-      margin-bottom: 10px;
-      font-family: Helvetica Neue;
-    }
-    h1{
-      font-family: Helvetica Neue;
-    }
-
-    h2, h3 {
-      color: #444;
-    }
-
-    .row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .col-md-6, .col-md-9, .col-md-1, .col-md-2 {
-      flex: 1;
-    }
-
-    .price {
-      font-weight: bold;
-      color: #E63946;
-    }
-
-    .product-rating {
-      color: #2a9d8f;
-    }
-
-    .store-info h2 {
-      font-size: 24px;
-      color: #333;
-      margin: 0;
-      padding-right: 20px;
-    }
-
-    .store-info .stats {
-      margin: 5px 10px;
-      color: #666;
-      font-size: 14px;
-    }
-
-    .store-info img {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-    }
-
-    .shopee-input-quantity {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: inline-flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-      -moz-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-    }
-
-    @media (max-width: 768px) {
-      .row {
-        flex-direction: column;
-      }
-    }
-
-    .comment-section, .comment-list {
-      border: 1px solid #ddd;
-      background-color: #fff;
-      padding: 20px;
-      margin-top: 20px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-
-    .comment-item {
-      margin-bottom: 20px;
-    }
-
-    .comment-item p {
-      margin: 5px 0;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
-      font-weight: bold;
-    }
-
-    .form-group input[type="text"], .form-group textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-
-    .form-group input[type="submit"] {
-      background-color: #FF4880;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    .form-group input[type="submit"]:hover {
-      background-color: #45a049;
-    }
-    /* CSS cho đánh giá sao */
-    .rating {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: center;
-    }
-
-    .rating input {
-      display: none;
-    }
-
-    .rating label {
-      font-size: 2em;
-      color: #ccc;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-
-    .rating input:checked ~ label {
-      color: #f5b301;
-    }
-
-    .rating label:hover,
-    .rating label:hover ~ label {
-      color: #f5b301;
-    }
-
-    .comment-rating {
-      display: flex;
-      justify-content: flex-start;
-      margin-top: 10px;
-    }
-    .avatar {
-      width: 50px; /* Kích thước của ảnh avatar */
-      height: 50px;
-      border-radius: 50%;
-      margin-right: 15px;
-      object-fit: cover; /* Đảm bảo ảnh không bị méo */
-    }.comment-item img {
-       width: 6%;
-       height: 6%; /* Đảm bảo chiều cao và chiều rộng bằng nhau */
-       border-radius: 50%;
-       object-fit: cover; /* Đảm bảo ảnh không bị méo */
-     }
-    .pagination {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    .pagination button {
-      margin: 0 5px;
-      padding: 10px 20px;
-      background-color: #ff4880;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background-color 0.3s, transform 0.3s;
-    }
-
-    .pagination button:hover {
-      background-color: #ff4880;
-      transform: scale(1.1);
-    }
-
-    .pagination .active {
-      background-color: #45a049;
-      transform: scale(1.1);
-    }
-    .fa-star {
-      color: #f5b301;
-    }
-
-    .fa-star.half::before {
-      content: '\f089'; /* Unicode for half star in Font Awesome */
-      color: #f5b301;
-      position: absolute;
-      margin-left: -1em;
-      top: 1px;
-    }
-    .out-of-stock {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* Màu nền bán trong suốt */
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      font-weight: bold;
-      text-transform: uppercase;
-      opacity: 1; /* Đặt độ mờ 100% để thông báo hiện rõ */
-      z-index: 1; /* Đảm bảo thông báo nằm trên cùng */
-      display: ${product.productAmount == 0 ? 'flex' : 'none'}; /* Ẩn khi không phải hết hàng */
-    }
-    .disabled-button {
-      opacity: 0.5; /* Làm mờ nút */
-      pointer-events: none; /* Vô hiệu hóa sự kiện nhấp chuột */
-      cursor: not-allowed; /* Hiển thị con trỏ không cho phép */
-    }
-    .product-main-image {
-      width: 100%;
-      height: auto;
-      border-radius: 16px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    .thumbnail {
-      width: 80px;
-      height: auto;
-      cursor: pointer;
-      margin: 5px;
-      border: 2px solid transparent;
-      border-radius: 8px;
-      transition: border 0.3s;
-    }
-    .thumbnail:hover {
-      border: 2px solid #007bff;
-    }
-    .video-icon {
-      font-size: 24px;
-      color: white;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      cursor: pointer;
-    }
-  </style>
+  <link href="${pageContext.request.contextPath}/assets/css/product_detail.css" rel="stylesheet">
 </head>
-<body>
+
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 <div class="container">
   <!-- Thông tin sản phẩm -->
@@ -339,7 +47,7 @@
       </script>
 
       <div class="col-md-6">
-        <h2>${product.productName}</h2>
+        <h2 style="font-family: sans-serif; color: black">${product.productName}</h2>
         <div style="display: flex; align-items: center;">
           <div class="comment-rating">
             <p style="color: red; text-decoration : underline">${TotalRating}</p>
@@ -422,7 +130,7 @@
   <div class="store-info">
     <div class="row">
       <div class="col-md-1">
-        <img src="${pageContext.request.contextPath}/assets/img/brand/${brand.brandLogo}" alt="Store Logo">
+        <img src="${pageContext.request.contextPath}/Image/${brand.brandLogo}" alt="Store Logo">
       </div>
       <div class="col-md-9">
         <h1>${brand.brandName}</h1>
@@ -471,14 +179,14 @@
   </div>
   <!-- Chi tiết sản phẩm -->
   <div class="product-details">
-    <h3>CHI TIẾT SẢN PHẨM</h3>
+    <h3 >CHI TIẾT SẢN PHẨM</h3>
     <p>Xuất xứ: ${product.origin}</p>
     <p>Kho hàng: ${product.productAmount}</p>
 <%--    <p>Gửi từ: ${brand.brandAddess}</p>--%>
   </div>
   <!-- Mô tả sản phẩm -->
   <div class="product-details">
-    <h3>MÔ TẢ SẢN PHẨM</h3>
+    <h3 >MÔ TẢ SẢN PHẨM</h3>
     <p class="auto-line-break">${product.productDescription}</p>
   </div>
   <!-- Thêm bình luận sản phẩm -->
@@ -505,7 +213,7 @@
         </div>
         <p>${comment.comment}</p>
         <c:if test="${not empty comment.commentImg}">
-          <img style="border-radius: 0%; cursor: pointer;" src="${pageContext.request.contextPath}/assets/img/commentProduct/${comment.commentImg}" alt="Comment Image" width="200" data-toggle="modal" data-target="#imageModal">
+          <img style="border-radius: 0%; cursor: pointer;" src="${pageContext.request.contextPath}/Image/${comment.commentImg}" alt="Comment Image" width="200" data-toggle="modal" data-target="#imageModal">
         </c:if>
         <hr>
       </div>
@@ -534,8 +242,8 @@
 
 
 
+  </div>
 </div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -595,5 +303,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+
 </html>

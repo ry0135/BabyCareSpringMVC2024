@@ -23,7 +23,7 @@ var callApiWard = (api) => {
 }
 
 var renderData = (array, select) => {
-    let row = ' <option disable value="">chọn tỉnh</option>';
+    let row = ' <option disable value="">chọn </option>';
     array.forEach(element => {
         row += `<option value="${element.code}">${element.name}</option>`
     });

@@ -1,9 +1,11 @@
 package com.example.controller;
 
 import com.example.model.Account;
-import com.example.repository.CartRepository;
+import com.example.model.Cart;
+import com.example.repository.CartItemRepository;
 import com.example.repository.UserRepository;
 import com.example.service.AccountService;
+import com.example.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -25,15 +27,16 @@ public class LoginController {
 
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
-    private CartRepository cartRepository;
+    private CartService cartService;
+    @Autowired
+    private CartItemRepository cartRepository;
 
     @GetMapping("/login")
     public String showLoginPage(HttpSession session, Model model) {
         Account account = (Account) session.getAttribute("account");
         if (account != null) {
-            return "redirect:/index"; // Redirect to homepage if user is logged in
+            return "redirect:/login"; // Redirect to homepage if user is logged in
         }
         return "login"; // Show login form
     }
@@ -71,8 +74,8 @@ public class LoginController {
             session.setAttribute("account", account);
             session.setAttribute("userID", account.getUserID());
             // Lấy giỏ hàng của người dùng
-//            Cart cart = cartService.loadCartByUserId(user.getUserId());
-//            session.setAttribute("cart", cart);
+            Cart cart = cartService.loadCartByUserId(account.getUserID());
+            session.setAttribute("cart", cart);
 
             // Lưu thông tin vào cookie (tùy chọn)
             Cookie usernameCookie = new Cookie("username", username);
