@@ -100,20 +100,7 @@
             </c:forEach>
 
           </div>
-          <div class="combo-card mb-4">
-            <c:forEach var="c1" items="${combo1}">
 
-
-              <a style=" background-color: white;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        border-radius: 8px;
-        padding: 20px;" href="ServiceComboServlet?tid=${c1.comboID}&serviceID=${cd.serviceID}">
-                  ${c1.comboName}
-              </a>
-
-
-            </c:forEach>
-          </div>
 
         </div>
 
@@ -144,6 +131,56 @@
       <p class="mb-4 text-primary auto-line-break">${service.description}${cd.description}</p>
     </div>
 
+  </div>
+  <div class="store-info nen"style=" margin: 10px">
+    <div class="row">
+      <div class="col-md-1">
+        <img src="${pageContext.request.contextPath}/Image/${brand.brandLogo}" alt="Store Logo">
+      </div>
+      <div class="col-md-9">
+        <h1>${brand.brandName}</h1>
+        <p class="stats">Đánh Giá: 125</p>
+        <p class="stats">Sản Phẩm: 87</p>
+        <p class="stats">Tỉ Lệ Phản Hồi: 100%</p>
+        <p class="stats">Thời Gian Phản Hồi: trong vài giờ</p>
+        <p class="stats">Tham Gia: 48 ngày trước</p>
+        <p class="stats">Người Theo Dõi: 688</p>
+      </div>
+      <div class="col-md-2 text-center">
+        <form action="ViewShopServlet">
+          <input name="CTVID" type="text" hidden="" value="${brand.CTVID}">
+          <button class="button">Xem Shop</button>
+        </form>
+        <form action="chat">
+          <input name="CTVID" type="text" hidden="" value="${brand.CTVID}">
+          <button class="button">Nhắn tin</button>
+        </form>
+        <input type="hidden" name="brandID" value="${brand.brandID}">
+
+
+        <c:choose>
+          <c:when test="${sessionScope.user != null && product != null}">
+            <c:if test="${sessionScope.user.userId ne product.CTVID}">
+              <c:choose>
+                <c:when test="${!isFollowing}">
+                  <input name="CTVID" type="text" hidden="" value="${brand.CTVID}">
+                  <a href="followBrand?brandId=${brand.brandID}&id=${product.productId}" class="btn btn-danger">Theo Dõi</a>
+                </c:when>
+                <c:when test="${isFollowing}">
+                  <input name="id" type="text" hidden="" value="${product.productId}">
+                  <input name="CTVID" type="text" hidden="" value="${brand.CTVID}">
+                  <a href="unfollowBrand?brandId=${brand.brandID}&id=${product.productId}" class="btn btn-danger">Bỏ Theo Dõi</a>
+                </c:when>
+              </c:choose>
+            </c:if>
+
+
+          </c:when>
+        </c:choose>
+
+
+      </div>
+    </div>
   </div>
   <div class="mt-5 nen">
     <h4 style="font-family: Times New Roman">ĐÁNH GIÁ </h4>

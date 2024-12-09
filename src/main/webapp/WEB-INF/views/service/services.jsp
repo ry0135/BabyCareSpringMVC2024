@@ -1,3 +1,4 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
@@ -184,7 +185,22 @@
         margin:  0 0;
         font-size: 14px;
         text-align: center;
+
     }
+    .favorite-btn {
+
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .favorite-btn:hover {
+        background-color: #ff3b2f;
+    }
+
 
 </style>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -221,20 +237,31 @@
 
 
 
-        <div class="search">
-            <form class="search-form" onsubmit="return false;">
-                <input type="search" id="searchInput" placeholder="Tìm kiếm...">
-                <button type="button" onclick="searchServices()">Tìm Kiếm</button> <!-- Sử dụng type="button" để ngăn form gửi -->
-            </form>
+
+        <div class="container mt-3">
+            <div class="row align-items-center">
+                <div class="col-lg-8 col-md-7">
+                    <form class="search-form d-flex" onsubmit="return false;">
+                        <input type="search" id="searchInput" class="form-control me-2" placeholder="Tìm kiếm...">
+                        <button type="button" class="btn btn-primary" onclick="searchServices()">Tìm Kiếm</button>
+                    </form>
+                </div>
+                <div class="col-lg-4 col-md-5 text-end">
+                    <a href="listfavorite" class="btn btn-warning">Danh Sách Yêu thích</a>
+                </div>
+            </div>
         </div>
 
 
 
+
     </div>
+
     <div class="row g-5" style="margin: 10px" id="serviceList">
         <c:forEach items="${ListS}" var="S">
-            <div class="col-lg-3 col-md-4 col-sm-6 service-item" data-name="${S.serviceName.toLowerCase()}" style="margin-top: 12px">
-                <a href="getservicedetail?serviceID=${S.serviceID}" class="product-item-link">
+            <div class="col-lg-3 col-md-4 col-sm-6 service-item " data-name="${S.serviceName.toLowerCase()}" style="margin-top: 12px">
+                <div class="product-item-link">
+
                     <div class="product-item position-relative bg-white d-flex flex-column text-center">
                         <div class="product-image">
                             <img class="img-fluid" src="${S.listImg}" alt="">
@@ -243,13 +270,18 @@
                             <h4 class="product-name" style="font-size: 14px; text-align: left;">${S.serviceName}</h4>
                             <h5 class="text-primary mb-0 product-price">${S.getServicePrice()}₫ </h5>
                         </div>
-                        <h6 class="text-primary text-uppercase" style="font-size: 14px">xem thêm >></h6>
+                        <div class="d-flex justify-content-between mt-auto">
+                            <a href="getservicedetail?serviceID=${S.serviceID}" class="btn btn-info">Xem thêm</a>
+                            <a href="addfavorite?serviceID=${S.serviceID}" class="btn btn-warning">Yêu thích</a>
+                        </div>
+
                     </div>
-                </a>
+
+                </div>
+
             </div>
         </c:forEach>
     </div>
-
 
 </div>
 </div>
