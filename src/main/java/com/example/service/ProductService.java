@@ -96,4 +96,33 @@ public class ProductService {
         return comments; // Trả về danh sách bình luận đã cập nhật với thông tin người dùng
     }
 
+
+    @Transactional
+    public boolean updateProductSold(String productId, int quantity) {
+            Product product = productRepository.findById(productId).orElse(null);
+            if (product != null) {
+
+                product.setSold(product.getSold() + quantity);
+                productRepository.save(product);
+                return true;
+            } else {
+                return false;
+            }
+
+    }
+
+    @Transactional
+    public boolean updateProductQuantity(String productId, int quantity) {
+        Product product = productRepository.findById(productId).orElse(null);
+        if (product != null) {
+
+            product.setProductAmount(product.getProductAmount() - quantity);
+            productRepository.save(product);
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.repository.AccountRepository;
+import com.example.repository.BillRepository;
 import com.example.repository.BrandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ public class RandomService {
     private AccountRepository accountRepository;
     @Autowired
     private BrandRepository brandRepository;
+    @Autowired
+    private BillRepository billRepository;
     @Transactional(readOnly = true)
     public  String getRandomUserID() {
         StringBuilder sb;
@@ -62,4 +65,18 @@ public class RandomService {
         while(brandRepository.existsByBrandID(sb.toString()));
         return sb.toString();
     }
+
+    @Transactional(readOnly = true)
+    public  String getRandomBillID() {
+        int length = 10;
+        String allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            sb.append(allowedChars.charAt(random.nextInt(allowedChars.length())));
+        }
+        return sb.toString();
+    }
+
+
 }

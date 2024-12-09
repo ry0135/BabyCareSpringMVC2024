@@ -4,6 +4,7 @@ import com.example.model.Preferential;
 import com.example.repository.PreferentialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -71,9 +72,10 @@ public class PreferentialService {
     public Optional<Preferential> getValidPreferential(String preferentialID) {
         return preferentialRepository.findValidPreferential(preferentialID);
     }
-
-    public Double getDiscountPercent(String preferentialID) {
-        return preferentialRepository.findDiscountPercent(preferentialID);
+    @Transactional
+    public double getDiscountPercent(String preferentialID) {
+        Double discountPercent = preferentialRepository.findDiscountPercent(preferentialID);
+        return (discountPercent != null) ? discountPercent : 0.0; // Trả về 1.0 nếu không tìm thấy
     }
 
     public void decreasePreferentialQuantity(String preferentialID) {

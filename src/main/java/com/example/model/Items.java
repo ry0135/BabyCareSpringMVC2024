@@ -4,9 +4,11 @@ import com.example.model.Product;
 import com.example.service.OrderDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
-public class Items {
+public class Items implements Serializable {
+    private static final long serialVersionUID = 1L; // Thêm serialVersionUID
     @Autowired
     private OrderDetailsService orderDetailsService;
     private Product product;
