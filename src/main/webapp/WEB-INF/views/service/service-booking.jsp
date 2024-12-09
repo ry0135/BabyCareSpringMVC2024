@@ -40,6 +40,7 @@
 
               </div>
             </div>
+            <a href="create-payment">Thanh toán với VNPay</a>
             <div class="col-sm-6">
               <div>
                 <img src="${serviceIMG}" class="img-fluid rounded w-100 h-100" style="object-fit: cover;" alt="">

@@ -146,7 +146,8 @@
           <c:if test="${sessionScope.account.role  == 2}">
 
             <a href="preferential-list-manager"  class="dropdown-item">Quản lí mã giảm giá</a>
-            <a href="ListCustomerPayment" class="dropdown-item">Quản lí đơn dịch vụ</a>
+            <a href="bookings" class="dropdown-item">Quản lí đơn dịch vụ</a>
+
             <a href="service-add.jsp" class="dropdown-item">Quản lí dịch vụ</a>
             <a href="category-add.jsp" class="dropdown-item">Quản lí danh mục</a>
 
@@ -154,7 +155,7 @@
           <c:if test="${sessionScope.account.role  == 4}">
             <a href="product-list-manager" class="dropdown-item">Quản lí sản phẩm</a>
             <a href="order-list-manager" class="dropdown-item">Quản lí đơn hàng</a>
-            <a href="ListBookingCustomerIDServlet" class="dropdown-item">Quản lí dich vụ</a>
+            <a href="bookings" class="dropdown-item">Quản lí dich vụ</a>
             <a href="StatisticCTV" class="dropdown-item">Quản lí doanh thu</a>
             <a href="getorderhistoryservlet" class="dropdown-item">Lịch sử đặt hàng</a>
 
