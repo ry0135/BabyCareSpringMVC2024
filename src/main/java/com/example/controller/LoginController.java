@@ -1,9 +1,11 @@
 package com.example.controller;
 
 import com.example.model.Account;
+import com.example.model.Cart;
 import com.example.repository.CartItemRepository;
 import com.example.repository.UserRepository;
 import com.example.service.AccountService;
+import com.example.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -25,7 +27,8 @@ public class LoginController {
 
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private CartService cartService;
     @Autowired
     private CartItemRepository cartRepository;
 
@@ -72,8 +75,8 @@ public class LoginController {
 
             session.setAttribute("userID", account.getUserID());
             // Lấy giỏ hàng của người dùng
-//            Cart cart = cartService.loadCartByUserId(user.getUserId());
-//            session.setAttribute("cart", cart);
+            Cart cart = cartService.loadCartByUserId(account.getUserID());
+            session.setAttribute("cart", cart);
 
             // Lưu thông tin vào cookie (tùy chọn)
             Cookie usernameCookie = new Cookie("username", username);

@@ -8,15 +8,33 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
   </context-param>
+
+  <context-param>
+    <param-name>vnp.apiUrl</param-name>
+    <param-value>https://sandbox.vnpayment.vn/paymentv2/vpcpay.html</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>vnp.tmnCode</param-name>
+    <param-value>NMYO95MG</param-value> <!-- Thay YOUR_TMN_CODE bằng mã thực tế -->
+  </context-param>
+
+  <context-param>
+    <param-name>vnp.hashSecret</param-name>
+    <param-value>D9GRVYDZLIV9L8ZWNHDZU3VCI20SQ5CO</param-value> <!-- Mã bí mật của bạn -->
+  </context-param>
+
+
+
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   <servlet>
-    <multipart-config>
-      <max-file-size>268435456</max-file-size> <!-- 256MB -->
-      <max-request-size>536870912</max-request-size> <!-- 512MB -->
-      <file-size-threshold>0</file-size-threshold>
-    </multipart-config>
+<!--    <multipart-config>-->
+<!--      <max-file-size>268435456</max-file-size> &lt;!&ndash; 256MB &ndash;&gt;-->
+<!--      <max-request-size>536870912</max-request-size> &lt;!&ndash; 512MB &ndash;&gt;-->
+<!--      <file-size-threshold>0</file-size-threshold>-->
+<!--    </multipart-config>-->
     <servlet-name>dispatcher</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <load-on-startup>1</load-on-startup>

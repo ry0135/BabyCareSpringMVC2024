@@ -58,90 +58,16 @@ public class CartController {
 
         // Lưu danh sách sản phẩm đã chọn trong session để sử dụng lại
         session.setAttribute("itemsList", itemsList);
+        session.removeAttribute("discountCode");
 
-        model.addAttribute("totalAmount", decimalFormat.format(calculateTotalAmount(itemsList)));
-        model.addAttribute("totalShippingFee", decimalFormat.format(calculateTotalShippingFee(itemsList)));
-        model.addAttribute("calculateWithShip", decimalFormat.format(calculateWithShip(itemsList, calculateTotalShippingFee(itemsList))));
-//        model.addAttribute("totalPriceAllWithDiscount", decimalFormat.format(calculateTotalPriceAllWithDiscount(itemsList, calculateTotalShippingFee(itemsList), discountCode)));
-//        model.addAttribute("calculatePriceDiscount", decimalFormat.format(calculatePriceDiscount(itemsList, discountCode)));
+        model.addAttribute("totalAmount", decimalFormat.format(cartService.calculateTotalAmount(itemsList)));
+        model.addAttribute("totalShippingFee", decimalFormat.format(cartService.calculateTotalShippingFee(itemsList)));
+        model.addAttribute("calculateWithShip", decimalFormat.format(cartService.calculateWithShip(itemsList, cartService.calculateTotalShippingFee(itemsList))));
+        model.addAttribute("totalPriceAllWithDiscount", decimalFormat.format(cartService.calculateTotalPriceAllWithDiscount(itemsList, cartService.calculateTotalShippingFee(itemsList), discountCode)));
+        model.addAttribute("calculatePriceDiscount", decimalFormat.format(cartService.calculatePriceDiscount(itemsList, discountCode)));
         model.addAttribute("itemsList", itemsList);
 
         return "cart/cart_form"; // Trả về tên của view cart.jsp
-    }
-
-
-    private double calculateTotalAmount(List<Items> itemsList) {
-        double total = 0.0;
-        for (Items item : itemsList) {
-            if (item.getProduct() != null) {
-                total += item.getProduct().getProductPrice() * item.getAmount();
-            }
-        }
-        return total;
-    }
-
-    private double calculateWithShip(List<Items> itemsList, double totalShippingFee) {
-        double total = 0.0;
-        for (Items item : itemsList) {
-            if (item.getProduct() != null) {
-                total += item.getProduct().getProductPrice() * item.getAmount();
-            }
-        }
-        return total + totalShippingFee;
-    }
-
-//    private double calculatePriceDiscount(List<Items> itemsList, String discountCode) {
-//        double total = 0.0;
-//        for (Items item : itemsList) {
-//            if (item.getProduct() != null) {
-//                total += item.getProduct().getProductPrice() * item.getAmount();
-//            }
-//        }
-//        double discountPercent = PreferentialRepository.getDiscountPercent(discountCode);
-//        return total * discountPercent;
-//    }
-
-//    private double calculateTotalPriceAllWithDiscount(List<Items> itemsList, double totalShippingFee, String discountCode) {
-//        double totalPrice = 0;
-//        for (Items item : itemsList) {
-//            if (item.getProduct() != null) {
-//                totalPrice += item.getProduct().getProductPrice() * item.getAmount();
-//            }
-//        }
-//        double discountPercent = PreferentialRepository.getDiscountPercent(discountCode);
-//        return (totalPrice - (totalPrice * discountPercent)) + totalShippingFee;
-//    }
-
-    private double calculateTotalShippingFee(List<Items> itemsList) {
-        double totalShippingFee = 0;
-        Set<String> ctvIds = new HashSet<>();
-
-        for (Items item : itemsList) {
-            if (item == null) {
-                // Bỏ qua item null
-                continue;
-            }
-
-            Product product = item.getProduct();
-            if (product == null) {
-                continue;
-            }
-
-            String ctvId = cartService.getCTVIdByProductId(product.getProductId());
-            if (ctvId == null || ctvId.isEmpty()) {
-                // Bỏ qua khi CTV ID không hợp lệ
-                continue;
-            }
-
-            // Chỉ tính phí vận chuyển nếu ctvId chưa được thêm
-            if (!ctvIds.contains(ctvId)) {
-                ctvIds.add(ctvId);
-                // Thay thế BASE_SHIPPING_FEE bằng product.getShippingCost()
-                totalShippingFee += product.getShippingCost(); // Sử dụng phí vận chuyển từ sản phẩm
-            }
-        }
-
-        return totalShippingFee;
     }
 
 }

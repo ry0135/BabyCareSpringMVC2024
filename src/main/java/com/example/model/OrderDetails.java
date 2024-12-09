@@ -1,17 +1,17 @@
 package com.example.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tblOrderDetails") // Tên bảng trong cơ sở dữ liệu
-public class OrderDetails {
+@IdClass(OrderDetailsID.class)
+public class OrderDetails implements Serializable {
     @Id
     @Column(name = "BillID") // Tên cột trong cơ sở dữ liệu
     private String billID;
+    @Id
     @Column(name = "ProductID") // Tên cột trong cơ sở dữ liệu
     private String productID;
     @Column(name = "AmountProduct") // Tên cột trong cơ sở dữ liệu
@@ -68,6 +68,8 @@ public class OrderDetails {
     public String toString() {
         return "OrderDetails{" + "billID=" + billID + ", productID=" + productID + ", amountProduct=" + amountProduct + ", priceAtPurchase=" + priceAtPurchase + '}';
     }
+
+
 
 
 }

@@ -1,12 +1,14 @@
 package com.example.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "tblProduct") // Tên bảng trong cơ sở dữ liệu
-public class Product {
+public class Product implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "ProductID") // Tên cột trong cơ sở dữ liệu
     private String productId;
