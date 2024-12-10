@@ -10,8 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdf3156d-4778-48b3-a845-d12e132aea44" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/Cart/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/Cart/PaymentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/PaymentController.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/AdminRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/AdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/admin/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/preferentials/PreferentialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/preferentials/PreferentialController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/OrderDetailsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/OrderDetailsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/PreferentialService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/PreferentialService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferential_add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferential_add.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferentials.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferentials.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/product.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +45,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/service/ProductService.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -64,24 +77,25 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/OJT Ki 6/BabyCareSpringMVC2024/src/main/webapp/WEB-INF/views/servicebrand",
+    "last_opened_file_path": "D:/vip/vip/BabyCareSpringMVC2024/src/main/webapp/WEB-INF/views",
     "list.type.of.created.stylesheet": "CSS",
     "spring.configuration.checksum": "38fbd63d295ed61500256bc8e793f0e2"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\vip\vip\BabyCareSpringMVC2024\src\main\webapp\WEB-INF\views" />
       <recent name="E:\OJT Ki 6\BabyCareSpringMVC2024\src\main\webapp\WEB-INF\views\servicebrand" />
       <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\src\main\webapp\WEB-INF\views\brand" />
       <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\src\main\webapp\WEB-INF\views" />
       <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\src\main\webapp\assets" />
-      <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\src\main\webapp\WEB-INF\assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\src\main\webapp" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.service" />
+      <recent name="com.example.repository" />
       <recent name="com.example.model" />
     </key>
   </component>
@@ -93,7 +107,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Tomcat 8.5.97" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.97" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 8.5.100" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.100" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="BabyCareSpringMVC2024:war">
@@ -103,7 +117,9 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="45f7855d-2a33-44d2-9109-630213535fe3" />
+        <option name="BASE_DIRECTORY_NAME" value="df3c6d88-811a-4bc3-8061-eb2e49192fbd" />
+        <option name="HTTP_PORT" value="8081" />
+        <option name="JNDI_PORT" value="1091" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -111,7 +127,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="62380" />
+        <option name="DEBUG_PORT" value="63091" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -192,6 +208,7 @@
       <workItem from="1732591221636" duration="94445000" />
       <workItem from="1733129490834" duration="23796000" />
       <workItem from="1733716821111" duration="30110000" />
+      <workItem from="1733817800955" duration="293000" />
     </task>
     <task id="LOCAL-00001" summary="comit">
       <created>1732594750957</created>
