@@ -9,21 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf3156d-4778-48b3-a845-d12e132aea44" name="Changes" comment="comit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/AdminRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/AdminService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/admin/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/preferentials/PreferentialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/preferentials/PreferentialController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/OrderDetailsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/OrderDetailsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/PreferentialRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/PreferentialRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/ProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/PreferentialService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/PreferentialService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferential_add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferential_add.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferentials.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferentials.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/product.jsp" afterDir="false" />
-    </list>
+    <list default="true" id="bdf3156d-4778-48b3-a845-d12e132aea44" name="Changes" comment="comit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,6 +24,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
@@ -177,7 +164,7 @@
       <updated>1732591220191</updated>
       <workItem from="1732591221636" duration="2430000" />
       <workItem from="1733806003254" duration="1825000" />
-      <workItem from="1733814715580" duration="540000" />
+      <workItem from="1733814715580" duration="872000" />
     </task>
     <task id="LOCAL-00001" summary="comit">
       <created>1732594750957</created>
@@ -186,7 +173,21 @@
       <option name="project" value="LOCAL" />
       <updated>1732594750957</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="comit">
+      <created>1733815308062</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1733815308062</updated>
+    </task>
+    <task id="LOCAL-00003" summary="comit">
+      <created>1733815490253</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733815490253</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
