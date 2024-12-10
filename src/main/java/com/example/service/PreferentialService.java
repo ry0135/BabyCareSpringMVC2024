@@ -22,6 +22,9 @@ public class PreferentialService {
 
     @Autowired
     private PreferentialRepository preferentialRepository;
+    public Optional<Preferential> getPreferentialsByCode(String preferentialCode) {
+        return preferentialRepository.findById(preferentialCode);
+    }
 
     public Preferential addPreferential(Preferential preferential, MultipartFile file, String uploadDir, String createdBy, String discountText) throws IOException {
         // Check if the preferential code already exists
@@ -63,6 +66,9 @@ public class PreferentialService {
 
     public List<Preferential> getPreferentialsByPage(int page) {
         return preferentialRepository.findAllPaginated(page);
+    }
+    public void deletePreferential(String preferentialCode) {
+        preferentialRepository.deleteById(preferentialCode);
     }
 
     public long getPreferentialCount() {

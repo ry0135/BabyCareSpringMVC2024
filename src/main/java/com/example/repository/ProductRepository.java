@@ -24,5 +24,10 @@ public interface ProductRepository extends JpaRepository<Product, String> {
     @Query("SELECT COUNT(p) FROM Product p WHERE p.CTVID = ?1")
     int countProductsByCTV(String CTVID);
 
+    @Query("SELECT COUNT(p) FROM Product p WHERE p.productName LIKE %:keyword%")
+    int countByKeyword(String keyword);
+    @Query("SELECT p FROM Product p WHERE p.productName LIKE %:keyword%")
+    List<Product> searchByKeyword(String keyword, org.springframework.data.domain.Pageable pageable);
+
 }
 

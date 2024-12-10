@@ -4,11 +4,10 @@ import com.example.model.Preferential;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-@Repository
+
 public interface PreferentialRepository extends JpaRepository<Preferential, String> {
 
     boolean existsByPreferentialCode(String preferentialCode);
@@ -27,5 +26,5 @@ public interface PreferentialRepository extends JpaRepository<Preferential, Stri
 
     // Get the discount percentage for a preferential
     @Query("SELECT p.rate FROM Preferential p WHERE p.preferentialCode = :preferentialCode")
-    Double findDiscountPercent(@Param("preferentialCode") String preferentialCode); //
+    Double findDiscountPercent(@Param("preferentialCode") String preferentialCode);
 }
