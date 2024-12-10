@@ -59,18 +59,23 @@ public class MakeOrderBankController {
         double totalPrice = calculateTotalPrice(cart.getCart());
         double priceWithDiscount = totalPrice * (1 - discount);
         double totalShippingFee = cartService.calculateTotalShippingFee(cart.getCart());
-        double totalPriceAllWithShipping = totalPrice + totalShippingFee;
-        double totalPriceAllWithDiscount = priceWithDiscount + totalShippingFee;
+//        double totalPriceAllWithShipping = totalPrice + totalShippingFee;
+//        double totalPriceAllWithDiscount = priceWithDiscount + totalShippingFee;
+        int totalPriceAllWithShipping = (int) (totalPrice + totalShippingFee);
+        int totalPriceAllWithDiscount = (int) (priceWithDiscount + totalShippingFee);
 
         // Định dạng giá tiền
         String formattedTotalPrice = decimalFormat.format(totalPrice);
         String formattedTotalPriceWithDiscount = decimalFormat.format(priceWithDiscount);
         String formattedTotalPriceAllWithShipping = decimalFormat.format(totalPriceAllWithShipping);
         String formattedTotalPriceAllWithDiscount = decimalFormat.format(totalPriceAllWithDiscount);
-
+        model.addAttribute("totalPriceAllNumber", totalPriceAllWithShipping);
+        model.addAttribute("totalPriceAllWithDiscountNumber", totalPriceAllWithDiscount);
         // Thiết lập các thuộc tính cho view
-        model.addAttribute("typePayment", paymentMethod);
-        model.addAttribute("discountCode", discountCode);
+        session.setAttribute("typePayment", paymentMethod);
+        session.setAttribute("discountCode", discountCode);
+//        model.addAttribute("typePayment", paymentMethod);
+//        model.addAttribute("discountCode", discountCode);
         model.addAttribute("totalPrice", formattedTotalPrice);
         model.addAttribute("priceWithDiscount", formattedTotalPriceWithDiscount);
         model.addAttribute("totalShippingFee", decimalFormat.format(totalShippingFee));

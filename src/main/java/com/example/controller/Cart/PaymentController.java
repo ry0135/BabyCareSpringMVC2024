@@ -6,6 +6,8 @@ import com.example.model.Items;
 import com.example.repository.BillRepository;
 import com.example.repository.ItemRepository;
 import com.example.service.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,23 +16,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 public class PaymentController {
-
-
     @Autowired
     private VNPAYService vnpayService;
     @Autowired
     private PreferentialService preferentialService;
-
     @Autowired
     private OrderService orderService;
     @Autowired
@@ -39,45 +42,133 @@ public class PaymentController {
     private ProductService productService;
     @Autowired
     private BillRepository billRepository;
-
     @Autowired
     private CartService cartService;
 
     private static final DecimalFormat decimalFormat = new DecimalFormat("#,##0 VNĐ");
 
 
-
-
     @PostMapping("/submitOrderUrl")
-    @ResponseBody
-    public String createPayment(HttpServletRequest request,
-                                @RequestParam String amount,
-                                @RequestParam String orderInfo) {
-        try {
-            String paymentUrl = vnpayService.createPayment(amount, orderInfo);
-            return "{\"code\":\"00\", \"message\":\"success\", \"data\":\"" + paymentUrl + "\"}";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "{\"code\":\"99\", \"message\":\"error: " + e.getMessage() + "\"}";
-        }
-    }
+    public void createPayment(HttpServletRequest request, HttpServletResponse response,
+                            @RequestParam(required = false) String amount,
+                            @RequestParam(required = false) String bankCode,
+                            @RequestParam(required = false) String discountCode
+                            ) throws IOException {
 
+    try {
+        String vnp_Version = "2.1.0";
+        String vnp_Command = "pay";
+        long totalAmount = Integer.parseInt(amount) * 100; // Số tiền cần thanh toán
+
+        String vnp_TxnRef = VNPAYService.getRandomNumber(8); // Mã giao dịch
+        String vnp_IpAddr = vnpayService.getIpAddress(request);
+        String vnp_TmnCode = vnpayService.vnp_TmnCode;
+
+        Map<String, String> vnp_Params = new HashMap<>();
+        vnp_Params.put("vnp_Version", vnp_Version);
+        vnp_Params.put("vnp_Command", vnp_Command);
+        vnp_Params.put("vnp_TmnCode", vnp_TmnCode);
+        vnp_Params.put("vnp_Amount", String.valueOf(totalAmount));
+        vnp_Params.put("vnp_CurrCode", "VND");
+
+        if (bankCode != null && !bankCode.isEmpty()) {
+            vnp_Params.put("vnp_BankCode", bankCode);
+        }
+
+        vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
+        vnp_Params.put("vnp_OrderInfo", "Thanh toán đơn hàng: " + vnp_TxnRef);
+        vnp_Params.put("vnp_OrderType", "other");
+
+        String locale = request.getParameter("language");
+        vnp_Params.put("vnp_Locale", (locale != null && !locale.isEmpty()) ? locale : "vn");
+        vnp_Params.put("vnp_ReturnUrl", vnpayService.vnp_ReturnUrl);
+        vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
+
+
+        // Tạo thời gian tạo và thời gian hết hạn
+        Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("UTC/GMT+7"));
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+        String vnp_CreateDate = formatter.format(cld.getTime());
+        vnp_Params.put("vnp_CreateDate", vnp_CreateDate);
+
+        cld.add(Calendar.MINUTE, 15000); // Thời gian hết hạn là 15000 phút
+        vnp_Params.put("vnp_ExpireDate", formatter.format(cld.getTime()));
+
+        List fieldNames = new ArrayList(vnp_Params.keySet());
+        Collections.sort(fieldNames);
+        StringBuilder hashData = new StringBuilder();
+        StringBuilder query = new StringBuilder();
+        Iterator itr = fieldNames.iterator();
+        while (itr.hasNext()) {
+            String fieldName = (String) itr.next();
+            String fieldValue = (String) vnp_Params.get(fieldName);
+            if ((fieldValue != null) && (fieldValue.length() > 0)) {
+                //Build hash data
+                hashData.append(fieldName);
+                hashData.append('=');
+                hashData.append(URLEncoder.encode(fieldValue, StandardCharsets.US_ASCII.toString()));
+                //Build query
+                query.append(URLEncoder.encode(fieldName, StandardCharsets.US_ASCII.toString()));
+                query.append('=');
+                query.append(URLEncoder.encode(fieldValue, StandardCharsets.US_ASCII.toString()));
+                if (itr.hasNext()) {
+                    query.append('&');
+                    hashData.append('&');
+                }
+            }
+        }
+
+        String queryUrl = query.toString();
+        String vnp_SecureHash = vnpayService.hmacSHA512(vnpayService.secretKey, hashData.toString());
+
+        queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
+        String paymentUrl = vnpayService.vnp_PayUrl + "?" + queryUrl;
+
+        // Gửi phản hồi
+        JsonObject job = new JsonObject();
+        job.addProperty("code", "00");
+        job.addProperty("message", "success");
+        job.addProperty("data", paymentUrl);
+
+        Gson gson = new Gson();
+        response.getWriter().write(gson.toJson(job));
+    } catch (Exception e) {
+        e.printStackTrace();
+        JsonObject errorJob = new JsonObject();
+        errorJob.addProperty("code", "99");
+        errorJob.addProperty("message", "error: " + e.getMessage());
+        Gson gson = new Gson();
+        response.getWriter().write(gson.toJson(errorJob));
+
+    }
+}
     @GetMapping("/VnPayReturnOrder")
     public String VnPayReturnOrder(
-            @RequestParam(required = false) String discountCode,
-            @RequestParam(required = false) String newAddress,
             HttpSession session,
             Model model) {
 
         Account user = (Account) session.getAttribute("account");
         Cart cart = (Cart) session.getAttribute("cart");
 
+        String newAddress =(String) session.getAttribute("newAddress");
+        String discountCode = (String) session.getAttribute("discountCode");
+        String typePayment = (String) session.getAttribute("typePayment");
         if (cart == null || cart.getCart().isEmpty()) {
             return "redirect:/cart";  // Redirect to cart if it's empty
         }
 
         if (user == null) {
             return "redirect:/login";  // Redirect to login if user is not logged in
+        }
+
+        int typePaymentInt = 0; // giá trị mặc định
+        try {
+            if (typePayment != null) {
+                typePaymentInt = Integer.parseInt(typePayment);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format for typePayment: " + typePayment);
+            // Xử lý lỗi hoặc gán giá trị mặc định cho typePaymentInt nếu cần
         }
 
         Map<String, List<Items>> orderItemsMap = new HashMap<>();
@@ -93,9 +184,9 @@ public class PaymentController {
             String orderId = null;
             if (newAddress != null && !newAddress.isEmpty()) {
 
-                orderId = orderService.createBill(ctvItems, user, sellerId, discountCode, cart.getPaymentType(), newAddress);
+                orderId = orderService.createBill(ctvItems, user, sellerId, discountCode, typePaymentInt, newAddress);
             } else {
-                orderId = orderService.createBill(ctvItems, user, sellerId, discountCode, cart.getPaymentType(), user.getAddress());
+                orderId = orderService.createBill(ctvItems, user, sellerId, discountCode, typePaymentInt, user.getAddress());
             }
             if (orderId != null) {
                 orderIds.add(orderId);

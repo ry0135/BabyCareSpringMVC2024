@@ -1,10 +1,13 @@
 package com.example.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tblProductImage") // Tên bảng trong cơ sở dữ liệu
-public class ProductImage {
+public class ProductImage  implements Serializable {
+    private static final long serialVersionUID = 1L; // Khuyến nghị luôn có serialVersionUID
+
     @Id
     @Column(name = "ImageID") // Tên cột trong cơ sở dữ liệu
     @GeneratedValue(strategy = GenerationType.IDENTITY)
