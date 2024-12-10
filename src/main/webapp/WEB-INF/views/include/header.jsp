@@ -1,12 +1,10 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BabyCare</title>
   <style>
     a {
       text-decoration: none;  /* Không gạch chân */
@@ -86,116 +84,107 @@
   <!-- Customized Bootstrap Stylesheet -->
   <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
 
-  <nav class="navbar navbar-light navbar-expand-xl py-3" style="width: 100%;background-color: #f8d9e1">
-      <a href="index.jsp" class="navbar-brand" style="margin-left: 90px;"><h1 style="color: #ff4880;">Baby<span style="color: #4d65f9;">Care</span></h1></a>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav mx-auto" style="font-family: Arial; ">
+<%--<body>--%>
+<nav class="navbar navbar-light navbar-expand-xl py-3" style="width: 100%;background-color: #f8d9e1">
+  <a href="index.jsp" class="navbar-brand" style="margin-left: 90px;"><h1 style="color: #ff4880;">Baby<span style="color: #4d65f9;">Care</span></h1></a>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav mx-auto" style="font-family: Arial; ">
       <nav>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="service">Dịch Vụ</a></li>
-            <li><a href="products">Sản Phẩm</a></li>
-            <li><a href="#">Mã Giảm Giá</a></li>
-            <li><a href="#">Đăng kí CTV</a></li>
-            <li><a href="#">Giỏ Hàng</a></li>
-          </ul>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="service">Dịch Vụ</a></li>
+          <li><a href="products">Sản Phẩm</a></li>
+          <li><a href="#">Mã Giảm Giá</a></li>
+          <c:if test="${sessionScope.account.role == 4 }">
+            <li><a href="sellChanel">Kênh Người Bán</a></li>
+          </c:if>
+          <li><a href="registerctv">Đăng kí CTV</a></li>
+          <li><a href="cart">Giỏ Hàng</a></li>
+        </ul>
       </nav>
 
-  <div class="d-flex me-4">
-    <c:if test="${sessionScope.account == null}">
-      <a href="login" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng nhập<i
-              class="bi bi-arrow-right"></i></a>
-    </c:if>
-    <c:if test="${sessionScope.account!=null}">
+      <div class="d-flex me-4">
+        <c:if test="${sessionScope.account == null}">
+          <a href="login" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng nhập<i
+                  class="bi bi-arrow-right"></i></a>
+        </c:if>
+        <c:if test="${sessionScope.account!=null}">
 
 
 
-      <c:if test="${sessionScope.account.role == 4 }">
-        <div class="wallet-section ms-4" style="margin-top: 15px">
-          <i class="bi bi-wallet wallet-icon"></i>
-          <div class="dropdown d-inline">
-            <c:if test="${not empty sessionScope.revenue}">
-              <a href="#" class="wallet-label dropdown-toggle" id="walletDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                Ví tiền ${revenue} vnđ
+          <c:if test="${sessionScope.account.role == 4 }">
+            <div class="wallet-section ms-4" style="margin-top: 15px">
+              <i class="bi bi-wallet wallet-icon"></i>
+              <div class="dropdown d-inline">
+                <c:if test="${not empty sessionScope.revenue}">
+                  <a href="#" class="wallet-label dropdown-toggle" id="walletDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Ví tiền ${revenue} vnđ
+                  </a>
+                </c:if>
+
+
+                <ul class="dropdown-menu " style="background-color: #ffecf2" aria-labelledby="walletDropdown">
+                  <li><a class="dropdown-item" href="transaction">Lịch sử giao dịch</a></li>
+                  <li><a class="dropdown-item" href="withdraw">Yêu Cầu Rút Tiền</a></li>
+                </ul>
+              </div>
+            </div>
+
+          </c:if>
+          <div class="nav-item dropdown" >
+            <div class=" d-flex align-items-center" data-bs-toggle="dropdown">
+              <img class="img-avatar text-white ms-lg-5" style="width: 50px; height: 83%; border-radius: 50%; margin-top: 5px;" src="${pageContext.request.contextPath}/image/${sessionScope.account.avatar}" alt="">
+              <a href="#" class="nav-link bg-primary text-white px-5 ms-lg-3">
+                  ${sessionScope.account.firstname} ${sessionScope.account.lastname}
               </a>
-            </c:if>
+            </div>
+            <div class="dropdown-menu m-0" style="left: 131px;">
+              <a href="profile" class="dropdown-item">Quản lí thông tin cá nhân</a>
 
 
-            <ul class="dropdown-menu " style="background-color: #ffecf2" aria-labelledby="walletDropdown">
-              <li><a class="dropdown-item" href="transaction">Lịch sử giao dịch</a></li>
-              <li><a class="dropdown-item" href="withdraw">Yêu Cầu Rút Tiền</a></li>
 
-            </ul>
+              <c:if test="${sessionScope.account.role  == 2}">
+
+                <a href="preferential-list-manager"  class="dropdown-item">Quản lí mã giảm giá</a>
+                <a href="service" class="dropdown-item">Quản lí đơn dịch vụ</a>
+                <a href="service-add.jsp" class="dropdown-item">Quản lí dịch vụ</a>
+                <a href="category-add.jsp" class="dropdown-item">Quản lí danh mục</a>
+
+              </c:if>
+              <c:if test="${sessionScope.account.role  == 4}">
+                <a href="product-list-manager" class="dropdown-item">Quản lí sản phẩm</a>
+                <a href="order-list-manager" class="dropdown-item">Quản lí đơn hàng</a>
+                <a href="ListBookingCustomerIDServlet" class="dropdown-item">Quản lí dich vụ</a>
+                <a href="StatisticCTV" class="dropdown-item">Quản lí doanh thu</a>
+                <a href="getorderhistoryservlet" class="dropdown-item">Lịch sử đặt hàng</a>
+
+
+
+              </c:if>
+
+              <c:if test="${sessionScope.account.role == 1}">
+                <a href="manage-emp-account" class="dropdown-item">Quản lí tài khoản nhân viên</a>
+                <a href="manage-cus-account" class="dropdown-item">Quản lí tài khoản khách hàng</a>
+                <a href="statistics"  class="dropdown-item">Thống kê bán hàng</a>
+              </c:if>
+
+              <c:if test="${sessionScope.account.role  == 3}">
+                <a href="byCustomerID" class="dropdown-item">Lịch sử đặt hàng dịch vụ</a>
+                <a href="getorderhistoryservlet" class="dropdown-item">Lịch sử đặt hàng</a>
+              </c:if>
+
+              <a href="logout" class="dropdown-item text-danger">Đăng xuất</a>
+            </div>
           </div>
-        </div>
-
-      </c:if>
-      <div class="nav-item dropdown" >
-        <div class=" d-flex align-items-center" data-bs-toggle="dropdown">
-          <img class="img-avatar text-white ms-lg-5" style="width: 50px; height: 83%; border-radius: 50%; margin-top: 5px;" src="${pageContext.request.contextPath}/assets/img/${sessionScope.account.avatar}" alt="">
-          <a href="#" class="nav-link bg-primary text-white px-5 ms-lg-3">
-              ${sessionScope.account.firstname} ${sessionScope.account.lastname}
-          </a>
-        </div>
-          <div class="dropdown-menu m-0" style="left: 131px;">
-          <a href="profile" class="dropdown-item">Quản lí thông tin cá nhân</a>
-
-
-
-          <c:if test="${sessionScope.account.role  == 2}">
-
-            <a href="preferential-list-manager"  class="dropdown-item">Quản lí mã giảm giá</a>
-            <a href="ListCustomerPayment" class="dropdown-item">Quản lí đơn dịch vụ</a>
-            <a href="service-add.jsp" class="dropdown-item">Quản lí dịch vụ</a>
-            <a href="category-add.jsp" class="dropdown-item">Quản lí danh mục</a>
-
-          </c:if>
-          <c:if test="${sessionScope.account.role  == 4}">
-            <a href="product-list-manager" class="dropdown-item">Quản lí sản phẩm</a>
-            <a href="order-list-manager" class="dropdown-item">Quản lí đơn hàng</a>
-            <a href="ListBookingCustomerIDServlet" class="dropdown-item">Quản lí dich vụ</a>
-            <a href="StatisticCTV" class="dropdown-item">Quản lí doanh thu</a>
-            <a href="getorderhistoryservlet" class="dropdown-item">Lịch sử đặt hàng</a>
-
-
-
-          </c:if>
-
-            <c:if test="${sessionScope.account.role  == 5}">
-              <a href="service-list-manager" class="dropdown-item">Quản lí dịch vụ</a>
-              <a href="order-list-manager" class="dropdown-item">Quản lí đơn hàng</a>
-              <a href="ListBookingCustomerIDServlet" class="dropdown-item">Quản lí dich vụ</a>
-              <a href="StatisticCTV" class="dropdown-item">Quản lí doanh thu</a>
-              <a href="getorderhistoryservlet" class="dropdown-item">Lịch sử đặt hàng</a>
-
-
-
-            </c:if>
-
-          <c:if test="${sessionScope.account.role == 1}">
-            <a href="manage-emp-account" class="dropdown-item">Quản lí tài khoản nhân viên</a>
-            <a href="manage-cus-account" class="dropdown-item">Quản lí tài khoản khách hàng</a>
-            <a href="statistics"  class="dropdown-item">Thống kê bán hàng</a>
-          </c:if>
-
-          <c:if test="${sessionScope.account.role  == 3}">
-            <a href="ListBookingCustomerIDServlet" class="dropdown-item">Lịch sử đặt hàng dịch vụ</a>
-            <a href="getorderhistoryservlet" class="dropdown-item">Lịch sử đặt hàng</a>
-          </c:if>
-
-            <a href="logout" class="dropdown-item text-danger">Đăng xuất</a>
-        </div>
+        </c:if>
       </div>
-    </c:if>
-  </div>
     </div>
   </div>
-  </nav>
+</nav>
 
 
-</body>
+<%--</body>--%>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
