@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PreferentialController {
@@ -79,7 +80,7 @@ public class PreferentialController {
 
                 Graphics2D graphics = originalImage.createGraphics();
                 graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                Font font = new Font("Arial", Font.BOLD, 300);
+                Font font = new Font("Arial", Font.BOLD, 300    );
                 graphics.setFont(font);
                 graphics.setColor(Color.RED);
                 String rateText = "" + rate;
@@ -104,6 +105,19 @@ public class PreferentialController {
 
         preferentialService.savePreferential(preferential);
         return "redirect:/preferentials";
+    }
+    // Handle deletion
+    @GetMapping("/preferential/delete/{preferentialCode}")
+    public String deletePreferential(@PathVariable("preferentialCode") String preferentialCode, Model model) {
+        Optional<Preferential> preferentialOpt = preferentialService.getPreferentialsByCode(preferentialCode);
+
+        if (preferentialOpt.isPresent()) {
+            preferentialService.deletePreferential(preferentialCode); // Call the service to delete
+            return "redirect:/preferentials"; // Redirect to the list after deletion
+        } else {
+            model.addAttribute("error", "Preferential not found");
+            return "preferential/preferentials"; // Redirect to the list if not found
+        }
     }
 
 }
