@@ -163,6 +163,17 @@
 
           </c:if>
 
+            <c:if test="${sessionScope.account.role  == 5}">
+              <a href="service-list-manager" class="dropdown-item">Quản lí dịch vụ</a>
+              <a href="order-list-manager" class="dropdown-item">Quản lí đơn hàng</a>
+              <a href="ListBookingCustomerIDServlet" class="dropdown-item">Quản lí dich vụ</a>
+              <a href="StatisticCTV" class="dropdown-item">Quản lí doanh thu</a>
+              <a href="getorderhistoryservlet" class="dropdown-item">Lịch sử đặt hàng</a>
+
+
+
+            </c:if>
+
           <c:if test="${sessionScope.account.role == 1}">
             <a href="manage-emp-account" class="dropdown-item">Quản lí tài khoản nhân viên</a>
             <a href="manage-cus-account" class="dropdown-item">Quản lí tài khoản khách hàng</a>
@@ -174,7 +185,7 @@
             <a href="getorderhistoryservlet" class="dropdown-item">Lịch sử đặt hàng</a>
           </c:if>
 
-          <a href="logout" class="dropdown-item text-danger">Đăng xuất</a>
+            <a href="logout" class="dropdown-item text-danger">Đăng xuất</a>
         </div>
       </div>
     </c:if>

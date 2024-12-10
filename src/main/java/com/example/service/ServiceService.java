@@ -65,4 +65,15 @@ public class ServiceService {
         int typeId = Integer.parseInt(type); // Hoặc thực hiện xử lý chuyển đổi theo cách khác nếu cần
         return serviceRepository.findByTypeId(typeId); // Gọi phương thức repository
     }
+
+    public List<ServiceEntity> getServicesByCTVID(String CTVID) {
+        try {
+            return serviceRepository.findByCTVID(CTVID);
+        } catch (Exception e) {
+            System.err.println("Error fetching services by CTVID: " + e.getMessage());
+            return null;
+        }
+    }
+
+
 }

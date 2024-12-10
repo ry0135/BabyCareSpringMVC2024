@@ -92,4 +92,6 @@ public class BrandService {
         return brandRepository.findBrandNameByProductId(productId);
     }
 
+
+
 }

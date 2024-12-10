@@ -157,7 +157,7 @@
                 width: 100%;
                 height: 100%;
                 display: flex;
-                flex-wrap: nowrapwrap;
+                /*flex-wrap: nowrapwrap;*/
                 gap: 10px;
 
             }

@@ -23,6 +23,8 @@ public class FeedbackController {
         return "feedback"; // trả về template feedback.html
     }
 
+
+
     @PostMapping("/feedback")
     public String addFeedback(Feedback feedback) {
         feedbackService.saveFeedback(feedback); // Lưu feedback vào DB

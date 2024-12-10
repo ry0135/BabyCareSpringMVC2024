@@ -57,69 +57,69 @@ public class AddBrandController {
     }
 
 
-    @PostMapping("/addBrand")
-    public String saveBrand(HttpServletRequest request, Model model,
-                            @RequestParam String accountNumber,
-                            @RequestParam String bankName,
-                            @RequestParam String brandName,
-                            @RequestParam String brandDescription,
-                            @RequestParam String newAddress,
-                            @RequestParam String brandAddress
-                                                                    ) {
-        HttpSession session = request.getSession();
-        Account user = (Account) session.getAttribute("account");
-
-        if (user == null) {
-            return "redirect:login";
-        }
-        System.out.println(newAddress);
-
-
-        String userID = user.getUserID();
-
-        try {
-            // Kiểm tra xem thương hiệu đã tồn tại hay chưa
-            Brand existingBrand = brandService.getBrandByCTVId(userID);
-
-            if (existingBrand != null) {
-                // Kiểm tra tên thương hiệu đã tồn tại hay chưa
-                if (brandService.checkBrandNameExist(brandName, existingBrand.getBrandID())) {
-                    model.addAttribute("thongbao1", "Tên cửa hàng đã tồn tại.");
-                } else {
-                    // Cập nhật thương hiệu
-                    boolean updated = brandService.updateBrand(existingBrand.getBrandID(), brandName,
-                            (newAddress != null && !newAddress.isEmpty()) ? newAddress : brandAddress,
-                            bankName, accountNumber,brandDescription);
-                    if (updated) {
-                        model.addAttribute("thongbao", "Lưu thông tin thành công.");
-                    } else {
-                        model.addAttribute("thongbao", "Có lỗi xảy ra khi cập nhật cửa hàng. Vui lòng thử lại.");
-                    }
-                }
-            } else {
-                // Thêm mới thương hiệu
-                if (brandService.existsByBrandName(brandName)) {
-                    model.addAttribute("thongbao1", "Tên cửa hàng đã tồn tại.");
-                } else {
-                    String brandID = randomService.getRandomBrandID();
-                    boolean added = brandService.addBrand(brandID, brandName,
-                            (newAddress != null && !newAddress.isEmpty()) ? newAddress : brandAddress,
-                            userID, bankName, accountNumber,brandDescription);
-//                    if (added) {
-//                        model.addAttribute("thongbao", "Lưu thông tin thành công");
+//    @PostMapping("/addBrand")
+//    public String saveBrand(HttpServletRequest request, Model model,
+//                            @RequestParam String accountNumber,
+//                            @RequestParam String bankName,
+//                            @RequestParam String brandName,
+//                            @RequestParam String brandDescription,
+//                            @RequestParam String newAddress,
+//                            @RequestParam String brandAddress
+//                                                                    ) {
+//        HttpSession session = request.getSession();
+//        Account user = (Account) session.getAttribute("account");
+//
+//        if (user == null) {
+//            return "redirect:login";
+//        }
+//        System.out.println(newAddress);
+//
+//
+//        String userID = user.getUserID();
+//
+//        try {
+//            // Kiểm tra xem thương hiệu đã tồn tại hay chưa
+//            Brand existingBrand = brandService.getBrandByCTVId(userID);
+//
+//            if (existingBrand != null) {
+//                // Kiểm tra tên thương hiệu đã tồn tại hay chưa
+//                if (brandService.checkBrandNameExist(brandName, existingBrand.getBrandID())) {
+//                    model.addAttribute("thongbao1", "Tên cửa hàng đã tồn tại.");
+//                } else {
+//                    // Cập nhật thương hiệu
+//                    boolean updated = brandService.updateBrand(existingBrand.getBrandID(), brandName,
+//                            (newAddress != null && !newAddress.isEmpty()) ? newAddress : brandAddress,
+//                            bankName, accountNumber,brandDescription);
+//                    if (updated) {
+//                        model.addAttribute("thongbao", "Lưu thông tin thành công.");
 //                    } else {
-//                        model.addAttribute("thongbao", "Có lỗi xảy ra khi đăng ký cửa hàng. Vui lòng thử lại.");
+//                        model.addAttribute("thongbao", "Có lỗi xảy ra khi cập nhật cửa hàng. Vui lòng thử lại.");
 //                    }
-                }
-            }
-
-            return "redirect:/registerctv"; // Redirect to the appropriate page after processing
-        } catch (Exception e) {
-            e.printStackTrace();
-            model.addAttribute("thongbao", "Có lỗi xảy ra. Vui lòng thử lạissssss.");
-            return "redirect:/registerctv"; // Redirect on error
-        }
-    }
+//                }
+//            } else {
+//                // Thêm mới thương hiệu
+//                if (brandService.existsByBrandName(brandName)) {
+//                    model.addAttribute("thongbao1", "Tên cửa hàng đã tồn tại.");
+//                } else {
+//                    String brandID = randomService.getRandomBrandID();
+//                    boolean added = brandService.addBrand(brandID, brandName,
+//                            (newAddress != null && !newAddress.isEmpty()) ? newAddress : brandAddress,
+//                            userID, bankName, accountNumber,brandDescription);
+////                    if (added) {
+////                        model.addAttribute("thongbao", "Lưu thông tin thành công");
+////                    } else {
+////                        model.addAttribute("thongbao", "Có lỗi xảy ra khi đăng ký cửa hàng. Vui lòng thử lại.");
+////                    }
+//                }
+//            }
+//
+//            return "redirect:/registerctv"; // Redirect to the appropriate page after processing
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            model.addAttribute("thongbao", "Có lỗi xảy ra. Vui lòng thử lạissssss.");
+//            return "redirect:/registerctv"; // Redirect on error
+//        }
+//    }
 
 
 

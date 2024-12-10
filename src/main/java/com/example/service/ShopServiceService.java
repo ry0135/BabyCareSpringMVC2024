@@ -1,5 +1,7 @@
 package com.example.service;
 
+import com.example.model.ServiceEntity;
+import com.example.repository.ServiceRepository;
 import com.example.repository.ShopServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,20 @@ public class ShopServiceService {
         } while (shopServiceRepository.existsByBrandID(sb.toString())); // Kiểm tra xem ID đã tồn tại chưa
 
         return sb.toString(); // Trả về ID ngẫu nhiên
+    }
+
+    @Autowired
+    private ServiceRepository serviceRepository;
+
+    public void addService(ServiceEntity serviceEntity) {
+        serviceRepository.save(serviceEntity);
+    }
+
+    public boolean deleteService(int serviceID) {
+        if (serviceRepository.existsById(serviceID)) {
+            serviceRepository.deleteById(serviceID);
+            return true;
+        }
+        return false;
     }
 }

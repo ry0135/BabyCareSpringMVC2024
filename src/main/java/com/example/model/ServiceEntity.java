@@ -24,7 +24,7 @@ public class ServiceEntity {
     @Column(name = "TypeID")
     private int typeId;
     @Column(name = "CTVID")
-    private String cTVID;
+    private String CTVID;
     // Constructor, getter, setter và phương thức toString...
     public ServiceEntity() {}
 
@@ -68,14 +68,6 @@ public class ServiceEntity {
         this.description = description;
     }
 
-    public int getTypeID() {
-        return typeId;
-    }
-
-    public void setTypeID(int typeID) {
-        this.typeId = typeID;
-    }
-
     public int getTypeId() {
         return typeId;
     }
@@ -85,10 +77,10 @@ public class ServiceEntity {
     }
 
     public String getcTVID() {
-        return cTVID;
+        return CTVID;
     }
 
     public void setcTVID(String cTVID) {
-        this.cTVID = cTVID;
+        this.CTVID = cTVID;
     }
 }

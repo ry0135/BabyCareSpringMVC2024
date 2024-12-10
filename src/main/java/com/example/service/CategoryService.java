@@ -20,4 +20,9 @@ public class CategoryService {
     public List<Category> fetchSubcategories(Integer parentId) {
         return categoryRepository.findByParentId(parentId); // Phương thức tìm subcategories
     }
+//    public List<Category> getAllCategories() {
+//        List<Category> categories = categoryRepository.findAll();
+//        System.out.println("Categories: " + categories); // Logging để kiểm tra dữ liệu
+//        return categories;
+//    }
 }
