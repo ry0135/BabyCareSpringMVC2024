@@ -95,6 +95,10 @@
             cursor: pointer;
         }
 
+
+
+
+        
         button:hover {
             background-color: #218838;
         }
@@ -131,7 +135,7 @@
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email của bạn" required>
-                    
+
                 </div>
                 <!-- Hiển thị thông báo nếu có -->
                 <h3>${message}</h3>
