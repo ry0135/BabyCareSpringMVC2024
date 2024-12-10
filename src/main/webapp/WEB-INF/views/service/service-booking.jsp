@@ -64,22 +64,15 @@
           </div>
           <% }%>
 
-          <% if (request.getAttribute("bookedCount") != null) {
-            int bookedCount = (int) request.getAttribute("bookedCount");
-            if (bookedCount >= 5) { %>
-          <div class="alert alert-danger" role="alert">
-            <%= request.getParameter("slot") %> của <%= request.getParameter("bookingDate") %> đã bị đầy . Xin vui lòng chọn Slot khác.
-          </div>
-          <%    }
-          } %>
-          <form action="bookingservlet" method="post" onsubmit="return validateDate();">
+
+          <form action="bookingService" method="post" onsubmit="return validateDate();">
             <div class="row gy-3 gx-4">
               <div class="col-md-6 offset-3 mb-3">
 
                 <div class="input-group">
                   <input type="hidden" class="form-control" id="serviceIMG" name="serviceIMG" value="${serviceIMG}" aria-describedby="inputGroupPrepend" required>
                   <input type="hidden" class="form-control" id="serviceID" name="serviceID" value="${serviceID}" aria-describedby="inputGroupPrepend" required>
-                  <input type="hidden" class="form-control" id="servicePrice" name="servicePrice" value="${servicePrice}" aria-describedby="inputGroupPrepend" required>
+                  <input type="hidden" class="form-control" id="servicePrice" name="price" value="${servicePrice}" aria-describedby="inputGroupPrepend" required>
                   <input type="hidden" class="form-control" id="serviceName" name="serviceName" value="${serviceName}" aria-describedby="inputGroupPrepend" required>
                   <div class="invalid-feedback"></div>
 
