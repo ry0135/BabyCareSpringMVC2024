@@ -1,11 +1,9 @@
 package com.example.controller.service;
 
-import com.example.model.Account;
-import com.example.model.Feedback;
-import com.example.model.ServiceEntity;
-import com.example.model.ServiceType;
+import com.example.model.*;
 import com.example.service.AccountService;
 import com.example.service.ServiceService;
+import com.example.service.ShopServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,7 +20,8 @@ import java.util.List;
 public class ServiceController {
     @Autowired
     private ServiceService serviceService;
-
+    @Autowired
+    private ShopServiceService shopServiceService;
     @GetMapping("/service")
     public String getAllServices(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         int numberElementsInPage = 8;
@@ -57,7 +56,8 @@ public class ServiceController {
     }
 
     @GetMapping("/getservicedetail")
-    public String getServiceDetail(@RequestParam("serviceID") int serviceID, Model model) {
+    public String getServiceDetail(@RequestParam("serviceID") int serviceID,
+           @RequestParam("CTVID") String ctvID , Model model) {
         ServiceEntity service = serviceService.getServiceById(serviceID);
 
         // Kiểm tra nếu không tìm thấy service
@@ -73,6 +73,7 @@ public class ServiceController {
         Integer totalRating = serviceService.getTotalRatingForService(serviceID);
         Double averageRating = serviceService.getAverageRatingForService(serviceID);
         Integer evaluateRating = serviceService.getTotalEvaluateForService(serviceID);
+        ShopService shopServices = shopServiceService.getShopServicesByCtvID(ctvID);
 
         // Thêm thông tin vào model
         model.addAttribute("service", service);
@@ -81,6 +82,7 @@ public class ServiceController {
         model.addAttribute("TotalRating", totalRating);
         model.addAttribute("getAverageRating", averageRating);
         model.addAttribute("EvaluateRating", evaluateRating);
+        model.addAttribute("shopServices", shopServices);
 
         return "service/service-detail"; // Trả về view service-detail.html
     }
@@ -91,6 +93,7 @@ public class ServiceController {
             @RequestParam String serviceIMG,
             @RequestParam String servicePrice,
             @RequestParam String serviceName,
+            @RequestParam String CTVID,
             HttpSession session,
             Model model) {
 
@@ -106,6 +109,7 @@ public class ServiceController {
         model.addAttribute("serviceID", serviceID);
         model.addAttribute("servicePrice", servicePrice);
         model.addAttribute("serviceName", serviceName);
+        model.addAttribute("CTVID", CTVID);
         model.addAttribute("address", user.getAddress());
         model.addAttribute("email", user.getEmail());
         model.addAttribute("phone", user.getPhone());

@@ -8,9 +8,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tblShopService")
 public class ShopService {
-    @Id
-    @Column(name = "BrandID") // Tên cột trong cơ sở dữ liệu
-    private String brandID;
+        @Id
+        @Column(name = "BrandID") // Tên cột trong cơ sở dữ liệu
+        private String brandID;
 
     @Column(name = "BrandName") // Tên cột trong cơ sở dữ liệu
     private String brandName;
@@ -27,26 +27,17 @@ public class ShopService {
     @Column(name = "CTVID") // Tên cột trong cơ sở dữ liệu
     private String ctvID;
 
-    @Column(name = " BankName") // Tên cột trong cơ sở dữ liệu
-    private String bankName;
+    @Column(name = " BandName") // Tên cột trong cơ sở dữ liệu
+    private String bandName;
+
+    @Column(name = "EventType") // Tên cột trong cơ sở dữ liệu
+    private String eventType;
 
     @Column(name = "BrandPhone") // Tên cột trong cơ sở dữ liệu
     private String brandPhone;
 
     @Column(name = "Role") // Tên cột trong cơ sở dữ liệu
     private int role;
-
-    @Column(name = "IdentifiNumber") // Tên cột trong cơ sở dữ liệu
-    private  String identifiNumber;
-
-    @Column(name = "IdentifiImg") // Tên cột trong cơ sở dữ liệu
-    private  String identifiImg;
-
-    @Column(name = "IdentifiImgFace") // Tên cột trong cơ sở dữ liệu
-    private String identifiImgFace;
-
-    @Column(name = "AcountNumber") // Tên cột trong cơ sở dữ liệu
-    private String acountNumber;
 
     public ShopService() {
     }
@@ -58,7 +49,8 @@ public class ShopService {
         this.brandLogo = brandLogo;
         this.brandAddress = brandAddress;
         this.ctvID = ctvID;
-        this.bankName = bankName;
+        this.bandName = bandName;
+        this.eventType = eventType;
         this.brandPhone = brandPhone;
         this.role = role;
     }
@@ -111,15 +103,21 @@ public class ShopService {
         this.ctvID = ctvID;
     }
 
-    public String getBankName() {
-        return bankName;
+    public String getBandName() {
+        return bandName;
     }
 
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
+    public void setBandName(String bandName) {
+        this.bandName = bandName;
     }
 
+    public String getEventType() {
+        return eventType;
+    }
 
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
+    }
 
     public String getBrandPhone() {
         return brandPhone;
@@ -136,38 +134,4 @@ public class ShopService {
     public void setRole(int role) {
         this.role = role;
     }
-
-    public String getIdentifiNumber() {
-        return identifiNumber;
-    }
-
-    public void setIdentifiNumber(String identifiNumber) {
-        this.identifiNumber = identifiNumber;
-    }
-
-    public String getIdentifiImg() {
-        return identifiImg;
-    }
-
-    public void setIdentifiImg(String identifiImg) {
-        this.identifiImg = identifiImg;
-    }
-
-    public String getIdentifiImgFace() {
-        return identifiImgFace;
-    }
-
-    public void setIdentifiImgFace(String identifiImgFace) {
-        this.identifiImgFace = identifiImgFace;
-    }
-
-    public String getAcountNumber() {
-        return acountNumber;
-    }
-
-    public void setAcountNumber(String acountNumber) {
-        this.acountNumber = acountNumber;
-    }
 }
-
-
