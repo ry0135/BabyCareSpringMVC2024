@@ -27,12 +27,16 @@ public class ShopService {
     @Column(name = "CTVID") // Tên cột trong cơ sở dữ liệu
     private String ctvID;
 
-    @Column(name = " BandName") // Tên cột trong cơ sở dữ liệu
-    private String bandName;
-
-    @Column(name = "EventType") // Tên cột trong cơ sở dữ liệu
-    private String eventType;
-
+    @Column(name = " BankName") // Tên cột trong cơ sở dữ liệu
+    private String bankName;
+    @Column(name = "AcountNumber") // Tên cột trong cơ sở dữ liệu
+    private String acountNumber;
+    @Column(name = "IdentifiNumber") // Tên cột trong cơ sở dữ liệu
+    private String identifiNumber;
+    @Column(name = "IdentifiImg") // Tên cột trong cơ sở dữ liệu
+    private String identifiImg;
+    @Column(name = "IdentifiImgFace") // Tên cột trong cơ sở dữ liệu
+    private String identifiImgFace;
     @Column(name = "BrandPhone") // Tên cột trong cơ sở dữ liệu
     private String brandPhone;
 
@@ -49,8 +53,7 @@ public class ShopService {
         this.brandLogo = brandLogo;
         this.brandAddress = brandAddress;
         this.ctvID = ctvID;
-        this.bandName = bandName;
-        this.eventType = eventType;
+        this.bankName = bandName;
         this.brandPhone = brandPhone;
         this.role = role;
     }
@@ -103,21 +106,14 @@ public class ShopService {
         this.ctvID = ctvID;
     }
 
-    public String getBandName() {
-        return bandName;
+    public String getBankName() {
+        return bankName;
     }
 
-    public void setBandName(String bandName) {
-        this.bandName = bandName;
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
     }
 
-    public String getEventType() {
-        return eventType;
-    }
-
-    public void setEventType(String eventType) {
-        this.eventType = eventType;
-    }
 
     public String getBrandPhone() {
         return brandPhone;
@@ -133,5 +129,38 @@ public class ShopService {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+
+    public String getAcountNumber() {
+        return acountNumber;
+    }
+
+    public void setAcountNumber(String acountNumber) {
+        this.acountNumber = acountNumber;
+    }
+
+    public String getIdentifiNumber() {
+        return identifiNumber;
+    }
+
+    public void setIdentifiNumber(String identifiNumber) {
+        this.identifiNumber = identifiNumber;
+    }
+
+    public String getIdentifiImg() {
+        return identifiImg;
+    }
+
+    public void setIdentifiImg(String identifiImg) {
+        this.identifiImg = identifiImg;
+    }
+
+    public String getIdentifiImgFace() {
+        return identifiImgFace;
+    }
+
+    public void setIdentifiImgFace(String identifiImgFace) {
+        this.identifiImgFace = identifiImgFace;
     }
 }

@@ -48,25 +48,7 @@ public class ShopServiceController {
         return "registerShopService"; // Trang form đăng ký
     }
 
-//    @PostMapping("/register-shop-service")
-//    public String registerShopService(@ModelAttribute ShopService shopService, Model model, HttpServletRequest request) {
-//        HttpSession session = request.getSession();
-//        Account user = (Account) session.getAttribute("account"); // Lấy use
-//
-//        if (user == null) {
-//            return "redirect:/login";
-//        }
-//        shopService.setCtvID(user.getUserID());
-//
-//        shopService.setRole(5);
-//
-//
-//        String randomBrandID = shopServiceService.getRandomBrandID();
-//        shopService.setBrandID(randomBrandID); // Gán brandID ngẫu nhiên vào ShopService
-//        shopServiceRepository.save(shopService); // Lưu ShopService vào cơ sở dữ liệu
-//        model.addAttribute("randomBrandID", randomBrandID);
-//        return "redirect:/register-shop-service-success"; // Chuyển hướng khi đăng ký thành công
-//    }
+
     @PostMapping("/register-shop-service")
     public String registerShopService( @RequestParam("brandName") String brandName,
                                        @RequestParam("brandDescription") String brandDescription,
