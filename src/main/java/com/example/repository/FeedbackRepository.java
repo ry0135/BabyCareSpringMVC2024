@@ -19,4 +19,8 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
 
     @Query("SELECT AVG(f.satisfactionLevel) FROM Feedback f WHERE f.serviceID = ?1")
     Double findAverageRatingByServiceID(int serviceID); // Tính đánh giá trung bình
+
+    default Feedback saveFeedback(Feedback feedback) {
+        return save(feedback); // Gọi save() của JpaRepository
+    }
 }
