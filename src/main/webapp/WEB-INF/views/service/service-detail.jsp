@@ -108,10 +108,11 @@
           <c:if test="${sessionScope.account != null && sessionScope.account.role  == 3 || sessionScope.account.role  == 4}">
             <div class="buttons">
               <div>
-                <input type="hidden" name="serviceIMG" value="${service.listImg}${cd.listImg}">
-                <input type="hidden" name="serviceID" value="${service.serviceID}${cd.serviceID}">
-                <input type="hidden" name="servicePrice" value="${service.servicePrice}${cd.comboPrice}">
-                <input type="hidden" name="serviceName" value="${service.serviceName}${cd.serviceName}${cd.comboName}">
+                <input type="hidden" name="serviceIMG" value="${service.listImg}">
+                <input type="hidden" name="serviceID" value="${service.serviceID}">
+                <input type="hidden" name="servicePrice" value="${service.servicePrice}">
+                <input type="hidden" name="serviceName" value="${service.serviceName}">
+                <input type="hidden" name="CTVID" value="${service.cTVID}">
                 <input class="btn btn-primary" type="submit" value="Đặt Ngay">
               </div>
               <h3>${message}</h3>
@@ -128,17 +129,19 @@
   <div class="nen" >
     <div style=" margin: 10px" >
       <h4 style="font-family: Times New Roman">MÔ TẢ DỊCH VỤ</h4>
-      <p class="mb-4 text-primary auto-line-break">${service.description}${cd.description}</p>
+      <p class="mb-4 text-primary auto-line-break">${service.description}</p>
     </div>
 
   </div>
   <div class="store-info nen"style=" margin: 10px">
     <div class="row">
       <div class="col-md-1">
-        <img src="${pageContext.request.contextPath}/Image/${brand.brandLogo}" alt="Store Logo">
+        <img src="${pageContext.request.contextPath}/Image/${shopServices.brandLogo}" alt="Store Logo">
       </div>
       <div class="col-md-9">
-        <h1>${brand.brandName}</h1>
+        <h4 style="font-family: Times New Roman">${shopServices.brandName}</h4>
+
+
         <p class="stats">Đánh Giá: 125</p>
         <p class="stats">Sản Phẩm: 87</p>
         <p class="stats">Tỉ Lệ Phản Hồi: 100%</p>
@@ -148,14 +151,14 @@
       </div>
       <div class="col-md-2 text-center">
         <form action="ViewShopServlet">
-          <input name="CTVID" type="text" hidden="" value="${brand.CTVID}">
+          <input name="CTVID" type="text" hidden="" value="${shopServices.ctvID}">
           <button class="button">Xem Shop</button>
         </form>
         <form action="chat">
-          <input name="CTVID" type="text" hidden="" value="${brand.CTVID}">
+          <input name="CTVID" type="text" hidden="" value="${shopServices.ctvID}">
           <button class="button">Nhắn tin</button>
         </form>
-        <input type="hidden" name="brandID" value="${brand.brandID}">
+        <input type="hidden" name="brandID" value="${shopServices.brandID}">
 
 
         <c:choose>

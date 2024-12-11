@@ -18,6 +18,7 @@ public class VNPAYService {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     public static String vnp_ReturnUrl = "http://localhost:8080/Baby_war/VnPayReturnOrder";
+    public static String vnp_ReturnUrlService = "http://localhost:8080/BabyCareSpringMVC2024_war/addbookingService";
     public static String vnp_TmnCode = "NMYO95MG";
     public static String secretKey = "D9GRVYDZLIV9L8ZWNHDZU3VCI20SQ5CO";
     public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
