@@ -1,12 +1,14 @@
 package com.example.service;
 
 import com.example.model.ServiceEntity;
+import com.example.model.ShopService;
 import com.example.repository.ServiceRepository;
 import com.example.repository.ShopServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -37,6 +39,9 @@ public class ShopServiceService {
         } while (shopServiceRepository.existsByBrandID(sb.toString())); // Kiểm tra xem ID đã tồn tại chưa
 
         return sb.toString(); // Trả về ID ngẫu nhiên
+    }
+    public ShopService getShopServicesByCtvID(String ctvID) {
+        return shopServiceRepository.findByCtvID(ctvID);
     }
 
     @Autowired

@@ -37,7 +37,51 @@ public class ServiceBookedController {
         model.addAttribute("bookings", bookings);
         return "service/manage_customer_booking"; // View template nơi dữ liệu sẽ được hiển thị
     }
+    @GetMapping("/getAllBooking")
+    public String getListBooking(Model model, HttpSession session) {
+        Account oldUser = (Account) session.getAttribute("account");
+        List<ServiceBooked> bookings = serviceBookedService.findbyCTVID(oldUser.getUserID());
+        model.addAttribute("list", bookings);
+        return "service/list_booking_manage"; // View template nơi dữ liệu sẽ được hiển thị
+    }
+    @GetMapping("/listbookingAccept")
+    public String listbookingAccept(Model model, HttpSession session) {
+        Account oldUser = (Account) session.getAttribute("account");
+        List<ServiceBooked> bookings = serviceBookedService.findbyCTVIDStatus2(oldUser.getUserID());
+        model.addAttribute("list", bookings);
+        return "service/list_booking_accept"; // View template nơi dữ liệu sẽ được hiển thị
+    }
 
+    @GetMapping("/list-service-cancel")
+    public String listservicecancel(Model model, HttpSession session) {
+        Account oldUser = (Account) session.getAttribute("account");
+        List<ServiceBooked> bookings = serviceBookedService.findbyCTVIDStatus0(oldUser.getUserID());
+        model.addAttribute("list", bookings);
+        return "service/list_booking_cancle"; // View template nơi dữ liệu sẽ được hiển thị
+    }
+    @GetMapping("/list-service_succsess")
+    public String listservicesuccsess(Model model, HttpSession session) {
+        Account oldUser = (Account) session.getAttribute("account");
+        List<ServiceBooked> bookings = serviceBookedService.findbyCTVIDStatus3(oldUser.getUserID());
+        model.addAttribute("list", bookings);
+        return "service/list_booking_succer"; // View template nơi dữ liệu sẽ được hiển thị
+    }
+
+    @GetMapping("/acceptbooking")
+    public String updateBookingStatus(@RequestParam("id") int serviceID, Model model) { // Giả sử bạn có đối tượng Request
+        serviceBookedService.updateBookingStatus(serviceID,2);
+        return "service/list_booking_manage";
+    }
+    @GetMapping("/cancelbooking")
+    public String updateBookingStatus1(@RequestParam("id") int serviceID, Model model) { // Giả sử bạn có đối tượng Request
+        serviceBookedService.updateBookingStatus(serviceID,0);
+        return "service/list_booking_manage";
+    }
+    @GetMapping("/succerbooking")
+    public String updateBookingStatus3(@RequestParam("id") int serviceID, Model model) { // Giả sử bạn có đối tượng Request
+        serviceBookedService.updateBookingStatus(serviceID,3);
+        return "service/list_booking_manage";
+    }
 
     @PostMapping("/bookingService")
     public String insertBooking(
@@ -52,6 +96,7 @@ public class ServiceBookedController {
             @RequestParam("slot") String slot,
             @RequestParam("email") String email,
             @RequestParam("note") String note,
+            @RequestParam("CTVID") String CTVID,
             @RequestParam(value = "price", required = false) Double price, HttpSession session,@RequestParam("serviceName") String serviceName,
             Model model) {
 
@@ -70,6 +115,7 @@ public class ServiceBookedController {
         session.setAttribute("note", note);
         session.setAttribute("price", intPrice);
         session.setAttribute("serviceName", serviceName);
+        session.setAttribute("CTVID", CTVID);
 
         // Chuyển hướng về danh sách booking hoặc trang khác
         return "service/vnpay"; // Ví dụ chuyển hướng đến trang quản lý dịch vụ
@@ -79,8 +125,8 @@ public class ServiceBookedController {
         Account oldUser = (Account) session.getAttribute("account");
 
         // Lấy các giá trị từ session
-        Integer serviceID = (Integer) session.getAttribute("serviceID"); // Làm đúng loại dữ liệu
-        Double servicePrice = (Double) session.getAttribute("price"); // Dùng Integer
+        Integer serviceID = (Integer) session.getAttribute("serviceID");
+        Integer servicePrice = (Integer) session.getAttribute("price"); // Sử dụng Integer
         String serviceName = (String) session.getAttribute("serviceName");
         String name = (String) session.getAttribute("name");
         String address = (String) session.getAttribute("address");
@@ -88,18 +134,19 @@ public class ServiceBookedController {
         String phone = (String) session.getAttribute("phone");
         String sex = (String) session.getAttribute("sex");
         String slot = (String) session.getAttribute("slot");
-        Date bookingDate = (Date) session.getAttribute("bookingDate"); // Lưu ý kiểu Date
+        Date bookingDate = (Date) session.getAttribute("bookingDate");
         String note = (String) session.getAttribute("note");
         String email = (String) session.getAttribute("email");
+        String CTVID = (String) session.getAttribute("CTVID");
 
-        // Tạo một đối tượng ServiceBooked mới
+        // Tạo đối tượng ServiceBooked mới
         ServiceBooked newBooking = new ServiceBooked();
         newBooking.setCustomerID(oldUser.getUserID());
-        newBooking.setServiceID(serviceID); // Dùng int
+        newBooking.setServiceID(serviceID);
         newBooking.setName(name);
         newBooking.setPhoneNumber(phone);
 
-        // Kiểm tra và gán địa chỉ
+        // Gán địa chỉ
         if (address1 == null || address1.isEmpty()) {
             newBooking.setAddress(address);
         } else {
@@ -112,18 +159,20 @@ public class ServiceBookedController {
         newBooking.setSlot(slot);
         newBooking.setEmail(email);
         newBooking.setNote(note);
-        newBooking.setPrice(servicePrice); // Đảm bảo lưu trữ giá trị kiểu int
-        newBooking.setBookingStatus(1); // Ví dụ: 1 có thể là trạng thái "Đã đặt"
+        newBooking.setPrice(servicePrice != null ? servicePrice.doubleValue() : 0.0); // Chuyển đổi nếu cần
+        newBooking.setBookingStatus(1); // Ví dụ trạng thái "Đã đặt"
         newBooking.setServiceName(serviceName);
+        newBooking.setCTVID(CTVID);
 
-        // Gọi service để lưu booking
+        // Lưu booking
         serviceBookedService.saveBooking(newBooking);
         // emailService.sendInformationToEmail(oldUser.getEmail()); // Gửi email nếu cần
         model.addAttribute("successMessage", "Đặt dịch vụ thành công!");
 
-        // Chuyển hướng về danh sách booking hoặc trang khác
-        return "redirect:/byCustomerID"; // Ví dụ chuyển hướng đến trang quản lý dịch vụ
+        // Chuyển hướng về danh sách booking
+        return "service/service_bill";
     }
+
 
 
     @GetMapping("/UpdateBookingCustomerID")

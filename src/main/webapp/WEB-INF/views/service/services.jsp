@@ -271,7 +271,7 @@
                             <h5 class="text-primary mb-0 product-price">${S.getServicePrice()}₫ </h5>
                         </div>
                         <div class="d-flex justify-content-between mt-auto">
-                            <a href="getservicedetail?serviceID=${S.serviceID}" class="btn btn-info">Xem thêm</a>
+                            <a href="getservicedetail?serviceID=${S.serviceID}&&CTVID=${S.cTVID}" class="btn btn-info">Xem thêm</a>
                             <a href="addfavorite?serviceID=${S.serviceID}" class="btn btn-warning">Yêu thích</a>
                         </div>
 

@@ -52,8 +52,17 @@ public class ServiceBooked {
 
     @Column(name = "ServiceName")
     private String serviceName;
-
+    @Column(name = "CTVID")
+    private String CTVID;
     public ServiceBooked() {}
+
+    public String getCTVID() {
+        return CTVID;
+    }
+
+    public void setCTVID(String CTVID) {
+        this.CTVID = CTVID;
+    }
 
     public int getBookingID() {
         return bookingID;

@@ -45,6 +45,7 @@
         <table class="table table-bordered table-striped table-hover">
             <thead class="thead-dark">
             <tr>
+                <th scope="col">Shop</th>
                 <!--                    <th scope="col">Customer ID</th>-->
                 <!--<th scope="col">Service ID</th>-->
                 <th scope="col">Dịch vụ</th>
@@ -56,9 +57,9 @@
                 <th scope="col">Ngày Đặt Lịch</th>
                 <th scope="col">Slot</th>
                 <th scope="col">Trạng Thái</th>
-                <th scope="col">Ghi Chú</th>
+<%--                <th scope="col">Ghi Chú</th>--%>
                 <th scope="col">Giá</th>
-                <th scope="col">Thanh Toán</th>
+<%--                <th scope="col">Thanh Toán</th>--%>
                 <th scope="col">Actions</th>
             </tr>
             </thead>
@@ -67,7 +68,7 @@
 
             <tr>
 <%--                    <!--<td>${booking.customerID}</td>-->--%>
-
+                    <td>${booking.brandName}</td>
                     <td>${booking.serviceName}</td>
 <%--                    <td>${booking.name}</td>--%>
 <%--                    <td>${booking.phoneNumber}</td>--%>
@@ -91,22 +92,17 @@
                 </c:otherwise>
                 </c:choose>
 
-                </td>
-                    <td>${booking.note}</td>
+
+<%--                    <td>${booking.note}</td>--%>
                     <td>${booking.price}.VNĐ</td>
-                    <td>
-                        <c:choose>
-                            <c:when test="${booking.billStatus == 1}">Đã Thanh Toán</c:when>
+<%--                    <td>--%>
+<%--                        <c:choose>--%>
+<%--                            <c:when test="${booking.billStatus == 1}">Đã Thanh Toán</c:when>--%>
 
-                        </c:choose>
-                    </td>
+<%--                        </c:choose>--%>
+<%--                    </td>--%>
                     <td>
 
-                        <!--                                <form action="DeleteBookingServlet" method="post" onsubmit="return confirm('Bạn chắc chắn muốn hủy dịch vụ này?');">
-                                    <input type="hidden" name="bookingID" value="${booking.bookingID}">
-                                    <input type="hidden" name="billID" value="${booking.billID}">
-                                    <button type="submit" class="btn btn-danger btn-sm">Hủy</button>
-                                </form>-->
 
                         <c:if test="${booking.bookingStatus == 1 || booking.bookingStatus == 2 && booking.billStatus == 3}">
                             <form action="CustomerRefund" method="get" onsubmit="return confirm('Bạn chắc chắn muốn hủy dịch vụ này? Nếu bạn hủy thì số tiền hoàn lại bạn sẽ mất 20%. Số tiền sẽ được hoàn lại trong vòng 48 giờ tới');">
@@ -133,6 +129,9 @@
                                 <button type="submit" class="btn btn-danger btn-sm">Feedback</button>
                             </form>
                         </c:if>
+
+
+
                     </td>
                     <td>
                         <c:if test="${booking.bookingStatus == 1 || booking.billStatus == 2}">
@@ -142,7 +141,7 @@
                             </form>
                         </c:if>
                     </td>
-                </tr>
+            </tr>
             </c:forEach>
             </tbody>
         </table>

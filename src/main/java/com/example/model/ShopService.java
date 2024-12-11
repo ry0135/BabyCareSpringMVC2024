@@ -27,7 +27,7 @@ public class ShopService {
     @Column(name = "CTVID") // Tên cột trong cơ sở dữ liệu
     private String ctvID;
 
-    @Column(name = " BandName") // Tên cột trong cơ sở dữ liệu
+    @Column(name = " BankName") // Tên cột trong cơ sở dữ liệu
     private String bandName;
 
     @Column(name = "EventType") // Tên cột trong cơ sở dữ liệu

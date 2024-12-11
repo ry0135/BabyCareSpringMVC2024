@@ -22,9 +22,9 @@ public class BookingWithBillStatusDTO {
     private String billDate;
     private double totalAmount;
     private int billStatus;
-
+    private String brandName;
     // Constructor
-    public BookingWithBillStatusDTO(ServiceBooked serviceBooked, ServiceBill serviceBill) {
+    public BookingWithBillStatusDTO(ServiceBooked serviceBooked, ServiceBill serviceBill ,String brandName) {
         this.bookingID = serviceBooked.getBookingID();
         this.serviceID = serviceBooked.getServiceID(); // Khởi tạo serviceID
         this.customerID = serviceBooked.getCustomerID();
@@ -46,6 +46,7 @@ public class BookingWithBillStatusDTO {
             this.totalAmount = serviceBill.getTotalAmount();
             this.billStatus = serviceBill.getBillStatus();
         }
+        this.brandName = brandName;
     }
 
     // Getters for all fields
@@ -68,4 +69,6 @@ public class BookingWithBillStatusDTO {
     public String getBillDate() { return billDate; }
     public double getTotalAmount() { return totalAmount; }
     public int getBillStatus() { return billStatus; }
+    public String getBrandName() { return brandName; }
+
 }

@@ -32,4 +32,20 @@ public class ServiceBookedService {
     public List<BookingWithBillStatusDTO> getBookingsWithBillStatus(String customerID) {
         return serviceBookedRepository.findBookingsWithBillStatus(customerID);
     }
+    public List<ServiceBooked> findbyCTVID(String ctvID) {
+        return serviceBookedRepository.findAllByCTVID(ctvID);
+    }
+    public List<ServiceBooked> findbyCTVIDStatus0(String ctvID) {
+        return serviceBookedRepository.findAllByCTVIDStatus0(ctvID);
+    }
+    public List<ServiceBooked> findbyCTVIDStatus2(String ctvID) {
+        return serviceBookedRepository.findAllByCTVIDStatus2(ctvID);
+    }
+    public List<ServiceBooked> findbyCTVIDStatus3(String ctvID) {
+        return serviceBookedRepository.findAllByCTVIDStatus3(ctvID);
+    }
+
+    public void updateBookingStatus(int bookingID, int bookingStatus) {
+        serviceBookedRepository.updateBookingStatus(bookingID, bookingStatus);
+    }
 }

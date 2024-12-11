@@ -74,6 +74,7 @@
                   <input type="hidden" class="form-control" id="serviceID" name="serviceID" value="${serviceID}" aria-describedby="inputGroupPrepend" required>
                   <input type="hidden" class="form-control" id="servicePrice" name="price" value="${servicePrice}" aria-describedby="inputGroupPrepend" required>
                   <input type="hidden" class="form-control" id="serviceName" name="serviceName" value="${serviceName}" aria-describedby="inputGroupPrepend" required>
+                  <input type="hidden" class="form-control" id="CTVID" name="CTVID" value="${CTVID}" aria-describedby="inputGroupPrepend" required>
                   <div class="invalid-feedback"></div>
 
                 </div>

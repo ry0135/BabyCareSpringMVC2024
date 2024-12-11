@@ -147,7 +147,7 @@
               <c:if test="${sessionScope.account.role  == 2}">
 
                 <a href="preferential-list-manager"  class="dropdown-item">Quản lí mã giảm giá</a>
-                <a href="service" class="dropdown-item">Quản lí đơn dịch vụ</a>
+                <a href="getAllBooking" class="dropdown-item">Quản lí đơn dịch vụ</a>
                 <a href="service-add.jsp" class="dropdown-item">Quản lí dịch vụ</a>
                 <a href="category-add.jsp" class="dropdown-item">Quản lí danh mục</a>
 
