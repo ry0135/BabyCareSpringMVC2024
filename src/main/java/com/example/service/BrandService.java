@@ -2,10 +2,14 @@ package com.example.service;
 
 import com.example.model.Account;
 import com.example.model.Brand;
+import com.example.model.Product;
+import com.example.model.ProductImage;
 import com.example.repository.BrandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class BrandService {
@@ -92,6 +96,35 @@ public class BrandService {
         return brandRepository.findBrandNameByProductId(productId);
     }
 
+    @Transactional
+    public List<Brand> getAllBrandMNG() {
+        // Lấy danh sách sản phẩm có trạng thái là 1
+        List<Brand> brands = brandRepository.findAll();
 
+        return brands;
+    }
+    @Transactional
+    public boolean lockBrand(String brandId) {
+        Brand brands = brandRepository.findById(brandId).orElse(null);
+        if (brands != null) {
+            brands.setStatus(0);  // Thay đổi trạng thái sản phẩm thành "khóa"
+            brandRepository.save(brands);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Transactional
+    public boolean unlockBrand(String productId) {
+        Brand brands = brandRepository.findById(productId).orElse(null);
+        if (brands != null) {
+            brands.setStatus(1);  // Thay đổi trạng thái sản phẩm thành "mở khóa"
+            brandRepository.save(brands);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

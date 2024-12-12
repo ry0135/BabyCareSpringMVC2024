@@ -10,7 +10,7 @@ import java.nio.file.Files;
 @Service
 public class FilleUtils {
 
-	public static String PATH_FILE = "E:/Image";
+	public static String PATH_FILE = "D:/Image";
 
 	public static String saveFile(MultipartFile file) throws IllegalStateException, IOException {
 		String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
