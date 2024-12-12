@@ -40,7 +40,12 @@ public class PreferentialController {
         model.addAttribute("preferentialList", preferentials);
         return "preferential/preferentials"; // Returns the view name
     }
-
+    @GetMapping("/preferentialview")
+    public String getAllPreferentialsview(Model model) {
+        List<Preferential> preferentials = preferentialService.getAllPreferentials();
+        model.addAttribute("preferentialList", preferentials);
+        return "preferential/preferentialview"; // Returns the view name
+    }
     @GetMapping("/preferential")
     public String getPreferentialForm(Model model) {
         // Trả về form thêm ưu đãi

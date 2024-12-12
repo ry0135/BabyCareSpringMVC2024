@@ -3,11 +3,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Preferentials</title>
+  <title>Brand Management</title>
   <style>
     /* CSS trực tiếp */
-
-    /* Đặt nền và kiểu chữ mặc định */
     body {
       font-family: Arial, sans-serif;
       background-color: #f8f9fa;
@@ -17,7 +15,6 @@
       color: #333;
     }
 
-    /* Tiêu đề */
     h1 {
       text-align: center;
       margin: 20px 0;
@@ -25,7 +22,6 @@
       font-size: 2em;
     }
 
-    /* Bảng */
     table {
       width: 90%;
       margin: 20px auto;
@@ -61,22 +57,31 @@
       border-radius: 4px;
     }
 
-    /* Nút xóa */
-    a.btn-danger {
+    a.btn-unlock, a.btn-lock {
       display: inline-block;
       padding: 8px 12px;
       color: #fff;
-      background-color: #dc3545;
-      text-decoration: none;
       border-radius: 5px;
       font-size: 0.9em;
+      text-decoration: none;
     }
 
-    a.btn-danger:hover {
+    a.btn-unlock {
+      background-color: #28a745;
+    }
+
+    a.btn-unlock:hover {
+      background-color: #218838;
+    }
+
+    a.btn-lock {
+      background-color: #dc3545;
+    }
+
+    a.btn-lock:hover {
       background-color: #c82333;
     }
 
-    /* Đáp ứng */
     @media (max-width: 768px) {
       table {
         width: 100%;
@@ -90,30 +95,35 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
-<h1>Preferential List</h1>
+<h1>Brand Management</h1>
 <table>
   <thead>
   <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Image</th>
+    <th>Brand ID</th>
+    <th>Brand Name</th>
+    <th>Brand Description</th>
+    <th>Status</th>
     <th>Actions</th>
   </tr>
   </thead>
   <tbody>
-  <c:forEach var="preferential" items="${preferentialList}">
+  <c:forEach var="brand" items="${brandstatus}">
     <tr>
-      <td>${preferential.preferentialCode}</td>
-      <td>${preferential.preferentialName}</td>
-      <td>${preferential.preferentialDescription}</td>
+      <td>${brand.brandID}</td>
+      <td>${brand.brandName}</td>
+      <td>${brand.brandDescription}</td>
+      <td>${brand.status == 1 ? 'Active' : 'Locked'}</td>
       <td>
-        <img src="${pageContext.request.contextPath}/image/${preferential.preferentialImg}" class="preferentialImg" alt="Ảnh MGG" width="100">
-      </td>
-
-      <td>
-        <!-- Delete button -->
-        <a href="${pageContext.request.contextPath}/preferential/delete/${preferential.preferentialCode}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this preferential?');">Delete</a>
+        <!-- Nếu trạng thái là "khóa", hiển thị nút mở khóa -->
+        <c:if test="${brand.status == 0}">
+          <a href="${pageContext.request.contextPath}/brand/unlock/${brand.brandID}" class="btn-unlock"
+             onclick="return confirm('Are you sure you want to unlock this brand?');">Unlock Brand</a>
+        </c:if>
+        <!-- Nếu trạng thái là "mở khóa", hiển thị nút khóa -->
+        <c:if test="${brand.status == 1}">
+          <a href="${pageContext.request.contextPath}/brand/lock/${brand.brandID}" class="btn-lock"
+             onclick="return confirm('Are you sure you want to lock this brand?');">Lock Brand</a>
+        </c:if>
       </td>
     </tr>
   </c:forEach>

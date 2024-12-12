@@ -2,14 +2,17 @@ package com.example.repository;
 
 import com.example.model.Account;
 import com.example.model.Brand;
+import com.example.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, String> {
     Brand findBrandByCTVID(String CTVID);
-
+    List<Brand> findAll();
     boolean existsByBrandID(String brandID);
     boolean existsByBrandName(String brandName);
 

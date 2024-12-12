@@ -9,17 +9,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf3156d-4778-48b3-a845-d12e132aea44" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/AdminRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/AdminService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin.jsp" afterDir="false" />
+    <list default="true" id="bdf3156d-4778-48b3-a845-d12e132aea44" name="Changes" comment="comit">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/SearchHistoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Revenue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/model/SearchHistory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/model/UserProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/SearchHistoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/brand/brand_status.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferentialview.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/product_status.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/admin/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/brand/BrandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/brand/BrandController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/preferentials/PreferentialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/preferentials/PreferentialController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/OrderDetailsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/OrderDetailsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/PreferentialService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/PreferentialService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/product/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/product/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/BrandRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BrandRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/BrandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BrandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/FilleUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/FilleUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferential_add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferential_add.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferentials.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferentials.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/product.jsp" afterDir="false" />
     </list>
@@ -31,9 +39,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Interface" />
         <option value="Class" />
         <option value="Jsp File" />
       </list>
@@ -77,20 +85,21 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/vip/vip/BabyCareSpringMVC2024/src/main/webapp/WEB-INF/views",
+    "last_opened_file_path": "D:/vip/vip/BabyCareSpringMVC2024/src/main/webapp/WEB-INF/views/preferential",
     "list.type.of.created.stylesheet": "CSS",
     "spring.configuration.checksum": "38fbd63d295ed61500256bc8e793f0e2"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\vip\vip\BabyCareSpringMVC2024\src\main\webapp\WEB-INF\views\preferential" />
       <recent name="D:\vip\vip\BabyCareSpringMVC2024\src\main\webapp\WEB-INF\views" />
       <recent name="E:\OJT Ki 6\BabyCareSpringMVC2024\src\main\webapp\WEB-INF\views\servicebrand" />
       <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\src\main\webapp\WEB-INF\views\brand" />
       <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\src\main\webapp\WEB-INF\views" />
-      <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\src\main\webapp\assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\vip\vip\BabyCareSpringMVC2024\src\main\webapp\WEB-INF\views\brand" />
       <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\src\main\webapp" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -208,7 +217,9 @@
       <workItem from="1732591221636" duration="94445000" />
       <workItem from="1733129490834" duration="23796000" />
       <workItem from="1733716821111" duration="30110000" />
-      <workItem from="1733817800955" duration="293000" />
+      <workItem from="1733817800955" duration="2447000" />
+      <workItem from="1733901437344" duration="1301000" />
+      <workItem from="1733971335316" duration="18992000" />
     </task>
     <task id="LOCAL-00001" summary="comit">
       <created>1732594750957</created>
@@ -329,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1733814884364</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="comit">
+      <created>1733818151930</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1733818151930</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -390,17 +408,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/service/ProductService.java</url>
-          <line>104</line>
+          <line>121</line>
           <option name="timeStamp" value="158" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/service/ProductService.java</url>
-          <line>105</line>
+          <line>122</line>
           <option name="timeStamp" value="159" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/service/ProductService.java</url>
-          <line>118</line>
+          <line>158</line>
           <option name="timeStamp" value="161" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -415,7 +433,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/repository/ShopServiceRepository.java</url>
-          <line>12</line>
+          <line>14</line>
           <option name="timeStamp" value="180" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -429,8 +447,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/service/ServiceBookedController.java</url>
-          <line>18</line>
-          <properties class="com.example.controller.service.ServiceBookedController" method="listBookings">
+          <line>120</line>
+          <properties class="com.example.controller.service.ServiceBookedController">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
