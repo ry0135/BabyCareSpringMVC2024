@@ -58,4 +58,8 @@ public class ShopServiceService {
         }
         return false;
     }
+
+    public void approveBrand(String ctvId) {
+       shopServiceRepository.updateBrandStatus(ctvId);
+    }
 }

@@ -4,6 +4,7 @@ import com.example.model.Account;
 import com.example.model.ServiceEntity;
 import com.example.model.ServiceType;
 import com.example.model.ShopService;
+import com.example.repository.AccountRepository;
 import com.example.repository.ServiceRepository;
 import com.example.repository.ShopServiceRepository;
 import com.example.service.*;
@@ -11,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,15 +34,25 @@ public class ShopServiceController {
     @Autowired
     private ServiceRepository serviceRepository;
 
+
+    @Autowired
+    private EmailService emailService;
+
     @Autowired
     private FilleUtils filleUtils;
 
     @Autowired
     private ServiceTypeService serviceTypeService;
+
+    @Autowired
+    private AccountRepository accountRepository;
+
     @Autowired
     private ShopServiceRepository shopServiceRepository;
     @Autowired
     private ShopServiceService shopServiceService;
+    @Autowired
+    private AccountService accountService;
 
     @GetMapping("/register-shop-service")
     public String showRegisterShopServiceForm(Model model) {
@@ -74,7 +86,7 @@ public class ShopServiceController {
         shopService.setBrandAddress(brandAddress);
         shopService.setBrandPhone(brandPhone);
         shopService.setCtvID(user.getUserID());
-        shopService.setRole(5);
+        shopService.setStatus(0);
 
         // Gán thông tin từ các tham số vào đối tượng shopService
         if (!StringUtils.isEmpty(brandLogo.getOriginalFilename())) {
@@ -87,8 +99,8 @@ public class ShopServiceController {
                 e.printStackTrace();
                 model.addAttribute("error", "File upload failed");
                 return "register-shop-service";  // Quay lại trang profile nếu lỗi
-            }
-        }
+            }        }
+
 
         if (!StringUtils.isEmpty(identifiImg.getOriginalFilename())) {
             String fileName1 = "";
@@ -260,6 +272,53 @@ public class ShopServiceController {
 
         return "redirect:/service-list-manager"; // Chuyển hướng về danh sách dịch vụ
     }
+
+    @GetMapping("/list-register-shopservicve")
+    public String getListRegisterCTV(Model model) {
+        // Lấy danh sách ShopService từ service hoặc repository
+        List<ShopService> listregistershopservicve = shopServiceRepository.findByStatus(0); // Hoặc shopServiceService.getAllShopServices();
+
+        // Thêm danh sách vào model
+        model.addAttribute("listregistershopservicve", listregistershopservicve);
+
+        // Trả về view JSP
+        return "list-register-shopservice"; // Tên file JSP hiển thị danh sách
+    }
+
+    @Transactional
+    @GetMapping("/approveCTV")
+    public String approveCTV(@RequestParam("ctvID") String ctvId, RedirectAttributes redirectAttributes) {
+
+            Account account = accountService.findByUserID(ctvId);
+            ShopService shopService = shopServiceRepository.findByCtvID(ctvId);
+            // Cập nhật thông tin User (Customer -> CTV)
+            accountService.updateCustomerToCTV(ctvId);
+
+            // Cập nhật trạng thái Brand
+            shopServiceService.approveBrand(ctvId);
+            emailService.sendCodeToEmailApproveCTV(shopService.getBrandName(),account.getEmail());
+
+            redirectAttributes.addFlashAttribute("message", "CTV and Brand approved successfully!");
+
+            return "redirect:/list-register-shopservicve";
+    }
+
+    @Transactional
+    @GetMapping("/unApproveCTV")
+    public String unApproveCTV(@RequestParam("ctvID") String ctvId, RedirectAttributes redirectAttributes) {
+
+        Account account = accountService.findByUserID(ctvId);
+        ShopService shopService = shopServiceRepository.findByCtvID(ctvId);
+        shopServiceRepository.deleteByctvID(ctvId);
+        // Cập nhật thông tin User (Customer -> CTV)
+        // Cập nhật trạng thái Brand
+        emailService.sendCodeToEmailUnApproveCTV(shopService.getBrandName(),account.getEmail());
+
+        redirectAttributes.addFlashAttribute("message", "CTV and Brand approved successfully!");
+
+        return "redirect:/list-register-shopservicve";
+    }
 }
+
 
 

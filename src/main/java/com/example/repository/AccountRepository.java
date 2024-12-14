@@ -4,6 +4,7 @@ import com.example.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -27,4 +28,11 @@ public interface AccountRepository extends JpaRepository<Account, String> {
 
     @Query("SELECT u FROM Account u JOIN CommentProduct pc ON pc.userID = u.userID WHERE pc.commentID = ?1")
     Account findUserDetailsByCommentId(String commentId);
+
+
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Account u SET u.role = 5 WHERE u.userID = :userId")
+    void updateCustomerToCTV(@Param("userId") String userId);
 }

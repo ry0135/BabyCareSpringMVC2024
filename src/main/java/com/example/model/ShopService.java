@@ -40,13 +40,13 @@ public class ShopService {
     @Column(name = "BrandPhone") // Tên cột trong cơ sở dữ liệu
     private String brandPhone;
 
-    @Column(name = "Role") // Tên cột trong cơ sở dữ liệu
-    private int role;
+    @Column(name = "Status") // Tên cột trong cơ sở dữ liệu
+    private int status;
 
     public ShopService() {
     }
 
-    public ShopService(String brandID, String brandName, String brandDescription, String brandLogo, String brandAddress, String ctvID, String bandName, String eventType, String brandPhone, int role) {
+    public ShopService(String brandID, String brandName, String brandDescription, String brandLogo, String brandAddress, String ctvID, String bandName, String eventType, String brandPhone, int status) {
         this.brandID = brandID;
         this.brandName = brandName;
         this.brandDescription = brandDescription;
@@ -55,7 +55,7 @@ public class ShopService {
         this.ctvID = ctvID;
         this.bankName = bandName;
         this.brandPhone = brandPhone;
-        this.role = role;
+        this.status = status;
     }
 
     public String getBrandID() {
@@ -123,14 +123,14 @@ public class ShopService {
         this.brandPhone = brandPhone;
     }
 
-    public int getRole() {
-        return role;
+
+    public int getStatus() {
+        return status;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public void setStatus(int status) {
+        this.status = status;
     }
-
 
     public String getAcountNumber() {
         return acountNumber;
@@ -163,4 +163,6 @@ public class ShopService {
     public void setIdentifiImgFace(String identifiImgFace) {
         this.identifiImgFace = identifiImgFace;
     }
+
+
 }

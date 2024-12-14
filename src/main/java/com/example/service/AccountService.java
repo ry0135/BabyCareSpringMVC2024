@@ -118,5 +118,8 @@ public class AccountService {
             accountRepository.save(user);
         }
     }
+    public void updateCustomerToCTV(String ctvId) {
+        accountRepository.updateCustomerToCTV(ctvId);
+    }
 
 }
