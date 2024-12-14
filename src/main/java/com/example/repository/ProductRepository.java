@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, String> {
-
+    List<Product> findAll();
     List<Product> findByStatus(int status);
 
     @Query("SELECT COALESCE(SUM(c.rating), 0) FROM CommentProduct c WHERE c.productID = ?1")

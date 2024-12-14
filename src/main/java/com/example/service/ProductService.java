@@ -11,6 +11,7 @@ import com.example.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.sql.Timestamp;
 
 import java.util.List;
 
@@ -52,6 +53,23 @@ public class ProductService {
 
         return products;
         }
+    @Transactional
+    public List<Product> getAllProductMNG() {
+        // Lấy danh sách sản phẩm có trạng thái là 1
+        List<Product> products = productRepository.findAll();
+
+        // Duyệt qua từng sản phẩm và gán danh sách hình ảnh
+        products.forEach(product -> {
+            // Lấy danh sách hình ảnh theo ProductID
+            List<ProductImage> images = productImageRepository.findByProductID(product.getProductId());
+
+            // Thêm từng đường dẫn hình ảnh vào sản phẩm
+            images.forEach(image -> product.addImagePath(image.getImagePath()));
+        });
+
+        return products;
+    }
+
     @Transactional
     public Product getProductById(String productId) {
         // Tìm sản phẩm theo ID
@@ -110,6 +128,29 @@ public class ProductService {
             }
 
     }
+    @Transactional
+    public boolean lockProduct(String productId) {
+        Product product = productRepository.findById(productId).orElse(null);
+        if (product != null) {
+            product.setStatus(0);  // Thay đổi trạng thái sản phẩm thành "khóa"
+            productRepository.save(product);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Transactional
+    public boolean unlockProduct(String productId) {
+        Product product = productRepository.findById(productId).orElse(null);
+        if (product != null) {
+            product.setStatus(1);  // Thay đổi trạng thái sản phẩm thành "mở khóa"
+            productRepository.save(product);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     @Transactional
     public boolean updateProductQuantity(String productId, int quantity) {
@@ -125,4 +166,32 @@ public class ProductService {
 
     }
 
+
+
+    public boolean isCommentExists(String productId, String orderId, String userId) {
+        Long count = commentProductRepository.countByProductIdAndOrderIdAndUserId(productId, orderId, userId);
+        return count != null && count > 0; // Trả về true nếu số lượng lớn hơn 0
+    }
+
+    public boolean addComment(String commentId, String productId, String billId,
+                              String comment, String userId, String commentImg, int rating) {
+        CommentProduct productComment = new CommentProduct();
+        productComment.setCommentID(commentId);
+        productComment.setProductID(productId);
+        productComment.setBillID(billId);
+        productComment.setComment(comment);
+        productComment.setUserID(userId);
+        productComment.setRating(rating);
+        productComment.setCommentImg(commentImg);
+
+        productComment.setCreatedAt(new Timestamp(System.currentTimeMillis()).toLocalDateTime()); // Lấy thời gian hiện tại
+
+        try {
+            commentProductRepository.save(productComment); // Lưu bình luận vào database
+            return true; // Trả về true nếu thêm thành công
+        } catch (Exception e) {
+            // Bỏ qua chi tiết triển khai log nếu không cần thiết
+            return false; // Trả về false nếu có lỗi xảy ra
+        }
+    }
 }

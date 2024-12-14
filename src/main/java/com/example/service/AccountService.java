@@ -108,6 +108,9 @@ public class AccountService {
         return accountRepository.findById(userId);
     }
 
+    public Account findByUserID(String userID) {
+        return accountRepository.findByUserID(userID);
+    }
     public void updateAvatar(String userId, String avatar) {
         Account user = accountRepository.findByUserID(userId);
         if (user != null) {

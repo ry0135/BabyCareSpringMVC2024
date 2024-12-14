@@ -91,15 +91,17 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav mx-auto" style="font-family: Arial; ">
       <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
+        <ul style="    margin-top: 15px;">
+          <li><a href="home">Trang Chủ</a></li>
           <li><a href="service">Dịch Vụ</a></li>
           <li><a href="products">Sản Phẩm</a></li>
           <li><a href="#">Mã Giảm Giá</a></li>
           <c:if test="${sessionScope.account.role == 4 }">
             <li><a href="sellChanel">Kênh Người Bán</a></li>
           </c:if>
-          <li><a href="registerctv">Đăng kí CTV</a></li>
+          <c:if test="${sessionScope.account.role != 2 && sessionScope.account.role != 4 && sessionScope.account.role != 1}">
+            <li><a href="registerctv">Đăng kí CTV</a></li>
+          </c:if>
           <li><a href="cart">Giỏ Hàng</a></li>
         </ul>
       </nav>
@@ -144,7 +146,7 @@
 
 
 
-              <c:if test="${sessionScope.account.role  == 2}">
+              <c:if test="${sessionScope.account.role  == 5}">
 
                 <a href="preferential-list-manager"  class="dropdown-item">Quản lí mã giảm giá</a>
                 <a href="getAllBooking" class="dropdown-item">Quản lí đơn dịch vụ</a>

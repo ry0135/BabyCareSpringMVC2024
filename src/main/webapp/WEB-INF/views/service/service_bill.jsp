@@ -12,7 +12,7 @@
         <h1 class="display-5 text-uppercase mb-0">Kiểm tra dịch vụ của bạn</h1>
       </div>
       <div class="d-flex justify-content-center">
-        <h2 class="text-primary m-1 p-0">Tình trạng đơn hàng của bạn: </h2>
+        <h2 class="text-primary m-1 p-0">Tình trạng lịch dịch vụ của bạn: </h2>
         <h2 class="text-danger m-1 p-0">Đang xử lý....</h2>
       </div>
       <div class="mt-5 text-center">
@@ -29,13 +29,13 @@
               <p>Địa chỉ: ${address}</p>
             </c:when>
             <c:otherwise>
-              <p>Địa chỉ: ${sessionScope.account.address}</p>
+              <p>Địa chỉ: ${address1}</p>
             </c:otherwise>
           </c:choose>
         </div>
       </div>
 
-        <div class="border-bottom mt-3">
+        <div class="border-bottom">
           <h3>Thông tin dịch vụ: ${serviceName}</h3>
           <div class="d-flex justify-content-around">
             <p>Ngày: ${bookingDate}</p>

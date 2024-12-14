@@ -47,8 +47,8 @@
     </nav>
 
 
-    <h2>Quản lí danh sách đơn đã thanh toán</h2>
-    <p>Nhân viên có thể xem được danh sách đơn đã thanh toán ở đây</p>
+    <h2>Quản lí danh sách đơn đã hoàn thành</h2>
+    <p>Nhân viên có thể xem được danh sách đơn đã hoàn thành ở đây</p>
     <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm">
     <br>
     <h3 class="text-center text-danger" >${thongbao}</h3>
@@ -62,8 +62,6 @@
         <th>Ngày đặt</th>
         <th>Mã giảm giá</th>
         <th>Trạng thái</th>
-        <th></th>
-
       </tr>
       </thead>
       <tbody id="myTable">
@@ -78,7 +76,7 @@
           <td>${order.date}</td>
           <td>${order.discountId}</td>
           <td>${order.orderStatus}</td>
-          <td><a href="succsessfull?id=${order.idOrder}" class="btn btn-success">Hoàn thành</a></td>
+
         </tr>
 
       </c:forEach>

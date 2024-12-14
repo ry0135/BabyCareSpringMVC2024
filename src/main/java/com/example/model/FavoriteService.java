@@ -16,8 +16,6 @@ public class FavoriteService {
     @Column(name = "ServiceID")
     private int serviceID;
 
-    @Transient // Đánh dấu để không lưu vào CSDL
-    private ServiceEntity service; // Thêm thuộc tính cho dịch vụ
 
     public FavoriteService() {
     }
@@ -27,9 +25,6 @@ public class FavoriteService {
         return favoriteID;
     }
 
-    public void setFavoriteID(Integer favoriteID) {
-        this.favoriteID = favoriteID;
-    }
 
     public String getUserID() {
         return userID;
@@ -47,11 +42,6 @@ public class FavoriteService {
         this.serviceID = serviceID;
     }
 
-    public ServiceEntity getService() {
-        return service;
-    }
 
-    public void setService(ServiceEntity service) {
-        this.service = service;
-    }
+
 }

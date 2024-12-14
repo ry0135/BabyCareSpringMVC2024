@@ -5,6 +5,60 @@
 <link href="${pageContext.request.contextPath}/assets/css/cart_form.css" rel="stylesheet">
 
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
+<style>
+    .custom-dropdown {
+        position: relative;
+        width: 300px;
+    }
+
+    .dropdown-trigger {
+        border: 1px solid #ccc;
+        padding: 8px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 1px solid #ccc;
+        display: none;
+        z-index: 10;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    .dropdown-item {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        cursor: pointer;
+        gap: 10px;
+    }
+
+    .dropdown-item img {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    .dropdown-item:hover {
+        background: #f0f0f0;
+    }
+    .dropdown-menu.active {
+        display: block;
+    }
+    h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+        font-family: sans-serif;
+    }
+</style>
+
 <div class="cart-page">
 
     <c:if test="${sessionScope.account == null}">
@@ -77,15 +131,40 @@
             <div class="col-lg-4">
                 <div class="cart-page-inner">
                     <div class="row">
-                        <form action="applydiscount">
+                        <form action="applydiscount" method="get">
                             <div class="col-md-12">
-                                <div class="coupon">
-                                    <input type="text" placeholder="Coupon Code" name="discountCode">
-                                    <input class="button" type="submit" value="Apply Code">
+                                <div class="">
+                                    <div class="custom-dropdown">
+                                        <div class="dropdown-trigger" id="dropdownTrigger">
+                                            <span>None</span>
+                                            <i class="fa fa-chevron-down"></i> <!-- Biểu tượng hiển thị dropdown -->
+                                        </div>
+                                        <div class="dropdown-menu" id="dropdownMenu">
+                                            <div class="dropdown-item" data-value="none">
+                                                <span>None</span>
+                                            </div>
+                                            <c:forEach items="${preferentialList}" var="discount">
+                                                <div class="dropdown-item"
+                                                     data-value="${discount.preferentialCode}"
+                                                     data-img="${discount.preferentialImg}">
+                                                    <img src="${pageContext.request.contextPath}/image/${discount.preferentialImg}" alt="Discount Image">
+                                                    <span>${discount.preferentialName}</span>
+                                                </div>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+
+                                    <!-- Input ẩn để lưu giá trị mã ưu đãi được chọn -->
+                                    <input type="hidden" name="discountCode" id="selectedCode" value="none">
+
+                                    <input class="button" style="background-color: #7AB730; /* Màu nền */
+                                     color: #fff; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;/"
+                                     type="submit" value="Apply Code">
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <p>${message}</p>
+                        </form>
+                        <div class="col-md-12">
+                                <p th:text="${message}"></p> <!-- Display the message -->
                             </div>
                         </form>
                         <div class="col-md-12">
@@ -125,7 +204,7 @@
                                             </div>
                                             <div class="flex-container">
                                                 <p>Tổng vourcher giảm giá :</p>
-                                                <span class="text-right">-${calculatePriceDiscout}</span>
+                                                <span class="text-right">-${calculatePriceDiscount}</span>
                                             </div>
                                             <div class="flex-container">
                                                 <h2 style="padding-top: 0;">Tổng Thanh Toán:</h2>
@@ -164,7 +243,7 @@
                                             </div>
                                         </div>
                                         <div class="cart-btn">
-                                            <button type="submit">Đặt hàng</button>
+                                            <button  type="submit">Đặt hàng</button>
                                         </div>
                                     </form>
 
@@ -264,6 +343,44 @@
     document.getElementById('district').addEventListener('change', updateFullAddress);
     document.getElementById('ward').addEventListener('change', updateFullAddress);
 </script>
+
+<script>
+    document.getElementById('dropdownTrigger').addEventListener('click', function () {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.classList.toggle('active'); // Thêm/loại bỏ class 'active'
+    });
+
+    // Đảm bảo tắt dropdown menu khi click bên ngoài
+    document.addEventListener('click', function (e) {
+        const trigger = document.getElementById('dropdownTrigger');
+        const menu = document.getElementById('dropdownMenu');
+
+        if (!trigger.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.remove('active');
+        }
+    });
+
+    document.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', function () {
+            const selectedValue = this.getAttribute('data-value');
+            const displayText = this.querySelector('span').innerText;
+
+            console.log("Mã giảm giá được chọn:", selectedValue);
+
+            document.getElementById('selectedCode').value = selectedValue;
+            document.getElementById('dropdownTrigger').querySelector('span').innerText = displayText;
+
+            // Ẩn dropdown menu
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.remove('active');
+        });
+    });
+
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="${pageContext.request.contextPath}/assets/js/adreess.js"></script>
+
+
+
+

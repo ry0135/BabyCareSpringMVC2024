@@ -52,7 +52,7 @@
     <div class="row g-5 align-items-center">
       <div class="col-lg-5 wow fadeInLeft" data-wow-delay="0.2s">
         <div class="about-img pb-5 ps-5">
-          <img src="${service.listImg}${cd.listImg}" class="img-fluid rounded" style=" width:470px; height: 370px;  margin-right: 10px" alt="Image">
+          <img src="${pageContext.request.contextPath}/image/${service.listImg}" class="img-fluid rounded" style=" width:470px; height: 370px;  margin-right: 10px" alt="Image">
 
 
 
@@ -61,7 +61,7 @@
       <div class="col-lg-7 nen wow fadeInRight" data-wow-delay="0.4s">
         <div class="section-title  text-start mb-5">
 
-          <h1 class="display-3 mb-4" style=" font-size: 40px; font-family: Times New Roman">${service.serviceName}${cd.serviceName} ${cd.comboName}</h1>
+          <h1 class="display-3 mb-4" style=" font-size: 40px; font-family: Times New Roman">${service.serviceName}</h1>
           <div class="comment-rating">
             <!--                            <p style="color: red; text-decoration: underline">${getAverageRating}</p>-->
             <c:forEach var="i" begin="1" end="5">
@@ -136,7 +136,7 @@
   <div class="store-info nen"style=" margin: 10px">
     <div class="row">
       <div class="col-md-1">
-        <img src="${pageContext.request.contextPath}/Image/${shopServices.brandLogo}" alt="Store Logo">
+        <img src="${pageContext.request.contextPath}/image/${shopServices.brandLogo}" alt="Store Logo">
       </div>
       <div class="col-md-9">
         <h4 style="font-family: Times New Roman">${shopServices.brandName}</h4>

@@ -3,6 +3,7 @@ package com.example.controller.Cart;
 import com.example.model.Account;
 import com.example.model.Cart;
 import com.example.model.Items;
+import com.example.model.Product;
 import com.example.repository.BillRepository;
 import com.example.repository.CartItemRepository;
 import com.example.repository.ItemRepository;
@@ -80,7 +81,14 @@ public class MakeOrderController {
             if (orderId != null) {
                 orderIds.add(orderId);
                 List<Items> orderItems = itemRepository.getOrdersByBillId(orderId);
-
+                for (Items item : orderItems) {
+                    String productId = item.getProduct().getProductId();
+                    // Lấy sản phẩm và hình ảnh
+                    Product product = productService.getProductById(productId);
+                    if (product != null) {
+                        item.setProduct(product); // Cập nhật sản phẩm với hình ảnh
+                    }
+                }
                 orderItemsMap.put(orderId, orderItems);
 
                 // Cập nhật sản phẩm đã bán
@@ -121,6 +129,7 @@ public class MakeOrderController {
             double totalPriceAllWithDiscount = calculateTotalPriceAllWithDiscount(orderItemsMap, totalShippingFee, discountCode);
 
             model.addAttribute("orderIds", orderIds);
+            model.addAttribute("orderItemsMap", orderItemsMap);
             model.addAttribute("totalShippingFee", decimalFormat.format(totalShippingFee));
             model.addAttribute("totalPriceAll", decimalFormat.format(totalPriceAll));
             model.addAttribute("totalPriceAllWithDiscount", decimalFormat.format(totalPriceAllWithDiscount));

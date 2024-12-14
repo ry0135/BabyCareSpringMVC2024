@@ -110,6 +110,7 @@
       <td>
         <img src="${pageContext.request.contextPath}/image/${preferential.preferentialImg}" class="preferentialImg" alt="Ảnh MGG" width="100">
       </td>
+
       <td>
         <!-- Delete button -->
         <a href="${pageContext.request.contextPath}/preferential/delete/${preferential.preferentialCode}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this preferential?');">Delete</a>

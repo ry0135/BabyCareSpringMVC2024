@@ -22,7 +22,7 @@
                     <li class="sidebar-item">
                         <span>Quản Lý Đơn Hàng</span>
                         <ul class="submenu">
-                            <li>Tất cả</li>
+                            <li><a href="order-list-manager">Tất Cả </a></li>
                             <li>Giao Hàng Loạt</li>
                             <li>Đơn Hủy</li>
                             <li>Trả Hàng/Hoàn Tiền</li>

@@ -10,14 +10,7 @@
     }
 
     /* Category Container */
-    .category {
-        padding: 20px;
-        max-width: 800px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
+
     .category-container {
         display: flex;
         flex-wrap: wrap;
@@ -25,11 +18,7 @@
         justify-content: center;
         padding: 20px 0;
     }
-    /* Service List */
-    .service-list {
-        flex: 1;
-        display: flex;
-    }
+
 
     .service-list a {
 
@@ -61,17 +50,6 @@
         text-decoration: underline;
         color: #007bff;
     }
-    .search{
-
-        margin-right: 20px;
-    }
-    /* Search Form */
-    .search-form {
-        width: 400px;
-        display: flex;
-        align-items: center;
-
-    }
 
     .search-form input[type="search"] {
 
@@ -100,9 +78,7 @@
         background-color: #0056b3;
 
     }
-    .product-item-link {
-        text-decoration: none;
-    }
+
     .product-item-link .product-item {
         border: 1px solid #ddd;
         transition: transform 0.3s ease, border-color 0.3s ease;
@@ -115,34 +91,14 @@
         transform: scale(1.05);
         border-color: #ff4880; /* màu viền khi active */
     }
-    .product-image, .product-details {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .product-image {
-        border-bottom: 1px solid #ddd; /* Đường viền ngăn cách */
-    }
+
+
     .product-image img {
         width: 100%; /* Đặt chiều rộng của hình ảnh để chiếm hết chiều rộng của khung */
         height: 120px; /* Đặt chiều cao của hình ảnh để chiếm hết chiều cao của khung */
         object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
     }
-    .product-details {
-        position: relative;
-        display: block;
-        text-align: center;
-        padding: 10px;
-    }
-    .product-name{
 
-    }
-    .product-price{
-        position: absolute;
-        top: 95px;
-        font-size: 12px;
-    }
     .category-item {
         flex: 0 0 calc(12.5% - 10px); /* 100% / 8 - 10px (khoảng cách giữa các ô) */
         max-width: calc(12.5% - 10px); /* Đảm bảo kích thước tối đa của mỗi ô */
@@ -187,19 +143,95 @@
         text-align: center;
 
     }
+
+
+    .service-item {
+        transition: transform 0.2s;
+    }
+
+    .service-item:hover {
+        transform: scale(1.05);
+    }
+    /* Định kiểu cho ô tìm kiếm */
+    .search-form {
+        display: flex;
+        margin-bottom: 20px; /* Tăng khoảng cách dưới ô tìm kiếm */
+    }
+
+    .search-form input[type="search"] {
+        flex: 1;
+        padding: 10px;
+        border-radius: 25px; /* Bo tròn góc */
+        border: 1px solid #ccc; /* Viền nhạt */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+    }
+
+    .search-form button {
+        border-radius: 25px; /* Bo tròn góc */
+        background-color: #007bff; /* Màu nền cho nút */
+        color: white; /* Màu chữ trắng */
+        transition: background-color 0.3s; /* Hiệu ứng chuyển màu khi hover */
+    }
+
+    .search-form button:hover {
+        background-color: #0056b3; /* Màu nền khi hover */
+    }
+
+    /* Định kiểu cho từng dịch vụ */
+    .service-item {
+        transition: transform 0.3s; /* Hiệu ứng phóng to khi hover */
+    }
+
+    .service-item:hover {
+        transform: scale(1.05); /* Phóng to khi hover */
+    }
+
+    /* Định kiểu cho từng sản phẩm */
+    .product-item {
+        border-radius: 10px; /* Bo tròn góc */
+        overflow: hidden; /* Ẩn phần ngoài viền */
+        background-color: #f8f9fa; /* Nền sáng */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    }
+
+    /* Định kiểu cho hình ảnh */
+    .product-item img {
+        object-fit: cover; /* Cắt hình ảnh đúng tỷ lệ */
+        height: 200px; /* Giới hạn chiều cao hình ảnh */
+        width: 100%; /* Chiều rộng 100% */
+    }
+
+    /* Định kiểu cho tiêu đề sản phẩm */
+    .product-item h5 {
+        font-size: 16px; /* Kích thước chữ tiêu đề */
+        margin: 10px 0; /* Khoảng cách trên và dưới */
+    }
+
+    /* Định kiểu cho giá sản phẩm */
+    .text-primary {
+        color: #007bff; /* Màu xanh nổi bật */
+        font-weight: bold; /* Chữ đậm */
+    }
+
     .favorite-btn {
-
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
+        transition: opacity 0.3s; /* Hiệu ứng chuyển đổi */
     }
 
-    .favorite-btn:hover {
-        background-color: #ff3b2f;
+    .favorite-btn.active {
+        background-color: #ff3b2f; /* Màu sắc khi yêu thích */
+        color: white; /* Màu chữ khi yêu thích */
     }
+
+    .favorite-btn.inactive {
+        opacity: 0.5; /* Mờ khi không yêu thích */
+        color: #555; /* Màu chữ khi không yêu thích */
+    }
+    .disabled {
+        pointer-events: none; /* Vô hiệu hóa nhấp chuột */
+        opacity: 0.6;         /* Làm mờ thẻ */
+        cursor: not-allowed;  /* Hiển thị con trỏ bị cấm */
+    }
+
 
 
 </style>
@@ -234,61 +266,59 @@
             </c:forEach>
         </div>
 
-
-
-
-
-        <div class="container mt-3">
-            <div class="row align-items-center">
+        <div class="container mt-4">
+            <div class="row align-items-center mb-4">
                 <div class="col-lg-8 col-md-7">
                     <form class="search-form d-flex" onsubmit="return false;">
-                        <input type="search" id="searchInput" class="form-control me-2" placeholder="Tìm kiếm...">
-                        <button type="button" class="btn btn-primary" onclick="searchServices()">Tìm Kiếm</button>
+                        <a href="service" class="btn btn-warning fw-bold me-2">ALL</a>
+                        <input type="search" id="searchInput" class="form-control" placeholder="Tìm kiếm dịch vụ...">
+                        <button type="button" class="btn btn-primary ms-2" onclick="searchServices()">Tìm Kiếm</button>
                     </form>
                 </div>
                 <div class="col-lg-4 col-md-5 text-end">
-                    <a href="listfavorite" class="btn btn-warning">Danh Sách Yêu thích</a>
+                    <a href="listfavorite" class="btn btn-warning fw-bold">DICH VỤ YÊU THÍCH</a>
                 </div>
             </div>
+            <c:if test="${not empty message}">
+                <div class="alert alert-success">${message}</div>
+            </c:if>
+            <c:if test="${not empty error}">
+                <div class="alert alert-danger">${error}</div>
+            </c:if>
+
+            <div class="row g-4" id="serviceList">
+                <c:forEach items="${ListS}" var="S">
+                    <div class="col-lg-3 col-md-4 col-sm-6 service-item" data-name="${S.serviceName.toLowerCase()}">
+                        <div class="product-item position-relative bg-light shadow rounded">
+                            <img class="img-fluid rounded-top" src="${pageContext.request.contextPath}/image/${S.listImg}" alt="">
+                            <div class="p-3 text-center">
+                                <h5 class="fw-bold">${S.serviceName}</h5>
+                                <span class="text-primary fw-bold">${S.getServicePrice()}₫</span>
+                            </div>
+                            <div class="d-flex justify-content-between p-3">
+                                <a href="getservicedetail?serviceID=${S.serviceID}&&CTVID=${S.cTVID}" class="btn btn-info">Xem thêm</a>
+                                <a href="addfavorite?serviceID=${S.serviceID}"
+                                   class="btn btn-warning"
+                                   onclick="markAsFavorite(this)">
+                                    💖
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
+
         </div>
 
 
 
 
-    </div>
-
-    <div class="row g-5" style="margin: 10px" id="serviceList">
-        <c:forEach items="${ListS}" var="S">
-            <div class="col-lg-3 col-md-4 col-sm-6 service-item " data-name="${S.serviceName.toLowerCase()}" style="margin-top: 12px">
-                <div class="product-item-link">
-
-                    <div class="product-item position-relative bg-white d-flex flex-column text-center">
-                        <div class="product-image">
-                            <img class="img-fluid" src="${S.listImg}" alt="">
-                        </div>
-                        <div class="product-details">
-                            <h4 class="product-name" style="font-size: 14px; text-align: left;">${S.serviceName}</h4>
-                            <h5 class="text-primary mb-0 product-price">${S.getServicePrice()}₫ </h5>
-                        </div>
-                        <div class="d-flex justify-content-between mt-auto">
-                            <a href="getservicedetail?serviceID=${S.serviceID}&&CTVID=${S.cTVID}" class="btn btn-info">Xem thêm</a>
-                            <a href="addfavorite?serviceID=${S.serviceID}" class="btn btn-warning">Yêu thích</a>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </c:forEach>
-    </div>
-
-</div>
-</div>
-<!-- Services End -->
 
 
-<div class="row mt-5">
+
+
+        <div class="row mt-5">
     <div class="col-12">
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
@@ -326,27 +356,30 @@
         </div>
     </div>
 </div>
-<script>
-    function searchServices() {
-        // Lấy giá trị từ input tìm kiếm
-        let input = document.getElementById('searchInput');
-        let filter = input.value.toLowerCase().trim(); // Chuyển giá trị thành chữ thường và loại bỏ khoảng trắng
-        let serviceList = document.getElementById('serviceList'); // Danh sách dịch vụ
-        let services = serviceList.getElementsByClassName('service-item'); // Lấy tất cả dịch vụ
+        <script>
+            function searchServices() {
+                // Lấy giá trị từ ô tìm kiếm
+                let input = document.getElementById('searchInput');
+                let filter = input.value.toLowerCase().trim(); // Chuyển giá trị thành chữ thường và loại bỏ khoảng trắng
+                let serviceList = document.getElementById('serviceList'); // Danh sách dịch vụ
+                let services = serviceList.getElementsByClassName('service-item'); // Lấy tất cả dịch vụ
 
-        // Lặp qua từng dịch vụ và kiểm tra tên có khớp không
-        for (let i = 0; i < services.length; i++) {
-            let serviceName = services[i].getAttribute('data-name'); // Lấy tên dịch vụ
-
-            if (serviceName) {
-                // Kiểm tra xem tên dịch vụ có chứa giá trị nhập vào không
-                if (serviceName.indexOf(filter) > -1) {
-                    services[i].style.display = ""; // Hiện dịch vụ nếu có khớp
-                } else {
-                    services[i].style.display = "none"; // Ẩn dịch vụ nếu không khớp
+                // Lặp qua từng dịch vụ và kiểm tra tên có khớp không
+                for (let i = 0; i < services.length; i++) {
+                    let serviceName = services[i].getAttribute('data-name'); // Lấy tên dịch vụ
+                    if (serviceName) {
+                        // Kiểm tra xem tên dịch vụ có chứa giá trị nhập vào không
+                        services[i].style.display = serviceName.indexOf(filter) > -1 ? "" : "none"; // Hiện hoặc ẩn dịch vụ
+                    }
                 }
             }
-        }
-    }
-</script>
+
+            function markAsFavorite(anchor) {
+                // Thêm class làm mờ thẻ sau khi nhấn
+                anchor.classList.add("disabled");
+                anchor.classList.remove("btn-warning");
+                anchor.classList.add("btn-secondary");
+                anchor.textContent = "Đã yêu thích";
+            }
+        </script>
 

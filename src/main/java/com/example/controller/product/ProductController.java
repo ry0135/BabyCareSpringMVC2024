@@ -1,16 +1,16 @@
 package com.example.controller.product;
 
 import com.example.model.Account;
+import com.example.model.Brand;
 import com.example.model.CommentProduct;
 import com.example.model.Product;
 import com.example.service.AccountService;
+import com.example.service.BrandService;
 import com.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -22,6 +22,9 @@ public class ProductController {
     private AccountService accountService;
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private BrandService brandService;
     @GetMapping("/products")
     public String getAllProducts(Model model) {
         List<Product> products = productService.getAllProduct();
@@ -39,6 +42,7 @@ public class ProductController {
 
         try {
             Product product = productService.getProductById(productId);
+            Brand brand = brandService.getBrandByCTVId(product.getCTVID());
             if (product == null) {
                 return "redirect:/index"; // Chuyển hướng nếu không tìm thấy sản phẩm
             }
@@ -58,6 +62,7 @@ public class ProductController {
             model.addAttribute("TotalRating", averageRating);
             model.addAttribute("TotalComment", totalComment);
             model.addAttribute("productCount", productCount);
+            model.addAttribute("brand", brand);
             String message = (String) session.getAttribute("message");
             if (message != null) {
                 model.addAttribute("message", message);
@@ -68,6 +73,35 @@ public class ProductController {
         } catch (Exception e) {
             e.printStackTrace();
             return "redirect:/index"; // Chuyển hướng đến trang index trong trường hợp lỗi
+        }
+    }
+    @GetMapping("/productstatus")
+    public String getAllProductsStatusPage(Model model) {
+        List<Product> productstatus = productService.getAllProductMNG();
+        model.addAttribute("productstatus", productstatus);
+        return "product/product_status"; // Tên của tệp Thymeleaf hoặc JSP
+
+    }
+    // Xử lý yêu cầu mở khóa sản phẩm
+    @RequestMapping("/product/lock/{productCode}")
+    public String lockProduct(@PathVariable("productCode") String productCode) {
+        boolean success = productService.lockProduct(productCode);
+        if (success) {
+            // Nếu khóa thành công, hiển thị thông báo
+            return "redirect:/productstatus?message=Product locked successfully";
+        } else {
+            return "redirect:/productstatus?message=Product not found";
+        }
+    }
+
+    @RequestMapping("/product/unlock/{productCode}")
+    public String unlockProduct(@PathVariable("productCode") String productCode) {
+        boolean success = productService.unlockProduct(productCode);
+        if (success) {
+            // Nếu mở khóa thành công, hiển thị thông báo
+            return "redirect:/productstatus?message=Product unlocked successfully";
+        } else {
+            return "redirect:/productstatus?message=Product not found";
         }
     }
 
