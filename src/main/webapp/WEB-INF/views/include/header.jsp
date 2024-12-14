@@ -95,7 +95,6 @@
           <li><a href="home">Trang Chủ</a></li>
           <li><a href="service">Dịch Vụ</a></li>
           <li><a href="products">Sản Phẩm</a></li>
-          <li><a href="#">Mã Giảm Giá</a></li>
           <c:if test="${sessionScope.account.role == 4 }">
             <li><a href="sellChanel">Kênh Người Bán</a></li>
           </c:if>
@@ -112,8 +111,6 @@
                   class="bi bi-arrow-right"></i></a>
         </c:if>
         <c:if test="${sessionScope.account!=null}">
-
-
 
           <c:if test="${sessionScope.account.role == 4 }">
             <div class="wallet-section ms-4" style="margin-top: 15px">
@@ -159,7 +156,7 @@
                 <a href="order-list-manager" class="dropdown-item">Quản lí đơn hàng</a>
                 <a href="ListBookingCustomerIDServlet" class="dropdown-item">Quản lí dich vụ</a>
                 <a href="StatisticCTV" class="dropdown-item">Quản lí doanh thu</a>
-                <a href="getorderhistoryservlet" class="dropdown-item">Lịch sử đặt hàng</a>
+                <a href="getorderhistory" class="dropdown-item">Lịch sử đặt hàng</a>
 
 
 
@@ -173,7 +170,7 @@
 
               <c:if test="${sessionScope.account.role  == 3}">
                 <a href="byCustomerID" class="dropdown-item">Lịch sử đặt hàng dịch vụ</a>
-                <a href="getorderhistoryservlet" class="dropdown-item">Lịch sử đặt hàng</a>
+                <a href="getorderhistory" class="dropdown-item">Lịch sử đặt hàng</a>
               </c:if>
 
               <a href="logout" class="dropdown-item text-danger">Đăng xuất</a>
