@@ -3,7 +3,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<jsp:include page="/WEB-INF/views/include/header.jsp" />
 <style>
   .product-item-link {
     text-decoration: none;
@@ -157,9 +157,12 @@
     font-size: 14px;
     text-align: center;
   }
+  h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+    font-family: sans-serif;
+  }
 </style>
 
-<jsp:include page="/WEB-INF/views/include/header.jsp" />
+
 
 <div class="container-fluid d-none d-lg-block pt-5">
   <div class="container">

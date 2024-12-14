@@ -15,8 +15,9 @@
     }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: ans-serif;
       background-color: white; /* Màu nền nhẹ nhàng */
+      padding: 0;
     }
 
 
@@ -87,19 +88,25 @@
   <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: white; /* Màu nền nhẹ nhàng */
+    }
+  </style>
   <nav class="navbar navbar-light navbar-expand-xl py-3" style="width: 100%;background-color: #f8d9e1">
-      <a href="index.jsp" class="navbar-brand" style="margin-left: 90px;"><h1 style="color: #ff4880;">Baby<span style="color: #4d65f9;">Care</span></h1></a>
+      <a href="home" class="navbar-brand" style="margin-left: 90px;"><h1 style="color: #ff4880;">Baby<span style="color: #4d65f9;">Care</span></h1></a>
       <div class="collapse navbar-collapse" id="navbarCollapse">
       <div class="navbar-nav mx-auto" style="font-family: Arial; ">
       <nav>
           <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="home">Trang Chủ</a></li>
             <li><a href="service">Dịch Vụ</a></li>
             <li><a href="products">Sản Phẩm</a></li>
             <li><a href="#">Mã Giảm Giá</a></li>
-            <li><a href="#">Đăng kí CTV</a></li>
-            <li><a href="#">Giỏ Hàng</a></li>
+            <li><a href="registerctv">Đăng kí CTV</a></li>
+            <li><a href="cart">Giỏ Hàng</a></li>
           </ul>
       </nav>
 
@@ -130,11 +137,13 @@
             </ul>
           </div>
         </div>
+    <style>
 
+    </style>
       </c:if>
       <div class="nav-item dropdown" >
         <div class=" d-flex align-items-center" data-bs-toggle="dropdown">
-          <img class="img-avatar text-white ms-lg-5" style="width: 50px; height: 83%; border-radius: 50%; margin-top: 5px;" src="${pageContext.request.contextPath}/assets/img/${sessionScope.account.avatar}" alt="">
+          <img class="img-avatar text-white ms-lg-5" style="width: 50px; height: 83%; border-radius: 50%; margin-top: 5px;" src="${pageContext.request.contextPath}/image/${sessionScope.account.avatar}" alt="">
           <a href="#" class="nav-link bg-primary text-white px-5 ms-lg-3">
               ${sessionScope.account.firstname} ${sessionScope.account.lastname}
           </a>
@@ -157,7 +166,7 @@
             <a href="order-list-manager" class="dropdown-item">Quản lí đơn hàng</a>
             <a href="ListBookingCustomerIDServlet" class="dropdown-item">Quản lí dich vụ</a>
             <a href="StatisticCTV" class="dropdown-item">Quản lí doanh thu</a>
-            <a href="getorderhistoryservlet" class="dropdown-item">Lịch sử đặt hàng</a>
+            <a href="getorderhistory" class="dropdown-item">Lịch sử đặt hàng</a>
 
 
 
@@ -182,7 +191,7 @@
 
           <c:if test="${sessionScope.account.role  == 3}">
             <a href="ListBookingCustomerIDServlet" class="dropdown-item">Lịch sử đặt hàng dịch vụ</a>
-            <a href="getorderhistoryservlet" class="dropdown-item">Lịch sử đặt hàng</a>
+            <a href="getorderhistory" class="dropdown-item">Lịch sử đặt hàng</a>
           </c:if>
 
             <a href="logout" class="dropdown-item text-danger">Đăng xuất</a>

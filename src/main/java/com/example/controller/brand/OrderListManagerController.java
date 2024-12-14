@@ -209,4 +209,62 @@ public class OrderListManagerController {
 
 
 
+    @GetMapping("/list-order-succsess")
+    public String  getAllOrderSuccessByCTVId(HttpSession session,
+                                          @RequestParam(required = false) String thongbao,
+                                          Model model) {
+        Account user = (Account) session.getAttribute("account");
+
+        if (user == null) {
+            return "redirect:/login"; // Redirect nếu chưa đăng nhập
+        }
+
+        String CTVID = user.getUserID();
+        ArrayList<OrderAcceptDTO> listOrder = (ArrayList<OrderAcceptDTO>) orderService.getAllOrderSuccessByCTVId(CTVID);
+
+        model.addAttribute("listOrder", listOrder);
+
+        // Trả về tên view (JSP)
+        return "brand/list-order-success"; // Đảm bảo có file order-list-manager.jsp trong thư mục views
+    }
+
+    @GetMapping("/list-order-comment-success")
+    public String  getAllOrderCommentSuccessByCTVId(HttpSession session,
+                                             @RequestParam(required = false) String thongbao,
+                                             Model model) {
+        Account user = (Account) session.getAttribute("account");
+
+        if (user == null) {
+            return "redirect:/login"; // Redirect nếu chưa đăng nhập
+        }
+
+        String CTVID = user.getUserID();
+        ArrayList<OrderAcceptDTO> listOrder = (ArrayList<OrderAcceptDTO>) orderService.getAllOrderCommentSuccessByCTVId(CTVID);
+
+        model.addAttribute("listOrder", listOrder);
+
+        // Trả về tên view (JSP)
+        return "brand/list-order-comment-success"; // Đảm bảo có file order-list-manager.jsp trong thư mục views
+    }
+
+
+    @GetMapping("/list-order-cancel")
+    public String  getAllOrderCancelByCTVId(HttpSession session,
+                                                    @RequestParam(required = false) String thongbao,
+                                                    Model model) {
+        Account user = (Account) session.getAttribute("account");
+
+        if (user == null) {
+            return "redirect:/login"; // Redirect nếu chưa đăng nhập
+        }
+
+        String CTVID = user.getUserID();
+        ArrayList<OrderAcceptDTO> listOrder = (ArrayList<OrderAcceptDTO>) orderService.getAllOrderCancelByCTVId(CTVID);
+
+        model.addAttribute("listOrder", listOrder);
+
+        // Trả về tên view (JSP)
+        return "brand/list-order-cancel"; // Đảm bảo có file order-list-manager.jsp trong thư mục views
+    }
+
 }

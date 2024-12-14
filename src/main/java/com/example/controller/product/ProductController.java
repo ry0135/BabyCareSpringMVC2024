@@ -1,9 +1,11 @@
 package com.example.controller.product;
 
 import com.example.model.Account;
+import com.example.model.Brand;
 import com.example.model.CommentProduct;
 import com.example.model.Product;
 import com.example.service.AccountService;
+import com.example.service.BrandService;
 import com.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,9 @@ public class ProductController {
     private AccountService accountService;
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private BrandService brandService;
     @GetMapping("/products")
     public String getAllProducts(Model model) {
         List<Product> products = productService.getAllProduct();
@@ -39,6 +44,7 @@ public class ProductController {
 
         try {
             Product product = productService.getProductById(productId);
+            Brand brand = brandService.getBrandByCTVId(product.getCTVID());
             if (product == null) {
                 return "redirect:/index"; // Chuyển hướng nếu không tìm thấy sản phẩm
             }
@@ -58,6 +64,7 @@ public class ProductController {
             model.addAttribute("TotalRating", averageRating);
             model.addAttribute("TotalComment", totalComment);
             model.addAttribute("productCount", productCount);
+            model.addAttribute("brand", brand);
             String message = (String) session.getAttribute("message");
             if (message != null) {
                 model.addAttribute("message", message);

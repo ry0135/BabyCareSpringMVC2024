@@ -4,6 +4,11 @@
 
 
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
+<style>
+  h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+    font-family: sans-serif;
+  }
+</style>
 <div class="container-fluid">
   <div class="container">
     <div class="donhang">
@@ -45,7 +50,7 @@
                   <div class="border-bottom mb-3">
                     <div class="d-flex">
                       <div class="p-1">
-                        <img width="60px" height="60px" src="img/${item.product.img}" alt="">
+                        <img width="60px" height="60px" src="${pageContext.request.contextPath}/assets/img/${item.product.getImagePaths().get(0)}" alt="">
                       </div>
                       <div class="p-1">
                         <strong>${item.product.productName}</strong>
@@ -61,6 +66,8 @@
           </div>
         </div>
       </c:forEach>
+
+
       <div class="mt-3">
         <div class="w-50 d-flex justify-content-between">
           <span>Tổng giá trị sản phẩm:</span>

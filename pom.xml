@@ -285,6 +285,28 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>5.3.12</version> <!-- Kiểm tra phiên bản -->
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>5.3.12</version> <!-- Cùng phiên bản với spring-core -->
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-websocket</artifactId>
+      <version>5.3.12</version> <!-- hoặc phiên bản tương tự -->
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-messaging</artifactId>
+      <version>5.3.12</version>
+    </dependency>
   </dependencies>
 
 

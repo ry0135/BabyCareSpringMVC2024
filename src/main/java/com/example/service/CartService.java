@@ -4,15 +4,15 @@ import com.example.model.Cart;
 import com.example.model.CartItem;
 import com.example.model.Items;
 import com.example.model.Product;
+import com.example.repository.BillRepository;
 import com.example.repository.CartItemRepository;
+import com.example.repository.OrderDetailsRepository;
+import com.example.repository.OrderRefundRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class CartService {
@@ -23,6 +23,9 @@ public class CartService {
     private PreferentialService preferentialService;
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private BillRepository billRepository;
     @Transactional
     // Thêm hoặc cập nhật một CartItem
     public CartItem saveOrUpdateCartItem(CartItem cartItem) {
@@ -71,6 +74,10 @@ public class CartService {
     @Transactional
     public String getCTVIdByProductId(String productId) {
         return cartItemRepository.getCTVIdByProductId(productId);
+    }
+    @Transactional
+    public String getCTVIdByOrder_ProductId(String billID) {
+        return billRepository.getCTVIdByBillID(billID);
     }
 
 
@@ -140,35 +147,68 @@ public class CartService {
     }
 
     public double calculateTotalShippingFee(List<Items> itemsList) {
-        double totalShippingFee = 0;
-        Set<String> ctvIds = new HashSet<>();
+        // Map để lưu phí giao hàng lớn nhất cho từng CTV ID
+        Map<String, Double> maxShippingCostsByCTV = new HashMap<>();
 
         for (Items item : itemsList) {
-            if (item == null) {
-                // Bỏ qua item null
+            if (item == null || item.getProduct() == null) {
+                // Bỏ qua item null hoặc sản phẩm null
                 continue;
             }
 
             Product product = item.getProduct();
-            if (product == null) {
-                continue;
-            }
-
             String ctvId = getCTVIdByProductId(product.getProductId());
+
             if (ctvId == null || ctvId.isEmpty()) {
                 // Bỏ qua khi CTV ID không hợp lệ
                 continue;
             }
 
-            // Chỉ tính phí vận chuyển nếu ctvId chưa được thêm
-            if (!ctvIds.contains(ctvId)) {
-                ctvIds.add(ctvId);
-                // Thay thế BASE_SHIPPING_FEE bằng product.getShippingCost()
-                totalShippingFee += product.getShippingCost(); // Sử dụng phí vận chuyển từ sản phẩm
-            }
+            // Lấy phí giao hàng từ sản phẩm
+            double shippingCost = product.getShippingCost();
+
+            // Cập nhật phí giao hàng lớn nhất cho CTV ID
+            maxShippingCostsByCTV.put(ctvId, Math.max(maxShippingCostsByCTV.getOrDefault(ctvId, 0.0), shippingCost));
         }
 
-        return totalShippingFee;
+        // Tính tổng phí giao hàng lớn nhất cho mỗi CTV ID
+        double totalShippingFee = 0;
+        for (double shippingCost : maxShippingCostsByCTV.values()) {
+            totalShippingFee += shippingCost;
+        }
+
+        return totalShippingFee; // Trả về tổng phí giao hàng
     }
+//    public double calculateTotalShippingFeeOrderDetail(List<Items> itemsList) {
+//        double totalShippingFee = 0;
+//        Set<String> ctvIds = new HashSet<>();
+//
+//        for (Items item : itemsList) {
+//            if (item == null) {
+//                // Bỏ qua item null
+//                continue;
+//            }
+//
+//            Product product = item.getProduct();
+//            if (product == null) {
+//                continue;
+//            }
+//
+//            String ctvId = getCTVIdByOrder_ProductId(product.getProductId());
+//            if (ctvId == null || ctvId.isEmpty()) {
+//                // Bỏ qua khi CTV ID không hợp lệ
+//                continue;
+//            }
+//
+//            // Chỉ tính phí vận chuyển nếu ctvId chưa được thêm
+//            if (!ctvIds.contains(ctvId)) {
+//                ctvIds.add(ctvId);
+//                // Thay thế BASE_SHIPPING_FEE bằng product.getShippingCost()
+//                totalShippingFee += product.getShippingCost(); // Sử dụng phí vận chuyển từ sản phẩm
+//            }
+//        }
+//
+//        return totalShippingFee;
+//    }
 
 }

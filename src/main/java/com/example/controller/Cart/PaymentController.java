@@ -3,6 +3,7 @@ package com.example.controller.Cart;
 import com.example.model.Account;
 import com.example.model.Cart;
 import com.example.model.Items;
+import com.example.model.Product;
 import com.example.repository.BillRepository;
 import com.example.repository.ItemRepository;
 import com.example.service.*;
@@ -191,7 +192,14 @@ public class PaymentController {
             if (orderId != null) {
                 orderIds.add(orderId);
                 List<Items> orderItems = itemRepository.getOrdersByBillId(orderId);
-
+                for (Items item : orderItems) {
+                    String productId = item.getProduct().getProductId();
+                    // Lấy sản phẩm và hình ảnh
+                    Product product = productService.getProductById(productId);
+                    if (product != null) {
+                        item.setProduct(product); // Cập nhật sản phẩm với hình ảnh
+                    }
+                }
                 orderItemsMap.put(orderId, orderItems);
 
                 // Cập nhật sản phẩm đã bán
@@ -218,6 +226,7 @@ public class PaymentController {
                 model.addAttribute("totalPrice", formattedTotalPrice);
                 model.addAttribute("orderStatus", orderService.findStatusBillByBillOrderID(orderId));
                 model.addAttribute("orderItems", orderItems);
+                model.addAttribute("orderItemsMap", orderItemsMap);
             } else {
                 allOrdersCreated = false;
                 break;
@@ -236,6 +245,7 @@ public class PaymentController {
             model.addAttribute("totalPriceAll", decimalFormat.format(totalPriceAll));
             model.addAttribute("totalPriceAllWithDiscount", decimalFormat.format(totalPriceAllWithDiscount));
             cartService.removeAllCartItems(user.getUserID());
+            model.addAttribute("discountCode", discountCode);
             session.removeAttribute("cart");
             session.removeAttribute("discountCode");
             session.removeAttribute("typePayment");
