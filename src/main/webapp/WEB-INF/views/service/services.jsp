@@ -259,7 +259,7 @@
             <c:forEach var="t" items="${listC}">
                 <div class="category-item">
                     <a href="serviceType?tid=${t.typeID}">  <!-- Thay từ type thành typeID -->
-                        <img src="${t.typeImg}" alt="${t.typeName}">  <!-- Bỏ phần comment để sử dụng hình ảnh -->
+                        <img src="${pageContext.request.contextPath}/image/${t.typeImg}" alt="${t.typeName}">  <!-- Bỏ phần comment để sử dụng hình ảnh -->
                         <p>${t.typeName}</p>
                     </a>
                 </div>

@@ -154,10 +154,9 @@
           <input name="CTVID" type="text" hidden="" value="${shopServices.ctvID}">
           <button class="button">Xem Shop</button>
         </form>
-        <form action="chat">
-          <input name="CTVID" type="text" hidden="" value="${shopServices.ctvID}">
-          <button class="button">Nhắn tin</button>
-        </form>
+        <a href="chatMessage?toId=${shopServices.ctvID}" style="display: inline-block; width: 116px; padding: 10px; text-align: center; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;">
+          Nhắn tin
+        </a>
         <input type="hidden" name="brandID" value="${shopServices.brandID}">
 
 
