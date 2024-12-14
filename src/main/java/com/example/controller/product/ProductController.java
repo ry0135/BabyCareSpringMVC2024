@@ -1,5 +1,6 @@
 package com.example.controller.product;
 
+import com.example.model.Account;
 import com.example.model.Brand;
 import com.example.model.CommentProduct;
 import com.example.model.Product;
