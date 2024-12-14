@@ -134,7 +134,7 @@
 <form action="feedBack" method="post">
     <div class="form-group">
         <label for="customerID"></label>
-        <input type="hidden" id="customerID" name="customerID" value="<%= request.getAttribute("CustomerID") %>" required readonly>
+        <input type="hidden" id="customerID" name="CustomerID" value="<%= request.getAttribute("CustomerID") %>" required readonly>
     </div>
     <div class="form-group">
         <label for="customerName"></label>
@@ -147,6 +147,9 @@
     <div class="form-group">
         <label for="testimonial">Đánh giá của bạn</label>
         <textarea id="testimonial" name="testimonial" placeholder="Share your experience with us..." required></textarea>
+    </div>
+    <div class="form-group">
+        <input type="hidden" id="bookingDate" name="BookingDate"value="<%= request.getAttribute("BookingDate") %>" required>
     </div>
 
     <!-- Star Rating -->
