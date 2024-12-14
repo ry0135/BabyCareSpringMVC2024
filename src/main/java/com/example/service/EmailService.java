@@ -123,4 +123,42 @@ public class EmailService {
         }
     }
 
+
+    public void sendCodeToEmailSuccsessBooking(String serviceName,String Slot, String email, String address, String customerName) {
+        // Lấy ngày hiện tại
+        LocalDate currentDate = LocalDate.now();
+        String formattedDate = currentDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // Định dạng ngày
+
+        // Tạo MimeMessage thay vì SimpleMailMessage
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8"); // "UTF-8" để hỗ trợ Unicode
+            helper.setTo(email);
+            helper.setSubject("📦 Xác nhận đặt dịch vụ thành công 🎉");
+
+            // Nội dung email
+            String content = "<p>Xin chào <b>" + customerName + "</b>,</p>"
+                    + "<p>Cảm ơn bạn đã đặt dịch vụ tại BabyCare! 😊</p>"
+                    + "<p>Chúng tôi xin thông báo rằng dịch: <b>" + serviceName + "</b> đã được đặt thành công. ✅</p>"
+                    + "<p><b>📅 Thời gian:</b> " + formattedDate + "</p>"
+                    + "<p><b>📅 Slot:</b> " + Slot + "</p>"
+                    + "<p><b>📍 Địa chỉ làm dịch vụ:</b> " + address + "</p>"
+                    + "<p>Chúng tôi hy vọng bạn hài lòng với sản phẩm và dịch vụ của chúng tôi. 🌟</p>"
+                    + "<p>Nếu bạn có bất kỳ câu hỏi hoặc phản hồi nào, vui lòng liên hệ với đội ngũ hỗ trợ khách hàng qua email hoặc hotline. 📞✉️</p>"
+                    + "<p>Một lần nữa, cảm ơn bạn đã tin tưởng BabyCare. 🥰 Chúng tôi rất mong được phục vụ bạn trong tương lai.</p>"
+                    + "<p>Trân trọng,</p>"
+                    + "<p><b>Đội ngũ BabyCare</b><br>"
+                    + "🌐 <a href='" + linkweb + "'>Website</a><br>"
+                    + "📧 Email hỗ trợ: " + supportEmail + "<br>"
+                    + "📞 Hotline: "+ hotline+ "</p>";
+
+            // Thiết lập nội dung HTML
+            helper.setText(content, true); // `true` để gửi nội dung HTML
+            mailSender.send(mimeMessage);
+            System.out.println("✅ Đã gửi email xác nhận giao hàng thành công.");
+        } catch (MessagingException e) {
+            System.err.println("❌ Lỗi khi gửi email: " + e.getMessage());
+        }
+    }
+
 }

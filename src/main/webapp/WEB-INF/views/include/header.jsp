@@ -144,7 +144,7 @@
 
 
 
-              <c:if test="${sessionScope.account.role  == 2}">
+              <c:if test="${sessionScope.account.role  == 5}">
 
                 <a href="preferential-list-manager"  class="dropdown-item">Quản lí mã giảm giá</a>
                 <a href="getAllBooking" class="dropdown-item">Quản lí đơn dịch vụ</a>

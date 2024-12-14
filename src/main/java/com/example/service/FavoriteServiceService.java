@@ -1,6 +1,9 @@
 package com.example.service;
 
+
+
 import com.example.model.FavoriteService;
+import com.example.model.FavoriteServiceDTO;
 import com.example.model.ServiceEntity; // Nhập ServiceEntity
 import com.example.repository.FavoriteServiceRepository;
 import com.example.repository.ServiceRepository; // Nhập ServiceRepository
@@ -22,31 +25,16 @@ public class FavoriteServiceService {
         favoriteServiceRepository.save(favorite);
     }
 
-    public List<FavoriteService> getFavoritesByUserID(String userID) {
-        List<FavoriteService> favorites = favoriteServiceRepository.findByUserID(userID);
 
-        for (FavoriteService favorite : favorites) {
-            ServiceEntity service = serviceRepository.findById(favorite.getServiceID()).orElse(null);
-            favorite.setService(service); // Thiết lập thông tin dịch vụ vào favorite
-        }
 
-        return favorites;
+    public List<FavoriteServiceDTO> getFavoriteServiceByUserID(String userID) {
+        return favoriteServiceRepository.findFavoriteServiceByUserID(userID);
     }
-
-    public List<FavoriteService> listFavorites(String userID) {
-        List<FavoriteService> favorites = favoriteServiceRepository.findByUserID(userID);
-
-        for (FavoriteService favorite : favorites) {
-            ServiceEntity service = serviceRepository.findById(favorite.getServiceID()).orElse(null);
-            favorite.setService(service); // Cập nhật dịch vụ vào đối tượng yêu thích
-        }
-
-        return favorites;
-    }
-    // Thêm phương thức xóa FavoriteService
-
     @Transactional
     public void removeFavorite(Integer favoriteID) {
         favoriteServiceRepository.deleteByFavoriteID(favoriteID);
+    }
+    public boolean isFavorite(String userID, Integer serviceID) {
+        return favoriteServiceRepository.isFavorite(userID, serviceID);
     }
 }

@@ -166,6 +166,7 @@ public class ServiceBookedController {
 
         // Lưu booking
         serviceBookedService.saveBooking(newBooking);
+        emailService.sendCodeToEmailSuccsessBooking(serviceName,slot,email,address,name);
         // emailService.sendInformationToEmail(oldUser.getEmail()); // Gửi email nếu cần
         model.addAttribute("successMessage", "Đặt dịch vụ thành công!");
 
