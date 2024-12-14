@@ -120,7 +120,7 @@
                         </c:if>
 
                         <c:if test="${booking.bookingStatus == 3}">
-                            <form action="FeedBackServlet" method="get">
+                            <form action="feedback" method="get">
 
                                 <input type="hidden" name="CustomerID" value="${booking.customerID}">
                                 <input type="hidden" name="ServiceID" value="${booking.serviceID}">

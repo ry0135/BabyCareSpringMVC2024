@@ -48,24 +48,94 @@ public class ShopServiceController {
         return "registerShopService"; // Trang form đăng ký
     }
 
+
     @PostMapping("/register-shop-service")
-    public String registerShopService(@ModelAttribute ShopService shopService, Model model, HttpServletRequest request) {
+    public String registerShopService( @RequestParam("brandName") String brandName,
+                                       @RequestParam("brandDescription") String brandDescription,
+                                       @RequestParam("brandLogo") MultipartFile brandLogo,
+                                       @RequestParam("brandAddress")  String brandAddress,
+                                       @RequestParam("bankName")  String bankName,
+                                       @RequestParam("brandPhone")  String brandPhone,
+                                       @RequestParam("IdentifiNumber") String identifiNumber,
+                                      @RequestParam("IdentifiImg") MultipartFile identifiImg,
+                                      @RequestParam("IdentifiImgFace") MultipartFile identifiImgFace,
+                                      @RequestParam("AccountNumber") String accountNumber,
+                                      Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        Account user = (Account) session.getAttribute("account"); // Lấy use
+        Account user = (Account) session.getAttribute("account");
 
         if (user == null) {
             return "redirect:/login";
         }
-        shopService.setCtvID(user.getUserID());
 
+        ShopService shopService = new ShopService();
+        shopService.setBrandName(brandName);
+        shopService.setBrandDescription( brandDescription);
+        shopService.setBrandAddress(brandAddress);
+        shopService.setBrandPhone(brandPhone);
+        shopService.setCtvID(user.getUserID());
         shopService.setRole(5);
 
+        // Gán thông tin từ các tham số vào đối tượng shopService
+        if (!StringUtils.isEmpty(brandLogo.getOriginalFilename())) {
+            String fileName0 = "";
+            try {
+                // Lưu ảnh và nhận tên file từ FileUtils
+                fileName0 = FilleUtils.saveFile(brandLogo);
+                shopService.setBrandLogo(fileName0); // Cập nhật tên file ảnh vào avatar của user
+            } catch (IOException e) {
+                e.printStackTrace();
+                model.addAttribute("error", "File upload failed");
+                return "register-shop-service";  // Quay lại trang profile nếu lỗi
+            }
+        }
+
+        if (!StringUtils.isEmpty(identifiImg.getOriginalFilename())) {
+            String fileName1 = "";
+            try {
+                // Lưu ảnh và nhận tên file từ FileUtils
+                fileName1 = FilleUtils.saveFile(identifiImg);
+                shopService.setIdentifiImg(fileName1); // Cập nhật tên file ảnh vào avatar của user
+            } catch (IOException e) {
+                e.printStackTrace();
+                model.addAttribute("error", "File upload failed");
+                return "register-shop-service";  // Quay lại trang profile nếu lỗi
+            }
+        }
+
+
+        if (!StringUtils.isEmpty(identifiImgFace.getOriginalFilename())) {
+            String fileName2 = "";
+            try {
+                // Lưu ảnh và nhận tên file từ FileUtils
+                fileName2 = FilleUtils.saveFile(identifiImgFace);
+                shopService.setIdentifiImgFace(fileName2); // Cập nhật tên file ảnh vào avatar của user
+            } catch (IOException e) {
+                e.printStackTrace();
+                model.addAttribute("error", "File upload failed");
+                return "register-shop-service";  // Quay lại trang profile nếu lỗi
+            }
+        }
+
+        // Lưu số tài khoản
+        shopService.setBankName(bankName);
+        shopService.setIdentifiNumber(identifiNumber);
+        shopService.setAcountNumber(accountNumber);
+
+        // Gán brandID ngẫu nhiên vào ShopService
         String randomBrandID = shopServiceService.getRandomBrandID();
-        shopService.setBrandID(randomBrandID); // Gán brandID ngẫu nhiên vào ShopService
-        shopServiceRepository.save(shopService); // Lưu ShopService vào cơ sở dữ liệu
+        shopService.setBrandID(randomBrandID);
+
+        // Lưu ShopService vào cơ sở dữ liệu
+        shopServiceRepository.save(shopService);
+
+        // Thêm attribute vào model để hiển thị thông tin BrandID
         model.addAttribute("randomBrandID", randomBrandID);
+
         return "redirect:/register-shop-service-success"; // Chuyển hướng khi đăng ký thành công
     }
+
+    // Phương thức để xử lý tệp tải lên
 
     @GetMapping("/register-shop-service-success")
     public String registerShopServiceSuccess() {
