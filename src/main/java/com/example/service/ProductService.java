@@ -11,6 +11,7 @@ import com.example.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.sql.Timestamp;
 
 import java.util.List;
 
@@ -165,4 +166,32 @@ public class ProductService {
 
     }
 
+
+
+    public boolean isCommentExists(String productId, String orderId, String userId) {
+        Long count = commentProductRepository.countByProductIdAndOrderIdAndUserId(productId, orderId, userId);
+        return count != null && count > 0; // Trả về true nếu số lượng lớn hơn 0
+    }
+
+    public boolean addComment(String commentId, String productId, String billId,
+                              String comment, String userId, String commentImg, int rating) {
+        CommentProduct productComment = new CommentProduct();
+        productComment.setCommentID(commentId);
+        productComment.setProductID(productId);
+        productComment.setBillID(billId);
+        productComment.setComment(comment);
+        productComment.setUserID(userId);
+        productComment.setRating(rating);
+        productComment.setCommentImg(commentImg);
+
+        productComment.setCreatedAt(new Timestamp(System.currentTimeMillis()).toLocalDateTime()); // Lấy thời gian hiện tại
+
+        try {
+            commentProductRepository.save(productComment); // Lưu bình luận vào database
+            return true; // Trả về true nếu thêm thành công
+        } catch (Exception e) {
+            // Bỏ qua chi tiết triển khai log nếu không cần thiết
+            return false; // Trả về false nếu có lỗi xảy ra
+        }
+    }
 }

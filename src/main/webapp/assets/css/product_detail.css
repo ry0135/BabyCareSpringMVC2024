@@ -3,7 +3,7 @@ body {
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
-    padding: 20px;
+
 }
 
 .product-container, .store-info, .product-details {
@@ -290,7 +290,8 @@ h2, h3 {
     cursor: pointer;
 }
 
-h1, h2, h3 {
+body {
     font-family: sans-serif ; /* Đặt font-family là sans-serif với độ ưu tiên cao */
     color: black ; /* Đặt màu chữ là đen với độ ưu tiên cao */
+    padding: 0;
 }

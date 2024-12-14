@@ -5,6 +5,8 @@ public class OrderAcceptDTO {
     private String idOrder, username, date, discountId, total, orderStatus;
     private String address, CTVID;
     private String totalAmount;
+    private String userId;
+
 
     public OrderAcceptDTO() {
     }
@@ -27,15 +29,19 @@ public class OrderAcceptDTO {
         this.CTVID = CTVID;
         this.totalAmount = totalAmount;
     }
-//   public OrderAccept(String idOrder, String username, String date, String discountId, String total, String orderStatus) {
-//        this.idOrder = idOrder;
-//        this.username = username;
-//        this.date = date;
-//        this.discountId = discountId;
-//        this.total = total;
-//        this.orderStatus = orderStatus;
-//    }
 
+    public OrderAcceptDTO(String idOrder, String username, String date, String discountId, String total, String orderStatus, String address, String CTVID, String totalAmount, String userId) {
+        this.idOrder = idOrder;
+        this.username = username;
+        this.date = date;
+        this.discountId = discountId;
+        this.total = total;
+        this.orderStatus = orderStatus;
+        this.address = address;
+        this.CTVID = CTVID;
+        this.totalAmount = totalAmount;
+        this.userId = userId;
+    }
 
     public String getIdOrder() {
         return idOrder;
@@ -107,6 +113,14 @@ public class OrderAcceptDTO {
 
     public void setTotalAmount(String totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     @Override

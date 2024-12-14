@@ -101,4 +101,10 @@ public class PreferentialService {
     public List<Preferential> getAllPreferentials() {
         return preferentialRepository.findAll();
     }
+
+
+
+    public List<Preferential> getAllActiveDiscounts() {
+        return preferentialRepository.findAllActiveDiscountsNative();
+    }
 }

@@ -15,7 +15,7 @@ public class AdminService {
     private AdminRepository adminRepository;
 
     @Autowired
-    private OrderDetailsRepository orDetailsRepository;
+    private OrderDetailsRepository orderDetailsRepository;
 
     // Đếm tổng số người dùng
     public long countUsers() {
@@ -28,7 +28,7 @@ public class AdminService {
         String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
         // Gọi repository và xử lý giá trị trả về
-        Double totalPrice = orDetailsRepository.findTotalPriceToday(todayDate);
+        Double totalPrice = orderDetailsRepository.findTotalPriceToday(todayDate);
 
         // Trả về 0.0 nếu kết quả trả về là null
         return totalPrice != null ? totalPrice : 0.0;

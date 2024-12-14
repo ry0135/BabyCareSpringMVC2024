@@ -28,4 +28,8 @@ public interface PreferentialRepository extends JpaRepository<Preferential, Stri
     // Get the discount percentage for a preferential
     @Query("SELECT p.rate FROM Preferential p WHERE p.preferentialCode = :preferentialCode")
     Double findDiscountPercent(@Param("preferentialCode") String preferentialCode); //
+
+
+    @Query(value = "SELECT * FROM tblPreferential WHERE StartDay <= GETDATE() AND EndDay >= GETDATE() AND Quantity > 0", nativeQuery = true)
+    List<Preferential> findAllActiveDiscountsNative();
 }

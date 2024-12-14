@@ -40,15 +40,14 @@
       <a class="nav-item nav-link " href="order-list-manager">Đơn hàng đang chờ</a>
       <a class="nav-item nav-link "  href="list-order-accepted">Đơn hàng đã xác nhận</a>
       <a class="nav-item nav-link " href="list-order-paid"  >Đơn hàng đã thanh toán</a>
-      <a class="nav-item nav-link active" href="#"  style=" background-color: #ff4880;">Đơn hàng đã hoàn thành</a>
+      <a class="nav-item nav-link " href="list-order-succsess"  >Đơn hàng đã hoàn thành</a>
       <a class="nav-item nav-link " href="list-order-comment-success">Đơn hàng đã đánh giá</a>
-      <a class="nav-item nav-link  " href="list-order-cancel">Đơn hàng đã hủy</a>
-
+      <a class="nav-item nav-link active " href="#" style=" background-color: #ff4880;">Đơn hàng đã hủy</a>
     </nav>
 
 
-    <h2>Quản lí danh sách đơn đã hoàn thành</h2>
-    <p>Nhân viên có thể xem được danh sách đơn đã hoàn thành ở đây</p>
+    <h2>Quản lí danh sách đặt hàng đã hủy</h2>
+    <p>Nhân viên có thể xem được danh sách đặt hàng đã hủy</p>
     <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm">
     <br>
     <h3 class="text-center text-danger" >${thongbao}</h3>
@@ -62,6 +61,8 @@
         <th>Ngày đặt</th>
         <th>Mã giảm giá</th>
         <th>Trạng thái</th>
+
+
       </tr>
       </thead>
       <tbody id="myTable">

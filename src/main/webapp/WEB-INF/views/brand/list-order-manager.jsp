@@ -64,6 +64,7 @@
         <th>Trạng thái</th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
       </thead>
       <tbody id="myTable">
@@ -80,7 +81,7 @@
           <td>${order.orderStatus}</td>
           <td><a href="acceptorder?id=${order.idOrder}" class="btn btn-success">Xác nhận</a></td>
           <td><a href="cancelorder?id=${order.idOrder}" class="btn btn-danger">Hủy</a></td>
-
+          <td><a href="chatMessage?toId=${order.userId}" style="display: inline-block; width: 116px; padding: 10px; text-align: center; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;"> Nhắn Tin</a></td>
         </tr>
 
       </c:forEach>

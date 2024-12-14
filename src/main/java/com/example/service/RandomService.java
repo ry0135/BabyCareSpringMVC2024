@@ -4,6 +4,7 @@ package com.example.service;
 import com.example.repository.AccountRepository;
 import com.example.repository.BillRepository;
 import com.example.repository.BrandRepository;
+import com.example.repository.CommentProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,9 @@ public class RandomService {
     private BrandRepository brandRepository;
     @Autowired
     private BillRepository billRepository;
+
+    @Autowired
+    private CommentProductRepository commentProductRepository;
     @Transactional(readOnly = true)
     public  String getRandomUserID() {
         StringBuilder sb;
@@ -76,6 +80,22 @@ public class RandomService {
         for (int i = 0; i < length; i++) {
             sb.append(allowedChars.charAt(random.nextInt(allowedChars.length())));
         }
+        return sb.toString();
+    }
+
+
+    @Transactional(readOnly = true)
+    public  String getRandomCommentID() {
+        StringBuilder sb ;
+        do {
+            sb = new StringBuilder();
+            sb.append("CM");
+
+            for (int i = 1; i < 4; i++) {
+                sb.append(new Random().nextInt(10));
+            }
+        }
+        while(commentProductRepository.existsBycommentID(sb.toString()));
         return sb.toString();
     }
 
