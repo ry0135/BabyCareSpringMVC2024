@@ -1,6 +1,5 @@
 package com.example.repository;
 
-import com.example.model.Account;
 import com.example.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -24,5 +23,9 @@ public interface ProductRepository extends JpaRepository<Product, String> {
     @Query("SELECT COUNT(p) FROM Product p WHERE p.CTVID = ?1")
     int countProductsByCTV(String CTVID);
 
-}
+    // Tìm danh sách sản phẩm theo CTVID
+    List<Product> findByCTVID(String ctvId); // Phương thức này phải có
 
+    @Query("SELECT COUNT(p) FROM Product p WHERE p.status = 1")
+    int countProductsLeft();
+}

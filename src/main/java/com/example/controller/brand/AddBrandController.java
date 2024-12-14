@@ -45,7 +45,7 @@ public class AddBrandController {
         String userID = user.getUserID();
 
         // Lấy thông tin thương hiệu
-        Brand brand = brandService.getBrandByCTVId(userID);
+        Brand brand = brandService.getBrandByCTVID(userID);
         model.addAttribute("brand", brand);
 
         // Kiểm tra xem có đăng ký nào chưa hoàn tất
@@ -138,7 +138,7 @@ public class AddBrandController {
         String userID = user.getUserID();
 
         // Lấy thông tin thương hiệu
-        Brand brand = brandService.getBrandByCTVId(userID);
+        Brand brand = brandService.getBrandByCTVID(userID);
         model.addAttribute("brand", brand);
 
         // Kiểm tra xem có đăng ký nào chưa hoàn tất
@@ -176,7 +176,7 @@ public class AddBrandController {
             String filename2 = filleUtils.saveFile(file2); // Lưu file2
 
             // Tìm kiếm thương hiệu
-            Brand existingBrand = brandService.getBrandByCTVId(userID);
+            Brand existingBrand = brandService.getBrandByCTVID(userID);
             if (existingBrand == null) {
                 session.setAttribute("thongbao", "Thương hiệu không tồn tại.");
                 return "redirect:/getBrandIndentifi"; // Quay lại nếu không tìm thấy thương hiệu

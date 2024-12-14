@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, String> {
-    Brand findBrandByCTVID(String CTVID);
+    Brand findBrandByCTVID(String ctvID); // Đảm bảo tính khả dụng của phương thức
 
     boolean existsByBrandID(String brandID);
     boolean existsByBrandName(String brandName);
@@ -25,4 +25,6 @@ public interface BrandRepository extends JpaRepository<Brand, String> {
 
     @Query("SELECT b.brandName FROM Product p JOIN Brand b ON p.CTVID = b.CTVID WHERE p.productId = ?1")
     String findBrandNameByProductId(String productId);
+
+
 }

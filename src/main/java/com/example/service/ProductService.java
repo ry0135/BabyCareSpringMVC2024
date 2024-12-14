@@ -26,7 +26,7 @@ public class ProductService {
     @Autowired
     private ProductImageRepository productImageRepository;
 
-//        public List<Product> getAllProduct() {
+//            public List<Product> getAllProduct() {
 //            List<Product> products = productRepository.findByStatus(1);
 //            for (Product product : products) {
 //                List<ProductImage> images = productImageRepository.findByProductID(product.getProductId().toString());
@@ -36,8 +36,8 @@ public class ProductService {
 //            }
 //            return products;
 //        }
-        @Transactional
-        public List<Product> getAllProduct() {
+    @Transactional
+    public List<Product> getAllProduct() {
         // Lấy danh sách sản phẩm có trạng thái là 1
         List<Product> products = productRepository.findByStatus(1);
 
@@ -51,7 +51,23 @@ public class ProductService {
         });
 
         return products;
-        }
+    }
+    @Transactional
+    public List<Product> getListProductByCTVID(String ctvID) {
+        // Lấy danh sách sản phẩm theo ID CTV
+        List<Product> products = productRepository.findByCTVID(ctvID);
+
+        // Gán danh sách hình ảnh cho từng sản phẩm
+        products.forEach(product -> {
+            // Lấy danh sách hình ảnh theo ProductID
+            List<ProductImage> images = productImageRepository.findByProductID(product.getProductId());
+
+            // Gán từng đường dẫn hình ảnh vào sản phẩm
+            images.forEach(image -> product.addImagePath(image.getImagePath()));
+        });
+
+        return products;  // Trả về danh sách sản phẩm có kèm hình ảnh
+    }
     @Transactional
     public Product getProductById(String productId) {
         // Tìm sản phẩm theo ID
@@ -99,15 +115,15 @@ public class ProductService {
 
     @Transactional
     public boolean updateProductSold(String productId, int quantity) {
-            Product product = productRepository.findById(productId).orElse(null);
-            if (product != null) {
+        Product product = productRepository.findById(productId).orElse(null);
+        if (product != null) {
 
-                product.setSold(product.getSold() + quantity);
-                productRepository.save(product);
-                return true;
-            } else {
-                return false;
-            }
+            product.setSold(product.getSold() + quantity);
+            productRepository.save(product);
+            return true;
+        } else {
+            return false;
+        }
 
     }
 
@@ -123,6 +139,10 @@ public class ProductService {
             return false;
         }
 
+
+
+
     }
+
 
 }

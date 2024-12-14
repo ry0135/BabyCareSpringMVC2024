@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class BrandService {
 
@@ -15,8 +17,8 @@ public class BrandService {
 
 
     @Transactional
-    public Brand getBrandByCTVId(String CTVID) {
-        return brandRepository.findBrandByCTVID(CTVID);
+    public Brand getBrandByCTVID(String ctvID) {
+        return brandRepository.findBrandByCTVID(ctvID);
     }
 
     @Transactional(readOnly = true)
@@ -90,6 +92,12 @@ public class BrandService {
     @Transactional(readOnly = true)
     public String getBrandNameByProductId(String productId) {
         return brandRepository.findBrandNameByProductId(productId);
+    }
+    @Autowired
+    private BrandRepository BrandRepository;
+
+    public List<Brand> getAllBrands() {
+        return brandRepository.findAll();
     }
 
 

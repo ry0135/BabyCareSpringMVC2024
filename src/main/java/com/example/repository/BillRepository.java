@@ -30,7 +30,13 @@ public interface BillRepository extends JpaRepository<Bill, String> {
     String findFullNameByBillId(@Param("billId") String billId);
 
 
-
     @Query("SELECT a.email FROM Bill b JOIN Account a ON b.customerID = a.userID WHERE b.billID = :billId")
     String findEmailByOrderId(@Param("billId") String billId);
+
+    @Query("SELECT COUNT(b) FROM Bill b WHERE b.StatusBill LIKE '%COD%' ")
+    int countOrdersToConfirm();
+    // Phương thức đếm đơn hàng đang chờ xử lý theo CTVID
+    @Query("SELECT COUNT(b) FROM Bill b WHERE b.StatusBill LIKE '%COD%' AND b.CTVID = :ctvId")
+    int countPendingOrdersByCTV(@Param("ctvId") String ctvId);
 }
+

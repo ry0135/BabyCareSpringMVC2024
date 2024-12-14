@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -114,6 +115,50 @@ public class AccountService {
             user.setAvatar(avatar);
             accountRepository.save(user);
         }
+    }
+    @Transactional
+    public boolean changePassword(String userId, String oldPassword, String newPassword) {
+        Account account = accountRepository.findByUserID(userId);
+        if (account != null && passwordEncoder.matches(oldPassword, account.getPassword())) {
+            account.setPassword(passwordEncoder.encode(newPassword));  // Mã hóa mật khẩu mới
+            accountRepository.save(account);
+            return true;  // Đổi mật khẩu thành công
+        }
+        return false;  // Đổi mật khẩu thất bại
+    }
+
+
+    public List<Account> getCustomerAccounts() {
+        return accountRepository.findByRole(3);
+    }
+    public List<Account> getEmployees() {
+        return accountRepository.findByRole(2);
+    }
+    public List<Account> getListCTVAccount() {
+        return accountRepository.findByRole(4);
+    }
+
+    @Autowired
+    private AccountRepository AccountRepository;
+
+    public void lockEmployee(String empID) {
+        accountRepository.lockAccount(empID);
+    }
+
+    public void unlockEmployee(String empID) {
+        accountRepository.unlockAccount(empID);
+    }
+    public void lockCustomer(String userID) {
+        accountRepository.lockAccount(userID);
+    }
+    public void unlockCustomer(String userID) {
+        accountRepository.unlockAccount(userID);
+    }
+    public void lockCTV(String userID) {
+        accountRepository.lockAccount(userID);
+    }
+    public void unlockCTV(String userID) {
+        accountRepository.unlockAccount(userID);
     }
 
 }

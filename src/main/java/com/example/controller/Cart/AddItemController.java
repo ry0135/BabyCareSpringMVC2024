@@ -74,7 +74,7 @@ public class AddItemController {
         List<CommentProduct> comments = productService.listCommentsByProductId(id);
         productService.setUserDetailsForComments(comments);
 
-        Brand brand = brandService.getBrandByCTVId(product.getCTVID());
+        Brand brand = brandService.getBrandByCTVID(product.getCTVID());
         double averageRating = productService.getAverageRatingForProduct(product.getProductId());
         int totalComment = productService.getTotalCommentsForProduct(product.getProductId());
 

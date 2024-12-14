@@ -1,9 +1,10 @@
 package com.example.controller.product;
 
-import com.example.model.Account;
+import com.example.model.Brand;
 import com.example.model.CommentProduct;
 import com.example.model.Product;
 import com.example.service.AccountService;
+import com.example.service.BrandService;
 import com.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -69,6 +70,21 @@ public class ProductController {
             e.printStackTrace();
             return "redirect:/index"; // Chuyển hướng đến trang index trong trường hợp lỗi
         }
+    }
+    @Autowired
+    private BrandService brandService;
+    @GetMapping("/viewshop")
+    public String viewShop(@RequestParam("CTVID") String ctvID, Model model) {
+        List<Product> listProduct = productService.getListProductByCTVID(ctvID);
+        Brand brand = brandService.getBrandByCTVID(ctvID); // Đảm bảo phương thức này tồn tại
+        int productCount = productService.getCountProductByCTV(ctvID);
+
+        model.addAttribute("listProduct", listProduct);
+        model.addAttribute("brand", brand);
+        model.addAttribute("productCount", productCount);
+
+        return "product/view" +
+                "shop"; // trả về view JSP
     }
 
 

@@ -85,6 +85,11 @@ public class Product implements Serializable {
         this.shippingCost = shippingCost;
 
     }
+    public Product(String productId, String productName, double productPrice) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productPrice = productPrice;
+    }
 
     // Thêm hình ảnh vào danh sách
     public List<ProductImage> getImages() {
