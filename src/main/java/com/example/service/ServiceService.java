@@ -27,6 +27,12 @@ public class ServiceService {
         return  serviceRepository.findAll();
 
     }
+    @Transactional
+    public List<ServiceEntity> getAllServiceByCTVID(String CTVID) {
+        // Lấy danh sách sản phẩm có trạng thái là
+        return  serviceRepository.findByCTVID(CTVID);
+
+    }
 
     @Transactional
     public List<ServiceType> getAllServiceType() {

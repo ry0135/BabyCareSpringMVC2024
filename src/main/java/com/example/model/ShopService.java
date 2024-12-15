@@ -40,7 +40,7 @@ public class ShopService {
     @Column(name = "BrandPhone") // Tên cột trong cơ sở dữ liệu
     private String brandPhone;
 
-    @Column(name = "Status") // Tên cột trong cơ sở dữ liệu
+    @Column(name = "Role") // Tên cột trong cơ sở dữ liệu
     private int status;
 
     public ShopService() {
