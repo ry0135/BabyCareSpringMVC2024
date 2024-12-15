@@ -27,4 +27,6 @@ public interface ShopServiceRepository extends JpaRepository<ShopService, String
 
     void deleteByctvID(String ctvID);
 
+    boolean existsByctvIDAndStatus(String ctvID, int status);
+
 }

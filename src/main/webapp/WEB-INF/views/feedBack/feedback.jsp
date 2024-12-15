@@ -133,6 +133,10 @@
 <% } %>
 <form action="feedBack" method="post">
     <div class="form-group">
+        <%--@declare id="ctvid"--%><label for="ctvID"></label>
+        <input type="hidden" id="ctvID" name="CTVID" value="<%= request.getAttribute("CTVID") %>" required readonly>
+    </div>
+    <div class="form-group">
         <label for="customerID"></label>
         <input type="hidden" id="customerID" name="CustomerID" value="<%= request.getAttribute("CustomerID") %>" required readonly>
     </div>

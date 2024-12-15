@@ -54,11 +54,24 @@ public class ShopServiceController {
     @Autowired
     private AccountService accountService;
 
+
+
+
     @GetMapping("/register-shop-service")
-    public String showRegisterShopServiceForm(Model model) {
+    public String showRegisterShopServiceForm(HttpSession session,Model model) {
+        Account user = (Account) session.getAttribute("account");
+        if (user == null) {
+            return "redirect:/login"; // Chuyển hướng đến trang login nếu chưa đăng nhập
+        }
+        String userID = user.getUserID();
+        boolean hasPending= shopServiceService.hasPendingRegistration(userID);
+        model.addAttribute("hasPending",hasPending);
+
         model.addAttribute("shopService", new ShopService());
         return "registerShopService"; // Trang form đăng ký
     }
+
+
 
 
     @PostMapping("/register-shop-service")
@@ -98,7 +111,7 @@ public class ShopServiceController {
             } catch (IOException e) {
                 e.printStackTrace();
                 model.addAttribute("error", "File upload failed");
-                return "register-shop-service";  // Quay lại trang profile nếu lỗi
+                return "redirect:/register-shop-service";  // Quay lại trang profile nếu lỗi
             }        }
 
 
@@ -111,7 +124,7 @@ public class ShopServiceController {
             } catch (IOException e) {
                 e.printStackTrace();
                 model.addAttribute("error", "File upload failed");
-                return "register-shop-service";  // Quay lại trang profile nếu lỗi
+                return "redirect:/register-shop-service";  // Quay lại trang profile nếu lỗi
             }
         }
 
@@ -125,7 +138,7 @@ public class ShopServiceController {
             } catch (IOException e) {
                 e.printStackTrace();
                 model.addAttribute("error", "File upload failed");
-                return "register-shop-service";  // Quay lại trang profile nếu lỗi
+                return "redirect:/register-shop-service";  // Quay lại trang profile nếu lỗi
             }
         }
 
@@ -144,7 +157,7 @@ public class ShopServiceController {
         // Thêm attribute vào model để hiển thị thông tin BrandID
         model.addAttribute("randomBrandID", randomBrandID);
 
-        return "redirect:/register-shop-service-success"; // Chuyển hướng khi đăng ký thành công
+        return "redirect:/register-shop-service"; // Chuyển hướng khi đăng ký thành công
     }
 
     // Phương thức để xử lý tệp tải lên

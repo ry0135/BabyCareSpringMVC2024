@@ -18,6 +18,8 @@ public class BookingWithBillStatusDTO {
     private String email;
     private String serviceName;
 
+    private  String CTVID;
+
     private int billID;
     private String billDate;
     private double totalAmount;
@@ -39,7 +41,7 @@ public class BookingWithBillStatusDTO {
         this.price = serviceBooked.getPrice();
         this.email = serviceBooked.getEmail();
         this.serviceName = serviceBooked.getServiceName();
-
+        this.CTVID = serviceBooked.getCTVID();
         if (serviceBill != null) {
             this.billID = serviceBill.getBillID();
             this.billDate = serviceBill.getBillDate() != null ? serviceBill.getBillDate().toString() : null; // Convert Date to String
@@ -71,4 +73,11 @@ public class BookingWithBillStatusDTO {
     public int getBillStatus() { return billStatus; }
     public String getBrandName() { return brandName; }
 
+    public String getCTVID() {
+        return CTVID;
+    }
+
+    public void setCTVID(String CTVID) {
+        this.CTVID = CTVID;
+    }
 }

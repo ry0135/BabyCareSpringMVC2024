@@ -189,9 +189,13 @@
     </head>
     <body>
     <h2>Information Shop </h2>
-
+    <c:if test="${hasPending}">
+        <h3 class="text-danger">Chúng tôi đã tiếp nhận thông tin của bạn. Chúng tôi sẽ thông báo qua email của bạn trong vòng 7 ngày.</h3>
+    </c:if>
+   <c:if test="${!hasPending}">
+    <h1>${message}</h1>
     <!-- Form đăng ký -->
-    <form action="/BabyCareSpringMVC2024_war/register-shop-service" method="POST" enctype="multipart/form-data">
+    <form action="register-shop-service" method="POST" enctype="multipart/form-data">
         <label for="brandName">BrandName:</label>
     <input type="text" id="brandName" name="brandName"  required><br><br>
 
@@ -351,6 +355,8 @@
         <button type="submit">Register</button>
 
     </form>
+    </c:if>
+    <h3 class="text-danger">${thongbao}</h3>
     </body>
     </html>
 <style>

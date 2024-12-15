@@ -126,5 +126,9 @@ public class BrandService {
             return false;
         }
     }
+    public void approveBrand(String CTVID) {
+        brandRepository.updateBrandStatus(CTVID);
+    }
+
 
 }

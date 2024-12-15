@@ -101,11 +101,15 @@
           <c:if test="${sessionScope.account.role != 2 && sessionScope.account.role != 4 && sessionScope.account.role != 1}">
             <li><a href="registerctv">Đăng kí CTV</a></li>
           </c:if>
+          <c:if test="${sessionScope.account.role != 2 && sessionScope.account.role != 4 && sessionScope.account.role != 1 && sessionScope.account.role != 5 }">
+            <li><a href="register-shop-service">Đăng kí CTV dịch vụ</a></li>
+          </c:if>
           <li><a href="cart">Giỏ Hàng</a></li>
         </ul>
       </nav>
 
       <div class="d-flex me-4">
+
         <c:if test="${sessionScope.account == null}">
           <a href="login" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng nhập<i
                   class="bi bi-arrow-right"></i></a>
@@ -147,7 +151,7 @@
 
                 <a href="preferential-list-manager"  class="dropdown-item">Quản lí mã giảm giá</a>
                 <a href="getAllBooking" class="dropdown-item">Quản lí đơn dịch vụ</a>
-                <a href="service-add.jsp" class="dropdown-item">Quản lí dịch vụ</a>
+                <a href="service-list-manager" class="dropdown-item">Quản lí dịch vụ</a>
                 <a href="category-add.jsp" class="dropdown-item">Quản lí danh mục</a>
 
               </c:if>

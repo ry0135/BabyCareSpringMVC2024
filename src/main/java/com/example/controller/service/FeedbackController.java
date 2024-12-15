@@ -38,12 +38,15 @@ public class FeedbackController {
             @RequestParam("ServiceID") String serviceID,
             @RequestParam("BookingDate") String bookingDate,
             @RequestParam("name") String name,
+            @RequestParam("CTVID") String ctvID,
             Model model) {
 
         model.addAttribute("CustomerID", customerID);
         model.addAttribute("ServiceID", serviceID);
         model.addAttribute("BookingDate", bookingDate);
         model.addAttribute("name", name);
+        model.addAttribute("CTVID", ctvID);
+
 
         return "feedBack/feedback";
     }
@@ -56,6 +59,7 @@ public class FeedbackController {
             @RequestParam("rating") String rating,
             @RequestParam("BookingDate") String bookingDate,
             @RequestParam("name") String name,
+            @RequestParam("CTVID") String ctvID,
             Model model) {
 
         int id;
@@ -83,6 +87,7 @@ public class FeedbackController {
         feedback.setSatisfactionLevel(satisfactionLevel);
         feedback.setExperienceDate(experienceDate);
         feedback.setName(name);
+        feedback.setCtvID(ctvID);
 
         feedbackRepository.saveFeedback(feedback);
 
