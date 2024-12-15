@@ -40,11 +40,11 @@
     <div class="  col-lg-11" id="basic-info" style="margin-left: 25px; margin-top: 25px;">
         <nav class="nav nav-pills nav-justified">
             <a class="nav-item nav-link " href="getAllBooking">Đơn hàng đang chờ</a>
-            <a class="nav-item nav-link  " href="listbookingAccept">Đơn hàng đã xác nhận</a>
-            <a class="nav-item nav-link "href="list-service_succsess">Đơn hàng đã hoàn thành</a>
+            <a class="nav-item nav-link " href="listbookingAccept">Đơn hàng đã xác nhận</a>
 
-            <a class="nav-item nav-link " href="list-service-comment-success">Đơn hàng đã đánh giá</a>
-            <a class="nav-item nav-link active" style=" background-color: #ff4880; "  href="list-service-cancel">Đơn hàng đã hủy</a>
+            <a class="nav-item nav-link " href="list-service_succsess">Đơn hàng đã hoàn thành</a>
+            <a class="nav-item nav-link active" style=" background-color: #ff4880; " href="list-service-comment-success">Đơn hàng đã đánh giá</a>
+            <a class="nav-item nav-link  " href="list-service-cancel">Đơn hàng đã hủy</a>
 
         </nav>
 
@@ -60,12 +60,11 @@
                 <%--        <th>Mã số đơn hàng</th>--%>
                 <th>Dịch Vụ</th>
                 <th>Tên khách hàng</th>
-                <th>Địa chỉ</th>
                 <th>Ngày đặt</th>
-                <th>Slot</th>
-                <th>Trạng thái</th>
-                <th></th>
-                <th></th>
+                <th>Chất lượng</th>
+                    <th>Nội Dung</th>
+                    <th></th>
+
             </tr>
             </thead>
             <tbody id="myTable">
@@ -75,22 +74,25 @@
                         <%--          <td><a href="getordereddetail?orderId=${order.idOrder}&discountCode=${order.discountId}">${order.idOrder}</a></td>--%>
 
 
-                    <td>${order.serviceName}</td>
+                    <td>${order.name1}</td>
                     <td>${order.name}</td>
 
-                    <td>${order.address}</td>
-                    <td>${order.bookingDate}</td>
-                    <td>${order.slot}</td>
+
+                    <td>${order.experienceDate}</td>
+
                     <td>
                         <c:choose>
-                        <c:when test="${order.bookingStatus == 0}">Dịch vụ đã bị hủy</c:when>
-                        <c:when test="${order.bookingStatus == 1}">Đang xử lý...</c:when>
-                        <c:when test="${order.bookingStatus == 2}">Đặt Thành Công</c:when>
-                        <c:when test="${order.bookingStatus == 3}">Đã Hoàn Thành</c:when>
-                        </c:choose>
 
-                    <td><a href="acceptbooking?id=${order.bookingID}" class="btn btn-success">Xác nhận</a></td>
-                    <td><a href="cancelbooking?id=${order.bookingID}" class="btn btn-danger">Hủy</a></td>
+                        <c:when test="${order.satisfactionLevel == 1}">⭐</c:when>
+                        <c:when test="${order.satisfactionLevel == 2}">⭐⭐</c:when>
+                        <c:when test="${order.satisfactionLevel == 3}">⭐⭐⭐</c:when>
+                            <c:when test="${order.satisfactionLevel == 4}">⭐⭐⭐⭐</c:when>
+                            <c:when test="${order.satisfactionLevel == 5}">⭐⭐⭐⭐⭐</c:when>
+                        </c:choose>
+                    </td>
+                            <td>${order.testimonial}</td>
+                    <td><a href="succerbooking?id=${order.id}" class="btn btn-success">Phản Hồi</a></td>
+
 
                 </tr>
 

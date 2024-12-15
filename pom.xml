@@ -284,7 +284,6 @@
       <version>4.0.1</version><!-- Hoặc phiên bản khác tùy theo yêu cầu -->
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
@@ -295,18 +294,20 @@
       <artifactId>spring-web</artifactId>
       <version>5.3.12</version> <!-- Cùng phiên bản với spring-core -->
     </dependency>
-
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-messaging</artifactId>
+      <version>5.3.12</version>
+    </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-websocket</artifactId>
       <version>5.3.12</version> <!-- hoặc phiên bản tương tự -->
     </dependency>
 
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-messaging</artifactId>
-      <version>5.3.12</version>
-    </dependency>
+
+
+
   </dependencies>
 
 
