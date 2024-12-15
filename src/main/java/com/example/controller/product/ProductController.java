@@ -78,8 +78,8 @@ public class ProductController {
     @GetMapping("/productstatus")
     public String getAllProductsStatusPage(Model model) {
         List<Product> productstatus = productService.getAllProductMNG();
-        model.addAttribute("productstatus", productstatus);
-        return "product/product_status"; // Tên của tệp Thymeleaf hoặc JSP
+        model.addAttribute("listProducts", productstatus);
+        return "admin/managerProductAdmin";
 
     }
     // Xử lý yêu cầu mở khóa sản phẩm

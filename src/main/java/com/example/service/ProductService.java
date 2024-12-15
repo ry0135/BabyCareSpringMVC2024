@@ -54,6 +54,39 @@ public class ProductService {
         return products;
         }
     @Transactional
+    public List<Product> getAllProductWaitApprove() {
+        // Lấy danh sách sản phẩm có trạng thái là 1
+        List<Product> products = productRepository.findByStatus(0);
+
+        // Duyệt qua từng sản phẩm và gán danh sách hình ảnh
+        products.forEach(product -> {
+            // Lấy danh sách hình ảnh theo ProductID
+            List<ProductImage> images = productImageRepository.findByProductID(product.getProductId());
+
+            // Thêm từng đường dẫn hình ảnh vào sản phẩm
+            images.forEach(image -> product.addImagePath(image.getImagePath()));
+        });
+
+        return products;
+    }
+
+    @Transactional
+    public List<Product> getAllProductByCTVID(String CTVID) {
+        // Lấy danh sách sản phẩm có trạng thái là 1
+        List<Product> products = productRepository.findByCTVID(CTVID);
+
+        // Duyệt qua từng sản phẩm và gán danh sách hình ảnh
+        products.forEach(product -> {
+            // Lấy danh sách hình ảnh theo ProductID
+            List<ProductImage> images = productImageRepository.findByProductID(product.getProductId());
+
+            // Thêm từng đường dẫn hình ảnh vào sản phẩm
+            images.forEach(image -> product.addImagePath(image.getImagePath()));
+        });
+
+        return products;
+    }
+    @Transactional
     public List<Product> getAllProductMNG() {
         // Lấy danh sách sản phẩm có trạng thái là 1
         List<Product> products = productRepository.findAll();

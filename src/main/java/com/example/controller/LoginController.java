@@ -87,7 +87,7 @@ public class LoginController {
 
             // Chuyển hướng theo vai trò
             if (account.getRole() == 1) {
-                return "redirect:/admin"; // Trang dành cho admin
+                return "redirect:/statistic"; // Trang dành cho admin
             } else {
                 return "redirect:/home"; // Trang chủ người dùng
             }

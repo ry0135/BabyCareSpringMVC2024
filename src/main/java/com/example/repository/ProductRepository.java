@@ -12,7 +12,7 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, String> {
     List<Product> findAll();
     List<Product> findByStatus(int status);
-
+    List<Product> findByCTVID(String CTVID);
     @Query("SELECT COALESCE(SUM(c.rating), 0) FROM CommentProduct c WHERE c.productID = ?1")
     int getTotalRatingForProduct(String productId);
 
@@ -24,5 +24,8 @@ public interface ProductRepository extends JpaRepository<Product, String> {
     @Query("SELECT COUNT(p) FROM Product p WHERE p.CTVID = ?1")
     int countProductsByCTV(String CTVID);
 
+
+    @Query("SELECT COUNT(p) FROM Product p WHERE p.status = 1")
+    int countProductsLeft();
 }
 

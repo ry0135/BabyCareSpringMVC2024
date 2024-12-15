@@ -6,13 +6,16 @@
      .container-header {
         display: flex;
         justify-content: space-around;
-        background-color: white;
+        background-color: #f8d9e1;
         position: fixed;
         top: 0;
         width: 100%;
         z-index: 1000; /* Đảm bảo header luôn hiển thị trên cùng */
         padding: 10px 20px;
     }
+     body{
+         margin-top: 77px;
+     }
 </style>
 
 <div class="container-header" >
@@ -24,13 +27,12 @@
                 </h1>
             </a>
         </div>
-        <div class="title">
-            <span>Đăng ký trở thành Người bán BabyCare  </span>
-        </div>
     </div>
     <div class="user-info " style="display: flex; align-items: center">
         <img class="img-avatar text-white ms-lg-5" style="width: 70px; height: 83%; border-radius: 50%; margin-top: 5px;" src="${pageContext.request.contextPath}/image/${sessionScope.account.avatar}" alt="">
-        <a class="nav-link text-white px-5 ms-lg-3" style="background-color: #ff4880">
+        <a class="nav-link text-white px-5 ms-lg-3" style="background-color: #ff4880;    height: 50px;
+    text-align: center;
+    line-height: 50px;">
             ${sessionScope.account.firstname} ${sessionScope.account.lastname}
         </a>
     </div>

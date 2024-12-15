@@ -34,7 +34,13 @@
 
 </style>
 <div class="container ">
+  <style>
+    h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+      font-family: sans-serif;
+    }
+  </style>
   <%@include file="../servicebrand/serband_service.jsp" %>
+
   <div class="  col-lg-11" id="basic-info" style="margin-left: 25px; margin-top: 25px;">
     <nav class="nav nav-pills nav-justified">
       <a class="nav-item nav-link " href="getAllBooking">Đơn hàng đang chờ</a>

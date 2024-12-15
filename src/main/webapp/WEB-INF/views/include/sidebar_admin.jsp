@@ -16,9 +16,28 @@
     </head>
     <body style="margin-top: 120px">
 
-    <%@include file="header_sellChanel.jsp" %>
+
             <div class="sidebar col-lg-3">
                 <ul>
+                    <li class="sidebar-item">
+                    <span>Doanh thu</span>
+                    <ul class="submenu">
+                        <li><a href="statistic">Doanh Thu</a></li>
+                        <li>Tài Khoản Ngân Hàng</li>
+                    </ul>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <span>Quản lý tài khoản</span>
+                        <ul class="submenu">
+                            <li><a href="manage-cus-account">Quản lý tài khoản khách hàng</a></li>
+                            <li><a href="manage-emp-account">Quản lý tài khoản nhân viên</a></li>
+                            <li><a href="manage-ctv-account">Quản lý tài khoản cộng tác viên bán hàng</a></li>
+
+
+                        </ul>
+                    </li>
+
                     <li class="sidebar-item">
                         <span>Quản Lý Đơn Hàng</span>
                         <ul class="submenu">
@@ -33,24 +52,11 @@
                     <li class="sidebar-item">
                         <span>Quản Lý Sản Phẩm</span>
                         <ul class="submenu">
-                            <li><a href="manager_product">Tất Cả Sản Phẩm</a></li>
-                            <li><a href="addproduct">Thêm Sản Phẩm</a></li>
+                            <li><a href="productstatus">Tất Cả Sản Phẩm</a></li>
+                            <li><a href="productWaitApprove">Sản phẩm đợi duyệt</a></li>
                         </ul>
                     </li>
-                    <li class="sidebar-item">
-                        <span>Kênh Marketing</span>
-                        <ul class="submenu">
-                            <li>Kênh Marketing</li>
-                            <li>Đấu Giá Rẻ Vô Địch</li>
-                            <li>Quảng Cáo Shopee</li>
-                            <li>Tăng Đơn Cùng KOL</li>
-                            <li>Live & Video</li>
-                            <li>Khuyến Mãi của Shop</li>
-                            <li>Flash Sale của Shop</li>
-                            <li>Mã Giảm Giá của Shop</li>
-                            <li>Chương Trình Shopee</li>
-                        </ul>
-                    </li>
+
                     <li class="sidebar-item">
                         <span>Chăm sóc khách hàng</span>
                     </li>
@@ -143,7 +149,6 @@
             color: #0056b3;
             text-decoration: underline;
         }
-
 
     </style>
 

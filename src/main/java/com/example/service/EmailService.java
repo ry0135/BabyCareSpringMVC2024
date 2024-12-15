@@ -161,4 +161,70 @@ public class EmailService {
         }
     }
 
+    public void sendCodeToEmailProductApproval(String productName, String email, String customerName) {
+        // Lấy ngày hiện tại nếu approvalDate không được cung cấp
+        LocalDate currentDate = LocalDate.now();
+        String formattedDate = currentDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // Định dạng ngày
+        // Tạo MimeMessage thay vì SimpleMailMessage
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8"); // "UTF-8" để hỗ trợ Unicode
+            helper.setTo(email);
+            helper.setSubject("🎉 Duyệt sản phẩm thành công - Chúc mừng bạn! 🎉");
+
+            // Nội dung email
+            String content = "<p>Xin chào <b>" + customerName + "</b>,</p>"
+                    + "<p>Cảm ơn bạn đã tin tưởng và đăng sản phẩm của mình lên BabyCare! 😊</p>"
+                    + "<p>Chúng tôi vui mừng thông báo rằng sản phẩm của bạn với tên: <b>" + productName + "</b> đã được duyệt thành công và sẵn sàng trên sàn. ✅</p>"
+                    + "<p><b>📅 Ngày duyệt:</b> " + formattedDate + "</p>"
+                    + "<p>Chúng tôi hy vọng rằng sản phẩm của bạn sẽ nhận được sự quan tâm từ nhiều khách hàng trên nền tảng của chúng tôi. 🌟</p>"
+                    + "<p>Nếu bạn cần hỗ trợ thêm, vui lòng liên hệ đội ngũ hỗ trợ của chúng tôi qua email hoặc hotline. 📞✉️</p>"
+                    + "<p>Chúc bạn kinh doanh thành công và nhận được nhiều đơn hàng. 🥰</p>"
+                    + "<p>Trân trọng,</p>"
+                    + "<p><b>Đội ngũ BabyCare</b><br>"
+                    + "🌐 <a href='" + linkweb + "'>Website</a><br>"
+                    + "📧 Email hỗ trợ: " + supportEmail + "<br>"
+                    + "📞 Hotline: " + hotline + "</p>";
+
+            // Thiết lập nội dung HTML
+            helper.setText(content, true); // `true` để gửi nội dung HTML
+            mailSender.send(mimeMessage);
+            System.out.println("✅ Đã gửi email thông báo duyệt sản phẩm thành công.");
+        } catch (MessagingException e) {
+            System.err.println("❌ Lỗi khi gửi email: " + e.getMessage());
+        }
+    }
+    public void sendCodeToEmailProductRejection(String productName, String email, String customerName, String reason) {
+        LocalDate currentDate = LocalDate.now();
+        String formattedDate = currentDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // Định dạng ngày
+        // Tạo MimeMessage thay vì SimpleMailMessage
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8"); // "UTF-8" để hỗ trợ Unicode
+            helper.setTo(email);
+            helper.setSubject("❌ Sản phẩm không được duyệt - Thông báo từ BabyCare");
+
+            // Nội dung email
+            String content = "<p>Xin chào <b>" + customerName + "</b>,</p>"
+                    + "<p>Cảm ơn bạn đã đăng sản phẩm của mình lên BabyCare. Tuy nhiên, chúng tôi rất tiếc thông báo rằng sản phẩm của bạn với tên: <b>" + productName + "</b> không được duyệt. ❌</p>"
+                    + "<p><b>📅 Ngày thông báo:</b> " + formattedDate + "</p>"
+                    + "<p><b>🔍 Lý do không được duyệt:</b> " + reason + "</p>"
+                    + "<p>Vui lòng kiểm tra lại và chỉnh sửa sản phẩm của bạn theo các tiêu chuẩn của chúng tôi trước khi đăng lại. Nếu bạn cần hỗ trợ hoặc giải đáp thắc mắc, vui lòng liên hệ đội ngũ hỗ trợ của chúng tôi. 📞✉️</p>"
+                    + "<p>Rất mong bạn thông cảm và tiếp tục đồng hành cùng BabyCare. 🌟</p>"
+                    + "<p>Trân trọng,</p>"
+                    + "<p><b>Đội ngũ BabyCare</b><br>"
+                    + "🌐 <a href='" + linkweb + "'>Website</a><br>"
+                    + "📧 Email hỗ trợ: " + supportEmail + "<br>"
+                    + "📞 Hotline: " + hotline + "</p>";
+
+            // Thiết lập nội dung HTML
+            helper.setText(content, true); // `true` để gửi nội dung HTML
+            mailSender.send(mimeMessage);
+            System.out.println("✅ Đã gửi email thông báo không duyệt sản phẩm.");
+        } catch (MessagingException e) {
+            System.err.println("❌ Lỗi khi gửi email: " + e.getMessage());
+        }
+    }
+
+
 }

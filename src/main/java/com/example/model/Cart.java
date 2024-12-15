@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 
+import com.example.repository.CartItemRepository;
 import com.example.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -319,24 +320,43 @@ public class Cart {
         }
     }
 
-    public String decreaseAmount(String id) {
-        if (cart.isEmpty()) {
-            return "=========>Không tồn tại sản phẩm decreaseAmount(String id)<==========";
-        } else {
-            for (Items item : cart) {
-                if (item.getProduct().getProductId().equals(id)) {
-                    if (item.getAmount() <= 1) {
-                        return "=========>CART: Không thể giảm, số lượng tối thiểu là 1<==========";
-                    }
-                    item.setAmount(item.getAmount() - 1);
-                    CartItem cartItem = new CartItem(userId, id, item.getAmount());
-                    cartService.saveOrUpdateCartItem(cartItem); // Update the database
-                    return "=========>CART: Giảm số lượng thành công<==========";
-                }
-            }
-            return "=========>CART: Sản phẩm không tồn tại trong giỏ hàng<==========";
+    public String decreaseProductAmountById(String id) {
+        // Kiểm tra cart null hoặc rỗng
+        if (cart == null || cart.isEmpty()) {
+            return "=========>CART: Không tồn tại sản phẩm decreaseAmount(String id)<==========";
         }
+
+        for (Items item : cart) {
+            // Kiểm tra các trường hợp null của item hoặc product
+            if (item == null || item.getProduct() == null || item.getProduct().getProductId() == null) {
+                continue; // Bỏ qua các phần tử không hợp lệ
+            }
+
+            // Tìm sản phẩm theo ID
+            if (item.getProduct().getProductId().equals(id)) {
+                // Kiểm tra số lượng tối thiểu
+                if (item.getAmount() <= 1) {
+                    return "=========>CART: Không thể giảm, số lượng tối thiểu là 1<==========";
+                }
+
+                // Giảm số lượng
+                item.setAmount(item.getAmount() - 1);
+
+                // Tạo đối tượng CartItem và lưu vào cơ sở dữ liệu
+                CartItem cartItem = new CartItem(userId, id, item.getAmount());
+                try {
+                    cartService.saveOrUpdateCartItem(cartItem);
+                } catch (Exception e) {
+                    return "=========>CART: Lỗi khi lưu thông tin sản phẩm vào cơ sở dữ liệu<==========";
+                }
+
+                return "=========>CART: Giảm số lượng thành công<==========";
+            }
+        }
+
+        return "=========>CART: Sản phẩm không tồn tại trong giỏ hàng<==========";
     }
+
 
     public String removeItem(String id) {
         if (cart.isEmpty()) {

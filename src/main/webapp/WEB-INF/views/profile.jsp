@@ -3,6 +3,12 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
+
+<style>
+  h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+    font-family: sans-serif;
+  }
+</style>
 <div class="container mt-5">
   <form class="needs-validation" novalidate action="${pageContext.request.contextPath}/updateprofile" method="post" enctype="multipart/form-data">
     <c:if test="${not empty error}">
@@ -10,19 +16,19 @@
     </c:if>
 
     <div class="row">
-      <div class="col-md-4 profile-card">
+      <div class="col-md-4 ">
         <div class="card">
           <div class="card-body text-center">
             <img src="${pageContext.request.contextPath}/image/${avatar}" class="avatar" alt="Ảnh cá nhân">
             <h5 class="card-title">${firstname} ${lastname}</h5>
-            <a href="changepass" class="btn btn-outline-secondary">Thay Đổi Mật Khẩu</a>
+            <a href="changepass" class="btn btn-outline-primary" style="color: black;border-color: #ff4880#4d65f9;">Thay Đổi Mật Khẩu</a>
           </div>
         </div>
       </div>
 
       <div class="col-md-8">
         <div class="card personal-info-card">
-          <div class="card-header text-center">
+          <div class="card-header text-center" style="background-color: #f8d9e1">
             <h3>Thông Tin Cá Nhân</h3>
           </div>
           <div class="card-body">
@@ -47,7 +53,7 @@
               <div class="input-group">
                 <input type="text" class="form-control" id="address" placeholder="Address" name="address"
                        value="${address}" readonly required>
-                <button id="editButton" type="button" class="btn btn-edit">
+                <button id="editButton" type="button" class="btn btn-edit" style="margin-top: 0px; background-color: #ff4880;color: black">
                   <i class="glyphicon glyphicon-pencil"></i> Chỉnh sửa
                 </button>
               </div>
@@ -89,7 +95,7 @@
               </div>
             </div>
 
-            <button class="btn btn-primary" type="submit">Cập nhật</button>
+            <button class="btn btn-primary" type="submit" style="border-radius: 0px;">Cập nhật</button>
           </div>
         </div>
       </div>

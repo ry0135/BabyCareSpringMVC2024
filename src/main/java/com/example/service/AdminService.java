@@ -18,19 +18,19 @@ public class AdminService {
     private OrderDetailsRepository orderDetailsRepository;
 
     // Đếm tổng số người dùng
-    public long countUsers() {
-        return adminRepository.countUsers();
-    }
+//    public long countUsers() {
+//        return adminRepository.countUsers();
+//    }
 
     // Tính tổng giá trị đơn hàng hôm nay
-    public double findTotalPriceToday() {
-        // Lấy ngày hiện tại theo định dạng cần thiết
-        String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-
-        // Gọi repository và xử lý giá trị trả về
-        Double totalPrice = orderDetailsRepository.findTotalPriceToday(todayDate);
-
-        // Trả về 0.0 nếu kết quả trả về là null
-        return totalPrice != null ? totalPrice : 0.0;
-    }
+//    public double findTotalPriceToday() {
+//        // Lấy ngày hiện tại theo định dạng cần thiết
+//        String todayDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+//
+//        // Gọi repository và xử lý giá trị trả về
+//        Double totalPrice = orderDetailsRepository.findTotalPriceToday(todayDate);
+//
+//        // Trả về 0.0 nếu kết quả trả về là null
+//        return totalPrice != null ? totalPrice : 0.0;
+//    }
 }

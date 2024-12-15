@@ -26,11 +26,25 @@ public class CartService {
 
     @Autowired
     private BillRepository billRepository;
-    @Transactional
-    // Thêm hoặc cập nhật một CartItem
-    public CartItem saveOrUpdateCartItem(CartItem cartItem) {
-        return cartItemRepository.save(cartItem);
+
+    public void UpdateCartItem(CartItem cartItem) {
+             cartItemRepository.updateCartItemQuantity(cartItem.getUserId(), cartItem.getProductId(), cartItem.getQuantity()); // Cập nhật cartItem
+
     }
+
+
+    public void deleteByUserIdAndProductId(String userId, String productId) {
+         cartItemRepository.deleteByUserIdAndProductId(userId,productId);
+    }
+
+    public CartItem saveOrUpdateCartItem(CartItem cartItem) {
+
+        return cartItemRepository.save(cartItem); // Lưu mới nếu chưa tồn tại
+    }
+
+
+
+
     @Transactional
     // Lấy tất cả CartItem cho một user
     public List<CartItem> getCartItemsByUserId(String userId) {
@@ -179,36 +193,100 @@ public class CartService {
 
         return totalShippingFee; // Trả về tổng phí giao hàng
     }
-//    public double calculateTotalShippingFeeOrderDetail(List<Items> itemsList) {
-//        double totalShippingFee = 0;
-//        Set<String> ctvIds = new HashSet<>();
-//
-//        for (Items item : itemsList) {
-//            if (item == null) {
-//                // Bỏ qua item null
-//                continue;
-//            }
-//
-//            Product product = item.getProduct();
-//            if (product == null) {
-//                continue;
-//            }
-//
-//            String ctvId = getCTVIdByOrder_ProductId(product.getProductId());
-//            if (ctvId == null || ctvId.isEmpty()) {
-//                // Bỏ qua khi CTV ID không hợp lệ
-//                continue;
-//            }
-//
-//            // Chỉ tính phí vận chuyển nếu ctvId chưa được thêm
-//            if (!ctvIds.contains(ctvId)) {
-//                ctvIds.add(ctvId);
-//                // Thay thế BASE_SHIPPING_FEE bằng product.getShippingCost()
-//                totalShippingFee += product.getShippingCost(); // Sử dụng phí vận chuyển từ sản phẩm
-//            }
-//        }
-//
-//        return totalShippingFee;
-//    }
+
+
+    public String decreaseProductAmountById(String userId, String productId) {
+        // Lấy giỏ hàng của người dùng
+        Cart cart = loadCartByUserId(userId);
+
+        // Kiểm tra cart rỗng
+        if (cart == null || cart.getCart().isEmpty()) {
+            return "=========>CART: Không tồn tại sản phẩm decreaseProductAmountById<==========";
+        }
+
+        for (Items item : cart.getCart()) {
+            if (item == null || item.getProduct() == null || item.getProduct().getProductId() == null) {
+                continue; // Bỏ qua phần tử không hợp lệ
+            }
+
+            // Tìm sản phẩm theo ID
+            if (item.getProduct().getProductId().equals(productId)) {
+                // Kiểm tra số lượng tối thiểu
+                if (item.getAmount() <= 1) {
+                    return "=========>CART: Không thể giảm, số lượng tối thiểu là 1<==========";
+                }
+
+                // Giảm số lượng
+                item.setAmount(item.getAmount() - 1);
+
+                // Tạo CartItem mới và lưu vào cơ sở dữ liệu
+                CartItem cartItem = new CartItem(userId, productId, item.getAmount());
+
+                UpdateCartItem(cartItem);  // Lưu vào database
+
+                return "=========>CART: Giảm số lượng thành công<==========";
+            }
+        }
+
+        return "=========>CART: Sản phẩm không tồn tại trong giỏ hàng<==========";
+    }
+
+
+    public String increaseProductAmountById(String userId, String productId) {
+        // Lấy giỏ hàng của người dùng
+        Cart cart = loadCartByUserId(userId);
+
+        // Kiểm tra cart rỗng
+        if (cart == null || cart.getCart().isEmpty()) {
+            return "=========>CART: Không tồn tại sản phẩm decreaseProductAmountById<==========";
+        }
+
+        for (Items item : cart.getCart()) {
+            if (item == null || item.getProduct() == null || item.getProduct().getProductId() == null) {
+                continue; // Bỏ qua phần tử không hợp lệ
+            }
+
+            // Tìm sản phẩm theo ID
+            if (item.getProduct().getProductId().equals(productId)) {
+
+
+                // Giảm số lượng
+                item.setAmount(item.getAmount() + 1);
+
+                // Tạo CartItem mới và lưu vào cơ sở dữ liệu
+                CartItem cartItem = new CartItem(userId, productId, item.getAmount());
+
+                UpdateCartItem(cartItem);  // Lưu vào database
+
+                return "=========>CART: Giảm số lượng thành công<==========";
+            }
+        }
+
+        return "=========>CART: Sản phẩm không tồn tại trong giỏ hàng<==========";
+    }
+    @Transactional
+    public String removeItem(String userId, String productId) {
+        Cart cart = loadCartByUserId(userId);
+        // Kiểm tra nếu giỏ hàng trống
+        if (cart.getCart().isEmpty()) {
+            return "=========>Khong ton tai san pham decreaseAmmount(String id) <==========";
+        } else {
+            // Duyệt qua các item trong giỏ hàng
+            for (Items item : cart.getCart()) {
+                if (item.getProduct().getProductId().equals(productId)) {
+                    // Xóa sản phẩm khỏi giỏ hàng
+                    cart.getCart().remove(cart.getCart().indexOf(item));
+
+                    // Xóa CartItem khỏi cơ sở dữ liệu
+                    deleteByUserIdAndProductId(userId, productId);
+
+                    return "=========>CART : remove Thanh Cong<==========";
+                }
+            }
+            return "=========>CART : San pham khong ton tai<==========";
+        }
+    }
+
+
 
 }

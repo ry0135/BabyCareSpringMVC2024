@@ -100,8 +100,7 @@
                                     <td>
                                         <div class="qty d-flex">
 
-
-                                            <form action="changeamount">
+                                            <form action="changeamount" method="get">
                                                 <input name="decrease" value="${item.product.productId}" type="hidden">
                                                 <button type="submit" class="btn-minus"><i class="fa fa-minus"></i></button>
                                             </form>

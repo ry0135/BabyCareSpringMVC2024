@@ -74,7 +74,7 @@ public class ServiceController {
         Double averageRating = serviceService.getAverageRatingForService(serviceID);
         Integer evaluateRating = serviceService.getTotalEvaluateForService(serviceID);
         ShopService shopServices = shopServiceService.getShopServicesByCtvID(ctvID);
-
+        shopServices.getAcountNumber();
         // Thêm thông tin vào model
         model.addAttribute("service", service);
 //        model.addAttribute("combo", comboList);

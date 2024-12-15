@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="/WEB-INF/views/include/header.jsp" />
 <style>
     /* Basic Reset */
     * {
@@ -233,9 +234,11 @@
     }
 
 
-
+    h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+        font-family: sans-serif;
+    }
 </style>
-<jsp:include page="/WEB-INF/views/include/header.jsp" />
+
 <!-- Services Start -->
 <div class="header-carousel-item">
     <img src="assets/images/h/h3.jpg" class="img-fluid w-100" style="height: 600px" alt="Image">
