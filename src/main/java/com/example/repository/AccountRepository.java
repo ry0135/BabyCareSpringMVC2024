@@ -35,4 +35,10 @@ public interface AccountRepository extends JpaRepository<Account, String> {
     @Modifying
     @Query("UPDATE Account u SET u.role = 5 WHERE u.userID = :userId")
     void updateCustomerToCTV(@Param("userId") String userId);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Account u SET u.role = 4 WHERE u.userID = :userId")
+    void updateCustomerToCTVProduct(@Param("userId") String userId);
+
 }

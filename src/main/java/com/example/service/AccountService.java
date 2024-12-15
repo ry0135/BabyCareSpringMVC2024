@@ -121,5 +121,8 @@ public class AccountService {
     public void updateCustomerToCTV(String ctvId) {
         accountRepository.updateCustomerToCTV(ctvId);
     }
+    public void updateCustomerToCTVProduct(String CTVID) {
+        accountRepository.updateCustomerToCTV(CTVID);
+    }
 
 }
