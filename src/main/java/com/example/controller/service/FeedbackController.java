@@ -1,4 +1,6 @@
 package com.example.controller.service;
+import com.example.model.Account;
+import com.example.model.FeedBackDTO;
 import com.example.model.Feedback;
 import com.example.repository.FeedbackRepository;
 import com.example.service.FeedbackService;
@@ -30,6 +32,13 @@ public class FeedbackController {
         model.addAttribute("feedbackList", feedbackList);
         return "feedback"; // trả về template feedback.html
     }
+    @GetMapping("/list-service-comment-success")
+    public String getFeedbacksAll( Model model, HttpSession session) {
+        Account user = (Account) session.getAttribute("account");
+        List<FeedBackDTO> feedbackList = feedbackService.getFeedbackByCTID(user.getUserID());
+        model.addAttribute("list", feedbackList);
+        return "service/list_booking_feedback"; // trả về template feedback.html
+    }
 
 
     @GetMapping("/feedback")
@@ -37,6 +46,7 @@ public class FeedbackController {
             @RequestParam("CustomerID") String customerID,
             @RequestParam("ServiceID") String serviceID,
             @RequestParam("BookingDate") String bookingDate,
+            @RequestParam("CTVID") String ctvID,
             @RequestParam("name") String name,
             Model model) {
 
@@ -44,6 +54,7 @@ public class FeedbackController {
         model.addAttribute("ServiceID", serviceID);
         model.addAttribute("BookingDate", bookingDate);
         model.addAttribute("name", name);
+        model.addAttribute("CTVID", ctvID);
 
         return "feedBack/feedback";
     }
@@ -56,6 +67,7 @@ public class FeedbackController {
             @RequestParam("rating") String rating,
             @RequestParam("BookingDate") String bookingDate,
             @RequestParam("name") String name,
+            @RequestParam("CTVID") String ctvID,
             Model model) {
 
         int id;
@@ -83,9 +95,9 @@ public class FeedbackController {
         feedback.setSatisfactionLevel(satisfactionLevel);
         feedback.setExperienceDate(experienceDate);
         feedback.setName(name);
-
+        feedback.setCtvID(ctvID);
         feedbackRepository.saveFeedback(feedback);
 
-        return "redirect:/service-list-manager";
+        return "redirect:/byCustomerID";
     }
 }

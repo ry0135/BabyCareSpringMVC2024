@@ -145,6 +145,9 @@ public class AccountService {
 
     @Autowired
     private AccountRepository AccountRepository;
+    public List<Account> getAllAccounts() {
+        return accountRepository.findAll();
+    }
 
     public void lockEmployee(String empID) {
         accountRepository.lockAccount(empID);
@@ -166,4 +169,11 @@ public class AccountService {
         accountRepository.unlockAccount(userID);
     }
 
+
+    public void updateCustomerToCTV(String ctvId) {
+        accountRepository.updateCustomerToCTV(ctvId);
+    }
+    public void updateCustomerToCTVProduct(String CTVID) {
+        accountRepository.updateCustomerToCTVProduct(CTVID);
+    }
 }

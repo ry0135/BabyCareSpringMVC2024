@@ -126,7 +126,7 @@
 
                         <c:if test="${booking.bookingStatus == 3}">
                             <form action="feedback" method="get">
-
+                                <input type="hidden" name="CTVID" value="${booking.CTVID}">
                                 <input type="hidden" name="CustomerID" value="${booking.customerID}">
                                 <input type="hidden" name="ServiceID" value="${booking.serviceID}">
                                 <input type="hidden" id="bookingDate" name="BookingDate" value="${booking.bookingDate}">

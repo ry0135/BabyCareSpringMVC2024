@@ -1,5 +1,6 @@
 package com.example.controller.preferentials;
 
+import com.example.model.Account;
 import com.example.model.Preferential;
 import com.example.service.FilleUtils;
 import com.example.service.PreferentialService;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -62,8 +64,10 @@ public class PreferentialController {
             @RequestParam("rate") double rate,
             @RequestParam("preferentialDescription") String preferentialDescription,
             @RequestParam(value = "preferentialImg", required = false) MultipartFile preferentialImg,
-            @RequestParam("employeeID") String employeeID,
-            Model model) {
+            Model model, HttpSession session) {
+
+
+        Account account = (Account) session.getAttribute("account");
 
         Preferential preferential = new Preferential();
         preferential.setPreferentialCode(preferentialCode);
@@ -73,7 +77,7 @@ public class PreferentialController {
         preferential.setQuantity(quantity);
         preferential.setRate(rate);
         preferential.setPreferentialDescription(preferentialDescription);
-        preferential.setEmployeeID(employeeID);
+        preferential.setEmployeeID(account.getUserID());
 
         if (preferentialImg != null && !preferentialImg.isEmpty()) {
             try {
@@ -124,5 +128,34 @@ public class PreferentialController {
             return "preferential/preferentials"; // Redirect to the list if not found
         }
     }
+    @GetMapping("/preferential/update/{preferentialCode}")
+    public String getUpdateForm(@PathVariable("preferentialCode") String preferentialCode, Model model) {
+        Optional<Preferential> preferentialOpt = preferentialService.getPreferentialsByCode(preferentialCode);
 
+        if (preferentialOpt.isPresent()) {
+            model.addAttribute("preferential", preferentialOpt.get());
+            return "preferential/preferential_update"; // View cho form update
+        } else {
+            model.addAttribute("error", "Preferential not found");
+            return "redirect:/preferentials";
+        }
+    }
+    @PostMapping("/preferential/update")
+    public String updatePreferential(
+            @RequestParam("preferentialCode") String preferentialCode,
+            @RequestParam("quantity") int quantity,
+            Model model) {
+
+        Optional<Preferential> preferentialOpt = preferentialService.getPreferentialsByCode(preferentialCode);
+
+        if (preferentialOpt.isPresent()) {
+            Preferential preferential = preferentialOpt.get();
+            preferential.setQuantity(quantity); // Cập nhật số lượng
+            preferentialService.savePreferential(preferential); // Lưu vào DB
+            return "redirect:/preferentials"; // Trả về danh sách
+        } else {
+            model.addAttribute("error", "Preferential not found");
+            return "preferential/preferentials";
+        }
+    }
 }

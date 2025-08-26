@@ -81,7 +81,8 @@
   <div class="header clearfix">
     <h3 class="text-muted"></h3>
   </div>
-  <h1 class="display-3 mb-4" style=" font-size: 26px">Dịch vụ: ${name}</h1>
+<%--  <h1 class="display-3 mb-4" style=" font-size: 26px">Dịch vụ: ${name}</h1>--%>
+  <h1 class="display-3 mb-4" style=" font-size: 26px">Dịch vụ: ${serviceName}</h1>
 
   <div class="table-responsive">
     <form action="submitUrlService" id="frmCreateOrder" method="post">

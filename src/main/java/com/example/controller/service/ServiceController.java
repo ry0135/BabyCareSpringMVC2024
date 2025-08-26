@@ -54,7 +54,21 @@ public class ServiceController {
 
         return "service/services"; // Trả về trang view (service.jsp)
     }
+    @GetMapping("/getShope")
+    public String getShopService(@RequestParam("CTVID") String ctvID , Model model) {
 
+        List<ServiceEntity> service = serviceService.getServicesByCTVID(ctvID);
+
+
+        ShopService shopServices = shopServiceService.getShopServicesByCtvID(ctvID);
+
+        // Thêm thông tin vào model
+        model.addAttribute("ListS", service);
+
+        model.addAttribute("brand", shopServices);
+
+        return "servicebrand/view_shop_service"; // Trả về view service-detail.html
+    }
     @GetMapping("/getservicedetail")
     public String getServiceDetail(@RequestParam("serviceID") int serviceID,
            @RequestParam("CTVID") String ctvID , Model model) {

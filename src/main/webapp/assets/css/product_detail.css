@@ -7,18 +7,18 @@ body {
 }
 
 .product-container, .store-info, .product-details {
-    border: 1px solid #ddd;
+
     background-color: #fff;
     padding: 20px;
     margin-top: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    border-radius: 8px;
+    border-radius: 0px;
+
 }
 
 .product-image img, .product-details img {
     width: 100%;
     height: auto;
-    border-radius: 4px;
+
 }
 
 .store-info img {
@@ -120,7 +120,7 @@ h2, h3 {
     padding: 20px;
     margin-top: 20px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    border-radius: 8px;
+
 }
 
 .comment-item {

@@ -174,29 +174,29 @@
                 });
             </script>
 
-                <h2>Danh sách sản phẩm bán chạy nhất</h2>
-                <p>Đây là danh sách các mặt hàng sản phẩm bán chạy nhất</p>
-                <br>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Thứ hạng</th>
-                        <th>ID sản phẩm</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Số lượng đã bán</th>
-                    </tr>
-                    </thead>
-                    <tbody id="myTable">
-                    <c:forEach var="product" items="${listProduct}">
-                        <tr>
-                            <td>${listProduct.indexOf(product) + 1}</td>
-                            <td>${product.productId}</td>
-                            <td>${product.productName}</td>
-                            <td>${product.productAmount}</td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
+<%--                <h2>Danh sách sản phẩm bán chạy nhất</h2>--%>
+<%--                <p>Đây là danh sách các mặt hàng sản phẩm bán chạy nhất</p>--%>
+<%--                <br>--%>
+<%--                <table class="table table-bordered">--%>
+<%--                    <thead>--%>
+<%--                    <tr>--%>
+<%--                        <th>Thứ hạng</th>--%>
+<%--                        <th>ID sản phẩm</th>--%>
+<%--                        <th>Tên sản phẩm</th>--%>
+<%--                        <th>Số lượng đã bán</th>--%>
+<%--                    </tr>--%>
+<%--                    </thead>--%>
+<%--                    <tbody id="myTable">--%>
+<%--                    <c:forEach var="product" items="${listProduct}">--%>
+<%--                        <tr>--%>
+<%--                            <td>${listProduct.indexOf(product) + 1}</td>--%>
+<%--                            <td>${product.productId}</td>--%>
+<%--                            <td>${product.productName}</td>--%>
+<%--                            <td>${product.productAmount}</td>--%>
+<%--                        </tr>--%>
+<%--                    </c:forEach>--%>
+<%--                    </tbody>--%>
+<%--                </table>--%>
 
         </div>
     </div>

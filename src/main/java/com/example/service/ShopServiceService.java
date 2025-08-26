@@ -58,4 +58,17 @@ public class ShopServiceService {
         }
         return false;
     }
+
+    public void approveBrand(String ctvId) {
+        shopServiceRepository.updateBrandStatus(ctvId);
+    }
+
+
+
+    public boolean hasPendingRegistration(String userId) {
+        // Sử dụng phương thức đã định nghĩa trong Repository
+        return shopServiceRepository.existsByctvIDAndStatus(userId,0);
+    }
+
+
 }

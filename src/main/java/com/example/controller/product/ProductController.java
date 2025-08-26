@@ -48,16 +48,19 @@ public class ProductController {
             }
 
             List<CommentProduct> comments = productService.listCommentsByProductId(productId);
-
+            List<Product> topProduct = productService.listTopProduct(product.getCTVID());
             productService.setUserDetailsForComments(comments);
+            List<Product> getAllProductByCTVID = productService.getAllProductByCTVID(product.getCTVID());
 
             // Thiết lập thông tin vào model để truyền tới view
             model.addAttribute("listComments", comments);
             model.addAttribute("product", product);
-
+            product.getImagePaths();
             double averageRating = productService.getAverageRatingForProduct(productId);
             int totalComment = productService.getTotalCommentsForProduct(productId);
             int productCount = productService.getCountProductByCTV(product.getCTVID());
+            model.addAttribute("topProduct", topProduct);
+            model.addAttribute("allProduct", getAllProductByCTVID);
 
             model.addAttribute("TotalRating", averageRating);
             model.addAttribute("TotalComment", totalComment);

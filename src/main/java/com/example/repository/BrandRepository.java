@@ -4,9 +4,12 @@ import com.example.model.Account;
 import com.example.model.Brand;
 import com.example.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -28,4 +31,14 @@ public interface BrandRepository extends JpaRepository<Brand, String> {
 
     @Query("SELECT b.brandName FROM Product p JOIN Brand b ON p.CTVID = b.CTVID WHERE p.productId = ?1")
     String findBrandNameByProductId(String productId);
+
+
+    List<Brand> findByStatus(int status);
+    @Transactional
+    @Modifying
+    @Query("UPDATE Brand b SET b.status = 1 WHERE b.CTVID = :CTVID")
+    void updateBrandStatus(@Param("CTVID") String CTVID);
+
+    void deleteByCTVID(String CTVID);
+
 }

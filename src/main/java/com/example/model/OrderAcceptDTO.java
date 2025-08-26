@@ -1,12 +1,15 @@
 package com.example.model;
 
+import java.util.List;
+
 public class OrderAcceptDTO {
 
-    private String idOrder, username, date, discountId, total, orderStatus;
+    private String idOrder, username, date, discountId, orderStatus;
     private String address, CTVID;
+    private double total;
     private String totalAmount;
     private String userId;
-
+    private List<Items> items;
 
     public OrderAcceptDTO() {
     }
@@ -30,7 +33,7 @@ public class OrderAcceptDTO {
         this.totalAmount = totalAmount;
     }
 
-    public OrderAcceptDTO(String idOrder, String username, String date, String discountId, String total, String orderStatus, String address, String CTVID, String totalAmount, String userId) {
+    public OrderAcceptDTO(String idOrder, String username, String date, String discountId, double total, String orderStatus, String address, String CTVID, String totalAmount, String userId) {
         this.idOrder = idOrder;
         this.username = username;
         this.date = date;
@@ -41,6 +44,28 @@ public class OrderAcceptDTO {
         this.CTVID = CTVID;
         this.totalAmount = totalAmount;
         this.userId = userId;
+    }
+
+    public OrderAcceptDTO(String idOrder, String username, String date, String discountId, double total, String orderStatus, String address, String CTVID, String totalAmount, String userId, List<Items> items) {
+        this.idOrder = idOrder;
+        this.username = username;
+        this.date = date;
+        this.discountId = discountId;
+        this.total = total;
+        this.orderStatus = orderStatus;
+        this.address = address;
+        this.CTVID = CTVID;
+        this.totalAmount = totalAmount;
+        this.userId = userId;
+        this.items = items;
+    }
+
+    public List<Items> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Items> items) {
+        this.items = items;
     }
 
     public String getIdOrder() {
@@ -75,11 +100,11 @@ public class OrderAcceptDTO {
         this.discountId = discountId;
     }
 
-    public String getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 

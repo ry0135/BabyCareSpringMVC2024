@@ -55,7 +55,7 @@
         <td>${service.typeId}</td>
 
 <%--        <td>${(service.status==1)?"Đang bán":"Ngừng bán"}</td>--%>
-        <td><img style="width: 50%" src="pageContext.request.contextPath}/assets/img/${service.listImg}" alt="${service.serviceID}"></td>
+        <td><img style="width: 50%" src="${pageContext.request.contextPath}/image/${service.listImg}" alt="${service.serviceID}"></td>
         <td>
           <a class="btn btn-success" href="${pageContext.request.contextPath}/updateService?serviceID=${service.serviceID}">Cập nhật</a>
         </td>

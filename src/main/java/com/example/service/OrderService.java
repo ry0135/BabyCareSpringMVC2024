@@ -4,6 +4,7 @@ import com.example.model.*;
 import com.example.repository.BillRepository;
 import com.example.repository.OrderDetailsRepository;
 import com.example.repository.ProductRepository;
+import com.paypal.api.payments.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -253,6 +254,189 @@ public class OrderService {
 
         return orderAcceptList;
     }
+    public List<Items> getItemsByBillId(String billId) {
+        List<OrderDetails> orderDetails = orderDetailsRepository.findOrderDetailsByBillId(billId);
+        List<Items> itemsList = new ArrayList<>();
+
+        for (OrderDetails detail : orderDetails) {
+            Product product = productService.getProductById(detail.getProductID());
+            Items item = new Items();
+            item.setProduct(product);
+            item.setAmount(detail.getAmountProduct());
+            item.setOrderId(billId);
+            itemsList.add(item);
+        }
+
+        return itemsList;
+    }
+
+
+    @Transactional
+    public List<OrderAcceptDTO> findByCustomerIdAndStatus(String customerId) {
+        List<OrderAcceptDTO> orderAcceptList = new ArrayList<>();
+        List<Bill> bills = billRepository.findByCustomerIdAndStatus(customerId);
+
+        for (Bill bill : bills) {
+            OrderAcceptDTO orderAccept = new OrderAcceptDTO();
+            orderAccept.setIdOrder(bill.getBillID());
+            orderAccept.setAddress(bill.getAddressDelivery());
+            orderAccept.setDate(bill.getDateCreate());
+            orderAccept.setOrderStatus(bill.getStatusBill());
+            orderAccept.setDiscountId(bill.getPreferentialID());
+            orderAccept.setUsername(getNameByOrderId(bill.getBillID()));
+            orderAccept.setUserId(bill.getCustomerID());
+            double total = getTotalPriceByBillID(bill.getBillID());
+            orderAccept.setTotal(total);
+            List<Items> items = getItemsByBillId(bill.getBillID());
+            orderAccept.setItems(items);
+            orderAcceptList.add(orderAccept);
+        }
+
+        return orderAcceptList;
+    }
+
+
+    @Transactional
+    public List<OrderAcceptDTO> findOrderByAcceptCustomerIdAndStatus(String customerId) {
+        List<OrderAcceptDTO> orderAcceptList = new ArrayList<>();
+        List<Bill> bills = billRepository.findOrderByAcceptCustomerIdAndStatus(customerId);
+
+        for (Bill bill : bills) {
+            OrderAcceptDTO orderAccept = new OrderAcceptDTO();
+            orderAccept.setIdOrder(bill.getBillID());
+            orderAccept.setAddress(bill.getAddressDelivery());
+            orderAccept.setDate(bill.getDateCreate());
+            orderAccept.setOrderStatus(bill.getStatusBill());
+            orderAccept.setDiscountId(bill.getPreferentialID());
+            orderAccept.setUsername(getNameByOrderId(bill.getBillID()));
+            orderAccept.setUserId(bill.getCustomerID());
+            double total = getTotalPriceByBillID(bill.getBillID());
+            orderAccept.setTotal(total);
+            List<Items> items = getItemsByBillId(bill.getBillID());
+            orderAccept.setItems(items);
+            orderAcceptList.add(orderAccept);
+        }
+
+        return orderAcceptList;
+    }
+
+
+    @Transactional
+    public List<OrderAcceptDTO> getAllOrderPaidByCustomerId(String customerId) {
+        List<OrderAcceptDTO> orderAcceptList = new ArrayList<>();
+        List<Bill> bills = billRepository.getAllOrderPaidByCustomerId(customerId);
+
+        for (Bill bill : bills) {
+            OrderAcceptDTO orderAccept = new OrderAcceptDTO();
+            orderAccept.setIdOrder(bill.getBillID());
+            orderAccept.setAddress(bill.getAddressDelivery());
+            orderAccept.setDate(bill.getDateCreate());
+            orderAccept.setOrderStatus(bill.getStatusBill());
+            orderAccept.setDiscountId(bill.getPreferentialID());
+            orderAccept.setUsername(getNameByOrderId(bill.getBillID()));
+            orderAccept.setUserId(bill.getCustomerID());
+
+            double total = getTotalPriceByBillID(bill.getBillID());
+            orderAccept.setTotal(total);
+            List<Items> items = getItemsByBillId(bill.getBillID());
+            orderAccept.setItems(items);
+            orderAcceptList.add(orderAccept);
+        }
+
+        return orderAcceptList;
+    }
+    @Transactional
+    public List<OrderAcceptDTO> getAllOrderCommentSuccessByCustomerId(String customerId) {
+        List<OrderAcceptDTO> orderAcceptList = new ArrayList<>();
+        List<Bill> bills = billRepository.getAllOrderCommentSuccessByCustomerId(customerId);
+
+        for (Bill bill : bills) {
+            OrderAcceptDTO orderAccept = new OrderAcceptDTO();
+            orderAccept.setIdOrder(bill.getBillID());
+            orderAccept.setAddress(bill.getAddressDelivery());
+            orderAccept.setDate(bill.getDateCreate());
+            orderAccept.setOrderStatus(bill.getStatusBill());
+            orderAccept.setDiscountId(bill.getPreferentialID());
+            orderAccept.setUsername(getNameByOrderId(bill.getBillID()));
+            orderAccept.setUserId(bill.getCustomerID());
+            double total = getTotalPriceByBillID(bill.getBillID());
+            orderAccept.setTotal(total);
+            List<Items> items = getItemsByBillId(bill.getBillID());
+            orderAccept.setItems(items);
+            orderAcceptList.add(orderAccept);
+        }
+
+        return orderAcceptList;
+    }
+    @Transactional
+    public List<OrderAcceptDTO> getAllOrderCancelByCustomerId(String customerId) {
+        List<OrderAcceptDTO> orderAcceptList = new ArrayList<>();
+        List<Bill> bills = billRepository.getAllOrderCancelByCustomerId(customerId);
+
+        for (Bill bill : bills) {
+            OrderAcceptDTO orderAccept = new OrderAcceptDTO();
+            orderAccept.setIdOrder(bill.getBillID());
+            orderAccept.setAddress(bill.getAddressDelivery());
+            orderAccept.setDate(bill.getDateCreate());
+            orderAccept.setOrderStatus(bill.getStatusBill());
+            orderAccept.setDiscountId(bill.getPreferentialID());
+            orderAccept.setUsername(getNameByOrderId(bill.getBillID()));
+            orderAccept.setUserId(bill.getCustomerID());
+            double total = getTotalPriceByBillID(bill.getBillID());
+            orderAccept.setTotal(total);
+            List<Items> items = getItemsByBillId(bill.getBillID());
+            orderAccept.setItems(items);
+            orderAcceptList.add(orderAccept);
+        }
+
+        return orderAcceptList;
+    }
+
+    @Transactional
+    public List<OrderAcceptDTO> getAllOrderSuccessByCustomerId(String customerId) {
+        List<OrderAcceptDTO> orderAcceptList = new ArrayList<>();
+        List<Bill> bills = billRepository.getAllOrderSuccessByCustomerId(customerId);
+
+        for (Bill bill : bills) {
+            OrderAcceptDTO orderAccept = new OrderAcceptDTO();
+            orderAccept.setIdOrder(bill.getBillID());
+            orderAccept.setAddress(bill.getAddressDelivery());
+            orderAccept.setDate(bill.getDateCreate());
+            orderAccept.setOrderStatus(bill.getStatusBill());
+            orderAccept.setDiscountId(bill.getPreferentialID());
+            orderAccept.setUsername(getNameByOrderId(bill.getBillID()));
+            orderAccept.setUserId(bill.getCustomerID());
+            double total = getTotalPriceByBillID(bill.getBillID());
+            orderAccept.setTotal(total);
+            List<Items> items = getItemsByBillId(bill.getBillID());
+            orderAccept.setItems(items);
+            orderAcceptList.add(orderAccept);
+        }
+
+        return orderAcceptList;
+    }
+
+    @Transactional
+    public List<OrderAcceptDTO> getAllOrderByCustomerId(String customerId) {
+        List<OrderAcceptDTO> orderAcceptList = new ArrayList<>();
+        List<Bill> bills = billRepository.findByCustomerIdAndStatus(customerId);
+
+        for (Bill bill : bills) {
+            OrderAcceptDTO orderAccept = new OrderAcceptDTO();
+            orderAccept.setIdOrder(bill.getBillID());
+            orderAccept.setAddress(bill.getAddressDelivery());
+            orderAccept.setDate(bill.getDateCreate());
+            orderAccept.setOrderStatus(bill.getStatusBill());
+            orderAccept.setDiscountId(bill.getPreferentialID());
+            orderAccept.setUsername(getNameByOrderId(bill.getBillID()));
+            orderAccept.setUserId(bill.getCustomerID());
+            List<Items> items = getItemsByBillId(bill.getBillID());
+            orderAccept.setItems(items);
+            orderAcceptList.add(orderAccept);
+        }
+
+        return orderAcceptList;
+    }
 
     public void acceptOrder(String orderId) {
         Bill bill = billRepository.findById(orderId).orElse(null);
@@ -328,7 +512,8 @@ public class OrderService {
                     item.getProduct().setProductName(product.getProductName());
 
                     existingCart.getItems().add(item);
-                    totalPrice += detail.getPriceAtPurchase() * detail.getAmountProduct(); // Cập nhật tổng giá
+//                    totalPrice += detail.getPriceAtPurchase() * detail.getAmountProduct(); // Cập nhật tổng giá
+                    totalPrice += detail.getPriceAtPurchase() ; // Cập nhật tổng giá
                 }
             }
 
@@ -400,7 +585,9 @@ public class OrderService {
         return orderedList;
     }
 
-
+    public String getUserByOrderId(String orderId) {
+        return billRepository.findUserIdByOrderId(orderId);
+    }
 
 }
 

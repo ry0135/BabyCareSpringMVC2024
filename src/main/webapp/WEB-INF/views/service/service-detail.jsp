@@ -154,7 +154,7 @@
         <p class="stats">Người Theo Dõi: 688</p>
       </div>
       <div class="col-md-2 text-center">
-        <form action="ViewShopServlet">
+        <form action="getShope">
           <input name="CTVID" type="text" hidden="" value="${shopServices.ctvID}">
           <button class="button">Xem Shop</button>
         </form>

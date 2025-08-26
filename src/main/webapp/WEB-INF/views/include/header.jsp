@@ -87,7 +87,7 @@
 
 <%--<body>--%>
 <nav class="navbar navbar-light navbar-expand-xl py-3" style="width: 100%;background-color: #f8d9e1">
-  <a href="index.jsp" class="navbar-brand" style="margin-left: 90px;"><h1 style="color: #ff4880;">Baby<span style="color: #4d65f9;">Care</span></h1></a>
+  <a href="home" class="navbar-brand" style="margin-left: 90px;"><h1 style="color: #ff4880;">Baby<span style="color: #4d65f9;">Care</span></h1></a>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav mx-auto" style="font-family: Arial; ">
       <nav>
@@ -101,7 +101,14 @@
           <c:if test="${sessionScope.account.role != 2 && sessionScope.account.role != 4 && sessionScope.account.role != 1}">
             <li><a href="registerctv">Đăng kí CTV</a></li>
           </c:if>
-          <li><a href="cart">Giỏ Hàng</a></li>
+          <c:if test="${sessionScope.account.role != 2 && sessionScope.account.role != 4 && sessionScope.account.role != 1 && sessionScope.account.role != 5}">
+            <li><a href="register-shop-service">Đăng kí CTV Dịch Vụ</a></li>
+          </c:if>
+
+          <c:if test="${sessionScope.account.role != 2}">
+            <li><a href="cart">Giỏ Hàng</a></li>
+          </c:if>
+
         </ul>
       </nav>
 
@@ -140,19 +147,10 @@
             </div>
             <div class="dropdown-menu m-0" style="left: 131px;">
               <a href="profile" class="dropdown-item">Quản lí thông tin cá nhân</a>
+              <a href="chatMessage" class="dropdown-item">Phòng Chat</a>
 
-
-
-              <c:if test="${sessionScope.account.role  == 5}">
-
-                <a href="preferential-list-manager"  class="dropdown-item">Quản lí mã giảm giá</a>
-                <a href="getAllBooking" class="dropdown-item">Quản lí đơn dịch vụ</a>
-                <a href="service-add.jsp" class="dropdown-item">Quản lí dịch vụ</a>
-                <a href="category-add.jsp" class="dropdown-item">Quản lí danh mục</a>
-
-              </c:if>
               <c:if test="${sessionScope.account.role  == 4}">
-                <a href="product-list-manager" class="dropdown-item">Quản lí sản phẩm</a>
+                <a href="manager_product" class="dropdown-item">Quản lí sản phẩm</a>
                 <a href="order-list-manager" class="dropdown-item">Quản lí đơn hàng</a>
                 <a href="ListBookingCustomerIDServlet" class="dropdown-item">Quản lí dich vụ</a>
                 <a href="StatisticCTV" class="dropdown-item">Quản lí doanh thu</a>
@@ -172,7 +170,19 @@
                 <a href="byCustomerID" class="dropdown-item">Lịch sử đặt hàng dịch vụ</a>
                 <a href="getorderhistory" class="dropdown-item">Lịch sử đặt hàng</a>
               </c:if>
+              <c:if test="${sessionScope.account.role  == 2}">
+                <a href="preferential" class="dropdown-item">Thêm Mã Giảm giá</a>
+                <a href="preferentials" class="dropdown-item">Quản Lý Mã Giảm Giá</a>
 
+              </c:if>
+
+              <c:if test="${sessionScope.account.role  == 5}">
+              <a href="getAllBooking" class="dropdown-item">Quản lí đơn dịch vụ</a>
+              <a href="service-list-manager" class="dropdown-item">Quản lí dịch vụ</a>
+              <a href="category-add.jsp" class="dropdown-item">Quản lí danh mục</a>
+                <a href="getorderhistory" class="dropdown-item">Lịch sử đặt hàng</a>
+                <a href="byCustomerID" class="dropdown-item">Lịch sử đặt hàng dịch vụ</a>
+              </c:if>
               <a href="logout" class="dropdown-item text-danger">Đăng xuất</a>
             </div>
           </div>

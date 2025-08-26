@@ -164,6 +164,8 @@ public class CartController {
             System.err.println("No action specified");
         }
 
+//        session.removeAttribute("cart");
+
         // Đưa người dùng trở lại trang giỏ hàng
         return "redirect:/cart"; // Chuyển hướng về trang giỏ hàng
     }

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface ServiceBookedRepository extends JpaRepository<ServiceBooked, Integer> {
-    @Query("SELECT new com.example.model.BookingWithBillStatusDTO(sb, b, ss.brandName) " +
+    @Query("SELECT new com.example.model.BookingWithBillStatusDTO(sb, b, ss.brandName)" +
             "FROM ServiceBooked sb " +
             "LEFT JOIN ServiceBill b ON sb.bookingID = b.bookingID " +
             "LEFT JOIN ShopService ss ON sb.CTVID = ss.ctvID " + // Sử dụng ctvID làm điều kiện JOIN
@@ -31,5 +31,7 @@ public interface ServiceBookedRepository extends JpaRepository<ServiceBooked, In
     @Transactional // Đảm bảo rằng giao dịch được xử lý
     @Query("UPDATE ServiceBooked sb SET sb.bookingStatus = ?2 WHERE sb.bookingID = ?1")
     void updateBookingStatus(int bookingID, int bookingStatus);
+    @Query("SELECT sb FROM ServiceBooked sb WHERE sb.bookingID = ?1 AND sb.bookingStatus = 1")
+    ServiceBooked findAllByBoking(int bookingID);
 
 }

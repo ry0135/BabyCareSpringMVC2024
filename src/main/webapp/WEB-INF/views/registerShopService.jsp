@@ -33,7 +33,7 @@
         margin-right:  25%;  /* Giảm khoảng cách bên trái để cân bằng */
         margin-bottom: 50px; /* Tạo thêm khoảng cách phía dưới nếu cần */
         padding: 20px; /* Tạo thêm không gian bên trong phần tử */
-        height: 1200px;
+        height: 1300px;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Thêm đổ bóng để tạo độ nổi */
 
     }
@@ -183,176 +183,231 @@
     }
 </style>
 <html>
-<head>
-<title>Register Shop Service</title>
+<body>
 
-    </head>
-    <body>
-    <h2>Information Shop </h2>
+<c:if test="${hasPending}">
+    <div class="info-definition">
+        <h3 class="text-danger">Chúng tôi đã tiếp nhận thông tin của bạn. Chúng tôi sẽ thông báo qua email của bạn trong vòng 7 ngày.</h3>
+    </div>
+</c:if>
+<c:if test="${!hasPending}">
+    <div class="info-definition">
+        <form action="register-shop-service" method="POST" enctype="multipart/form-data">
 
-    <!-- Form đăng ký -->
-    <form action="/BabyCareSpringMVC2024_war/register-shop-service" method="POST" enctype="multipart/form-data">
-        <label for="brandName">BrandName:</label>
-    <input type="text" id="brandName" name="brandName"  required><br><br>
-
-    <label for="brandDescription">Brand Description:</label>
-    <textarea id="brandDescription" name="brandDescription" required></textarea><br><br>
-
-    <<!-- Brand Logo Upload -->
-        <!-- Brand Logo Upload -->
-        <label for="brandLogo">Brand Logo:</label>
-        <input type="file" id="brandLogo" name="brandLogo" accept="image/*" /><br>
-        <!-- Show preview if available -->
-        <c:if test="${not empty shopService.brandLogo}">
-            <h3>Current Brand Logo:</h3>
-            <img src="<c:url value='/images/${shopService.brandLogo}' />" alt="Brand Logo" style="max-width: 200px; max-height: 200px;" />
-        </c:if>
-        <br><br>
-
-    <label for="brandAddress">Brand Address:</label>
-    <input type="text" id="brandAddress" name="brandAddress"  required><br><br>
-
-    <label for="brandPhone">Brand Phone:</label>
-    <input type="text" id="brandPhone" name="brandPhone"  required><br><br>
-````
-        <div class="form-group row">
-            <label class="col-lg-3" for="IdentifiNumber">* Số CCCD/CMND <span class="text-danger">*</span></label>
-            <input class="form-control col-lg-3" type="text" id="IdentifiNumber" name="IdentifiNumber" placeholder="Nhập vào" maxlength="12" pattern="\d{12}" value="${shopService.identifiNumber}" required style="width: 320px;">
-            <div class="invalid-feedback">
-                Vui lòng nhập đúng 12 số cho Số CCCD/CMND.
-            </div>
-        </div>
-
-        <!-- Họ và Tên -->
-        <div class="form-group row">
-            <label class="col-lg-3" for="name">* Họ và Tên</label>
-            <input class="col-lg-3" type="text" id="name" name="name" placeholder="Nhập vào" maxlength="100"  required style="width: 320px;">
-            <div class="invalid-feedback">
-                Vui lòng nhập Họ và Tên.
-            </div>
-        </div>
-
-        <!-- Hình chụp của thẻ CMND/CCCD -->
-        <div class="upload-container row">
-            <label for="fileUpload" class="upload-label col-lg-3">* Hình chụp của thẻ CMND/CCCD <span class="text-danger">*</span></label>
-            <div class="upload-area col-lg-3" onclick="triggerFileUpload()">
-                <!-- Input file -->
-                <input type="file" id="fileUpload" name="IdentifiImg" class="file-input" accept="image/*" required onchange="previewImage(this, document.getElementById('imgPreview1'))">
-                <!-- Icon dấu cộng -->
-                <div class="upload-preview">
-                    <img id="imgPreview1" class="img-preview" style="width: 100%; height: auto; display: none;" alt="">
-                    <span class="add-icon" id="addIcon1">+</span>
+            <div class="form-group">
+                <%--@declare id="shop-name"--%><label for="shop-name">Tên Shop <span class="required">*</span></label>
+                <input type="text" class="form-control" id="brandName" placeholder="Tên cửa hàng"
+                       name="brandName" aria-describedby="inputGroupPrepend" pattern="^.{1,100}$" required>
+                <div class="invalid-feedback">
+                    Tên cửa hàng chứa từ 1 đến 100 kí tự
                 </div>
+                <p class="text-danger">${thongbao1}</p>
             </div>
 
-            <div class="col-lg-2">
-                <img id="imgPreview1" class="img-avatar text-white" style="width: 100px; height: auto;" src="${pageContext.request.contextPath}/WEB-INF/views/addBrand/cancuoc/mattruoc.png" alt="">
-            </div>
-            <div class="invalid-feedback">
-                Vui lòng tải lên hình chụp của thẻ CMND/CCCD.
+
+    <div class="form-group">
+        <%--@declare id="brandDescription"--%><label for="brandDescription">Mô tả cửa hàng <span class="required">*</span></label>
+        <input type="text" class="form-control" id="brandName" placeholder="Mô tả cửa hàng"
+               name="brandDescription" aria-describedby="inputGroupPrepend" pattern="^.{1,200}$"   required>
+        <div class="invalid-feedback">
+            Mô tả cửa hàng không quá 200 kí tự
+        </div>
+        <p class="text-danger">${thongbao1}</p>
+    </div>
+
+    <div class="form-group">
+        <%--@declare id="brandDescription"--%><label for="brandDescription">Địa chỉ cửa hàng <span class="required">*</span></label>
+        <input type="text" class="form-control" id="brandAddress" placeholder="Địa chỉ cửa hàng"
+               name="brandAddress" aria-describedby="inputGroupPrepend" pattern="^.{1,100}$"   required>
+        <div class="invalid-feedback">
+            Địa chỉ cửa hàng không quá 100 từ
+        </div>
+        <p class="text-danger">${thongbao1}</p>
+    </div>
+
+    <div class="form-group">
+        <%--@declare id="brandDescription"--%><label for="brandDescription">Số Điện Thoại Cửa Hàng <span class="required">*</span></label>
+        <input type="text" class="form-control" id="brandAddress" placeholder="Số Điện Thoại Cửa Hàng"
+               name="brandPhone" aria-describedby="inputGroupPrepend" pattern="^.{1,10}$"   required>
+        <div class="invalid-feedback">
+            Địa chỉ cửa hàng không quá 10 từ
+        </div>
+        <p class="text-danger">${thongbao1}</p>
+    </div>
+
+    <label for="brandLogo">Brand Logo:</label>
+    <input type="file" id="brandLogo" name="brandLogo" accept="image/*">
+
+
+
+    <div class="form-group row">
+        <label class="col-lg-3" for="IdentifiNumber">* Số CCCD/CMND <span class="text-danger">*</span></label>
+        <input class="form-control col-lg-3" type="text" id="IdentifiNumber" name="IdentifiNumber" placeholder="Nhập vào" maxlength="12" pattern="\d{12}" value="${shopService.identifiNumber}" required style="width: 320px;">
+        <div class="invalid-feedback">
+            Vui lòng nhập đúng 12 số cho Số CCCD/CMND.
+        </div>
+    </div>
+
+    <!-- Họ và Tên -->
+    <div class="form-group row">
+        <label class="col-lg-3" for="name">* Họ và Tên</label>
+        <input class="col-lg-3" type="text" id="name" name="name" placeholder="Nhập vào" maxlength="100"  required style="width: 320px;">
+        <div class="invalid-feedback">
+            Vui lòng nhập Họ và Tên.
+        </div>
+    </div>
+
+    <!-- Hình chụp của thẻ CMND/CCCD -->
+    <div class="upload-container row">
+        <label for="fileUpload" class="upload-label col-lg-3">* Hình chụp của thẻ CMND/CCCD <span class="text-danger">*</span></label>
+        <div class="upload-area col-lg-3" onclick="triggerFileUpload()">
+            <!-- Input file -->
+            <input type="file" id="fileUpload" name="IdentifiImg" class="file-input" accept="image/*" required onchange="previewImage(this, document.getElementById('imgPreview1'))">
+            <!-- Icon dấu cộng -->
+            <div class="upload-preview">
+                <img id="imgPreview1" class="img-preview" style="width: 100%; height: auto; display: none;" alt="">
+                <span class="add-icon" id="addIcon1">+</span>
             </div>
         </div>
 
-        <!-- Ảnh đang cầm CMND/CCCD của bạn -->
-        <div class="upload-container row">
-            <label for="fileUpload2" class="upload-label col-lg-3">* Ảnh đang cầm CMND/CCCD của bạn<span class="text-danger">*</span></label>
-            <div class="upload-area col-lg-3" onclick="triggerFileUpload2()">
-                <!-- Input file -->
-                <input type="file" id="fileUpload2" name="IdentifiImgFace" class="file-input" accept="image/*" required onchange="previewImage(this, document.getElementById('imgPreview2'))">
-                <!-- Icon dấu cộng -->
-                <div class="upload-preview">
-                    <img id="imgPreview2" class="img-preview" style="width: 100%; height: auto; display: none;" alt="">
-                    <span class="add-icon" id="addIcon2">+</span>
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <img id="imgPreview2" class="text-white" style="width: 100px; height: auto;" src="${pageContext.request.contextPath}/WEB-INF/views/addBrand/cancuoc/voimat.png" alt="">
-            </div>
-            <div class="invalid-feedback">
-                Vui lòng tải lên ảnh đang cầm CMND/CCCD của bạn.
+        <div class="col-lg-2">
+            <img id="imgPreview1" class="img-avatar text-white" style="width: 100px; height: auto;" src="${pageContext.request.contextPath}/image/mattruoc.png" alt="">
+        </div>
+        <div class="invalid-feedback">
+            Vui lòng tải lên hình chụp của thẻ CMND/CCCD.
+        </div>
+    </div>
+
+    <!-- Ảnh đang cầm CMND/CCCD của bạn -->
+    <div class="upload-container row">
+        <label for="fileUpload2" class="upload-label col-lg-3">* Ảnh đang cầm CMND/CCCD của bạn<span class="text-danger">*</span></label>
+        <div class="upload-area col-lg-3" onclick="triggerFileUpload2()">
+            <!-- Input file -->
+            <input type="file" id="fileUpload2" name="IdentifiImgFace" class="file-input" accept="image/*" required onchange="previewImage(this, document.getElementById('imgPreview2'))">
+            <!-- Icon dấu cộng -->
+            <div class="upload-preview">
+                <img id="imgPreview2" class="img-preview" style="width: 100%; height: auto; display: none;" alt="">
+                <span class="add-icon" id="addIcon2">+</span>
             </div>
         </div>
+        <div class="col-lg-2">
+            <img id="imgPreview2" class="text-white" style="width: 100px; height: auto;" src="${pageContext.request.contextPath}/image/voimat.png" alt="">
+        </div>
+        <div class="invalid-feedback">
+            Vui lòng tải lên ảnh đang cầm CMND/CCCD của bạn.
+        </div>
+    </div>
+
+
         <div class="form-group">
+            <%--@declare id="bankname"--%><label for="bankName">Tên Ngân Hàng <span class="text-danger">*</span></label>
+            <div class="input-group">
+                <select class="form-control" name="bankName" required>
+                    <option value="">Chọn ngân hàng</option>
+                    <c:choose>
+                        <c:when test="${not empty shopService}">
+                            <option value="Vietcombank" ${shopService.bankName == 'Vietcombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Ngoại thương Việt Nam (Vietcombank)</option>
+                            <option value="Vietinbank" ${shopService.bankName == 'Vietinbank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Công Thương Việt Nam (Vietinbank)</option>
+                            <option value="BIDV" ${shopService.bankName == 'BIDV' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Đầu tư và Phát triển Việt Nam (BIDV)</option>
+                            <option value="ACB" ${shopService.bankName == 'ACB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Á Châu (ACB)</option>
+                            <option value="Techcombank" ${shopService.bankName == 'Techcombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Kỹ Thương Việt Nam (Techcombank)</option>
+                            <option value="MB" ${shopService.bankName == 'MB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Quân đội (MB)</option>
+                            <option value="SHB" ${shopService.bankName == 'SHB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn - Hà Nội (SHB)</option>
+                            <option value="DongABank" ${shopService.bankName == 'DongABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Đông Á (DongABank)</option>
+                            <option value="TPBank" ${shopService.bankName == 'TPBank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Tiên Phong (TPBank)</option>
+                            <option value="VietABank" ${shopService.bankName == 'VietABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Bản Việt (VietABank)</option>
+                            <option value="SCB" ${shopService.bankName == 'SCB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn (SCB)</option>
+                            <option value="HDBank" ${shopService.bankName == 'HDBank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Phát triển Thành phố Hồ Chí Minh (HDBank)</option>
+                            <option value="BacABank" ${shopService.bankName == 'BacABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Bắc Á (BacABank)</option>
+                            <option value="OCB" ${shopService.bankName == 'OCB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Phương Đông (OCB)</option>
+                            <option value="Sacombank" ${shopService.bankName == 'Sacombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn Thương Tín (Sacombank)</option>
+                        </c:when>
+                        <c:otherwise>
 
-            <div class="form-group">
-                <%--@declare id="bankname"--%><label for="bankName">Tên Ngân Hàng <span class="text-danger">*</span></label>
-                <div class="input-group">
-                    <select class="form-control" name="bankName" required>
-                        <option value="">Chọn ngân hàng</option>
-                        <c:choose>
-                            <c:when test="${not empty shopService}">
-                                <option value="Vietcombank" ${shopService.bankName == 'Vietcombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Ngoại thương Việt Nam (Vietcombank)</option>
-                                <option value="Vietinbank" ${shopService.bankName == 'Vietinbank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Công Thương Việt Nam (Vietinbank)</option>
-                                <option value="BIDV" ${shopService.bankName == 'BIDV' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Đầu tư và Phát triển Việt Nam (BIDV)</option>
-                                <option value="ACB" ${shopService.bankName == 'ACB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Á Châu (ACB)</option>
-                                <option value="Techcombank" ${shopService.bankName == 'Techcombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Kỹ Thương Việt Nam (Techcombank)</option>
-                                <option value="MB" ${shopService.bankName == 'MB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Quân đội (MB)</option>
-                                <option value="SHB" ${shopService.bankName == 'SHB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn - Hà Nội (SHB)</option>
-                                <option value="DongABank" ${shopService.bankName == 'DongABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Đông Á (DongABank)</option>
-                                <option value="TPBank" ${shopService.bankName == 'TPBank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Tiên Phong (TPBank)</option>
-                                <option value="VietABank" ${shopService.bankName == 'VietABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Bản Việt (VietABank)</option>
-                                <option value="SCB" ${shopService.bankName == 'SCB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn (SCB)</option>
-                                <option value="HDBank" ${shopService.bankName == 'HDBank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Phát triển Thành phố Hồ Chí Minh (HDBank)</option>
-                                <option value="BacABank" ${shopService.bankName == 'BacABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Bắc Á (BacABank)</option>
-                                <option value="OCB" ${shopService.bankName == 'OCB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Phương Đông (OCB)</option>
-                                <option value="Sacombank" ${shopService.bankName == 'Sacombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn Thương Tín (Sacombank)</option>
-                            </c:when>
-                            <c:otherwise>
-
-                            </c:otherwise>
-                        </c:choose>
-                    </select>
-                    <div class="invalid-feedback">
-                        Vui lòng chọn ngân hàng
-                    </div>
+                        </c:otherwise>
+                    </c:choose>
+                </select>
+                <div class="invalid-feedback">
+                    Vui lòng chọn ngân hàng
                 </div>
             </div>
-
-
-            <!-- Account Number -->
-            <div class="form-group">
-                <label for="accountNumber">Số tài khoản <span class="text-danger">*</span></label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="accountNumber" placeholder="Số tài khoản"
-                           name="AccountNumber" aria-describedby="inputGroupPrepend" pattern="^.{1,20}$"
-                           value="${not empty shopService ? shopService.acountNumber : ''}" required>
-                    <div class="invalid-feedback">
-                        Số tài khoản có độ dài tối đa 20 ký tự
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="terms">Điều khoản đăng ký bán hàng<span class="text-danger">*</span></label>
-                <div class="terms" id="terms" style="max-height: 150px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
-                    <p><strong>Điều khoản 1:</strong> Người bán hàng phải tuân thủ tất cả các quy định pháp luật liên quan đến hoạt động kinh doanh và bán hàng trực tuyến.</p>
-                    <p><strong>Điều khoản 2:</strong> Người bán cam kết các sản phẩm được rao bán là hàng chính hãng, đảm bảo chất lượng và có nguồn gốc xuất xứ rõ ràng.</p>
-                    <p><strong>Điều khoản 3:</strong> Người bán phải cung cấp thông tin chi tiết về chính sách đổi trả và bảo hành cho khách hàng, đảm bảo quyền lợi của người tiêu dùng.</p>
-                    <p><strong>Điều khoản 4:</strong> Người bán cam kết giá cả các sản phẩm niêm yết trên website là chính xác và không thay đổi trong thời gian diễn ra khuyến mãi (nếu có).</p>
-                    <p><strong>Điều khoản 5:</strong> Người bán phải đảm bảo việc xử lý đơn hàng và giao hàng đúng thời gian cam kết, đồng thời thông báo kịp thời cho khách hàng trong trường hợp có sự cố.</p>
-                    <p><strong>Điều khoản 6:</strong> Người bán cam kết bảo mật thông tin cá nhân của khách hàng và không tiết lộ cho bên thứ ba mà không có sự đồng ý của khách hàng.</p>
-                    <p><strong>Điều khoản 7:</strong> Người bán chịu trách nhiệm bồi thường cho khách hàng trong trường hợp cung cấp sản phẩm kém chất lượng hoặc không đúng mô tả.</p>
-                    <p><strong>Điều khoản 8:</strong> Người bán có quyền chấm dứt hợp đồng bán hàng trong trường hợp khách hàng vi phạm các điều khoản hoặc không tuân thủ quy định của website.</p>
-                    <p><strong>Điều khoản 9:</strong> Người bán cam kết không vi phạm quyền sở hữu trí tuệ của bên thứ ba, bao gồm nhưng không giới hạn ở việc sử dụng hình ảnh, thương hiệu, và mô tả sản phẩm.</p>
-                    <p><strong>Điều khoản 10:</strong> Mọi tranh chấp phát sinh từ hợp đồng bán hàng sẽ được giải quyết thông qua thương lượng hòa giải trước khi đưa ra cơ quan pháp luật có thẩm quyền.</p>
-                    <p><strong>Điều khoản 11:</strong> Mỗi đơn hàng sẽ được trả cho hệ thống 10% giá trị.</p>
-                </div>
-                <div class="form-check mt-2">
-                    <input type="checkbox" class="form-check-input" id="agreeTerms" required>
-                    <label class="form-check-label" for="agreeTerms">Tôi đã đọc và đồng ý với các điều khoản đăng ký bán hàng</label>
-                    <div class="invalid-feedback">
-                        Bạn phải đồng ý với các điều khoản trước khi đăng ký
-                    </div>
-                </div>
-            </div>
-
         </div>
 
-        <button type="submit">Register</button>
 
-    </form>
+        <!-- Account Number -->
+        <div class="form-group">
+            <label for="accountNumber">Số tài khoản <span class="text-danger">*</span></label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="accountNumber" placeholder="Số tài khoản"
+                       name="AccountNumber" aria-describedby="inputGroupPrepend" pattern="^.{1,20}$"
+                       value="${not empty shopService ? shopService.acountNumber : ''}" required>
+                <div class="invalid-feedback">
+                    Số tài khoản có độ dài tối đa 20 ký tự
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="terms">Điều khoản đăng ký bán hàng<span class="text-danger">*</span></label>
+            <div class="terms" id="terms" style="max-height: 150px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+                <p><strong>Điều khoản 1:</strong> Người bán hàng phải tuân thủ tất cả các quy định pháp luật liên quan đến hoạt động kinh doanh và bán hàng trực tuyến.</p>
+                <p><strong>Điều khoản 2:</strong> Người bán cam kết các sản phẩm được rao bán là hàng chính hãng, đảm bảo chất lượng và có nguồn gốc xuất xứ rõ ràng.</p>
+                <p><strong>Điều khoản 3:</strong> Người bán phải cung cấp thông tin chi tiết về chính sách đổi trả và bảo hành cho khách hàng, đảm bảo quyền lợi của người tiêu dùng.</p>
+                <p><strong>Điều khoản 4:</strong> Người bán cam kết giá cả các sản phẩm niêm yết trên website là chính xác và không thay đổi trong thời gian diễn ra khuyến mãi (nếu có).</p>
+                <p><strong>Điều khoản 5:</strong> Người bán phải đảm bảo việc xử lý đơn hàng và giao hàng đúng thời gian cam kết, đồng thời thông báo kịp thời cho khách hàng trong trường hợp có sự cố.</p>
+                <p><strong>Điều khoản 6:</strong> Người bán cam kết bảo mật thông tin cá nhân của khách hàng và không tiết lộ cho bên thứ ba mà không có sự đồng ý của khách hàng.</p>
+                <p><strong>Điều khoản 7:</strong> Người bán chịu trách nhiệm bồi thường cho khách hàng trong trường hợp cung cấp sản phẩm kém chất lượng hoặc không đúng mô tả.</p>
+                <p><strong>Điều khoản 8:</strong> Người bán có quyền chấm dứt hợp đồng bán hàng trong trường hợp khách hàng vi phạm các điều khoản hoặc không tuân thủ quy định của website.</p>
+                <p><strong>Điều khoản 9:</strong> Người bán cam kết không vi phạm quyền sở hữu trí tuệ của bên thứ ba, bao gồm nhưng không giới hạn ở việc sử dụng hình ảnh, thương hiệu, và mô tả sản phẩm.</p>
+                <p><strong>Điều khoản 10:</strong> Mọi tranh chấp phát sinh từ hợp đồng bán hàng sẽ được giải quyết thông qua thương lượng hòa giải trước khi đưa ra cơ quan pháp luật có thẩm quyền.</p>
+                <p><strong>Điều khoản 11:</strong> Mỗi đơn hàng sẽ được trả cho hệ thống 10% giá trị.</p>
+            </div>
+            <div class="form-check mt-2">
+                <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                <label class="form-check-label" for="agreeTerms">Tôi đã đọc và đồng ý với các điều khoản đăng ký bán hàng</label>
+                <div class="invalid-feedback">
+                    Bạn phải đồng ý với các điều khoản trước khi đăng ký
+                </div>
+            </div>
+        </div>
+
+    <button type="submit">Đăng Ký</button>
+
+        </form>
+    </div>
+</c:if>
     </body>
-    </html>
+</html>
+
+    <script>
+    function triggerFileUpload() {
+    document.getElementById('fileUpload').click();
+    }
+
+    function triggerFileUpload2() {
+    document.getElementById('fileUpload2').click();
+    }
+
+
+
+    function previewImage(input, previewElement) {
+    const file = input.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+    previewElement.src = e.target.result; // Đặt src của img là dữ liệu hình ảnh đã tải lên
+    previewElement.style.display = 'block'; // Hiển thị hình ảnh
+    const addIcon = previewElement.parentElement.querySelector('.add-icon');
+    if (addIcon) {
+    addIcon.style.display = 'none'; // Ẩn biểu tượng cộng
+    }
+    };
+
+    if (file) {
+    reader.readAsDataURL(file); // Đọc file và gọi hàm onload
+    }
+    }
+    </script>
 <style>
     html, body {
         padding: 0;
@@ -621,37 +676,4 @@
         left: 50%; /* Căn giữa theo chiều ngang */
         transform: translate(-50%, -50%); /* Điều chỉnh để căn giữa chính xác */
     }
-
-
 </style>
-<script>
-    function triggerFileUpload() {
-        document.getElementById('fileUpload').click();
-    }
-
-    function triggerFileUpload2() {
-        document.getElementById('fileUpload2').click();
-    }
-
-
-
-    function previewImage(input, previewElement) {
-        const file = input.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-            previewElement.src = e.target.result; // Đặt src của img là dữ liệu hình ảnh đã tải lên
-            previewElement.style.display = 'block'; // Hiển thị hình ảnh
-            const addIcon = previewElement.parentElement.querySelector('.add-icon');
-            if (addIcon) {
-                addIcon.style.display = 'none'; // Ẩn biểu tượng cộng
-            }
-        };
-
-        if (file) {
-            reader.readAsDataURL(file); // Đọc file và gọi hàm onload
-        }
-    }
-
-
-</script>

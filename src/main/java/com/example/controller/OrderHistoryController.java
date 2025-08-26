@@ -70,7 +70,7 @@ public class OrderHistoryController {
                 } catch (DateTimeParseException e) {
                     localDateTime2 = LocalDate.parse(o2.getDate(), formatterWithoutTime).atStartOfDay();
                 }
-                return -1 * localDateTime1.compareTo(localDateTime2);
+                return  localDateTime1.compareTo(localDateTime2);
             }
         });
 

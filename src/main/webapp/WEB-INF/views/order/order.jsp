@@ -50,7 +50,7 @@
                   <div class="border-bottom mb-3">
                     <div class="d-flex">
                       <div class="p-1">
-                        <img width="60px" height="60px" src="${pageContext.request.contextPath}/assets/img/${item.product.getImagePaths().get(0)}" alt="">
+                        <img width="60px" height="60px" src="${pageContext.request.contextPath}/image/${item.product.getImagePaths().get(0)}" alt="">
                       </div>
                       <div class="p-1">
                         <strong>${item.product.productName}</strong>

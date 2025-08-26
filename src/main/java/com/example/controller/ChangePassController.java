@@ -15,6 +15,43 @@ public class ChangePassController {
     @Autowired
     private AccountService accountService;
 
+//    @GetMapping("/changepass")
+//    public String showChangePasswordForm(HttpSession session, Model model) {
+//        // Lấy thông tin người dùng từ session
+//        Account user = (Account) session.getAttribute("account");
+//
+//        // Kiểm tra nếu không có người dùng, chuyển hướng đến trang đăng nhập
+//        if (user == null) {
+//            return "redirect:/login"; // Chuyển hướng đến trang đăng nhập
+//        }
+//
+//        // Lấy thông tin người dùng và thêm vào model
+//        String firstname = user.getFirstname();
+//        String lastname = user.getLastname();
+//        String address = user.getAddress();
+//        String avatar = user.getAvatar();
+//        String phone = user.getPhone();
+//
+//        model.addAttribute("firstname", firstname);
+//        model.addAttribute("lastname", lastname);
+//        model.addAttribute("address", address);
+//        model.addAttribute("avatar", avatar);
+//        model.addAttribute("phone", phone);
+//
+//        // Kiểm tra thông báo và thêm vào model nếu có
+//        String notification = (String) session.getAttribute("thongbao2");
+//        if (notification != null) {
+//            if ("1".equals(notification)) {
+//                model.addAttribute("thongbao2", "Cập nhật mật khẩu thành công");
+//            } else {
+//                model.addAttribute("thongbao2", "Mật khẩu cũ không đúng, vui lòng nhập lại");
+//            }
+//            session.removeAttribute("thongbao2"); // Xóa thông báo sau khi hiển thị
+//        }
+//
+//        return "changepass"; // Trả về tên trang JSP
+//    }
+
     @GetMapping("/changepass")
     public String showChangePasswordForm(HttpSession session, Model model) {
         // Lấy thông tin người dùng từ session
@@ -26,52 +63,75 @@ public class ChangePassController {
         }
 
         // Lấy thông tin người dùng và thêm vào model
-        String firstname = user.getFirstname();
-        String lastname = user.getLastname();
-        String address = user.getAddress();
-        String avatar = user.getAvatar();
-        String phone = user.getPhone();
+        model.addAttribute("firstname", user.getFirstname());
+        model.addAttribute("lastname", user.getLastname());
+        model.addAttribute("address", user.getAddress());
+        model.addAttribute("avatar", user.getAvatar());
+        model.addAttribute("phone", user.getPhone());
 
-        model.addAttribute("firstname", firstname);
-        model.addAttribute("lastname", lastname);
-        model.addAttribute("address", address);
-        model.addAttribute("avatar", avatar);
-        model.addAttribute("phone", phone);
-
-        // Kiểm tra thông báo và thêm vào model nếu có
+        // Kiểm tra thông báo từ session và thêm vào model nếu có
         String notification = (String) session.getAttribute("thongbao2");
         if (notification != null) {
             if ("1".equals(notification)) {
-                model.addAttribute("thongbao2", "Cập nhật mật khẩu thành công");
+                model.addAttribute("thongbao2", "Cập nhật mật khẩu thành công.");
             } else {
-                model.addAttribute("thongbao2", "Mật khẩu cũ không đúng, vui lòng nhập lại");
+                model.addAttribute("thongbao2", "Mật khẩu cũ không đúng, vui lòng nhập lại.");
             }
             session.removeAttribute("thongbao2"); // Xóa thông báo sau khi hiển thị
         }
 
-        return "changepass"; // Trả về tên trang JSP
+        return "changepass"; // Tên file JSP cần trả về
     }
+
+//    @PostMapping("/savechangepass")
+//    public String changePassword(@RequestParam("oldPassword") String oldPassword,
+//                                 @RequestParam("newPassword") String newPassword,
+//                                 HttpSession session, Model model) {
+//        Account user = (Account) session.getAttribute("account");
+//        if (user == null) {
+//            return "redirect:/login"; // Chuyển hướng đến trang đăng nhập nếu không có người dùng
+//        }
+//
+//        String userId = user.getUserID(); // Lấy userID từ session
+//        boolean isChanged = accountService.changePassword(userId, oldPassword, newPassword);
+//        int thongbao2 = 1;
+//        if (isChanged) {
+//            model.addAttribute("successMessage", "Cập nhật mật khẩu thành công."); // Thông báo thành công
+//        } else {
+//            model.addAttribute("errorMessage", "Mật khẩu cũ không chính xác."); // Thông báo lỗi
+//            thongbao2 = 0;
+//        }
+////        return "redirect:/changepass"; // Chuyển hướng đến trang changepass
+//        return "redirect:/changepass?thongbao2=" + thongbao2; // Trả về lại trang changepass.jsp
+//    }
+
     @PostMapping("/savechangepass")
     public String changePassword(@RequestParam("oldPassword") String oldPassword,
                                  @RequestParam("newPassword") String newPassword,
-                                 HttpSession session, Model model) {
+                                 HttpSession session) {
+        // Lấy thông tin người dùng từ session
         Account user = (Account) session.getAttribute("account");
         if (user == null) {
             return "redirect:/login"; // Chuyển hướng đến trang đăng nhập nếu không có người dùng
         }
 
-        String userId = user.getUserID(); // Lấy userID từ session
+        // Lấy userId từ thông tin người dùng
+        String userId = user.getUserID();
+
+        // Kiểm tra và cập nhật mật khẩu
         boolean isChanged = accountService.changePassword(userId, oldPassword, newPassword);
-        int thongbao2 = 1;
+
+        // Lưu thông báo vào session
         if (isChanged) {
-            model.addAttribute("successMessage", "Cập nhật mật khẩu thành công."); // Thông báo thành công
+            session.setAttribute("thongbao2", "1"); // Thông báo thành công
         } else {
-            model.addAttribute("errorMessage", "Mật khẩu cũ không chính xác."); // Thông báo lỗi
-            thongbao2 = 0;
+            session.setAttribute("thongbao2", "0"); // Thông báo lỗi
         }
-//        return "redirect:/changepass"; // Chuyển hướng đến trang changepass
-        return "redirect:/changepass?thongbao2=" + thongbao2; // Trả về lại trang changepass.jsp
+
+        // Chuyển hướng đến trang đổi mật khẩu
+        return "redirect:/changepass";
     }
+
 }
 
 

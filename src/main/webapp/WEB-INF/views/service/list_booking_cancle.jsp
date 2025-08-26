@@ -1,3 +1,4 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -33,6 +34,8 @@
 
 
 </style>
+<jsp:include page="/WEB-INF/views/include/header.jsp" />
+
 <div class="container ">
     <%@include file="../servicebrand/serband_service.jsp" %>
     <div class="  col-lg-11" id="basic-info" style="margin-left: 25px; margin-top: 25px;">
@@ -41,7 +44,7 @@
             <a class="nav-item nav-link  " href="listbookingAccept">Đơn hàng đã xác nhận</a>
             <a class="nav-item nav-link "href="list-service_succsess">Đơn hàng đã hoàn thành</a>
 
-            <a class="nav-item nav-link " href="list-order-comment-success">Đơn hàng đã đánh giá</a>
+            <a class="nav-item nav-link " href="list-service-comment-success">Đơn hàng đã đánh giá</a>
             <a class="nav-item nav-link active" style=" background-color: #ff4880; "  href="list-service-cancel">Đơn hàng đã hủy</a>
 
         </nav>

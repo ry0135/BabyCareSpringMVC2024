@@ -144,13 +144,7 @@
     text-decoration: underline;
   }
 
-  a:visited {
-    color: red;
-  }
 
-  a:active {
-    color: #ff0000;
-  }
 </style>
 
 </style>

@@ -325,7 +325,7 @@
             <form class="shop-form needs-validation" novalidate action="${pageContext.request.contextPath}/addBrandIndentifi" method="post" enctype="multipart/form-data">
                 <!-- Số CCCD -->
                 <div class="form-group row">
-                    <label class="col-lg-3" for="CCCDNumber">* Số CCCD/CMND <span class="text-danger">*</span></label>
+                    <label class="col-lg-3" for="CCCDNumber">* Số CCCD/CMND( có đăng ký MST) <span class="text-danger">*</span></label>
                     <input class="form-control col-lg-3" type="text" id="CCCDNumber" name="CCCDNumber" placeholder="Nhập vào" maxlength="12" pattern="\d{12}" value="${brand.identifiNumber}" required style="width: 320px;">
                     <div class="invalid-feedback">
                         Vui lòng nhập đúng 12 số cho Số CCCD/CMND.
@@ -442,7 +442,7 @@
 
 
 </script>
-<!--<script>
+<script>
     (function () {
         'use strict';
         window.addEventListener('load', function () {
@@ -458,4 +458,4 @@
             });
         }, false);
     })();
-</script>-->
+</script>

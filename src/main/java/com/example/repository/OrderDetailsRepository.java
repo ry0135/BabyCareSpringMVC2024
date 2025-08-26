@@ -11,6 +11,8 @@ import java.util.List;
 
 @Repository
 public interface OrderDetailsRepository extends JpaRepository<OrderDetails, String> {
+    void deleteByBillID(String billID);
+    List<OrderDetails> findOrderDetailsByBillID(String billID);
     OrderDetails findOrderByBillID(String billID);
     @Query("SELECT od.priceAtPurchase FROM OrderDetails od WHERE od.productID = ?1 AND od.billID = ?2")
     double findPriceAtPurchase(String productId, String billId);

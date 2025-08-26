@@ -1,5 +1,6 @@
 package com.example.repository;
 
+import com.example.model.Account;
 import com.example.model.Bill;
 import com.example.model.Brand;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +13,8 @@ import java.util.List;
 @Repository
 public interface BillRepository extends JpaRepository<Bill, String> {
     boolean existsByBillID(String billID);
-
+    @Query("SELECT b.customerID FROM Bill b WHERE b.billID = :billId")
+    String findUserIdByOrderId(@Param("billId") String billId);
     Bill findByBillID(String billID);
     @Query("SELECT b FROM Bill b WHERE b.CTVID = :CTVID AND b.StatusBill LIKE '%COD%' ORDER BY b.dateCreate")
     List<Bill> findByCTVIdAndStatus(@Param("CTVID") String CTVID);
@@ -62,4 +64,25 @@ public interface BillRepository extends JpaRepository<Bill, String> {
     @Query("SELECT COUNT(b) FROM Bill b WHERE b.StatusBill LIKE '%COD%' AND b.CTVID = :ctvId")
     int countPendingOrdersByCTV(@Param("ctvId") String ctvId);
 
+
+
+
+    @Query("SELECT b FROM Bill b WHERE b.customerID = :customerID AND b.StatusBill LIKE '%COD%' ORDER BY b.dateCreate")
+    List<Bill> findByCustomerIdAndStatus(@Param("customerID") String customerID);
+
+    @Query("SELECT b FROM Bill b WHERE b.customerID = :customerID AND b.StatusBill LIKE '%xác%' ORDER BY b.dateCreate")
+    List<Bill> findOrderByAcceptCustomerIdAndStatus(@Param("customerID") String customerID);
+
+    @Query("SELECT b FROM Bill b WHERE b.customerID = :customerID AND b.StatusBill LIKE '%toán%' ORDER BY b.dateCreate")
+    List<Bill> getAllOrderPaidByCustomerId(@Param("customerID") String customerID);
+
+    @Query("SELECT b FROM Bill b WHERE b.customerID = :customerID AND b.StatusBill LIKE '%thành%' ORDER BY b.dateCreate")
+    List<Bill> getAllOrderSuccessByCustomerId(@Param("customerID") String customerID);
+
+
+    @Query("SELECT b FROM Bill b WHERE b.customerID = :customerID AND b.StatusBill LIKE '%giá%' ORDER BY b.dateCreate")
+    List<Bill> getAllOrderCommentSuccessByCustomerId(@Param("customerID") String customerID);
+
+    @Query("SELECT b FROM Bill b WHERE b.customerID = :customerID AND b.StatusBill LIKE '%hủy%' ORDER BY b.dateCreate")
+    List<Bill> getAllOrderCancelByCustomerId(@Param("customerID") String customerID);
 }

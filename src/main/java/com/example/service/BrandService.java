@@ -103,6 +103,15 @@ public class BrandService {
 
         return brands;
     }
+
+
+    @Transactional
+    public List<Brand> getAllBrandStatus1() {
+        // Lấy danh sách sản phẩm có trạng thái là 1
+        List<Brand> brands = brandRepository.findByStatus(1);
+
+        return brands;
+    }
     @Transactional
     public boolean lockBrand(String brandId) {
         Brand brands = brandRepository.findById(brandId).orElse(null);
@@ -126,5 +135,7 @@ public class BrandService {
             return false;
         }
     }
-
+    public void approveBrand(String CTVID) {
+        brandRepository.updateBrandStatus(CTVID);
+    }
 }

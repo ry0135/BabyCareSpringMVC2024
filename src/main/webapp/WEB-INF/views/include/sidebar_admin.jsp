@@ -33,22 +33,38 @@
                             <li><a href="manage-cus-account">Quản lý tài khoản khách hàng</a></li>
                             <li><a href="manage-emp-account">Quản lý tài khoản nhân viên</a></li>
                             <li><a href="manage-ctv-account">Quản lý tài khoản cộng tác viên bán hàng</a></li>
-
-
                         </ul>
                     </li>
 
                     <li class="sidebar-item">
-                        <span>Quản Lý Đơn Hàng</span>
+                        <span>Quản lý Đăng ký Cộng Tác Viên</span>
                         <ul class="submenu">
-                            <li><a href="order-list-manager">Tất Cả </a></li>
-                            <li>Giao Hàng Loạt</li>
-                            <li>Đơn Hủy</li>
-                            <li>Trả Hàng/Hoàn Tiền</li>
-                            <li>Cài Đặt Vận Chuyển</li>
-                            <li>Bàn Giao Đơn Hàng</li>
+                            <li><a href="list-register-brand">Đăng Ký Cộng Tác Viên Bán Hàng</a></li>
+                            <li><a href="list-register-shopservicve">Đăng Ký Cộng Tác Viên Dịch Vụ</a></li>
+
                         </ul>
                     </li>
+
+
+                    <li class="sidebar-item">
+                        <span>Quản Lý Cửa Hàng</span>
+                        <ul class="submenu">
+                            <li><a href="list-brand-order">Cửa hàng bán hàng</a></li>
+                            <li><a href="list-brand-service">Cửa hàng dịch vụ</a></li>
+                        </ul>
+                    </li>
+
+<%--                    <li class="sidebar-item">--%>
+<%--                        <span>Quản Lý Đơn Hàng</span>--%>
+<%--                        <ul class="submenu">--%>
+<%--                            <li><a href="order-list-manager">Tất Cả </a></li>--%>
+<%--                            <li>Giao Hàng Loạt</li>--%>
+<%--                            <li>Đơn Hủy</li>--%>
+<%--                            <li>Trả Hàng/Hoàn Tiền</li>--%>
+<%--                            <li>Cài Đặt Vận Chuyển</li>--%>
+<%--                            <li>Bàn Giao Đơn Hàng</li>--%>
+<%--                        </ul>--%>
+<%--                    </li>--%>
                     <li class="sidebar-item">
                         <span>Quản Lý Sản Phẩm</span>
                         <ul class="submenu">
@@ -57,23 +73,8 @@
                         </ul>
                     </li>
 
-                    <li class="sidebar-item">
-                        <span>Chăm sóc khách hàng</span>
-                    </li>
-                    <li class="sidebar-item">
-                        <span>Tài Chính</span>
-                        <ul class="submenu">
-                            <li>Doanh Thu</li>
-                            <li>Số dư TK Shopee</li>
-                            <li>Tài Khoản Ngân Hàng</li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <span>Dữ liệu</span>
-                    </li>
-                    <li class="sidebar-item">
-                        <span>Quản Lý Shop</span>
-                    </li>
+
+                    <a href="logout" class="dropdown-item text-danger">Đăng xuất</a>
                 </ul>
             </div>
 

@@ -128,7 +128,7 @@ public class AddProductController {
         }
 
         model.addAttribute("thongbao", "Thêm thành công");
-        return "redirect:/brand/addProduct"; // Trang bạn muốn chuyển hướng sau khi thêm thành công
+        return "redirect:/manager_product"; // Trang bạn muốn chuyển hướng sau khi thêm thành công
     }
 
 }

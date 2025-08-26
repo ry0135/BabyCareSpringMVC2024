@@ -1,14 +1,15 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<jsp:include page="/WEB-INF/views/include/header.jsp" />
 <head>
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
-    <jsp:include page="/WEB-INF/views/include/header.jsp" />
+
     <title>Customer Testimonial</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            width: 60%;
+            width: 100%;
             margin: auto;
             padding: 20px;
             background-color: #f9f9f9;
@@ -132,6 +133,11 @@
 </div>
 <% } %>
 <form action="feedBack" method="post">
+
+    <div class="form-group">
+        <%--@declare id="ctvid"--%><label for="ctvID"></label>
+        <input type="hidden" id="ctvID" name="CTVID" value="<%= request.getAttribute("CTVID") %>" required readonly>
+    </div>
     <div class="form-group">
         <label for="customerID"></label>
         <input type="hidden" id="customerID" name="CustomerID" value="<%= request.getAttribute("CustomerID") %>" required readonly>

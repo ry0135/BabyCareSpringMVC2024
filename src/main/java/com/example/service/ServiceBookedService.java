@@ -48,4 +48,7 @@ public class ServiceBookedService {
     public void updateBookingStatus(int bookingID, int bookingStatus) {
         serviceBookedRepository.updateBookingStatus(bookingID, bookingStatus);
     }
+    public ServiceBooked findBookingID(int bookingID) {
+        return serviceBookedRepository.findAllByBoking(bookingID);
+    }
 }

@@ -4,6 +4,7 @@ import com.example.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -50,4 +51,15 @@ public interface AccountRepository extends JpaRepository<Account, String> {
 
     @Query("SELECT COUNT(a) FROM Account a WHERE a.role = 4")
     int countCTVByRole();
+
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Account u SET u.role = 5 WHERE u.userID = :userId")
+    void updateCustomerToCTV(@Param("userId") String userId);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Account u SET u.role = 4 WHERE u.userID = :userId")
+    void updateCustomerToCTVProduct(@Param("userId") String userId);
 }

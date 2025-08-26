@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -32,9 +33,13 @@ public class ShopServiceController {
     @Autowired
     private ServiceRepository serviceRepository;
 
+
+    @Autowired
+    private EmailService emailService;
     @Autowired
     private FilleUtils filleUtils;
-
+    @Autowired
+    private AccountService accountService;
     @Autowired
     private ServiceTypeService serviceTypeService;
     @Autowired
@@ -43,11 +48,18 @@ public class ShopServiceController {
     private ShopServiceService shopServiceService;
 
     @GetMapping("/register-shop-service")
-    public String showRegisterShopServiceForm(Model model) {
+    public String showRegisterShopServiceForm(HttpSession session,Model model) {
+        Account user = (Account) session.getAttribute("account");
+        if (user == null) {
+            return "redirect:/login"; // Chuyển hướng đến trang login nếu chưa đăng nhập
+        }
+        String userID = user.getUserID();
+        boolean hasPending= shopServiceService.hasPendingRegistration(userID);
+        model.addAttribute("hasPending",hasPending);
+
         model.addAttribute("shopService", new ShopService());
         return "registerShopService"; // Trang form đăng ký
     }
-
 
     @PostMapping("/register-shop-service")
     public String registerShopService( @RequestParam("brandName") String brandName,
@@ -57,10 +69,10 @@ public class ShopServiceController {
                                        @RequestParam("bankName")  String bankName,
                                        @RequestParam("brandPhone")  String brandPhone,
                                        @RequestParam("IdentifiNumber") String identifiNumber,
-                                      @RequestParam("IdentifiImg") MultipartFile identifiImg,
-                                      @RequestParam("IdentifiImgFace") MultipartFile identifiImgFace,
-                                      @RequestParam("AccountNumber") String accountNumber,
-                                      Model model, HttpServletRequest request) {
+                                       @RequestParam("IdentifiImg") MultipartFile identifiImg,
+                                       @RequestParam("IdentifiImgFace") MultipartFile identifiImgFace,
+                                       @RequestParam("AccountNumber") String accountNumber,
+                                       Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Account user = (Account) session.getAttribute("account");
 
@@ -74,7 +86,7 @@ public class ShopServiceController {
         shopService.setBrandAddress(brandAddress);
         shopService.setBrandPhone(brandPhone);
         shopService.setCtvID(user.getUserID());
-        shopService.setRole(5);
+        shopService.setStatus(0);
 
         // Gán thông tin từ các tham số vào đối tượng shopService
         if (!StringUtils.isEmpty(brandLogo.getOriginalFilename())) {
@@ -86,9 +98,9 @@ public class ShopServiceController {
             } catch (IOException e) {
                 e.printStackTrace();
                 model.addAttribute("error", "File upload failed");
-                return "register-shop-service";  // Quay lại trang profile nếu lỗi
-            }
-        }
+                return "redirect:/register-shop-service";  // Quay lại trang profile nếu lỗi
+            }        }
+
 
         if (!StringUtils.isEmpty(identifiImg.getOriginalFilename())) {
             String fileName1 = "";
@@ -99,7 +111,7 @@ public class ShopServiceController {
             } catch (IOException e) {
                 e.printStackTrace();
                 model.addAttribute("error", "File upload failed");
-                return "register-shop-service";  // Quay lại trang profile nếu lỗi
+                return "redirect:/register-shop-service";  // Quay lại trang profile nếu lỗi
             }
         }
 
@@ -113,7 +125,7 @@ public class ShopServiceController {
             } catch (IOException e) {
                 e.printStackTrace();
                 model.addAttribute("error", "File upload failed");
-                return "register-shop-service";  // Quay lại trang profile nếu lỗi
+                return "redirect:/register-shop-service";  // Quay lại trang profile nếu lỗi
             }
         }
 
@@ -132,8 +144,9 @@ public class ShopServiceController {
         // Thêm attribute vào model để hiển thị thông tin BrandID
         model.addAttribute("randomBrandID", randomBrandID);
 
-        return "redirect:/register-shop-service-success"; // Chuyển hướng khi đăng ký thành công
+        return "redirect:/register-shop-service"; // Chuyển hướng khi đăng ký thành công
     }
+
 
     // Phương thức để xử lý tệp tải lên
 
@@ -245,7 +258,7 @@ public class ShopServiceController {
         serviceRepository.save(service);
 
         model.addAttribute("message", "Cập nhật dịch vụ thành công");
-        return "servicebrand/service-list-manager";  // Quay lại trang quản lý dịch vụ
+        return "redirect:/service-list-manager";  // Quay lại trang quản lý dịch vụ
     }
 
     @GetMapping("/deleteService")
@@ -260,6 +273,52 @@ public class ShopServiceController {
 
         return "redirect:/service-list-manager"; // Chuyển hướng về danh sách dịch vụ
     }
+    @GetMapping("/list-register-shopservicve")
+    public String getListRegisterCTV(Model model) {
+        // Lấy danh sách ShopService từ service hoặc repository
+        List<ShopService> listregistershopservicve = shopServiceRepository.findByStatus(0); // Hoặc shopServiceService.getAllShopServices();
+
+        // Thêm danh sách vào model
+        model.addAttribute("listregistershopservicve", listregistershopservicve);
+
+        // Trả về view JSP
+        return "admin/list-register-shopservice"; // Tên file JSP hiển thị danh sách
+    }
+
+    @Transactional
+    @GetMapping("/approveCTV")
+    public String approveCTV(@RequestParam("ctvID") String ctvId, RedirectAttributes redirectAttributes) {
+
+        Account account = accountService.findByUserID(ctvId);
+        ShopService shopService = shopServiceRepository.findByCtvID(ctvId);
+        // Cập nhật thông tin User (Customer -> CTV)
+        accountService.updateCustomerToCTV(ctvId);
+
+        // Cập nhật trạng thái Brand
+        shopServiceService.approveBrand(ctvId);
+        emailService.sendCodeToEmailApproveCTV(shopService.getBrandName(),account.getEmail());
+
+        redirectAttributes.addFlashAttribute("message", "Duyệt CTV thành Công!");
+
+        return "redirect:/list-register-shopservicve";
+    }
+
+    @Transactional
+    @GetMapping("/unApproveCTV")
+    public String unApproveCTV(@RequestParam("ctvID") String ctvId, RedirectAttributes redirectAttributes) {
+
+        Account account = accountService.findByUserID(ctvId);
+        ShopService shopService = shopServiceRepository.findByCtvID(ctvId);
+        shopServiceRepository.deleteByctvID(ctvId);
+        // Cập nhật thông tin User (Customer -> CTV)
+        // Cập nhật trạng thái Brand
+        emailService.sendCodeToEmailUnApproveCTV(shopService.getBrandName(),account.getEmail());
+
+        redirectAttributes.addFlashAttribute("message", "Không Duyệt CTV Thành Công");
+
+        return "redirect:/list-register-shopservicve";
+    }
+
 }
 
 

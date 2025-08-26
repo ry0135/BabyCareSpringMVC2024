@@ -78,7 +78,7 @@
           <td>${order.date}</td>
           <td>${order.discountId}</td>
           <td>${order.orderStatus}</td>
-          <td><a href="acceptorder?id=${order.idOrder}" class="btn btn-success">Xác nhận</a></td>
+          <td><a href="paid?id=${order.idOrder}" class="btn btn-success">Đã Thanh Toán</a></td>
           <td><a href="cancelorder?id=${order.idOrder}" class="btn btn-danger">Hủy</a></td>
 
         </tr>

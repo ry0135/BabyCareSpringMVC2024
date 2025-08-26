@@ -1,6 +1,5 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 
@@ -68,6 +67,7 @@
 
                         <button class="btn btn-primary" type="submit" style="border-radius: 0px;">Cập nhật</button>
                         <p style="color: green">${thongbao2}</p>
+                        <p>${errorMessage}</p>
                     </div>
                 </div>
             </div>

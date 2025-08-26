@@ -208,7 +208,7 @@
                 <table  class="table table-bordered" id="data-table">
                     <thead>
                     <tr>
-                        <th>Product ID</th>
+<%--                        <th>Product ID</th>--%>
                         <th>Product Name</th>
                         <th>Product Type</th>
                         <th>Product Price</th>
@@ -226,7 +226,7 @@
                     <tbody id="myTable">
                     <c:forEach var="product" items="${listProducts}">
                     <tr>
-                        <td>${product.productId}</td>
+<%--                        <td>${product.productId}</td>--%>
                         <td>${product.productName}</td>
                         <td>${product.productType}</td>
                         <td>${product.productPrice}</td>
