@@ -115,7 +115,7 @@
 
 
   </div>
-  <div id="pagination" class="text-center"></div>
+
 </div>
 </body>
 <script>
@@ -182,4 +182,4 @@
 
 </script>
 
-</html>
+

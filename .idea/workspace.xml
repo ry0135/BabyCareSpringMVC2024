@@ -9,115 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf3156d-4778-48b3-a845-d12e132aea44" name="Changes" comment="comit">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/rest-api-sdk-1.14.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/config/PayPalConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/PaymentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/admin/ApproveCTVController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/admin/BrandController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/admin/ManagerBrandAdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/app/AccountController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/app/AddressController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/app/ApiLoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/app/ApiProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/app/AuthRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/app/CartApiController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/app/OrderManagerBillController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/app/PaypalController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/brand/CancelOrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/model/FeedBackDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/model/LoginRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/model/OrderData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/model/PaymentLinkResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/NotificationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/PayPalService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ServiceBillService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/list-brand-order.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/list-brand-service.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/list-register-brand.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/list-register-shopservice.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/list-shop-service.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index2.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferential_update.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/list_booking_detail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/list_booking_feedback.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/servicebrand/view_shop_service.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/Cart/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/Cart/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/ChangePassController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/ChangePassController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/OrderHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/OrderHistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/ShopServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/ShopServiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/WebsocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/WebsocketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/admin/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/brand/AddProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/brand/AddProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/brand/BrandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/brand/BrandController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/preferentials/PreferentialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/preferentials/PreferentialController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/product/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/product/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/service/FavoriteServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/service/FavoriteServiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/service/FeedbackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/service/FeedbackController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/service/ServiceBookedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/service/ServiceBookedController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/service/ServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/service/ServiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/BookingWithBillStatusDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/BookingWithBillStatusDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Feedback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Feedback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/OrderAcceptDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/OrderAcceptDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/ShopService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/model/ShopService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/AccountRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/BillRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BillRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/BrandRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/BrandRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/FeedbackRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/FeedbackRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/OrderDetailsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/OrderDetailsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/ProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/ServiceBookedRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/ServiceBookedRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/repository/ShopServiceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/repository/ShopServiceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/BrandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/BrandService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/FavoriteServiceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/FavoriteServiceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/FeedbackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/FeedbackService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/OrderDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/OrderDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/ServiceBookedService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ServiceBookedService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/ShopServiceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/ShopServiceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/addBrand/information_definition.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/addBrand/information_definition.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/brand/list-order-accepted.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/brand/list-order-accepted.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/brand/managerProduct.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/brand/managerProduct.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/brand/sidebar_brand.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/brand/sidebar_brand.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/changepass.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/changepass.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/feedBack/feedback.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/feedBack/feedback.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/include/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/include/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/include/sidebar_admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/include/sidebar_admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/order/order.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/order/order.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferential_add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferential_add.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferentials.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/preferential/preferentials.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/product_detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/product/product_detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/profile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registerShopService.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registerShopService.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/favorite.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/favorite.jsp" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/list_booking_accept.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/list_booking_accept.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/list_booking_cancle.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/list_booking_cancle.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/list_booking_manage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/list_booking_manage.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/list_booking_succer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/list_booking_succer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/manage_customer_booking.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/manage_customer_booking.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/service-booking.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/service-booking.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/service-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/service-detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/services.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/services.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/vnpay.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/service/vnpay.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/servicebrand/serband_service.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/servicebrand/serband_service.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/servicebrand/service-list-manager.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/servicebrand/service-list-manager.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/testSocket.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/testSocket.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/product_detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/product_detail.css" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,10 +24,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="Jsp File" />
-        <option value="Interface" />
+
         <option value="Class" />
       </list>
     </option>
@@ -141,9 +38,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/service/ProductService.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="JpbToolWindowState">
-    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -160,7 +54,6 @@
   </component>
   <component name="ProjectId" id="2pN0Rg4HzsWEDTmidWlbyEoz1SR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -173,26 +66,12 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/TestSpring/BabyCareSpringMVC2024/Baby/libs&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;a7b5bdb8cce7b6d6713cc8897c5cf374&quot;
+
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\libs" />
-      <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\src\main\webapp\WEB-INF\views\preferential" />
-      <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\src\main\webapp\WEB-INF\views" />
-      <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\src\main\java\com\example\controller" />
-      <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\src\main\webapp\WEB-INF\views\admin" />
+
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\TestSpring\BabyCareSpringMVC2024\Baby\src\main\webapp" />
@@ -200,20 +79,11 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.controller" />
       <recent name="com.example.service" />
-      <recent name="com.example.repository" />
       <recent name="com.example.model" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="excludedTypes">
-      <set>
-        <option value="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" />
-      </set>
-    </option>
-  </component>
   <component name="RunManager">
-    <configuration name="Tomcat VIP" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat VIP" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8088/Baby_war/home" />
+
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="Baby:war">
@@ -223,9 +93,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="5272e144-a54e-4780-8276-47b8e6f51266" />
-        <option name="HTTP_PORT" value="8088" />
-        <option name="JNDI_PORT" value="1094" />
+
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -233,7 +101,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="50128" />
+
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -313,149 +181,7 @@
       <updated>1732591220191</updated>
       <workItem from="1732591221636" duration="94445000" />
       <workItem from="1733129490834" duration="23796000" />
-      <workItem from="1733716821111" duration="30110000" />
-      <workItem from="1733817800955" duration="293000" />
-      <workItem from="1734325877972" duration="4960000" />
-      <workItem from="1734456582967" duration="14419000" />
-      <workItem from="1736431129082" duration="33835000" />
-      <workItem from="1740410699641" duration="8545000" />
-      <workItem from="1742656342462" duration="15000" />
-      <workItem from="1742772393367" duration="73000" />
-      <workItem from="1742772482444" duration="8994000" />
-      <workItem from="1744476503459" duration="39000" />
-      <workItem from="1748426835610" duration="167000" />
-      <workItem from="1748427033633" duration="87000" />
-      <workItem from="1748427204808" duration="2723000" />
-      <workItem from="1748455341933" duration="747000" />
-      <workItem from="1749269466931" duration="1162000" />
-      <workItem from="1749546204910" duration="1524000" />
-      <workItem from="1749549035151" duration="32000" />
-      <workItem from="1749570842266" duration="1788000" />
-      <workItem from="1749704118993" duration="56000" />
-      <workItem from="1749717434622" duration="167000" />
-      <workItem from="1749718610600" duration="53000" />
-      <workItem from="1749718957059" duration="276000" />
-      <workItem from="1749719272137" duration="380000" />
-      <workItem from="1749719668313" duration="248000" />
-      <workItem from="1749720287910" duration="207000" />
-      <workItem from="1749720610014" duration="104000" />
-      <workItem from="1749731405896" duration="306000" />
-      <workItem from="1749731728582" duration="239000" />
-      <workItem from="1749731991319" duration="2303000" />
-      <workItem from="1749735643148" duration="675000" />
-      <workItem from="1749738780467" duration="775000" />
-      <workItem from="1749740367049" duration="6217000" />
-      <workItem from="1749787421401" duration="2227000" />
-      <workItem from="1749790078433" duration="2910000" />
-      <workItem from="1749796713837" duration="686000" />
-      <workItem from="1750138655835" duration="4106000" />
-      <workItem from="1750146656156" duration="212000" />
-      <workItem from="1750151276973" duration="714000" />
-      <workItem from="1750214212744" duration="917000" />
-      <workItem from="1750222584220" duration="3429000" />
-      <workItem from="1750311468435" duration="690000" />
-      <workItem from="1750313078814" duration="1034000" />
-      <workItem from="1750315054425" duration="1429000" />
-      <workItem from="1750318878504" duration="65000" />
-      <workItem from="1750319124561" duration="727000" />
-      <workItem from="1750320557248" duration="1909000" />
-      <workItem from="1750518736154" duration="358000" />
-      <workItem from="1750521827460" duration="3623000" />
-      <workItem from="1750694215662" duration="1894000" />
-      <workItem from="1750741704820" duration="3142000" />
-      <workItem from="1750745691201" duration="148000" />
-      <workItem from="1750746002967" duration="2182000" />
-      <workItem from="1750748973373" duration="3446000" />
-      <workItem from="1750756224018" duration="773000" />
-      <workItem from="1750866231973" duration="629000" />
-      <workItem from="1750872789215" duration="867000" />
-      <workItem from="1750916522433" duration="426000" />
-      <workItem from="1750917105921" duration="4595000" />
-      <workItem from="1750923962010" duration="95000" />
-      <workItem from="1750925231242" duration="2631000" />
-      <workItem from="1751356198597" duration="5169000" />
-      <workItem from="1751362815608" duration="4208000" />
-      <workItem from="1751425674602" duration="1078000" />
-      <workItem from="1751437591758" duration="1695000" />
-      <workItem from="1751449073948" duration="804000" />
-      <workItem from="1751459587258" duration="1543000" />
-      <workItem from="1751461675375" duration="1245000" />
-      <workItem from="1751518377923" duration="1650000" />
-      <workItem from="1751522121031" duration="418000" />
-      <workItem from="1751524269703" duration="1243000" />
-      <workItem from="1751525840981" duration="319000" />
-      <workItem from="1751526366931" duration="4038000" />
-      <workItem from="1751531209908" duration="849000" />
-      <workItem from="1751716196678" duration="1047000" />
-      <workItem from="1751722774869" duration="2122000" />
-      <workItem from="1751731683777" duration="5239000" />
-      <workItem from="1751884681950" duration="3139000" />
-      <workItem from="1752039162722" duration="4519000" />
-      <workItem from="1752045482071" duration="354000" />
-      <workItem from="1752047363162" duration="20000" />
-      <workItem from="1752047537381" duration="172000" />
-      <workItem from="1752048297455" duration="1627000" />
-      <workItem from="1752050793506" duration="2251000" />
-      <workItem from="1752080280664" duration="709000" />
-      <workItem from="1752082195758" duration="670000" />
-      <workItem from="1752083039955" duration="129000" />
-      <workItem from="1752083668219" duration="434000" />
-      <workItem from="1752084446014" duration="45000" />
-      <workItem from="1752085207099" duration="1223000" />
-      <workItem from="1752087589293" duration="625000" />
-      <workItem from="1752560664604" duration="123000" />
-      <workItem from="1752560812983" duration="2259000" />
-      <workItem from="1752573410961" duration="969000" />
-      <workItem from="1752574972657" duration="2444000" />
-      <workItem from="1752593948827" duration="2150000" />
-      <workItem from="1752597402104" duration="3416000" />
-      <workItem from="1752602573532" duration="3408000" />
-      <workItem from="1752679390794" duration="406000" />
-      <workItem from="1752680732903" duration="230000" />
-      <workItem from="1752682074965" duration="632000" />
-      <workItem from="1752683975860" duration="2580000" />
-      <workItem from="1752687310434" duration="594000" />
-      <workItem from="1752688467920" duration="586000" />
-      <workItem from="1752689619098" duration="24000" />
-      <workItem from="1752767371352" duration="297000" />
-      <workItem from="1752767874094" duration="840000" />
-      <workItem from="1752768958495" duration="134000" />
-      <workItem from="1752769788927" duration="151000" />
-      <workItem from="1752770136366" duration="200000" />
-      <workItem from="1752770447753" duration="298000" />
-      <workItem from="1752771028470" duration="404000" />
-      <workItem from="1752771646223" duration="1250000" />
-      <workItem from="1752775251997" duration="1319000" />
-      <workItem from="1752825838387" duration="119000" />
-      <workItem from="1752827449315" duration="3117000" />
-      <workItem from="1752830715998" duration="174000" />
-      <workItem from="1752831342197" duration="4697000" />
-      <workItem from="1752853148696" duration="4313000" />
-      <workItem from="1752905976001" duration="128000" />
-      <workItem from="1752910347728" duration="1137000" />
-      <workItem from="1753263388659" duration="8151000" />
-      <workItem from="1753293977835" duration="874000" />
-      <workItem from="1753295708680" duration="3559000" />
-      <workItem from="1753327815810" duration="383000" />
-      <workItem from="1753328474972" duration="970000" />
-      <workItem from="1753329935111" duration="3149000" />
-      <workItem from="1754318354779" duration="1819000" />
-      <workItem from="1754498907995" duration="127000" />
-      <workItem from="1754675160787" duration="1498000" />
-      <workItem from="1754925329818" duration="595000" />
-      <workItem from="1754927911245" duration="180000" />
-      <workItem from="1754928151159" duration="14000" />
-      <workItem from="1754929394837" duration="911000" />
-      <workItem from="1754985823706" duration="2661000" />
-      <workItem from="1755013859262" duration="67000" />
-      <workItem from="1755014439213" duration="9000" />
-      <workItem from="1755014565262" duration="4000" />
-      <workItem from="1755016444350" duration="2911000" />
-      <workItem from="1755271242530" duration="2517000" />
-      <workItem from="1755357171241" duration="1177000" />
-      <workItem from="1755545953546" duration="1403000" />
-      <workItem from="1755578487295" duration="8000" />
-      <workItem from="1756184218180" duration="706000" />
+
     </task>
     <task id="LOCAL-00001" summary="comit">
       <created>1732594750957</created>
@@ -534,70 +260,7 @@
       <option name="project" value="LOCAL" />
       <updated>1732762207216</updated>
     </task>
-    <task id="LOCAL-00012" summary="khoi">
-      <created>1733804122452</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1733804122452</updated>
-    </task>
-    <task id="LOCAL-00013" summary="khoi">
-      <created>1733810869144</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1733810869144</updated>
-    </task>
-    <task id="LOCAL-00014" summary="comit">
-      <created>1733814122552</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1733814122553</updated>
-    </task>
-    <task id="LOCAL-00015" summary="comit">
-      <created>1733814578729</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1733814578729</updated>
-    </task>
-    <task id="LOCAL-00016" summary="comit">
-      <created>1733814737884</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1733814737884</updated>
-    </task>
-    <task id="LOCAL-00017" summary="comit">
-      <created>1733814884364</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1733814884364</updated>
-    </task>
-    <task id="LOCAL-00018" summary="comit">
-      <created>1734162211137</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1734162211137</updated>
-    </task>
-    <task id="LOCAL-00019" summary="comit">
-      <created>1734188052047</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1734188052047</updated>
-    </task>
-    <task id="LOCAL-00020" summary="comit">
-      <created>1734263272739</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1734263272739</updated>
-    </task>
-    <option name="localTasksCounter" value="21" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -613,24 +276,8 @@
         </entry>
       </map>
     </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="origin/khoi" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="khoi" />
     <MESSAGE value="comit" />
     <option name="LAST_COMMIT_MESSAGE" value="comit" />
   </component>
@@ -653,22 +300,32 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/brand/AddProductController.java</url>
-          <line>132</line>
+          <line>105</line>
           <option name="timeStamp" value="119" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/brand/AddProductController.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="121" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/brand/AddProductController.java</url>
+          <line>101</line>
+          <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/service/ProductService.java</url>
-          <line>199</line>
+
           <option name="timeStamp" value="158" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/service/ProductService.java</url>
-          <line>200</line>
+
           <option name="timeStamp" value="159" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/service/ProductService.java</url>
-          <line>213</line>
+
           <option name="timeStamp" value="161" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -682,159 +339,17 @@
           <option name="timeStamp" value="178" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/repository/ShopServiceRepository.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="180" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/servicebrand/service-add.jsp</url>
-          <line>89</line>
-          <option name="timeStamp" value="181" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/model/Cart.java</url>
-          <line>324</line>
-          <option name="timeStamp" value="245" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/service/CartService.java</url>
-          <line>224</line>
-          <option name="timeStamp" value="247" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/service/CartService.java</url>
-          <line>222</line>
-          <option name="timeStamp" value="248" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/service/CartService.java</url>
-          <line>199</line>
-          <option name="timeStamp" value="250" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/repository/CartItemRepository.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="256" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/Cart/CartController.java</url>
-          <line>155</line>
-          <option name="timeStamp" value="257" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/service/CartService.java</url>
-          <line>236</line>
-          <option name="timeStamp" value="258" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/service/CustomerRefundController.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="268" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/service/CustomerRefundController.java</url>
-          <line>62</line>
-          <option name="timeStamp" value="270" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/service/CustomerRefundController.java</url>
-          <line>91</line>
-          <option name="timeStamp" value="271" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/service/CustomerRefundController.java</url>
-          <line>88</line>
-          <option name="timeStamp" value="272" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/service/CustomerRefundController.java</url>
-          <line>94</line>
-          <option name="timeStamp" value="273" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/service/CustomerRefundController.java</url>
-          <line>95</line>
-          <option name="timeStamp" value="274" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/service/CustomerRefundController.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="279" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/service/CustomerRefundController.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="280" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/preferentials/PreferentialController.java</url>
-          <line>81</line>
-          <option name="timeStamp" value="283" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/product/ProductController.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="288" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/product/ProductController.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="290" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/product/ProductController.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="291" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/product/ProductController.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="292" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/product/ProductController.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="293" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/product/ProductController.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="294" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/product/ProductController.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="295" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/product/ProductController.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="296" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/product/ProductController.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="297" />
-        </line-breakpoint>
+
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/webapp/assets/js/addProduct.js</url>
           <option name="timeStamp" value="108" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/service/ServiceBookedController.java</url>
-          <line>20</line>
-          <properties class="com.example.controller.service.ServiceBookedController">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="183" />
-        </line-breakpoint>
+
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
-        <PinnedItemInfo parentTag="com.example.model.Product" memberName="images" />
-        <PinnedItemInfo parentTag="com.example.model.Product" memberName="shippingCost" />
+
       </pinned-members>
     </pin-to-top-manager>
   </component>

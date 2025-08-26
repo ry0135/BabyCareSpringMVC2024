@@ -35,6 +35,9 @@ public class ServiceBookedService {
     public List<ServiceBooked> findbyCTVID(String ctvID) {
         return serviceBookedRepository.findAllByCTVID(ctvID);
     }
+    public ServiceBooked findBookingID(int bookingID) {
+        return serviceBookedRepository.findAllByBoking(bookingID);
+    }
     public List<ServiceBooked> findbyCTVIDStatus0(String ctvID) {
         return serviceBookedRepository.findAllByCTVIDStatus0(ctvID);
     }

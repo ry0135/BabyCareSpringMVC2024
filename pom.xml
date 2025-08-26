@@ -157,7 +157,6 @@
       <version>4.0.1</version><!-- Hoặc phiên bản khác tùy theo yêu cầu -->
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
@@ -168,32 +167,18 @@
       <artifactId>spring-web</artifactId>
       <version>5.3.12</version> <!-- Cùng phiên bản với spring-core -->
     </dependency>
-
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-messaging</artifactId>
+      <version>5.3.12</version>
+    </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-websocket</artifactId>
       <version>5.3.12</version> <!-- hoặc phiên bản tương tự -->
     </dependency>
 
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-messaging</artifactId>
-      <version>5.3.12</version>
-    </dependency>
 
-    <dependency>
-      <groupId>com.paypal.sdk</groupId>
-      <artifactId>rest-api-sdk</artifactId>
-      <version>1.14.0</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/libs/rest-api-sdk-1.14.0.jar</systemPath>
-    </dependency>
-
-    <dependency>
-      <groupId>com.paypal.sdk</groupId>
-      <artifactId>rest-api-sdk</artifactId>
-      <version>1.14.0</version>
-    </dependency>
 
   </dependencies>
 

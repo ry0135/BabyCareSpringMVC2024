@@ -17,7 +17,7 @@ public class BookingWithBillStatusDTO {
     private double price;
     private String email;
     private String serviceName;
-    private  String CTVID;
+
     private int billID;
     private String billDate;
     private double totalAmount;
@@ -74,4 +74,5 @@ public class BookingWithBillStatusDTO {
     public String getCTVID() {
         return CTVID;
     }
+
 }

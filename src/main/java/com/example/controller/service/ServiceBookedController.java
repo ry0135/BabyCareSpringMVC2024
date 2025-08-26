@@ -47,6 +47,13 @@ public class ServiceBookedController {
         model.addAttribute("list", bookings);
         return "service/list_booking_manage"; // View template nơi dữ liệu sẽ được hiển thị
     }
+    @GetMapping("/getBookingID")
+    public String getBookingID(@RequestParam ("bookingID") int bookingID, Model model) {
+
+        ServiceBooked bookings = serviceBookedService.findBookingID(bookingID);
+        model.addAttribute("order", bookings);
+        return "service/list_booking_detail"; // View template nơi dữ liệu sẽ được hiển thị
+    }
     @GetMapping("/listbookingAccept")
     public String listbookingAccept(Model model, HttpSession session) {
         Account oldUser = (Account) session.getAttribute("account");

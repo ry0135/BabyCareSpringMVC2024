@@ -48,6 +48,7 @@ public class FeedbackController {
             @RequestParam("BookingDate") String bookingDate,
             @RequestParam("CTVID") String ctvID,
             @RequestParam("name") String name,
+            @RequestParam("CTVID") String ctvID,
             Model model) {
 
         model.addAttribute("CustomerID", customerID);
@@ -55,6 +56,7 @@ public class FeedbackController {
         model.addAttribute("BookingDate", bookingDate);
         model.addAttribute("name", name);
         model.addAttribute("CTVID", ctvID);
+
 
         return "feedBack/feedback";
     }
@@ -96,6 +98,7 @@ public class FeedbackController {
         feedback.setExperienceDate(experienceDate);
         feedback.setName(name);
         feedback.setCtvID(ctvID);
+
         feedbackRepository.saveFeedback(feedback);
 
         return "redirect:/byCustomerID";

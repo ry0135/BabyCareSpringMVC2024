@@ -101,18 +101,12 @@
           <c:if test="${sessionScope.account.role != 2 && sessionScope.account.role != 4 && sessionScope.account.role != 1}">
             <li><a href="registerctv">Đăng kí CTV</a></li>
           </c:if>
-          <c:if test="${sessionScope.account.role != 2 && sessionScope.account.role != 4 && sessionScope.account.role != 1 && sessionScope.account.role != 5}">
-            <li><a href="register-shop-service">Đăng kí CTV Dịch Vụ</a></li>
-          </c:if>
-
-          <c:if test="${sessionScope.account.role != 2}">
-            <li><a href="cart">Giỏ Hàng</a></li>
-          </c:if>
 
         </ul>
       </nav>
 
       <div class="d-flex me-4">
+
         <c:if test="${sessionScope.account == null}">
           <a href="login" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Đăng nhập<i
                   class="bi bi-arrow-right"></i></a>

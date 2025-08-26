@@ -57,6 +57,7 @@ public class ServiceController {
     @GetMapping("/getShope")
     public String getShopService(@RequestParam("CTVID") String ctvID , Model model) {
 
+
         List<ServiceEntity> service = serviceService.getServicesByCTVID(ctvID);
 
 

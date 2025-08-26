@@ -42,12 +42,12 @@ public class ApproveCTVController {
         model.addAttribute("listRegisterCTV", listRegisterCTV);
 
         // Trả về view JSP
-        return "admin/list-register-brand"; // Tên file JSP hiển thị danh sách
+
     }
 
 
     @Transactional
-    @GetMapping("/ApproveCTVOrder")
+
     public String approveCTV(@RequestParam("CTVID") String CTVID, RedirectAttributes redirectAttributes) {
 
         Account account = accountService.findByUserID(CTVID);
@@ -56,29 +56,10 @@ public class ApproveCTVController {
         accountService.updateCustomerToCTVProduct(CTVID);
 
         // Cập nhật trạng thái Brand
-        brandService.approveBrand(CTVID);
 
-        emailService.sendCodeToEmailApproveCTVOrder(brand.getBrandName(),account.getEmail());
-
-        redirectAttributes.addFlashAttribute("message", "CTV and Brand approved successfully!");
-
-        return "redirect:/list-register-brand";
-    }
-    @Transactional
-    @GetMapping("/UnApproveCTVOrder")
-    public String unApproveCTV(@RequestParam("CTVID") String CTVID, RedirectAttributes redirectAttributes) {
-        Account account = accountService.findByUserID(CTVID);
-        Brand brand= brandRepository.findBrandByCTVID(CTVID);
-        brandRepository.deleteByCTVID(CTVID);
-        // Cập nhật thông tin User (Customer -> CTV)
-        // Cập nhật trạng thái Brand
-        emailService.sendCodeToEmailUnApproveCTVOrder(brand.getBrandName(),account.getEmail());
 
         redirectAttributes.addFlashAttribute("message", "CTV and Brand approved successfully!");
 
         return "redirect:/list-register-brand";
     }
 
-
-
-}

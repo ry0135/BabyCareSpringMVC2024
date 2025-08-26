@@ -29,28 +29,7 @@ public interface AccountRepository extends JpaRepository<Account, String> {
 
     @Query("SELECT u FROM Account u JOIN CommentProduct pc ON pc.userID = u.userID WHERE pc.commentID = ?1")
     Account findUserDetailsByCommentId(String commentId);
-    // Tìm tất cả các tài khoản có role = 3 (Khách hàng)
-    List<Account> findByRole(int role);
 
-    // Khóa tài khoản (Cập nhật status thành 0)
-
-
-    @Modifying
-    @Transactional
-    @Query("UPDATE Account a SET a.status = 0 WHERE a.userID = ?1")
-    int lockAccount(String userID);
-
-    // Mở khóa tài khoản (Cập nhật status thành 1)
-    @Modifying
-    @Transactional
-    @Query("UPDATE Account a SET a.status = 1 WHERE a.userID = ?1")
-    int unlockAccount(String userID);
-
-    @Query("SELECT COUNT(a) FROM Account a WHERE a.role = 3")
-    int countUserByRole();
-
-    @Query("SELECT COUNT(a) FROM Account a WHERE a.role = 4")
-    int countCTVByRole();
 
 
     @Transactional
@@ -62,4 +41,5 @@ public interface AccountRepository extends JpaRepository<Account, String> {
     @Modifying
     @Query("UPDATE Account u SET u.role = 4 WHERE u.userID = :userId")
     void updateCustomerToCTVProduct(@Param("userId") String userId);
+
 }

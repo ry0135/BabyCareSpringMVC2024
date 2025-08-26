@@ -30,19 +30,14 @@ public class Feedback {
 
     @Column(name = "name") // Tên cột tương ứng trong DB
     private String name;
-    @Column(name = "CTVID") // Tên cột tương ứng trong DB
-    private String ctvID;
-    // Constructors
-    public Feedback() {}
 
-    public Feedback(String customerID, int serviceID, String testimonial, Date experienceDate, int satisfactionLevel, String name,String CTVID) {
         this.customerID = customerID;
         this.serviceID = serviceID;
         this.testimonial = testimonial;
         this.experienceDate = experienceDate;
         this.satisfactionLevel = satisfactionLevel;
         this.name = name;
-        this.ctvID = CTVID;
+
     }
 
     // Getters and Setters
@@ -110,3 +105,4 @@ public class Feedback {
         this.ctvID = ctvID;
     }
 }
+

@@ -91,7 +91,7 @@ public class AddBrandController {
                             (newAddress != null && !newAddress.isEmpty()) ? newAddress : brandAddress,
                             bankName, accountNumber,brandDescription);
                     if (updated) {
-//                        model.addAttribute("thongbao", "Lưu thông tin thành công.");
+
                     } else {
                         model.addAttribute("thongbao", "Có lỗi xảy ra khi cập nhật cửa hàng. Vui lòng thử lại.");
                     }

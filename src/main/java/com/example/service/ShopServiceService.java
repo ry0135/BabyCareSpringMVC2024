@@ -60,7 +60,7 @@ public class ShopServiceService {
     }
 
     public void approveBrand(String ctvId) {
-        shopServiceRepository.updateBrandStatus(ctvId);
+
     }
 
 

@@ -4,6 +4,7 @@ import com.example.model.Account;
 import com.example.model.ServiceEntity;
 import com.example.model.ServiceType;
 import com.example.model.ShopService;
+import com.example.repository.AccountRepository;
 import com.example.repository.ServiceRepository;
 import com.example.repository.ShopServiceRepository;
 import com.example.service.*;
@@ -11,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,16 +38,26 @@ public class ShopServiceController {
 
     @Autowired
     private EmailService emailService;
+
     @Autowired
     private FilleUtils filleUtils;
     @Autowired
     private AccountService accountService;
     @Autowired
     private ServiceTypeService serviceTypeService;
+
+    @Autowired
+    private AccountRepository accountRepository;
+
     @Autowired
     private ShopServiceRepository shopServiceRepository;
     @Autowired
     private ShopServiceService shopServiceService;
+    @Autowired
+    private AccountService accountService;
+
+
+
 
     @GetMapping("/register-shop-service")
     public String showRegisterShopServiceForm(HttpSession session,Model model) {
@@ -60,6 +72,7 @@ public class ShopServiceController {
         model.addAttribute("shopService", new ShopService());
         return "registerShopService"; // Trang form đăng ký
     }
+
 
     @PostMapping("/register-shop-service")
     public String registerShopService( @RequestParam("brandName") String brandName,
@@ -273,6 +286,7 @@ public class ShopServiceController {
 
         return "redirect:/service-list-manager"; // Chuyển hướng về danh sách dịch vụ
     }
+
     @GetMapping("/list-register-shopservicve")
     public String getListRegisterCTV(Model model) {
         // Lấy danh sách ShopService từ service hoặc repository
@@ -282,25 +296,14 @@ public class ShopServiceController {
         model.addAttribute("listregistershopservicve", listregistershopservicve);
 
         // Trả về view JSP
-        return "admin/list-register-shopservice"; // Tên file JSP hiển thị danh sách
+
     }
 
     @Transactional
     @GetMapping("/approveCTV")
     public String approveCTV(@RequestParam("ctvID") String ctvId, RedirectAttributes redirectAttributes) {
 
-        Account account = accountService.findByUserID(ctvId);
-        ShopService shopService = shopServiceRepository.findByCtvID(ctvId);
-        // Cập nhật thông tin User (Customer -> CTV)
-        accountService.updateCustomerToCTV(ctvId);
 
-        // Cập nhật trạng thái Brand
-        shopServiceService.approveBrand(ctvId);
-        emailService.sendCodeToEmailApproveCTV(shopService.getBrandName(),account.getEmail());
-
-        redirectAttributes.addFlashAttribute("message", "Duyệt CTV thành Công!");
-
-        return "redirect:/list-register-shopservicve";
     }
 
     @Transactional
@@ -314,11 +317,8 @@ public class ShopServiceController {
         // Cập nhật trạng thái Brand
         emailService.sendCodeToEmailUnApproveCTV(shopService.getBrandName(),account.getEmail());
 
-        redirectAttributes.addFlashAttribute("message", "Không Duyệt CTV Thành Công");
-
-        return "redirect:/list-register-shopservicve";
-    }
 
 }
+
 
 

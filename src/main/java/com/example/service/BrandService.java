@@ -138,4 +138,5 @@ public class BrandService {
     public void approveBrand(String CTVID) {
         brandRepository.updateBrandStatus(CTVID);
     }
+
 }

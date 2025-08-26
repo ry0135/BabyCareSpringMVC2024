@@ -42,9 +42,7 @@
             <a class="nav-item nav-link active" style=" background-color: #ff4880; " href="getAllBooking">Đơn hàng đang chờ</a>
             <a class="nav-item nav-link" href="listbookingAccept">Đơn hàng đã xác nhận</a>
 
-            <a class="nav-item nav-link " href="list-service_succsess">Đơn hàng đã hoàn thành</a>
-            <a class="nav-item nav-link " href="list-service-comment-success">Đơn hàng đã đánh giá</a>
-            <a class="nav-item nav-link  " href="list-service-cancel">Đơn hàng đã hủy</a>
+
 
         </nav>
 
@@ -74,9 +72,7 @@
                 <tr>
                         <%--          <td><a href="getordereddetail?orderId=${order.idOrder}&discountCode=${order.discountId}">${order.idOrder}</a></td>--%>
 
-                    <td><a href="getBookingID?bookingID=${order.bookingID}">${order.serviceName}</a></td>
 
-                    <td>${order.name}</td>
 
                     <td>${order.address}</td>
                     <td>${order.bookingDate}</td>

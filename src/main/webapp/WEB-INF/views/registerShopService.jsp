@@ -183,7 +183,7 @@
     }
 </style>
 <html>
-<body>
+
 
 <c:if test="${hasPending}">
     <div class="info-definition">
@@ -373,9 +373,7 @@
 
     <button type="submit">Đăng Ký</button>
 
-        </form>
-    </div>
-</c:if>
+
     </body>
 </html>
 

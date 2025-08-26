@@ -232,6 +232,16 @@
         opacity: 0.6;         /* Làm mờ thẻ */
         cursor: not-allowed;  /* Hiển thị con trỏ bị cấm */
     }
+    .service-item h5 {
+        white-space: nowrap; /* Không xuống dòng */
+        overflow: hidden; /* Ẩn phần nội dung vượt quá */
+        text-overflow: ellipsis; /* Thêm dấu "..." cho phần bị ẩn */
+        display: block; /* Đảm bảo nó là khối */
+        max-width: 100%; /* Giới hạn chiều rộng theo khung chứa */
+    }
+    .service-item {
+        max-width: 250px; /* Chiều rộng cố định cho từng mục */
+    }
 
 
     h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {

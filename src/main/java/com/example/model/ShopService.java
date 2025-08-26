@@ -40,7 +40,7 @@ public class ShopService {
     @Column(name = "BrandPhone") // Tên cột trong cơ sở dữ liệu
     private String brandPhone;
 
-    @Column(name = "Status") // Tên cột trong cơ sở dữ liệu
+
     private int status;
 
     public ShopService() {
@@ -123,14 +123,12 @@ public class ShopService {
         this.brandPhone = brandPhone;
     }
 
-    public int getStatus() {
-        return status;
+
     }
 
     public void setStatus(int status) {
         this.status = status;
     }
-
 
     public String getAcountNumber() {
         return acountNumber;
@@ -163,4 +161,6 @@ public class ShopService {
     public void setIdentifiImgFace(String identifiImgFace) {
         this.identifiImgFace = identifiImgFace;
     }
+
+
 }

@@ -47,7 +47,6 @@
 </nav>
 
 
-s
 <div class="container">
   <form class="needs-validation" novalidate action="service-add" method="post" enctype="multipart/form-data">
     <div class="col-12">

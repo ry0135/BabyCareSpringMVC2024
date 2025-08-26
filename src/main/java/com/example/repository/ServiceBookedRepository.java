@@ -21,6 +21,8 @@ public interface ServiceBookedRepository extends JpaRepository<ServiceBooked, In
 
     @Query("SELECT sb FROM ServiceBooked sb WHERE sb.CTVID = ?1 AND sb.bookingStatus = 1")
     List<ServiceBooked>findAllByCTVID(String ctvID);
+    @Query("SELECT sb FROM ServiceBooked sb WHERE sb.bookingID = ?1 AND sb.bookingStatus = 1")
+    ServiceBooked findAllByBoking(int bookingID);
     @Query("SELECT sb FROM ServiceBooked sb WHERE sb.CTVID = ?1 AND sb.bookingStatus = 2")
     List<ServiceBooked>findAllByCTVIDStatus2(String ctvID);
     @Query("SELECT sb FROM ServiceBooked sb WHERE sb.CTVID = ?1 AND sb.bookingStatus = 0")
