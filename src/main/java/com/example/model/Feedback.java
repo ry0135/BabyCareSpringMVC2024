@@ -31,21 +31,13 @@ public class Feedback {
     @Column(name = "name") // Tên cột tương ứng trong DB
     private String name;
 
-    @Column(name = "CTVID") // Tên cột tương ứng trong DB
-    private String ctvID;
-
-    // Constructors
-    public Feedback() {}
-
-    public Feedback(int id, String customerID, int serviceID, String testimonial, Date experienceDate, int satisfactionLevel, String name, String ctvID) {
-        this.id = id;
         this.customerID = customerID;
         this.serviceID = serviceID;
         this.testimonial = testimonial;
         this.experienceDate = experienceDate;
         this.satisfactionLevel = satisfactionLevel;
         this.name = name;
-        this.ctvID = ctvID;
+
     }
 
     // Getters and Setters

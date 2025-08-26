@@ -228,6 +228,21 @@
   }
 
 
+  h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+    font-family: sans-serif;
+  }
+  .service-item h5 {
+    white-space: nowrap; /* Không xuống dòng */
+    overflow: hidden; /* Ẩn phần nội dung vượt quá */
+    text-overflow: ellipsis; /* Thêm dấu "..." cho phần bị ẩn */
+    display: block; /* Đảm bảo nó là khối */
+    max-width: 100%; /* Giới hạn chiều rộng theo khung chứa */
+  }
+  .service-item {
+    max-width: 250px; /* Chiều rộng cố định cho từng mục */
+  }
+
+
 </style>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 <!-- Services Start -->
@@ -253,7 +268,7 @@
       <c:forEach var="t" items="${listC}">
         <div class="category-item">
           <a href="serviceType?tid=${t.typeID}">  <!-- Thay từ type thành typeID -->
-            <img src="${t.typeImg}" alt="${t.typeName}">  <!-- Bỏ phần comment để sử dụng hình ảnh -->
+            <img src="${pageContext.request.contextPath}/image/${t.typeImg}" alt="${t.typeName}">  <!-- Bỏ phần comment để sử dụng hình ảnh -->
             <p>${t.typeName}</p>
           </a>
         </div>
@@ -316,12 +331,12 @@
 <%--      </div>--%>
 <%--    </div>--%>
 
-    <div class="container-fluid about bg-light py-5">
+    <div class="container-fluid about bg-light py-5" style="margin-top: 60px;">
       <div class="container py-5">
         <div class="row g-5 align-items-center">
           <div class="col-lg-5 wow fadeInLeft" data-wow-delay="0.2s">
             <div class="about-img pb-5 ps-5">
-              <img src="images/y/y5.jpg" class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
+              <img src="${pageContext.request.contextPath}/assets/images/y/y5.jpg" class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
             </div>
           </div>
           <div class="col-lg-7 wow fadeInRight" data-wow-delay="0.4s">

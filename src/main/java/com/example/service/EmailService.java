@@ -160,6 +160,210 @@ public class EmailService {
             System.err.println("❌ Lỗi khi gửi email: " + e.getMessage());
         }
     }
+    public void sendCodeToEmailApproveCTV(String customerName, String email) {
+        // Lấy ngày hiện tại
+        LocalDate currentDate = LocalDate.now();
+        String formattedDate = currentDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // Định dạng ngày
+
+        // Tạo MimeMessage
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8"); // "UTF-8" để hỗ trợ Unicode
+            helper.setTo(email);
+            helper.setSubject("🎉 Chúc mừng bạn đã trở thành CTV dịch vụ của BabyCare! 🥳");
+
+            // Nội dung email
+            String content = "<p>Xin chào <b>" + customerName + "</b>,</p>"
+                    + "<p>Cảm ơn bạn đã quan tâm và đăng ký trở thành Cộng Tác Viên (CTV) của BabyCare! 🌟</p>"
+                    + "<p>Chúng tôi rất vui mừng thông báo rằng hồ sơ của bạn đã được duyệt thành công. 👏</p>"
+                    + "<p><b>📅 Ngày duyệt:</b> " + formattedDate + "</p>"
+                    + "<p>Kể từ bây giờ, bạn đã chính thức là một phần của đội ngũ CTV tại BabyCare. Chúng tôi hy vọng bạn sẽ tận dụng cơ hội này để cùng chúng tôi mang đến những dịch vụ tốt nhất cho khách hàng. 🥰</p>"
+                    + "<p>👉 Nếu bạn có bất kỳ thắc mắc hoặc cần hỗ trợ, đừng ngần ngại liên hệ qua các kênh dưới đây:</p>"
+                    + "<p>📧 Email hỗ trợ: " + supportEmail + "<br>"
+                    + "📞 Hotline: " + hotline + "</p>"
+                    + "<p>Chúc bạn thành công và có trải nghiệm tuyệt vời cùng BabyCare!</p>"
+                    + "<p>Trân trọng,</p>"
+                    + "<p><b>Đội ngũ BabyCare</b></p>";
+
+            // Thiết lập nội dung HTML
+            helper.setText(content, true); // `true` để gửi nội dung HTML
+            mailSender.send(mimeMessage);
+            System.out.println("✅ Đã gửi email xác nhận duyệt CTV thành công.");
+        } catch (MessagingException e) {
+            System.err.println("❌ Lỗi khi gửi email: " + e.getMessage());
+        }
+    }
+    public void sendCodeToEmailUnApproveCTV(String customerName, String email) {
+        // Lấy ngày hiện tại
+        LocalDate currentDate = LocalDate.now();
+        String formattedDate = currentDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // Định dạng ngày
+
+        // Tạo MimeMessage
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8"); // "UTF-8" để hỗ trợ Unicode
+            helper.setTo(email);
+            helper.setSubject("❌ Đăng ký CTV dịch vụ của BabyCare không được chấp nhận");
+
+            // Nội dung email
+            String content = "<p>Xin chào <b>" + customerName + "</b>,</p>"
+                    + "<p>Cảm ơn bạn đã quan tâm và đăng ký trở thành Cộng Tác Viên (CTV) của BabyCare! 🌟</p>"
+                    + "<p>Rất tiếc, sau khi xem xét hồ sơ của bạn, chúng tôi phải thông báo rằng bạn không được chấp nhận trở thành CTV dịch vụ tại BabyCare.</p>"
+                    + "<p><b>📅 Ngày thông báo:</b> " + formattedDate + "</p>"
+                    + "<p>Chúng tôi hiểu rằng điều này có thể làm bạn thất vọng, nhưng hy vọng bạn sẽ tiếp tục theo dõi các cơ hội khác từ BabyCare trong tương lai. Chúng tôi rất trân trọng sự quan tâm và tham gia của bạn.</p>"
+                    + "<p>👉 Nếu bạn có bất kỳ câu hỏi hoặc muốn biết thêm lý do về quyết định này, đừng ngần ngại liên hệ với chúng tôi qua các kênh dưới đây:</p>"
+                    + "<p>📧 Email hỗ trợ: " + supportEmail + "<br>"
+                    + "📞 Hotline: " + hotline + "</p>"
+                    + "<p>Chúc bạn mọi điều tốt đẹp và thành công trong những kế hoạch sắp tới!</p>"
+                    + "<p>Trân trọng,</p>"
+                    + "<p><b>Đội ngũ BabyCare</b></p>";
+
+            // Thiết lập nội dung HTML
+            helper.setText(content, true); // `true` để gửi nội dung HTML
+            mailSender.send(mimeMessage);
+            System.out.println("✅ Đã gửi email thông báo không duyệt CTV thành công.");
+        } catch (MessagingException e) {
+            System.err.println("❌ Lỗi khi gửi email: " + e.getMessage());
+        }
+    }
+
+    public void sendCodeToEmailProductApproval(String productName, String email, String customerName) {
+        // Lấy ngày hiện tại nếu approvalDate không được cung cấp
+        LocalDate currentDate = LocalDate.now();
+        String formattedDate = currentDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // Định dạng ngày
+        // Tạo MimeMessage thay vì SimpleMailMessage
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8"); // "UTF-8" để hỗ trợ Unicode
+            helper.setTo(email);
+            helper.setSubject("🎉 Duyệt sản phẩm thành công - Chúc mừng bạn! 🎉");
+
+            // Nội dung email
+            String content = "<p>Xin chào <b>" + customerName + "</b>,</p>"
+                    + "<p>Cảm ơn bạn đã tin tưởng và đăng sản phẩm của mình lên BabyCare! 😊</p>"
+                    + "<p>Chúng tôi vui mừng thông báo rằng sản phẩm của bạn với tên: <b>" + productName + "</b> đã được duyệt thành công và sẵn sàng trên sàn. ✅</p>"
+                    + "<p><b>📅 Ngày duyệt:</b> " + formattedDate + "</p>"
+                    + "<p>Chúng tôi hy vọng rằng sản phẩm của bạn sẽ nhận được sự quan tâm từ nhiều khách hàng trên nền tảng của chúng tôi. 🌟</p>"
+                    + "<p>Nếu bạn cần hỗ trợ thêm, vui lòng liên hệ đội ngũ hỗ trợ của chúng tôi qua email hoặc hotline. 📞✉️</p>"
+                    + "<p>Chúc bạn kinh doanh thành công và nhận được nhiều đơn hàng. 🥰</p>"
+                    + "<p>Trân trọng,</p>"
+                    + "<p><b>Đội ngũ BabyCare</b><br>"
+                    + "🌐 <a href='" + linkweb + "'>Website</a><br>"
+                    + "📧 Email hỗ trợ: " + supportEmail + "<br>"
+                    + "📞 Hotline: " + hotline + "</p>";
+
+            // Thiết lập nội dung HTML
+            helper.setText(content, true); // `true` để gửi nội dung HTML
+            mailSender.send(mimeMessage);
+            System.out.println("✅ Đã gửi email thông báo duyệt sản phẩm thành công.");
+        } catch (MessagingException e) {
+            System.err.println("❌ Lỗi khi gửi email: " + e.getMessage());
+        }
+    }
+    public void sendCodeToEmailProductRejection(String productName, String email, String customerName, String reason) {
+        LocalDate currentDate = LocalDate.now();
+        String formattedDate = currentDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // Định dạng ngày
+        // Tạo MimeMessage thay vì SimpleMailMessage
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8"); // "UTF-8" để hỗ trợ Unicode
+            helper.setTo(email);
+            helper.setSubject("❌ Sản phẩm không được duyệt - Thông báo từ BabyCare");
+
+            // Nội dung email
+            String content = "<p>Xin chào <b>" + customerName + "</b>,</p>"
+                    + "<p>Cảm ơn bạn đã đăng sản phẩm của mình lên BabyCare. Tuy nhiên, chúng tôi rất tiếc thông báo rằng sản phẩm của bạn với tên: <b>" + productName + "</b> không được duyệt. ❌</p>"
+                    + "<p><b>📅 Ngày thông báo:</b> " + formattedDate + "</p>"
+                    + "<p><b>🔍 Lý do không được duyệt:</b> " + reason + "</p>"
+                    + "<p>Vui lòng kiểm tra lại và chỉnh sửa sản phẩm của bạn theo các tiêu chuẩn của chúng tôi trước khi đăng lại. Nếu bạn cần hỗ trợ hoặc giải đáp thắc mắc, vui lòng liên hệ đội ngũ hỗ trợ của chúng tôi. 📞✉️</p>"
+                    + "<p>Rất mong bạn thông cảm và tiếp tục đồng hành cùng BabyCare. 🌟</p>"
+                    + "<p>Trân trọng,</p>"
+                    + "<p><b>Đội ngũ BabyCare</b><br>"
+                    + "🌐 <a href='" + linkweb + "'>Website</a><br>"
+                    + "📧 Email hỗ trợ: " + supportEmail + "<br>"
+                    + "📞 Hotline: " + hotline + "</p>";
+
+            // Thiết lập nội dung HTML
+            helper.setText(content, true); // `true` để gửi nội dung HTML
+            mailSender.send(mimeMessage);
+            System.out.println("✅ Đã gửi email thông báo không duyệt sản phẩm.");
+        } catch (MessagingException e) {
+            System.err.println("❌ Lỗi khi gửi email: " + e.getMessage());
+        }
+    }
+
+    public void sendCodeToEmailApproveCTVOrder(String customerName, String email) {
+        // Lấy ngày hiện tại
+        LocalDate currentDate = LocalDate.now();
+        String formattedDate = currentDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // Định dạng ngày
+
+        // Tạo MimeMessage
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8"); // "UTF-8" để hỗ trợ Unicode
+            helper.setTo(email);
+            helper.setSubject("🎉 Chúc mừng trở thành CTV của BabyCare! 🥳");
+
+            // Nội dung email
+            String content = "<p>Xin chào <b>" + customerName + "</b>,</p>"
+                    + "<p>Chúc mừng bạn đã chính thức trở thành Cộng Tác Viên (CTV) của BabyCare! 🌟</p>"
+                    + "<p>Ngày phê duyệt: <b>" + formattedDate + "</b></p>"
+                    + "<p>Hãy bắt đầu hành trình cùng chúng tôi để mang đến dịch vụ tốt nhất cho khách hàng. 💖</p>"
+                    + "<p>Nếu cần hỗ trợ, vui lòng liên hệ qua:</p>"
+                    + "<ul>"
+                    + "<li>Email: " + supportEmail + "</li>"
+                    + "<li>Hotline: " + hotline + "</li>"
+                    + "</ul>"
+                    + "<p>Chúc bạn nhiều thành công!</p>"
+                    + "<p>Trân trọng,</p>"
+                    + "<p><b>Đội ngũ BabyCare</b></p>";
+
+            // Thiết lập nội dung HTML
+            helper.setText(content, true); // `true` để gửi nội dung HTML
+            mailSender.send(mimeMessage);
+            System.out.println("✅ Đã gửi email xác nhận duyệt CTV thành công.");
+        } catch (MessagingException e) {
+            System.err.println("❌ Lỗi khi gửi email: " + e.getMessage());
+        }
+    }
+
+
+    public void sendCodeToEmailUnApproveCTVOrder(String customerName, String email) {
+        // Lấy ngày hiện tại
+        LocalDate currentDate = LocalDate.now();
+        String formattedDate = currentDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // Định dạng ngày
+
+        // Tạo MimeMessage
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8"); // "UTF-8" để hỗ trợ Unicode
+            helper.setTo(email);
+            helper.setSubject("Thông báo về hồ sơ đăng ký CTV tại BabyCare");
+
+            // Nội dung email
+            String content = "<p>Xin chào <b>" + customerName + "</b>,</p>"
+                    + "<p>Cảm ơn bạn đã đăng ký trở thành Cộng Tác Viên (CTV) của BabyCare.</p>"
+                    + "<p>Rất tiếc, hồ sơ của bạn chưa phù hợp để trở thành CTV sản phẩm tại BabyCare.</p>"
+                    + "<p>Ngày thông báo: <b>" + formattedDate + "</b></p>"
+                    + "<p>Chúng tôi hy vọng sẽ có cơ hội hợp tác với bạn trong những lần đăng ký sau. Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ qua:</p>"
+                    + "<ul>"
+                    + "<li>Email hỗ trợ: " + supportEmail + "</li>"
+                    + "<li>Hotline: " + hotline + "</li>"
+                    + "</ul>"
+                    + "<p>Chúc bạn nhiều thành công trong tương lai!</p>"
+                    + "<p>Trân trọng,</p>"
+                    + "<p><b>Đội ngũ BabyCare</b></p>";
+
+            // Thiết lập nội dung HTML
+            helper.setText(content, true); // `true` để gửi nội dung HTML
+            mailSender.send(mimeMessage);
+            System.out.println("✅ Đã gửi email thông báo không duyệt CTV thành công.");
+        } catch (MessagingException e) {
+            System.err.println("❌ Lỗi khi gửi email: " + e.getMessage());
+        }
+    }
+
+
 
 
     public void sendCodeToEmailApproveCTV(String customerName, String email) {

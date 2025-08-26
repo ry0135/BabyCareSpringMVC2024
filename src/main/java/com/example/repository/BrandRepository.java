@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -33,7 +34,6 @@ public interface BrandRepository extends JpaRepository<Brand, String> {
     @Query("SELECT b.brandName FROM Product p JOIN Brand b ON p.CTVID = b.CTVID WHERE p.productId = ?1")
     String findBrandNameByProductId(String productId);
 
-    List<Brand> findByStatus(int status);
 
     @Transactional
     @Modifying

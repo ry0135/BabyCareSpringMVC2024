@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="/WEB-INF/views/include/header.jsp" />
 <style>
     /* Basic Reset */
     * {
@@ -243,9 +244,21 @@
     }
 
 
-
+    h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+        font-family: sans-serif;
+    }
+    .service-item h5 {
+        white-space: nowrap; /* Không xuống dòng */
+        overflow: hidden; /* Ẩn phần nội dung vượt quá */
+        text-overflow: ellipsis; /* Thêm dấu "..." cho phần bị ẩn */
+        display: block; /* Đảm bảo nó là khối */
+        max-width: 100%; /* Giới hạn chiều rộng theo khung chứa */
+    }
+    .service-item {
+        max-width: 250px; /* Chiều rộng cố định cho từng mục */
+    }
 </style>
-<jsp:include page="/WEB-INF/views/include/header.jsp" />
+
 <!-- Services Start -->
 <div class="header-carousel-item">
     <img src="assets/images/h/h3.jpg" class="img-fluid w-100" style="height: 600px" alt="Image">
@@ -281,7 +294,7 @@
                 <div class="col-lg-8 col-md-7">
                     <form class="search-form d-flex" onsubmit="return false;">
                         <a href="service" class="btn btn-warning fw-bold me-2">ALL</a>
-                        <input type="search" id="searchInput" class="form-control" placeholder="Tìm kiếm dịch vụ...">
+                        <input type="search" id="searchInput" onkeydown="checkEnter(event);" class="form-control" placeholder="Tìm kiếm dịch vụ...">
                         <button type="button" class="btn btn-primary ms-2" onclick="searchServices()">Tìm Kiếm</button>
                     </form>
                 </div>
@@ -347,7 +360,7 @@
         <div class="row g-5 align-items-center">
             <div class="col-lg-5 wow fadeInLeft" data-wow-delay="0.2s">
                 <div class="about-img pb-5 ps-5">
-                    <img src="images/y/y5.jpg" class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
+                    <img src="${pageContext.request.contextPath}/assets/images/y/y5.jpg" class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
                 </div>
             </div>
             <div class="col-lg-7 wow fadeInRight" data-wow-delay="0.4s">
@@ -367,6 +380,14 @@
     </div>
 </div>
         <script>
+
+            function checkEnter(event) {
+                if (event.key === "Enter") { // Kiểm tra xem phím nhấn có phải là Enter không
+                    event.preventDefault(); // Ngăn chặn hành động mặc định của phím Enter
+                    searchServices(); // Gọi hàm gửi tin nhắn
+                }
+            }
+
             function searchServices() {
                 // Lấy giá trị từ ô tìm kiếm
                 let input = document.getElementById('searchInput');

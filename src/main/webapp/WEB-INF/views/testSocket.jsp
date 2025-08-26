@@ -163,16 +163,16 @@
         });
 
         // Subscribe nhận thông báo
-        stompClient.subscribe('/user/' + userId + '/queue/notifications', function(notification) {
-          showNotification(JSON.parse(notification.body));
-        });
+        // stompClient.subscribe('/user/' + userId + '/queue/notifications', function(notification) {
+        //   showNotification(JSON.parse(notification.body));
+        // });
       });
     }
 
-    function showNotification(notification) {
-      alert(notification.message); // Hoặc hiển thị thông báo trong UI
-    }
-
+    // function showNotification(notification) {
+    //   alert(notification.message); // Hoặc hiển thị thông báo trong UI
+    // }
+    //
 
     function sendMessage() {
       var toId = document.getElementById('toId').value;
@@ -352,8 +352,8 @@
   .fa-paper-plane:before {
 
     position: absolute;
-    top: 628px;
-    right: 80px;
+    top: 633px;
+    right: 236px;
     /* margin-bottom: 15px; */
     content: "\f1d8";
   }
@@ -424,7 +424,8 @@
       <input type="hidden" id="toId" value="${toId}" />
       <input type="hidden" id="fromId" value="${idFrom}" />
       <input type="text" id="messageText" onkeydown="checkEnter(event);" placeholder="Type your message..." />
-      <i class="fas fa-paper-plane" id="sendMessage" onclick="sendMessage();" style="cursor: pointer; color: #ff4880; padding: 10px; font-size: 24px;"></i> <!-- Icon gửi tin nhắn -->
+      <i class="fas fa-paper-plane" id="sendMessage" onclick="sendMessage();" style="cursor: pointer; color: #ff4880; padding: 10px; font-size: 24px;top: 633px;
+    right: 236px;"></i> <!-- Icon gửi tin nhắn -->
 
     <%--      <button id="sendMessage" onclick="sendMessage();" style="background-color:#ff4880;">Send</button>--%>
     </div>

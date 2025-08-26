@@ -46,6 +46,7 @@ public class FeedbackController {
             @RequestParam("CustomerID") String customerID,
             @RequestParam("ServiceID") String serviceID,
             @RequestParam("BookingDate") String bookingDate,
+            @RequestParam("CTVID") String ctvID,
             @RequestParam("name") String name,
             @RequestParam("CTVID") String ctvID,
             Model model) {
@@ -100,6 +101,6 @@ public class FeedbackController {
 
         feedbackRepository.saveFeedback(feedback);
 
-        return "redirect:/service-list-manager";
+        return "redirect:/byCustomerID";
     }
 }

@@ -2,8 +2,10 @@ package com.example.controller.service;
 
 import com.example.model.Account;
 import com.example.model.BookingWithBillStatusDTO;
+import com.example.model.ServiceBill;
 import com.example.model.ServiceBooked;
 import com.example.service.EmailService;
+import com.example.service.ServiceBillService;
 import com.example.service.ServiceBookedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,7 +20,8 @@ import java.util.List;
 
 @Controller
 public class ServiceBookedController {
-
+    @Autowired
+    private  ServiceBillService serviceBillService;
     @Autowired
     private ServiceBookedService serviceBookedService;
     @Autowired
@@ -77,7 +80,7 @@ public class ServiceBookedController {
     @GetMapping("/acceptbooking")
     public String updateBookingStatus(@RequestParam("id") int serviceID, Model model) { // Giả sử bạn có đối tượng Request
         serviceBookedService.updateBookingStatus(serviceID,2);
-        return "service/list_booking_manage";
+        return "redirect:/getAllBooking";
     }
     @GetMapping("/cancelbooking")
     public String updateBookingStatus1(@RequestParam("id") int serviceID, Model model) { // Giả sử bạn có đối tượng Request
@@ -87,7 +90,7 @@ public class ServiceBookedController {
     @GetMapping("/succerbooking")
     public String updateBookingStatus3(@RequestParam("id") int serviceID, Model model) { // Giả sử bạn có đối tượng Request
         serviceBookedService.updateBookingStatus(serviceID,3);
-        return "service/list_booking_manage";
+        return "redirect:/listbookingAccept";
     }
 
     @PostMapping("/bookingService")
@@ -127,61 +130,6 @@ public class ServiceBookedController {
         // Chuyển hướng về danh sách booking hoặc trang khác
         return "service/vnpay"; // Ví dụ chuyển hướng đến trang quản lý dịch vụ
     }
-    @GetMapping("/addbookingService")
-    public String addBooking(HttpSession session, Model model) {
-        Account oldUser = (Account) session.getAttribute("account");
-
-        // Lấy các giá trị từ session
-        Integer serviceID = (Integer) session.getAttribute("serviceID");
-        Integer servicePrice = (Integer) session.getAttribute("price"); // Sử dụng Integer
-        String serviceName = (String) session.getAttribute("serviceName");
-        String name = (String) session.getAttribute("name");
-        String address = (String) session.getAttribute("address");
-        String address1 = (String) session.getAttribute("address1");
-        String phone = (String) session.getAttribute("phone");
-        String sex = (String) session.getAttribute("sex");
-        String slot = (String) session.getAttribute("slot");
-        Date bookingDate = (Date) session.getAttribute("bookingDate");
-        String note = (String) session.getAttribute("note");
-        String email = (String) session.getAttribute("email");
-        String CTVID = (String) session.getAttribute("CTVID");
-
-        // Tạo đối tượng ServiceBooked mới
-        ServiceBooked newBooking = new ServiceBooked();
-        newBooking.setCustomerID(oldUser.getUserID());
-        newBooking.setServiceID(serviceID);
-        newBooking.setName(name);
-        newBooking.setPhoneNumber(phone);
-
-        // Gán địa chỉ
-        if (address1 == null || address1.isEmpty()) {
-            newBooking.setAddress(address);
-        } else {
-            newBooking.setAddress(address1);
-        }
-
-        // Gán các thuộc tính khác
-        newBooking.setSex(sex);
-        newBooking.setBookingDate(bookingDate);
-        newBooking.setSlot(slot);
-        newBooking.setEmail(email);
-        newBooking.setNote(note);
-        newBooking.setPrice(servicePrice != null ? servicePrice.doubleValue() : 0.0); // Chuyển đổi nếu cần
-        newBooking.setBookingStatus(1); // Ví dụ trạng thái "Đã đặt"
-        newBooking.setServiceName(serviceName);
-        newBooking.setCTVID(CTVID);
-
-        // Lưu booking
-        serviceBookedService.saveBooking(newBooking);
-        emailService.sendCodeToEmailSuccsessBooking(serviceName,slot,email,address,name);
-        // emailService.sendInformationToEmail(oldUser.getEmail()); // Gửi email nếu cần
-        model.addAttribute("successMessage", "Đặt dịch vụ thành công!");
-
-        // Chuyển hướng về danh sách booking
-        return "service/service_bill";
-    }
-
-
 
     @GetMapping("/UpdateBookingCustomerID")
     public String showUpdateBookingForm(@RequestParam("bookingID") int bookingID, Model model) {
@@ -250,5 +198,101 @@ public class ServiceBookedController {
         model.addAttribute("successMessage", "Cập nhật booking thành công!");
 
         return "redirect:/byCustomerID"; // Chuyển hướng đến trang danh sách
+    }
+
+    @GetMapping("/addbookingService")
+    public String addBooking(HttpSession session, Model model) {
+        Account oldUser = (Account) session.getAttribute("account");
+
+        // Retrieve values from the session
+        Integer serviceID = (Integer) session.getAttribute("serviceID");
+        Integer servicePrice = (Integer) session.getAttribute("price");
+        String serviceName = (String) session.getAttribute("serviceName");
+        String name = (String) session.getAttribute("name");
+        String address = (String) session.getAttribute("address");
+        String address1 = (String) session.getAttribute("address1");
+        String phone = (String) session.getAttribute("phone");
+        String sex = (String) session.getAttribute("sex");
+        String slot = (String) session.getAttribute("slot");
+        Date bookingDate = (Date) session.getAttribute("bookingDate");
+        String note = (String) session.getAttribute("note");
+        String email = (String) session.getAttribute("email");
+        String CTVID = (String) session.getAttribute("CTVID");
+
+        // Create a new ServiceBooked object
+        ServiceBooked newBooking = new ServiceBooked();
+        newBooking.setCustomerID(oldUser.getUserID());
+        newBooking.setServiceID(serviceID);
+        newBooking.setName(name);
+        newBooking.setPhoneNumber(phone);
+
+        // Set the address
+        newBooking.setAddress((address1 == null || address1.isEmpty()) ? address : address1);
+
+        // Set other properties
+        newBooking.setSex(sex);
+        newBooking.setBookingDate(bookingDate);
+        newBooking.setSlot(slot);
+        newBooking.setEmail(email);
+        newBooking.setNote(note);
+        newBooking.setPrice(servicePrice != null ? servicePrice.doubleValue() : 0.0);
+        newBooking.setBookingStatus(1); // Status "Booked"
+        newBooking.setServiceName(serviceName);
+        newBooking.setCTVID(CTVID);
+
+        // Save booking
+        serviceBookedService.saveBooking(newBooking);
+
+        // Send email upon successful booking
+        emailService.sendCodeToEmailSuccsessBooking(serviceName, slot, email, address, name);
+
+        // Retrieve booking ID after saving; assuming booking ID is generated by saveBooking
+        Integer bookingID = newBooking.getBookingID(); // Use actual method to retrieve ID
+
+        // Store necessary information in the session
+        session.setAttribute("bookingID", bookingID);
+        session.setAttribute("serviceName", serviceName);
+        session.setAttribute("servicePrice", servicePrice);
+
+        // Redirect to booking bill page
+        return "redirect:/addBookingBill";
+    }
+
+    @GetMapping("/addBookingBill")
+    public String addBookingBill(HttpSession session, Model model) {
+        Account oldUser = (Account) session.getAttribute("account");
+        // Retrieve the bookingID and other necessary details from the session
+        Integer bookingID = (Integer) session.getAttribute("bookingID");
+        Integer customerID = (Integer) session.getAttribute("customerID"); // Ensure this is set in the session
+        Integer servicePrice = (Integer) session.getAttribute("servicePrice"); // Retrieves as Integer
+
+        // Convert Integer to Double
+        Double totalAmount = (servicePrice != null) ? servicePrice.doubleValue() : 0.0;
+
+        String billStatus = "Pending"; // Set as required
+
+        // Create a new ServiceBill object
+        ServiceBill bill = new ServiceBill();
+        bill.setBookingID(bookingID);
+        bill.setCustomerID(oldUser.getUserID());
+        bill.setBillDate(new Date());
+        bill.setTotalAmount(totalAmount);
+        bill.setBillStatus(1);
+
+        // Save the bill
+        serviceBillService.saveBill(bill);
+
+        // Optionally add attributes to the model
+        model.addAttribute("bill", bill);
+
+        return "service/service_bill";
+    }
+
+    @GetMapping("/getBookingID")
+    public String getBookingID(@RequestParam ("bookingID") int bookingID, Model model) {
+
+        ServiceBooked bookings = serviceBookedService.findBookingID(bookingID);
+        model.addAttribute("order", bookings);
+        return "service/list_booking_detail"; // View template nơi dữ liệu sẽ được hiển thị
     }
 }

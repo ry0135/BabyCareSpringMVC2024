@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="user-info " style="display: flex; align-items: center">
-        <img class="img-avatar text-white ms-lg-5" style="width: 70px; height: 83%; border-radius: 50%; margin-top: 5px;" src="${pageContext.request.contextPath}/assets/img/${sessionScope.account.avatar}" alt="">
+        <img class="img-avatar text-white ms-lg-5" style="width: 70px; height: 83%; border-radius: 50%; margin-top: 5px;" src="${pageContext.request.contextPath}/image/${sessionScope.account.avatar}" alt="">
         <a class="nav-link text-white px-5 ms-lg-3" style="background-color: #ff4880">
             ${sessionScope.account.firstname} ${sessionScope.account.lastname}
         </a>

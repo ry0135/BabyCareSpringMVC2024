@@ -34,7 +34,13 @@ public class FavoriteServiceService {
     public void removeFavorite(Integer favoriteID) {
         favoriteServiceRepository.deleteByFavoriteID(favoriteID);
     }
-    public boolean isFavorite(String userID, Integer serviceID) {
-        return favoriteServiceRepository.isFavorite(userID, serviceID);
+// public boolean isFavorite(String userID, Integer serviceID) {
+//        return favoriteServiceRepository.isFavorite(userID, serviceID);
+//    }
+
+
+    public boolean isServiceAlreadyFavorite(int serviceID, String userID) {
+        List<FavoriteServiceDTO> favorites = getFavoriteServiceByUserID(userID);
+        return favorites.stream().anyMatch(favorite -> favorite.getServiceID() == serviceID);
     }
 }

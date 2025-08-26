@@ -14,20 +14,20 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <!--<link rel="stylesheet" href="styles.css">-->
     </head>
-    <body>
+    <body style="margin-top: 120px">
 
-    
+    <%@include file="header_sellChanel.jsp" %>
             <div class="sidebar col-lg-3">
                 <ul>
                     <li class="sidebar-item">
                         <span>Quản Lý Đơn Hàng</span>
                         <ul class="submenu">
                             <li><a href="order-list-manager">Tất Cả </a></li>
-                            <li>Giao Hàng Loạt</li>
-                            <li>Đơn Hủy</li>
-                            <li>Trả Hàng/Hoàn Tiền</li>
-                            <li>Cài Đặt Vận Chuyển</li>
-                            <li>Bàn Giao Đơn Hàng</li>
+<%--                            <li>Giao Hàng Loạt</li>--%>
+<%--                            <li>Đơn Hủy</li>--%>
+<%--                            <li>Trả Hàng/Hoàn Tiền</li>--%>
+<%--                            <li>Cài Đặt Vận Chuyển</li>--%>
+<%--                            <li>Bàn Giao Đơn Hàng</li>--%>
                         </ul>
                     </li>
                     <li class="sidebar-item">
@@ -37,23 +37,7 @@
                             <li><a href="addproduct">Thêm Sản Phẩm</a></li>
                         </ul>
                     </li>
-                    <li class="sidebar-item">
-                        <span>Kênh Marketing</span>
-                        <ul class="submenu">
-                            <li>Kênh Marketing</li>
-                            <li>Đấu Giá Rẻ Vô Địch</li>
-                            <li>Quảng Cáo Shopee</li>
-                            <li>Tăng Đơn Cùng KOL</li>
-                            <li>Live & Video</li>
-                            <li>Khuyến Mãi của Shop</li>
-                            <li>Flash Sale của Shop</li>
-                            <li>Mã Giảm Giá của Shop</li>
-                            <li>Chương Trình Shopee</li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <span>Chăm sóc khách hàng</span>
-                    </li>
+
                     <li class="sidebar-item">
                         <span>Tài Chính</span>
                         <ul class="submenu">
@@ -62,12 +46,7 @@
                             <li>Tài Khoản Ngân Hàng</li>
                         </ul>
                     </li>
-                    <li class="sidebar-item">
-                        <span>Dữ liệu</span>
-                    </li>
-                    <li class="sidebar-item">
-                        <span>Quản Lý Shop</span>
-                    </li>
+
                 </ul>
             </div>
 
@@ -144,13 +123,7 @@
             text-decoration: underline;
         }
 
-        a:visited {
-            color: red;
-        }
 
-        a:active {
-            color: #ff0000;
-        }
     </style>
 
         </style>

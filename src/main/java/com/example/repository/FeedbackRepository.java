@@ -1,6 +1,6 @@
 package com.example.repository;
 
-import com.example.model.FavoriteServiceDTO;
+
 import com.example.model.FeedBackDTO;
 import com.example.model.Feedback;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,6 +23,12 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
     List<Feedback> findByCtvID(String ctvID);
     @Query("SELECT SUM(f.satisfactionLevel) FROM Feedback f WHERE f.serviceID = ?1")
     Integer findTotalRatingByServiceID(int serviceID); // Tính tổng đánh giá
+
+    @Query("SELECT new com.example.model.FeedBackDTO(sb, b) " +
+            "FROM Feedback sb " +
+            "LEFT JOIN ServiceEntity b ON sb.serviceID = b.serviceID " +
+            "WHERE sb.ctvID = ?1")
+    List<FeedBackDTO> findFeedBackByUserID(String ctvID);
 
     @Query("SELECT COUNT(f) FROM Feedback f WHERE f.serviceID = ?1")
     Integer countFeedbackByServiceID(int serviceID); // Tính số lượng phản hồi

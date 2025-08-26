@@ -38,7 +38,7 @@ public class Product implements Serializable {
     private int dimensions;
     @Column(name = "ShippingCost") // Tên cột trong cơ sở dữ liệu
     private double shippingCost;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", insertable = false, updatable = false)
     private List<ProductImage> images = new ArrayList<>();
 
@@ -84,6 +84,12 @@ public class Product implements Serializable {
         this.dimensions = dimensions;
         this.shippingCost = shippingCost;
 
+    }
+
+    public Product(String productId, String productName, double productPrice) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productPrice = productPrice;
     }
 
     // Thêm hình ảnh vào danh sách

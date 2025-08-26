@@ -1,16 +1,13 @@
 package com.example.service;
 
-import com.example.model.Account;
-import com.example.model.CommentProduct;
-import com.example.model.Product;
-import com.example.model.ProductImage;
-import com.example.repository.AccountRepository;
-import com.example.repository.CommentProductRepository;
-import com.example.repository.ProductImageRepository;
-import com.example.repository.ProductRepository;
+import com.example.model.*;
+import com.example.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.awt.print.Pageable;
 import java.sql.Timestamp;
 
 import java.util.List;
@@ -24,10 +21,48 @@ public class ProductService {
     @Autowired
     private CommentProductRepository commentProductRepository;
 
+
+
+
     @Autowired
     private ProductImageRepository productImageRepository;
 
-//        public List<Product> getAllProduct() {
+    @Autowired
+    private OrderDetailsRepository orderDetailsRepository;
+
+
+    public boolean updateProductByCancelOrder(String orderId) {
+        try {
+            List<OrderDetails> orderDetails = orderDetailsRepository.findOrderDetailsByBillID(orderId);
+            for (OrderDetails detail : orderDetails) {
+                Product product = productRepository.findById(detail.getProductID())
+                        .orElseThrow(() -> new RuntimeException("Product not found"));
+                product.setProductAmount(product.getProductAmount() + detail.getAmountProduct());
+                productRepository.save(product); // Cập nhật sản phẩm
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public void updateProductSoldByCancelOrder(String orderId) {
+        try {
+            List<OrderDetails> orderDetails = orderDetailsRepository.findOrderDetailsByBillId(orderId);
+            for (OrderDetails detail : orderDetails) {
+                Product product = productRepository.findById(detail.getProductID())
+                        .orElseThrow(() -> new RuntimeException("Product not found"));
+                product.setSold(product.getSold() - detail.getAmountProduct()); // Giảm giá trị 'sold'
+                productRepository.save(product); // Cập nhật sản phẩm
+            }
+        } catch (Exception e) {
+            System.out.println("==========> ERROR: updateProductByCancelOrder() <=============");
+            e.printStackTrace();
+        }
+    }
+
+
+    //        public List<Product> getAllProduct() {
 //            List<Product> products = productRepository.findByStatus(1);
 //            for (Product product : products) {
 //                List<ProductImage> images = productImageRepository.findByProductID(product.getProductId().toString());
@@ -54,6 +89,39 @@ public class ProductService {
         return products;
         }
     @Transactional
+    public List<Product> getAllProductWaitApprove() {
+        // Lấy danh sách sản phẩm có trạng thái là 1
+        List<Product> products = productRepository.findByStatus(0);
+
+        // Duyệt qua từng sản phẩm và gán danh sách hình ảnh
+        products.forEach(product -> {
+            // Lấy danh sách hình ảnh theo ProductID
+            List<ProductImage> images = productImageRepository.findByProductID(product.getProductId());
+
+            // Thêm từng đường dẫn hình ảnh vào sản phẩm
+            images.forEach(image -> product.addImagePath(image.getImagePath()));
+        });
+
+        return products;
+    }
+
+    @Transactional
+    public List<Product> getAllProductByCTVID(String CTVID) {
+        // Lấy danh sách sản phẩm có trạng thái là 1
+        List<Product> products = productRepository.getAllProductByCTVID(CTVID,1);
+
+        // Duyệt qua từng sản phẩm và gán danh sách hình ảnh
+        products.forEach(product -> {
+            // Lấy danh sách hình ảnh theo ProductID
+            List<ProductImage> images = productImageRepository.findByProductID(product.getProductId());
+
+            // Thêm từng đường dẫn hình ảnh vào sản phẩm
+            images.forEach(image -> product.addImagePath(image.getImagePath()));
+        });
+
+        return products;
+    }
+    @Transactional
     public List<Product> getAllProductMNG() {
         // Lấy danh sách sản phẩm có trạng thái là 1
         List<Product> products = productRepository.findAll();
@@ -77,18 +145,45 @@ public class ProductService {
         if (product != null) {
             // Lấy danh sách hình ảnh liên quan đến sản phẩm
             List<ProductImage> images = productImageRepository.findByProductID(productId);
-            // Gán hình ảnh vào sản phẩm
-            images.forEach(image -> product.addImagePath(image.getImagePath()));
+
+            // Gán hình ảnh vào sản phẩm - đảm bảo không thêm hình ảnh đã tồn tại
+            for (ProductImage image : images) {
+                String imagePath = image.getImagePath();
+                if (!product.getImagePaths().contains(imagePath)) {
+                    product.addImagePath(imagePath);
+                }
+            }
         }
         return product; // Trả về sản phẩm, kèm theo các hình ảnh
     }
+
+
+
     @Transactional
     public List<CommentProduct> listCommentsByProductId(String productId) {
+
         return commentProductRepository.findByProductID(productId);
     }
     @Transactional
+    public List<Product> listTopProduct(String CTVID) {
+        // Lấy danh sách sản phẩm có trạng thái là 1
+        List<Product> products = productRepository.findTop5BestSellingProductsByCTV(CTVID,1);
+
+        // Duyệt qua từng sản phẩm và gán danh sách hình ảnh
+        products.forEach(product -> {
+            // Lấy danh sách hình ảnh theo ProductID
+            List<ProductImage> images = productImageRepository.findByProductID(product.getProductId());
+
+            // Thêm từng đường dẫn hình ảnh vào sản phẩm
+            images.forEach(image -> product.addImagePath(image.getImagePath()));
+        });
+
+        return products;
+    }
+    @Transactional
     public double getAverageRatingForProduct(String productId) {
-        return productRepository.getTotalNumberOfRatingsForProduct(productId);
+        Double averageRating = productRepository.getTotalNumberOfRatingsForProduct(productId);
+        return (averageRating != null) ? averageRating : 0.0; // Trả về 0 nếu không có rating
     }
     @Transactional
     public int getTotalCommentsForProduct(String productId) {

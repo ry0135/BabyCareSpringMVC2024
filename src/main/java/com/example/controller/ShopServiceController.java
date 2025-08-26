@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +41,8 @@ public class ShopServiceController {
 
     @Autowired
     private FilleUtils filleUtils;
-
+    @Autowired
+    private AccountService accountService;
     @Autowired
     private ServiceTypeService serviceTypeService;
 
@@ -72,8 +74,6 @@ public class ShopServiceController {
     }
 
 
-
-
     @PostMapping("/register-shop-service")
     public String registerShopService( @RequestParam("brandName") String brandName,
                                        @RequestParam("brandDescription") String brandDescription,
@@ -82,10 +82,10 @@ public class ShopServiceController {
                                        @RequestParam("bankName")  String bankName,
                                        @RequestParam("brandPhone")  String brandPhone,
                                        @RequestParam("IdentifiNumber") String identifiNumber,
-                                      @RequestParam("IdentifiImg") MultipartFile identifiImg,
-                                      @RequestParam("IdentifiImgFace") MultipartFile identifiImgFace,
-                                      @RequestParam("AccountNumber") String accountNumber,
-                                      Model model, HttpServletRequest request) {
+                                       @RequestParam("IdentifiImg") MultipartFile identifiImg,
+                                       @RequestParam("IdentifiImgFace") MultipartFile identifiImgFace,
+                                       @RequestParam("AccountNumber") String accountNumber,
+                                       Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Account user = (Account) session.getAttribute("account");
 
@@ -159,6 +159,7 @@ public class ShopServiceController {
 
         return "redirect:/register-shop-service"; // Chuyển hướng khi đăng ký thành công
     }
+
 
     // Phương thức để xử lý tệp tải lên
 
@@ -270,7 +271,7 @@ public class ShopServiceController {
         serviceRepository.save(service);
 
         model.addAttribute("message", "Cập nhật dịch vụ thành công");
-        return "servicebrand/service-list-manager";  // Quay lại trang quản lý dịch vụ
+        return "redirect:/service-list-manager";  // Quay lại trang quản lý dịch vụ
     }
 
     @GetMapping("/deleteService")
@@ -295,25 +296,14 @@ public class ShopServiceController {
         model.addAttribute("listregistershopservicve", listregistershopservicve);
 
         // Trả về view JSP
-        return "list-register-shopservice"; // Tên file JSP hiển thị danh sách
+
     }
 
     @Transactional
     @GetMapping("/approveCTV")
     public String approveCTV(@RequestParam("ctvID") String ctvId, RedirectAttributes redirectAttributes) {
 
-            Account account = accountService.findByUserID(ctvId);
-            ShopService shopService = shopServiceRepository.findByCtvID(ctvId);
-            // Cập nhật thông tin User (Customer -> CTV)
-            accountService.updateCustomerToCTV(ctvId);
 
-            // Cập nhật trạng thái Brand
-            shopServiceService.approveBrand(ctvId);
-            emailService.sendCodeToEmailApproveCTV(shopService.getBrandName(),account.getEmail());
-
-            redirectAttributes.addFlashAttribute("message", "CTV and Brand approved successfully!");
-
-            return "redirect:/list-register-shopservicve";
     }
 
     @Transactional
@@ -327,10 +317,7 @@ public class ShopServiceController {
         // Cập nhật trạng thái Brand
         emailService.sendCodeToEmailUnApproveCTV(shopService.getBrandName(),account.getEmail());
 
-        redirectAttributes.addFlashAttribute("message", "CTV and Brand approved successfully!");
 
-        return "redirect:/list-register-shopservicve";
-    }
 }
 
 

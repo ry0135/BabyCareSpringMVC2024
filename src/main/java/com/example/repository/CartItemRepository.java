@@ -4,6 +4,7 @@ import com.example.model.CartItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -18,6 +19,13 @@ public interface CartItemRepository extends JpaRepository<CartItem, String> {
     // Tìm một CartItem theo userId và productId
     CartItem findByUserIdAndProductId(String userId, String productId);
     CartItem findCartByUserId(String userId);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE CartItem ci SET ci.quantity = :quantity WHERE ci.userId = :userId AND ci.productId = :productId")
+    void updateCartItemQuantity(@Param("userId") String userId,
+                                @Param("productId") String productId,
+                                @Param("quantity") int quantity);
 
     // Xóa CartItem theo userId và productId
     void deleteByUserIdAndProductId(String userId, String productId);

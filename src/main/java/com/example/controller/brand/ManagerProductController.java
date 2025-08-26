@@ -1,6 +1,7 @@
 package com.example.controller.brand;
 import com.example.model.Account;
 import com.example.model.Brand;
+import com.example.model.Product;
 import com.example.repository.BrandRepository;
 import com.example.service.*;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
@@ -21,11 +22,16 @@ import static com.sun.xml.internal.ws.api.model.wsdl.WSDLBoundOperation.ANONYMOU
 
 @Controller
 public class ManagerProductController {
-
+    @Autowired
+    private ProductService productService;
     @GetMapping("/manager_product")
-    public String showManagerProdcut() {
-        return "brand/managerProduct"; // View sẽ hiển thị form thêm sản phẩm
-    }
+    public String getAllProducts(HttpSession session,Model model) {
+        Account user = (Account) session.getAttribute("account");
 
+        List<Product> products = productService.getAllProductByCTVID(user.getUserID());
+        model.addAttribute("listProducts", products);
+        return "brand/managerProduct"; // Tên của tệp Thymeleaf hoặc JSP
+
+    }
 
 }

@@ -101,7 +101,7 @@
                 <h2 class="text-primary m-1 p-0">${orderStatus}</h2>
             </div>
             <ul class="timeline">
-                <c:if test="${orderStatus == 'Đang xử lý-COD'}">
+                <c:if test="${orderStatus == 'Đang xử lý - COD'}">
                     <li >
                         <div class="step">
                                     <span class="icon avtive">

@@ -325,7 +325,7 @@
             <form class="shop-form needs-validation" novalidate action="${pageContext.request.contextPath}/addBrandIndentifi" method="post" enctype="multipart/form-data">
                 <!-- Số CCCD -->
                 <div class="form-group row">
-                    <label class="col-lg-3" for="CCCDNumber">* Số CCCD/CMND <span class="text-danger">*</span></label>
+                    <label class="col-lg-3" for="CCCDNumber">* Số CCCD/CMND( có đăng ký MST) <span class="text-danger">*</span></label>
                     <input class="form-control col-lg-3" type="text" id="CCCDNumber" name="CCCDNumber" placeholder="Nhập vào" maxlength="12" pattern="\d{12}" value="${brand.identifiNumber}" required style="width: 320px;">
                     <div class="invalid-feedback">
                         Vui lòng nhập đúng 12 số cho Số CCCD/CMND.
@@ -355,7 +355,7 @@
                     </div>
 
                     <div class="col-lg-2">
-                        <img id="imgPreview1" class="img-avatar text-white" style="width: 100px; height: auto;" src="${pageContext.request.contextPath}/WEB-INF/views/addBrand/cancuoc/mattruoc.png" alt="">
+                        <img id="imgPreview1" class="img-avatar text-white" style="width: 100px; height: auto;" src="${pageContext.request.contextPath}/image/mattruoc.png" alt="">
                     </div>
                     <div class="invalid-feedback">
                         Vui lòng tải lên hình chụp của thẻ CMND/CCCD.
@@ -375,7 +375,7 @@
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <img id="imgPreview2" class="text-white" style="width: 100px; height: auto;" src="${pageContext.request.contextPath}/WEB-INF/views/addBrand/cancuoc/voimat.png" alt="">
+                        <img id="imgPreview2" class="text-white" style="width: 100px; height: auto;" src="${pageContext.request.contextPath}/image/voimat.png" alt="">
                     </div>
                     <div class="invalid-feedback">
                         Vui lòng tải lên ảnh đang cầm CMND/CCCD của bạn.
@@ -399,7 +399,7 @@
 
                 <!-- Buttons -->
                 <div class="form-actions" style="justify-content: space-between">
-                    <a href="${pageContext.request.contextPath}/addBrand" class="btn back-btn" style="text-decoration: none">quay lại</a>  
+                    <a href="registerctv" class="btn back-btn" style="text-decoration: none">quay lại</a>
                     <button type="submit" class="btn complete-btn">Hoàn tất</button>
                 </div>
             </form>
@@ -442,7 +442,7 @@
 
 
 </script>
-<!--<script>
+<script>
     (function () {
         'use strict';
         window.addEventListener('load', function () {
@@ -458,4 +458,4 @@
             });
         }, false);
     })();
-</script>-->
+</script>

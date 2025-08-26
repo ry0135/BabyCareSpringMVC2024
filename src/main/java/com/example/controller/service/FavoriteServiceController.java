@@ -39,19 +39,17 @@ public class FavoriteServiceController {
                 redirectAttributes.addFlashAttribute("error", "Bạn cần đăng nhập để thêm vào yêu thích");
                 return "redirect:/login"; // Chuyển hướng đến trang đăng nhập
             }
-
+            if (favoriteService.isServiceAlreadyFavorite(serviceID, oldUser.getUserID())) {
+                redirectAttributes.addFlashAttribute("error", "Dịch vụ này đã có trong danh sách yêu thích");
+                return "redirect:/service"; // Chuyển hướng về trang dịch vụ
+            }
             // Tạo đối tượng yêu thích
             FavoriteService favorite = new FavoriteService();
             favorite.setServiceID(serviceID);
 
             favorite.setUserID(oldUser.getUserID());
 
-         //    Kiểm tra xem dịch vụ đã được thêm vào danh sách yêu thích chưa
-//            boolean isAlreadyFavorite = favoriteService.isFavorite(oldUser.getUserID(), serviceID);
-//            if (isAlreadyFavorite) {
-//                redirectAttributes.addFlashAttribute("message", "Dịch vụ này đã nằm trong danh sách yêu thích");
-//                return "redirect:/service"; // Chuyển hướng về trang dịch vụ
-//            }
+
 
             // Thêm dịch vụ vào danh sách yêu thích
             favoriteService.addFavorite(favorite);
@@ -65,7 +63,6 @@ public class FavoriteServiceController {
             return "redirect:/service"; // Chuyển hướng về trang dịch vụ
         }
     }
-
     @GetMapping("/listfavorite")
     public String getFavorites(HttpSession session, Model model) {
         // Lấy thông tin người dùng từ session

@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -16,6 +17,7 @@ public interface ShopServiceRepository extends JpaRepository<ShopService, String
     // Không cần phải khai báo phương thức save, vì JpaRepository đã cung cấp sẵn.
     boolean existsByBrandID(String brandID); // Kiểm tra sự tồn tại của BrandID
     ShopService findByCtvID(String ctvID); // Tìm kiếm theo ctvID
+
 
     // Hoặc sử dụng Method Query (Spring Data JPA)
     List<ShopService> findByStatus(int status);

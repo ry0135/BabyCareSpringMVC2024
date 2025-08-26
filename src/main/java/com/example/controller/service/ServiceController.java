@@ -57,7 +57,8 @@ public class ServiceController {
     @GetMapping("/getShope")
     public String getShopService(@RequestParam("CTVID") String ctvID , Model model) {
 
-        List<ServiceEntity> service = serviceService.getAllServiceByCTVID(ctvID);
+
+        List<ServiceEntity> service = serviceService.getServicesByCTVID(ctvID);
 
 
         ShopService shopServices = shopServiceService.getShopServicesByCtvID(ctvID);
@@ -69,7 +70,6 @@ public class ServiceController {
 
         return "servicebrand/view_shop_service"; // Trả về view service-detail.html
     }
-
     @GetMapping("/getservicedetail")
     public String getServiceDetail(@RequestParam("serviceID") int serviceID,
            @RequestParam("CTVID") String ctvID , Model model) {
@@ -89,7 +89,7 @@ public class ServiceController {
         Double averageRating = serviceService.getAverageRatingForService(serviceID);
         Integer evaluateRating = serviceService.getTotalEvaluateForService(serviceID);
         ShopService shopServices = shopServiceService.getShopServicesByCtvID(ctvID);
-
+        shopServices.getAcountNumber();
         // Thêm thông tin vào model
         model.addAttribute("service", service);
 //        model.addAttribute("combo", comboList);

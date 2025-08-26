@@ -133,6 +133,45 @@ public class CartController {
         return "cart/cart_form"; // Trả về tên của view cart.jsp
     }
 
+
+    @GetMapping("/changeamount")
+    public String changeAmount(
+            @RequestParam(required = false) String increase,
+            @RequestParam(required = false) String decrease,
+            @RequestParam(required = false) String delete,
+            HttpSession session,
+            Model model) {
+
+        Cart cart = (Cart) session.getAttribute("cart");
+        Account account = (Account) session.getAttribute(("account"));
+        // Kiểm tra giỏ hàng
+        if (cart == null) {
+            System.err.println("Cart is null");
+            return "redirect:/cart"; // Chuyển hướng về trang giỏ hàng nếu không có giỏ hàng
+        }
+
+        // Xử lý các hành động khác nhau
+        if (increase != null) {
+            System.out.println("Increasing amount for item: " + increase);
+            cartService.increaseProductAmountById(account.getUserID(), increase); // Tăng số lượng sản phẩm
+        } else if (decrease != null) {
+            System.out.println("Decreasing amount for item: " + decrease);
+            cartService.decreaseProductAmountById(account.getUserID(), decrease);// Giảm số lượng sản phẩm
+        } else if (delete != null) {
+            System.out.println("Deleting item: " + delete);
+            cartService.removeItem(account.getUserID(), delete); // Xóa sản phẩm khỏi giỏ hàng
+        } else {
+            System.err.println("No action specified");
+        }
+
+//        session.removeAttribute("cart");
+
+        // Đưa người dùng trở lại trang giỏ hàng
+        return "redirect:/cart"; // Chuyển hướng về trang giỏ hàng
+    }
+
+
+
 }
 
 

@@ -18,8 +18,6 @@ public class BookingWithBillStatusDTO {
     private String email;
     private String serviceName;
 
-    private  String CTVID;
-
     private int billID;
     private String billDate;
     private double totalAmount;
@@ -77,7 +75,4 @@ public class BookingWithBillStatusDTO {
         return CTVID;
     }
 
-    public void setCTVID(String CTVID) {
-        this.CTVID = CTVID;
-    }
 }

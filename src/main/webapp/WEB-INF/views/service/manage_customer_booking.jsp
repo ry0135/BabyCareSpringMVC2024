@@ -33,10 +33,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
+<style>
+    h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+        font-family: sans-serif;
+    }
+</style>
 <nav class="nav nav-pills nav-justified">
 
-    <a class="nav-item nav-link active" href="byCustomerID">Lịch sủ dịch vụ</a>
-    <a class="nav-item nav-link  " href="customerRefunds">Danh sách dịch vụ hoàn trả tiền </a>
+    <a class="nav-item nav-link active" style="border-radius: 0px;" href="byCustomerID">Lịch sủ dịch vụ</a>
+    <a class="nav-item nav-link  "  style="border-radius: 0px;" href="customerRefunds">Danh sách dịch vụ hoàn trả tiền </a>
 
 </nav>
 <div class="container">

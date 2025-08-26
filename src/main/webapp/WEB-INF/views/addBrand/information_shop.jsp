@@ -249,38 +249,100 @@
                     </c:choose>
                 </p>
                 <div class="Address">
-                    <label for="addressType">Chọn địa chỉ:</label>
-                    <select name="addressType" id="addressType" onchange="toggleNewAddressInput()">
+                    <label for="addressType" class="form-label">Chọn địa chỉ:</label>
+                    <select name="addressType" id="addressType" class="form-select" onchange="toggleNewAddressInput()">
                         <option value="default">Chọn địa chỉ mặc định</option>
                         <option value="new">Chọn địa chỉ mới</option>
                     </select>
 
-                    <div id="newAddressInput">
-
-                        <div class="Address" style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
-                            <select name="province" id="province">
-                                <option value="">chọn tỉnh</option>
+                    <div id="newAddressInput" style="display: none; margin-top: 15px;">
+                        <div class="address-row">
+                            <select name="province" id="province" class="form-select">
+                                <option value="">Chọn tỉnh</option>
                             </select>
-                            <select name="district" id="district">
-                                <option value="">chọn quận</option>
+                            <select name="district" id="district" class="form-select">
+                                <option value="">Chọn quận</option>
                             </select>
-                            <select name="ward" id="ward">
-                                <option value="">chọn phường</option>
+                            <select name="ward" id="ward" class="form-select">
+                                <option value="">Chọn phường</option>
                             </select>
-
                         </div>
 
-                        <div style="margin-top: 10px">
-                            <input type="text" style="width: 400px; height: 40px; border: 1px solid #ced4da; border-radius: 4px;" 
-                                   id="addressDetail" placeholder="Nhập số nhà hoặc địa chỉ chi tiết">
+                        <div style="margin-top: 15px;">
+                            <input type="text" id="addressDetail" class="form-input" placeholder="Nhập số nhà hoặc địa chỉ chi tiết">
                         </div>
 
-                        <div style="margin-top: 10px">
-                            <input type="hidden" id="result" name="newAddress" style="width: 400px; height: 40px; border: 1px solid #ced4da; border-radius: 4px;" >
+                        <div style="margin-top: 10px;">
+                            <input type="hidden" id="result" name="newAddress">
                         </div>
                     </div>
-                </div>    
+                </div>
+
             </div>
+            <style>
+                /* Toàn bộ khối Address */
+                .Address {
+                    margin: 20px 0;
+                    font-family: Arial, sans-serif;
+                    color: #333;
+                }
+
+                /* Label */
+                .form-label {
+                    font-size: 16px;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                    display: block;
+                }
+
+                /* Select box */
+                .form-select {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid #ced4da;
+                    border-radius: 4px;
+                    margin-bottom: 10px;
+                    font-size: 14px;
+                }
+
+                /* Input text */
+                .form-input {
+                    width: calc(100% - 20px);
+                    padding: 10px;
+                    border: 1px solid #ced4da;
+                    border-radius: 4px;
+                    font-size: 14px;
+                    display: block;
+                    margin: auto;
+                }
+
+                /* Row layout for province, district, ward */
+                .address-row {
+                    display: flex;
+                    gap: 10px;
+                }
+
+                .address-row .form-select {
+                    flex: 1;
+                }
+
+                /* Focus effect */
+                .form-select:focus, .form-input:focus {
+                    border-color: #ff4880;
+                    box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+                    outline: none;
+                }
+
+                /* Optional: Responsive adjustments */
+                @media (max-width: 768px) {
+                    .address-row {
+                        flex-direction: column;
+                    }
+                    .form-select {
+                        width: 100%;
+                    }
+                }
+            </style>
 
             <div class="form-group">
                 <label for="email">Email <span class="required">*</span></label>
@@ -293,33 +355,60 @@
             </div>
 
 
+<%--            <div class="form-group">--%>
+<%--                &lt;%&ndash;@declare id="bandName"&ndash;%&gt;<label for="bandName">Tên Ngân Hàng <span class="text-danger">*</span></label>--%>
+<%--                <div class="input-group">--%>
+<%--                    <select class="form-control" name="bankName" required>--%>
+<%--                        <option value="">Chọn ngân hàng</option>--%>
+<%--                        <c:choose>--%>
+<%--                            <c:when test="${not empty brand}">--%>
+<%--                                <option value="Vietcombank" ${brand.bandName == 'Vietcombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Ngoại thương Việt Nam (Vietcombank)</option>--%>
+<%--                                <option value="Vietinbank" ${brand.bandName == 'Vietinbank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Công Thương Việt Nam (Vietinbank)</option>--%>
+<%--                                <option value="BIDV" ${brand.bandName == 'BIDV' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Đầu tư và Phát triển Việt Nam (BIDV)</option>--%>
+<%--                                <option value="ACB" ${brand.bandName == 'ACB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Á Châu (ACB)</option>--%>
+<%--                                <option value="Techcombank" ${brand.bandName == 'Techcombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Kỹ Thương Việt Nam (Techcombank)</option>--%>
+<%--                                <option value="MB" ${brand.bandName == 'MB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Quân đội (MB)</option>--%>
+<%--                                <option value="SHB" ${brand.bandName == 'SHB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn - Hà Nội (SHB)</option>--%>
+<%--                                <option value="DongABank" ${brand.bandName == 'DongABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Đông Á (DongABank)</option>--%>
+<%--                                <option value="TPBank" ${brand.bandName == 'TPBank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Tiên Phong (TPBank)</option>--%>
+<%--                                <option value="VietABank" ${brand.bandName == 'VietABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Bản Việt (VietABank)</option>--%>
+<%--                                <option value="SCB" ${brand.bandName == 'SCB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn (SCB)</option>--%>
+<%--                                <option value="HDBank" ${brand.bandName == 'HDBank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Phát triển Thành phố Hồ Chí Minh (HDBank)</option>--%>
+<%--                                <option value="BacABank" ${brand.bandName == 'BacABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Bắc Á (BacABank)</option>--%>
+<%--                                <option value="OCB" ${brand.bandName == 'OCB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Phương Đông (OCB)</option>--%>
+<%--                                <option value="Sacombank" ${brand.bandName == 'Sacombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn Thương Tín (Sacombank)</option>--%>
+<%--                            </c:when>--%>
+<%--                            <c:otherwise>--%>
+
+<%--                            </c:otherwise>--%>
+<%--                        </c:choose>--%>
+<%--                    </select>--%>
+<%--                    <div class="invalid-feedback">--%>
+<%--                        Vui lòng chọn ngân hàng--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
             <div class="form-group">
-                <%--@declare id="bandName"--%><label for="bandName">Tên Ngân Hàng <span class="text-danger">*</span></label>
+                    <%-- @declare id="bandName" --%>
+                <label for="bandName">Tên Ngân Hàng <span class="text-danger">*</span></label>
                 <div class="input-group">
                     <select class="form-control" name="bankName" required>
                         <option value="">Chọn ngân hàng</option>
-                        <c:choose>
-                            <c:when test="${not empty brand}">
-                                <option value="Vietcombank" ${brand.bandName == 'Vietcombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Ngoại thương Việt Nam (Vietcombank)</option>
-                                <option value="Vietinbank" ${brand.bandName == 'Vietinbank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Công Thương Việt Nam (Vietinbank)</option>
-                                <option value="BIDV" ${brand.bandName == 'BIDV' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Đầu tư và Phát triển Việt Nam (BIDV)</option>
-                                <option value="ACB" ${brand.bandName == 'ACB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Á Châu (ACB)</option>
-                                <option value="Techcombank" ${brand.bandName == 'Techcombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Kỹ Thương Việt Nam (Techcombank)</option>
-                                <option value="MB" ${brand.bandName == 'MB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Quân đội (MB)</option>
-                                <option value="SHB" ${brand.bandName == 'SHB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn - Hà Nội (SHB)</option>
-                                <option value="DongABank" ${brand.bandName == 'DongABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Đông Á (DongABank)</option>
-                                <option value="TPBank" ${brand.bandName == 'TPBank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Tiên Phong (TPBank)</option>
-                                <option value="VietABank" ${brand.bandName == 'VietABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Bản Việt (VietABank)</option>
-                                <option value="SCB" ${brand.bandName == 'SCB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn (SCB)</option>
-                                <option value="HDBank" ${brand.bandName == 'HDBank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Phát triển Thành phố Hồ Chí Minh (HDBank)</option>
-                                <option value="BacABank" ${brand.bandName == 'BacABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Bắc Á (BacABank)</option>
-                                <option value="OCB" ${brand.bandName == 'OCB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Phương Đông (OCB)</option>
-                                <option value="Sacombank" ${brand.bandName == 'Sacombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn Thương Tín (Sacombank)</option>
-                            </c:when>
-                            <c:otherwise>
-
-                            </c:otherwise>
-                        </c:choose>
+                        <option value="Vietcombank" ${brand != null && brand.bankName == 'Vietcombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Ngoại thương Việt Nam (Vietcombank)</option>
+                        <option value="Vietinbank" ${brand != null && brand.bankName == 'Vietinbank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Công Thương Việt Nam (Vietinbank)</option>
+                        <option value="BIDV" ${brand != null && brand.bankName == 'BIDV' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Đầu tư và Phát triển Việt Nam (BIDV)</option>
+                        <option value="ACB" ${brand != null && brand.bankName == 'ACB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Á Châu (ACB)</option>
+                        <option value="Techcombank" ${brand != null && brand.bankName == 'Techcombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Kỹ Thương Việt Nam (Techcombank)</option>
+                        <option value="MB" ${brand != null && brand.bankName == 'MB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Quân đội (MB)</option>
+                        <option value="SHB" ${brand != null && brand.bankName == 'SHB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn - Hà Nội (SHB)</option>
+                        <option value="DongABank" ${brand != null && brand.bankName == 'DongABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Đông Á (DongABank)</option>
+                        <option value="TPBank" ${brand != null && brand.bankName == 'TPBank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Tiên Phong (TPBank)</option>
+                        <option value="VietABank" ${brand != null && brand.bankName == 'VietABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Bản Việt (VietABank)</option>
+                        <option value="SCB" ${brand != null && brand.bankName == 'SCB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn (SCB)</option>
+                        <option value="HDBank" ${brand != null && brand.bankName == 'HDBank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Phát triển Thành phố Hồ Chí Minh (HDBank)</option>
+                        <option value="BacABank" ${brand != null && brand.bankName == 'BacABank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Bắc Á (BacABank)</option>
+                        <option value="OCB" ${brand != null && brand.bankName == 'OCB' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Phương Đông (OCB)</option>
+                        <option value="Sacombank" ${brand != null && brand.bankName == 'Sacombank' ? 'selected' : ''}>Ngân hàng Thương mại Cổ phần Sài Gòn Thương Tín (Sacombank)</option>
                     </select>
                     <div class="invalid-feedback">
                         Vui lòng chọn ngân hàng
@@ -370,16 +459,14 @@
 
                 <div class="form-actions">
                     <button type="submit" class="btn save-btn">Lưu</button>
-                    <a href="${pageContext.request.contextPath}/getBrandIndentifi" class="btn next-btn">Tiếp theo</a>
+                    <a href="getBrandIndentifi" class="btn next-btn">Tiếp theo</a>
                 </div>
             </div>
         </form>     
 
     </div>
 </c:if>
-<!--<div id="success-message" class="alert alert-success" style="display: none;">
-    Thông tin đã được lưu thành công!
-</div>-->
+
 <script>
     document.getElementById("addressType").addEventListener("change", function () {
         var newAddressInput = document.getElementById("newAddressInput");
